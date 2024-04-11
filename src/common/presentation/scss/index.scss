@@ -4,16 +4,6 @@
 @import "./mixins/responsive.mixin";
 
 :root {
-  font-family: "Montserrat", sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-
   --background-page-primary: #f8f9fd;
   --box-shadow-light: 0px 0px 12px -4px rgba(168, 168, 171, 1);
   --box-shadow-medium: inset 0em 0em 0em rgb(0 0 0 / 10%),
@@ -25,7 +15,7 @@
 
   --color-primary-light: #3ca1ff;
   --color-primary-dark: #195fa1;
-  --color-paragraph: #fff;
+  --color-text: #132436;
   --color-success: #48c774;
   --color-success-rgb: "46,204,113";
   --color-warning: rgb(255, 204, 0);
@@ -33,4 +23,12 @@
   --color-danger: #ff3860;
   --color-danger-rgb: "255,56,96";
   --color-cancel: #b4b2b3;
+}
+
+* {
+  font-family: $font-type-main;
+}
+
+body {
+  color: var(--color-text);
 }
