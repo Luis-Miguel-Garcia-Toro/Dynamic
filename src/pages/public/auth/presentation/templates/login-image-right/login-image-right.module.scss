@@ -1,0 +1,17 @@
+@import "../../scss/login";
+
+.LoginImageRightContainer {
+  @extend .login-col-2-container;
+
+  .LoginImageContainer {
+    @extend .login-col-2-image-container;
+  }
+
+  .LoginFormContainer {
+    @extend .login-col-2-form-container;
+  }
+
+  .LoginFormContent {
+    @extend .login-col-2-form-content;
+  }
+}

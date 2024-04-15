@@ -1,11 +1,17 @@
-import { Test } from "@/common/presentation/components/Test";
+import { LoginCentered, LoginImageLeft, LoginImageRight } from "./templates";
+import { useLogin } from "./view-model";
+
+const loginTemplateOptions = {
+  LOGIN_CENTERED: <LoginCentered />,
+  IMAGE_LEFT: <LoginImageLeft />,
+  IMAGE_RIGHT: <LoginImageRight />,
+};
 
 export const LoginPage = () => {
-  return (
-    <div>
-      <h1>Hola mundo</h1>
+  const { loginUiType } = useLogin();
 
-      <Test />
-    </div>
-  );
+  return <main>{loginTemplateOptions[loginUiType]}</main>;
 };
+
+
+export default LoginPage;

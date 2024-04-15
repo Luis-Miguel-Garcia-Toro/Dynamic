@@ -1,5 +1,10 @@
+import { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { LoginPage } from "../pages";
+// import { LoginPage } from "../pages";
+
+const LoginPage = lazy(() =>
+  import("@/pages/public/auth/presentation/Login.page")
+);
 
 export const PublicRoutes = () => {
   return (

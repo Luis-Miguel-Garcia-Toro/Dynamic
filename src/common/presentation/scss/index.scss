@@ -4,7 +4,7 @@
 @import "./mixins/responsive.mixin";
 
 :root {
-  --background-page-primary: #f8f9fd;
+  // --background-page-primary: #f8f9fd;
   --box-shadow-light: 0px 0px 12px -4px rgba(168, 168, 171, 1);
   --box-shadow-medium: inset 0em 0em 0em rgb(0 0 0 / 10%),
     0em 0.25em 1em rgb(0 0 0 / 24%);
@@ -13,9 +13,10 @@
   --border-radius-sm: 10px;
   --border-radius-md: 20px;
 
-  --color-primary-light: #3ca1ff;
-  --color-primary-dark: #195fa1;
+  --color-primary: #3ca1ff;
+  --color-secondary: #ffffff;
   --color-text: #132436;
+
   --color-success: #48c774;
   --color-success-rgb: "46,204,113";
   --color-warning: rgb(255, 204, 0);
@@ -23,6 +24,10 @@
   --color-danger: #ff3860;
   --color-danger-rgb: "255,56,96";
   --color-cancel: #b4b2b3;
+
+  --color-input-border: #e2e8f0;
+  --color-label: #718096;
+  --color-white: #ffffff;
 }
 
 * {

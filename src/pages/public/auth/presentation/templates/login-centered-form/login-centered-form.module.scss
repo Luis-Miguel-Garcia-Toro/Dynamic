@@ -1,0 +1,43 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+@import "../../scss/login";
+
+.LoginCenteredContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--color-primary);
+  background: var(--login-background-image) no-repeat center;
+  background-size: cover;
+
+  .LoginCenteredContent {
+    width: 90%;
+    margin: 0 auto;
+    padding: 2rem;
+    transition: 0.3s;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: var(--border-radius-sm);
+
+    & label {
+      color: var(--color-white);
+    }
+  }
+}
+
+@include media-up($breakpoint-md) {
+  .LoginCenteredContainer {
+    .LoginCenteredContent {
+      width: 50%;
+    }
+  }
+}
+
+@include media-up($breakpoint-lg) {
+  .LoginCenteredContainer {
+    .LoginCenteredContent {
+      width: 30%;
+    }
+  }
+}

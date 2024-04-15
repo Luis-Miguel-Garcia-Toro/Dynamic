@@ -1,0 +1,41 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.login-col-2-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  transition: 0.3s;
+}
+
+.login-col-2-image-container {
+  transition: 0.3s;
+  display: none;
+}
+
+.login-col-2-form-container {
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-col-2-form-content {
+  width: 100%;
+}
+
+@include media-up($breakpoint-md) {
+  .login-col-2-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .login-col-2-image-container {
+    display: block;
+  }
+
+  .login-col-2-form-content {
+    width: 60%;
+  }
+}

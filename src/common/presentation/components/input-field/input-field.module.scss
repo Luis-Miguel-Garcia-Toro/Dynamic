@@ -1,0 +1,50 @@
+@import "@/common/presentation/scss/base/form";
+
+$icon-x-position: 1rem;
+$icon-size: 1.2rem;
+
+.InputFieldContainer {
+  margin-bottom: 1rem;
+
+  .Label {
+    @extend .form-label;
+  }
+
+  .InputContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .Input {
+      width: 100%;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--color-input-border);
+      position: relative;
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+      }
+
+      &.HasIcon {
+        padding-left: calc($icon-x-position + $icon-size + 1rem);
+      }
+    }
+
+    .Icon {
+      font-size: $icon-size;
+      color: var(--color-label);
+      position: absolute;
+    }
+
+    .IconCustom {
+      left: $icon-x-position;
+    }
+
+    .IconShowPassword {
+      right: $icon-x-position;
+      cursor: pointer;
+    }
+  }
+}

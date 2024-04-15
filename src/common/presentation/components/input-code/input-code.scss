@@ -1,0 +1,21 @@
+@import "@/common/presentation/scss/base/form";
+
+.InputCodeContainer {
+  margin-bottom: 1rem;
+
+  label {
+    @extend .form-label;
+  }
+
+  .vi__container {
+    height: auto;
+    width: auto;
+  }
+
+  .character {
+    font-size: 1.2rem;
+    color: var(--color-text);
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--color-input-border);
+  }
+}

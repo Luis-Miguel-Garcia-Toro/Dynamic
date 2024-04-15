@@ -1,0 +1,15 @@
+.ButtonContainer {
+  button {
+    border: none;
+    text-align: center;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    padding: 0.8rem 2rem;
+    width: 100%;
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

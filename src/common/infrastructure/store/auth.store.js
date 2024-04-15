@@ -1,11 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
-const authStateStatus = {
-  CHECKING: "CHECKING",
-  AUTHENTICATED: "AUTHENTICATED",
-  NO_AUTHENTICATED: "NO_AUTHENTICATED",
-};
+import { authStateStatus } from "./types";
 
 const initialState = {
   user: undefined,
