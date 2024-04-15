@@ -7,9 +7,10 @@ const initialState = {
     auth: {
       login: {
         uiType: uiLoginType.IMAGE_LEFT,
-        authMethod: authenticationMethods.USER_PASSWORD_CODE,
+        authMethod: authenticationMethods.USER_PASSWORD,
         logo: "https://www.celuweb.com/wp-content/uploads/2020/04/logo_celuweb.png",
-        backgroundImage: "https://images.pexels.com/photos/3648269/pexels-photo-3648269.jpeg?auto=compress"
+        backgroundImage: "https://images.pexels.com/photos/3648269/pexels-photo-3648269.jpeg?auto=compress",
+        codeValidationLength: 6,
       },
     },
   },

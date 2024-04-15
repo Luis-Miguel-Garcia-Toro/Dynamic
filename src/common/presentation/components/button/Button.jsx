@@ -8,6 +8,7 @@ export const Button = ({
   customBackgroundColor,
   customColorText,
   label,
+  onClick,
   type,
 }) => {
   const { backgroundColor, textColor } = useButton({
@@ -19,6 +20,7 @@ export const Button = ({
   return (
     <div className={`${className ? className : ""} ${Styles.ButtonContainer}`}>
       <button
+        onClick={onClick}
         style={{
           backgroundColor,
           color: textColor,
@@ -37,6 +39,7 @@ Button.propTypes = {
   customBackgroundColor: PropTypes.string,
   customColorText: PropTypes.string,
   label: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
   type: PropTypes.oneOf(["button", "submit", "reset"]),
 };
 
