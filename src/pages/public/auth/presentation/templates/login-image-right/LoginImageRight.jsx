@@ -2,7 +2,7 @@ import {
   LoginContentLayout,
   LoginImagePanel
 } from "../../components";
-import Styles from "./login-image-right.module.scss";
+import Styles from "./scss/login-image-right.module.scss";
 
 export const LoginImageRight = () => {
   return (

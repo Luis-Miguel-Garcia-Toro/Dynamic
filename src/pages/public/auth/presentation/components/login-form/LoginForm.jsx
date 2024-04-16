@@ -1,18 +1,19 @@
 import { Button, Stepper } from "@/common/presentation/components";
-import { DynamicInputFields } from "./dynamic-input-fields/DynamicInputFields";
-import { useLoginForm } from "./useLoginForm";
+import { DynamicInputFields } from "./components";
+import { useLoginForm } from "./view-model/useLoginForm";
 
 export const LoginForm = () => {
   const {
     authMethod,
     form,
-    onChangeForm,
+    formErrors,
     isActiveSteps,
     isLastStep,
+    onChangeForm,
     onPrevStep,
+    onSubmit,
     step,
     totalSteps,
-    onSubmit,
   } = useLoginForm();
 
   return (
@@ -25,6 +26,7 @@ export const LoginForm = () => {
         <DynamicInputFields
           authMethod={authMethod}
           form={form}
+          errors={formErrors}
           onChangeForm={onChangeForm}
           step={step}
         />

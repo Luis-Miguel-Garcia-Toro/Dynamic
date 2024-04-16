@@ -1,5 +1,5 @@
 import { LoginContentLayout } from "../../components";
-import Styles from "./login-centered-form.module.scss";
+import Styles from "./scss/login-centered-form.module.scss";
 
 export const LoginCentered = () => {
   return (

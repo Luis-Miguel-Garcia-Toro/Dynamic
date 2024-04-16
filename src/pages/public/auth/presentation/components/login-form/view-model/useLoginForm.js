@@ -1,6 +1,9 @@
 import { useUIStore } from "@/common/infrastructure/store";
 import { authenticationMethods } from "@/common/infrastructure/store/types";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useAuthStore } from "../../../../../../../common/infrastructure/store/auth.store";
+import { fetchLogin } from "../../../../infrastructure/login-repository";
+import { validateLoginForm } from "./validate-form";
 
 const TOTAL_STEPS = 2;
 
@@ -10,14 +13,26 @@ const initialValues = {
   code: "",
 };
 
+const initialFormErrors = {
+  username: "",
+  password: "",
+  code: "",
+};
+
 export const useLoginForm = () => {
   const [form, setForm] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+
   const [isActiveSteps, setIsActiveSteps] = useState(false);
   const [step, setStep] = useState(1);
   const { configPages } = useUIStore();
+  const { login } = useAuthStore();
 
   const onChangeForm = (value, key) => {
     setForm({ ...form, [key]: value });
+    if (formErrors[key] && value.length > 0) {
+      setFormErrors((currentErrors) => ({ ...currentErrors, [key]: "" }));
+    }
   };
 
   const authMethod = useMemo(() => {
@@ -58,11 +73,31 @@ export const useLoginForm = () => {
     setStep(step - 1);
   };
 
-  const onLogin = () => {
-    alert("Login...");
+  const checkIsValidForm = () => {
+    const inputCodeLength = configPages?.auth?.login?.codeValidationLength;
+    const { isValid, validations } = validateLoginForm({
+      form,
+      authMethod,
+      codeLength: inputCodeLength,
+      step: step,
+    });
+
+    if (!isValid) {
+      setFormErrors(validations);
+      return false;
+    }
+
+    return true;
+  };
+
+  const onLogin = async() => {
+    const response = await fetchLogin(form);
+    login(response.user);
   };
 
   const onSubmit = () => {
+    const isValidForm = checkIsValidForm();
+    if (!isValidForm) return;
     if (isActiveSteps && !isLastStep) {
       onNextStep();
       return;
@@ -78,12 +113,13 @@ export const useLoginForm = () => {
   return {
     authMethod,
     form,
+    formErrors,
     isActiveSteps,
     isLastStep,
     onChangeForm,
     onPrevStep,
     onSubmit,
-    totalSteps: TOTAL_STEPS,
     step,
+    totalSteps: TOTAL_STEPS,
   };
 };

@@ -30,12 +30,18 @@ $icon-size: 1.2rem;
       &.HasIcon {
         padding-left: calc($icon-x-position + $icon-size + 1rem);
       }
+
+      &.HasError {
+        border-color: var(--color-danger);
+      }
     }
 
     .Icon {
       font-size: $icon-size;
       color: var(--color-label);
       position: absolute;
+      display: flex;
+      align-items: center;
     }
 
     .IconCustom {
@@ -46,5 +52,10 @@ $icon-size: 1.2rem;
       right: $icon-x-position;
       cursor: pointer;
     }
+  }
+
+  .Error {
+    color: var(--color-danger);
+    font-size: 0.8rem;
   }
 }

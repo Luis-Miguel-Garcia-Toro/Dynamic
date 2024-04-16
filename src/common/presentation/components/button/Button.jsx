@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import Styles from "./button.module.scss";
-import { colorsAvailable, useButton } from "./useButton";
+import Styles from "./scss/button.module.scss";
+import { colorsAvailable, useButton } from "./view-model/useButton";
 
 export const Button = ({
   className,

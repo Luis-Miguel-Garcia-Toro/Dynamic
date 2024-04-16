@@ -2,7 +2,7 @@ import { useUIStore } from "@/common/infrastructure/store/ui.store";
 import PropTypes from "prop-types";
 import { LoginForm } from "../login-form/LoginForm";
 
-import Styles from "./login-content-layout.module.scss";
+import Styles from "./scss/login-content-layout.module.scss";
 
 export const LoginContentLayout = ({ className }) => {
   const { configPages } = useUIStore();

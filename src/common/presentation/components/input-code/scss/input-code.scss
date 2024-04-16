@@ -18,4 +18,11 @@
     border-radius: var(--border-radius-sm);
     border: 1px solid var(--color-input-border);
   }
+
+  .error {
+    display: inline-block;
+    color: var(--color-danger);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
 }

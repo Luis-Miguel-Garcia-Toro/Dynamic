@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import Styles from "./input-field.module.scss";
+import Styles from "./scss/input-field.module.scss";
 
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 
 export const InputField = ({
   className,
+  error,
   icon,
   label,
   name,
@@ -34,9 +35,10 @@ export const InputField = ({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           type={showPassword ? "text" : type}
-          className={`${Styles.Input} ${icon ? Styles.HasIcon : ""}`}
+          className={`${Styles.Input} ${icon ? Styles.HasIcon : ""} ${
+            error ? Styles.HasError : ""
+          }`}
         />
-
         {icon && (
           <span className={`${Styles.Icon} ${Styles.IconCustom}`}>{icon}</span>
         )}
@@ -57,18 +59,21 @@ export const InputField = ({
           </>
         )}
       </div>
+
+      {error && <span className={Styles.Error}>{error}</span>}
     </div>
   );
 };
 
 InputField.propTypes = {
-  label: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["text", "number", "password"]),
   className: PropTypes.string,
+  error: PropTypes.string,
   icon: PropTypes.element,
+  label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  type: PropTypes.oneOf(["text", "number", "password"]),
+  value: PropTypes.string.isRequired,
 };
 
 InputField.defaultProps = {

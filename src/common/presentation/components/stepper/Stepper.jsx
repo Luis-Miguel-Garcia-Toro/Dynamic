@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { IoArrowBack } from "react-icons/io5";
-import Styles from "./stepper.module.scss";
+import Styles from "./scss/stepper.module.scss";
 
 export const Stepper = ({ steps, currentStep, onBack }) => {
   return (
