@@ -1,7 +1,6 @@
-import { useUIStore } from "@/common/infrastructure/store";
-import { authenticationMethods } from "@/common/infrastructure/store/types";
+import { authenticationMethods } from "@/common/domain";
+import { useAuthStore, useUIStore } from "@/common/infrastructure/store";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useAuthStore } from "../../../../../../../common/infrastructure/store/auth.store";
 import { fetchLogin } from "../../../../infrastructure/login-repository";
 import { validateLoginForm } from "./validate-form";
 

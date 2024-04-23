@@ -1,4 +1,4 @@
-import { authenticationMethods } from "@/common/infrastructure/store/types/ui.types";
+import { authenticationMethods } from "@/common/domain";
 
 export const validateLoginForm = ({
   form,

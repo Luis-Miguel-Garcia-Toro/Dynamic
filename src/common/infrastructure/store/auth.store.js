@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { authStateStatus } from "./types";
+import { authStateStatus } from "../../domain/auth/auth.types";
 
 const initialState = {
   user: undefined,

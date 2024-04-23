@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { authenticationMethods, uiLoginType } from "./types";
+import { authenticationMethods, uiLoginType } from "../../domain";
 
 const initialState = {
   configPages: {

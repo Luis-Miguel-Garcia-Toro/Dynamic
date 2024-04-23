@@ -1,0 +1,33 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.ProductList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  transition: 0.3s;
+
+  &.horizontal {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include media-up(834px) {
+  .ProductList {
+    grid-template-columns: repeat(4, 1fr);
+
+    &.horizontal {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@include media-up(1210px) {
+  .ProductList {
+    grid-template-columns: repeat(6, 1fr);
+
+    &.horizontal {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}

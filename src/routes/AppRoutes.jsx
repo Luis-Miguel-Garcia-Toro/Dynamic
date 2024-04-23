@@ -1,6 +1,6 @@
 import { useAuthStore } from "@/common/infrastructure/store";
-import { authStateStatus } from "@/common/infrastructure/store/types";
 
+import { authStateStatus } from "@/common/domain";
 import { RootLayout } from "@/common/presentation/components";
 import { Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";

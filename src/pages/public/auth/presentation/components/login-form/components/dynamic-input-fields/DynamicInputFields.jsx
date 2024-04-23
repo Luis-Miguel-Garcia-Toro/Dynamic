@@ -1,4 +1,4 @@
-import { authenticationMethods } from "@/common/infrastructure/store/types";
+import { authenticationMethods } from "@/common/domain";
 import { useUIStore } from "@/common/infrastructure/store/ui.store";
 import { InputCode, InputField } from "@/common/presentation/components";
 import PropTypes from "prop-types";

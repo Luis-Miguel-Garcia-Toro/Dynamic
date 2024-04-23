@@ -9,3 +9,5 @@ export const authenticationMethods = {
   CODE: "CODE",
   USER_PASSWORD_CODE: "USER_PASSWORD_CODE",
 };
+
+export const cartProductUiTypes = ["vertical", "horizontal"];
