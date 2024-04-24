@@ -1,7 +1,8 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box; /* Set the sizing of an element to include it's border */
+  box-sizing: border-box;
+  /* Set the sizing of an element to include it's border */
 }
 
 #root {
@@ -9,21 +10,26 @@
 }
 
 * {
-  margin: 0; /* Set the default margin to 0 */
-  padding: 0; /* Set the default padding to 0 */
+  margin: 0;
+  /* Set the default margin to 0 */
+  padding: 0;
+  /* Set the default padding to 0 */
 }
 
 ul[role="list"],
 ol[role="list"] {
-  list-style: none; /* Turn off numbered and unordered list decoration */
+  list-style: none;
+  /* Turn off numbered and unordered list decoration */
 }
 
 html:focus-within {
-  scroll-behavior: smooth; /* Make the scrolling inside of any scrollable element smooth */
+  scroll-behavior: smooth;
+  /* Make the scrolling inside of any scrollable element smooth */
 }
 
 a:not([class]) {
-  text-decoration-skip-ink: auto; /* Makes link undelines look better */
+  text-decoration-skip-ink: auto;
+  /* Makes link undelines look better */
 }
 
 img,
@@ -31,10 +37,14 @@ picture,
 svg,
 video,
 canvas {
-  max-width: 100%; /* Makes it responsive */
-  height: auto; /* Makes it responsive */
-  vertical-align: middle; /* Makes text next to inline images look better */
-  font-style: italic; /* If the images don't load it makes the alt decription look better */
+  max-width: 100%;
+  /* Makes it responsive */
+  height: auto;
+  /* Makes it responsive */
+  vertical-align: middle;
+  /* Makes text next to inline images look better */
+  font-style: italic;
+  /* If the images don't load it makes the alt decription look better */
   background-repeat: no-repeat;
   /* The background repeat and size are there if you want to load a picture first like a backroung image that is worse quality while the better quality image loads */
   background-size: cover;
@@ -44,7 +54,22 @@ input,
 button,
 textarea,
 select {
-  font: inherit; /* Makes these elements inherit fonts */
+  font: inherit;
+  /* Makes these elements inherit fonts */
+}
+
+input {
+  &:focus {
+    outline: none;
+  }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 /* Turns off animation for people who don't want to see them */
@@ -52,6 +77,7 @@ select {
   html:focus-within {
     scroll-behavior: auto;
   }
+
   *,
   *::before,
   *::after {
@@ -65,6 +91,8 @@ select {
 
 body,
 html {
-  height: 100%; /* Makes the body element full screen */
-  scroll-behavior: smooth; /* Makes normal scrolling smooth */
+  height: 100%;
+  /* Makes the body element full screen */
+  scroll-behavior: smooth;
+  /* Makes normal scrolling smooth */
 }

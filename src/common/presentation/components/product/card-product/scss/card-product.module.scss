@@ -1,8 +1,8 @@
 @import "@/common/presentation/scss/mixins/responsive.mixin";
 @import "@/common/presentation/scss/vars";
 
-$padding-sm: 0.5rem;
-$padding-md: 1.5rem;
+$padding-sm: 1.5rem;
+$padding-md: 2rem;
 
 .CardProductContainer {
   .CardProductContent {
@@ -96,6 +96,11 @@ $padding-md: 1.5rem;
           }
         }
       }
+
+      .CardProductCounter {
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 }
@@ -105,6 +110,10 @@ $padding-md: 1.5rem;
     .CardProductContent {
       .CardProductThumbnail {
         padding: $padding-md;
+      }
+
+      .CardProductBody {
+        padding: 1rem $padding-md;
       }
     }
   }

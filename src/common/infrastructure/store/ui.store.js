@@ -6,7 +6,7 @@ const initialState = {
   configPages: {
     auth: {
       login: {
-        uiType: uiLoginType.IMAGE_LEFT,
+        uiType: uiLoginType.LOGIN_CENTERED,
         authMethod: authenticationMethods.USER_PASSWORD_CODE,
         logo: "https://www.celuweb.com/wp-content/uploads/2020/04/logo_celuweb.png",
         backgroundImage:

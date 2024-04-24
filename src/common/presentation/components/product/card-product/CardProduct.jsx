@@ -8,9 +8,12 @@ import { cartProductUiTypes } from "@/common/domain";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { format } from "../../../utils";
 import { Button } from "../../ui/button/Button";
+import { Counter } from "../../ui/counter/Counter";
+import { useCardProduct } from "./view-model/useCardProduct";
 
 export const CardProduct = ({ product, type }) => {
   const { title, image } = product;
+  const { onChangeQuantity, quantity } = useCardProduct();
 
   return (
     <div className={Styles.CardProductContainer}>
@@ -35,7 +38,19 @@ export const CardProduct = ({ product, type }) => {
           <span className={Styles.CardProductPrice}>
             {format.formatPrice(product.price)}
           </span>
-          <Button className={`${Styles.CardProductButton} ${Styles[type]}`} label="Añadir" />
+          <div>
+            {quantity <= 0 ? (
+              <Button
+                onClick={() => onChangeQuantity(1)}
+                className={`${Styles.CardProductButton} ${Styles[type]}`}
+                label="Añadir"
+              />
+            ) : (
+              <div className={Styles.CardProductCounter}>
+                <Counter value={quantity} onChangeValue={onChangeQuantity} />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
