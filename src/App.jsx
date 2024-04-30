@@ -1,13 +1,12 @@
 import "./common/presentation/scss/index.scss";
-import { AppRoutes as AppEcommerceRoutes } from "./ecommerce/routes";
+import { EcommerceRoutes } from "./ecommerce/routes";
 
 const CURRENT_PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME;
 
 const projects = {
-  ecommerce: <AppEcommerceRoutes />,
+  ecommerce: <EcommerceRoutes />,
 };
 
 export const App = () => {
-
   return projects[CURRENT_PROJECT_NAME];
 };
