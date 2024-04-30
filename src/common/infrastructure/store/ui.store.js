@@ -1,20 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { authenticationMethods, uiLoginType } from "../../domain";
 
 const initialState = {
-  configPages: {
-    auth: {
-      login: {
-        uiType: uiLoginType.LOGIN_CENTERED,
-        authMethod: authenticationMethods.USER_PASSWORD_CODE,
-        logo: "https://www.celuweb.com/wp-content/uploads/2020/04/logo_celuweb.png",
-        backgroundImage:
-          "https://images.pexels.com/photos/3648269/pexels-photo-3648269.jpeg?auto=compress",
-        codeValidationLength: 6,
-      },
-    },
-  },
+  configPages: {},
   theme: {
     colors: {
       primary: "#3ca1ff",
@@ -28,7 +16,8 @@ export const useUIStore = create(
   persist(
     (set) => ({
       ...initialState,
-      updateUI: (uiConfig) => set({ ...uiConfig }),
+      updateTheme: (theme) => set({ theme }),
+      updateConfigPage: (configPages) => set({ configPages }),
     }),
     { name: "uiStore" }
   )
