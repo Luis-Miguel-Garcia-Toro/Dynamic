@@ -5,9 +5,17 @@ import Styles from "./scss/stepper.module.scss";
 export const Stepper = ({ steps, currentStep, onBack }) => {
   return (
     <div className={Styles.StepperContainer}>
-      <button className={Styles.StepperButton} type="button" onClick={onBack}>
-        <IoArrowBack />
-      </button>
+      <div>
+        {currentStep > 1 && (
+          <button
+            className={Styles.StepperButton}
+            type="button"
+            onClick={onBack}
+          >
+            <IoArrowBack />
+          </button>
+        )}
+      </div>
 
       <span className={Styles.StepperText}>
         Paso {currentStep} de {steps}

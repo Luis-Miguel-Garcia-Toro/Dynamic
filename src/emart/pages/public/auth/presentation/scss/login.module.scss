@@ -1,0 +1,83 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+$width-steps-container: 25%;
+
+.LoginContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "steps" "content";
+  min-height: 100vh;
+  position: relative;
+  background-color: #f3f4f5;
+
+  .StepsContainer {
+    position: fixed;
+    padding: 1rem 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    grid-area: steps;
+  }
+
+  .StepperDesktop {
+    display: none;
+  }
+
+  .StepsContainer,
+  .LoginContent {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: #f3f4f5;
+  }
+
+  .LoginContent {
+    margin-top: 90px;
+    grid-area: content;
+  }
+}
+
+@include media-up(920px) {
+  .LoginContainer {
+    grid-template-columns: $width-steps-container 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". content";
+
+    .StepperDesktop {
+      display: block;
+    }
+
+    .StepperMobile {
+      display: none;
+    }
+
+    .StepsContainer {
+      width: $width-steps-container;
+      bottom: 0;
+      background-color: var(--color-primary);
+    }
+
+    .LoginContent {
+      margin-top: 0;
+      padding-top: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & > div {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@include media-up($breakpoint-lg) {
+  .LoginContainer {
+    .LoginContent {
+      & > div {
+        width: 35%;
+      }
+    }
+  }
+}

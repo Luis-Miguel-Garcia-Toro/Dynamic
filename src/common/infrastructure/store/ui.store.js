@@ -5,8 +5,8 @@ const initialState = {
   configPages: {},
   theme: {
     colors: {
-      primary: "#3ca1ff",
-      secondary: "#ffffff",
+      primary: "#123C5C",
+      secondary: "#f4d224",
       text: "#132436",
     },
   },

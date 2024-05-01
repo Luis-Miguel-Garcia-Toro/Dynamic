@@ -1,0 +1,86 @@
+$color-white-50: rgb(165, 165, 165);
+$color-white-15: rgba(255, 255, 255, 0.15);
+$icon-size-container: 30px;
+
+.StepperLoginContainer {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-white);
+  padding: 0 2rem;
+
+  .StepperLoginLogoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+
+    & img {
+      width: 100px;
+    }
+  }
+
+  .StepperLoginSteps {
+    margin-top: 2rem;
+  }
+
+  .StepperLoginStep {
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: calc($icon-size-container + 10px) 1fr;
+    align-items: center;
+    position: relative;
+
+    .StepperLoginStepIndicator {
+      display: flex;
+      justify-content: center;
+      height: $icon-size-container;
+      width: $icon-size-container;
+      border-radius: var(--border-radius-full);
+      position: relative;
+      z-index: 2;
+      background-color: var(--color-primary);
+    }
+
+    .StepperLoginLine {
+      position: absolute;
+      height: 100%;
+      width: 1px;
+      top: 0;
+      bottom: 0;
+      border: 1px solid $color-white-15;
+      z-index: 1;
+      left: calc($icon-size-container / 2);
+    }
+
+    & svg {
+      font-size: 18px;
+      color: $color-white-50;
+    }
+
+    & span {
+      color: $color-white-50;
+    }
+
+    &.StepCompleted {
+
+      .StepperLoginLine{
+        border-color: var(--color-secondary);
+      }
+
+      & svg {
+        color: var(--color-secondary);
+      }
+
+      & span {
+        color: var(--color-secondary);
+      }
+    }
+
+    &.StepActive {
+      .StepperLoginStepIndicator {
+        border: 1px solid var(--color-secondary);
+      }
+    }
+  }
+}

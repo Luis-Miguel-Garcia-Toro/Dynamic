@@ -21,6 +21,10 @@ export const colorsAvailable = {
     backgroundColor: "var(--color-danger)",
     color: "var(--color-white)",
   },
+  flat: {
+    backgroundColor: "var(--color-white)",
+    color: "var(--color-text)",
+  },
 };
 
 export const useButton = ({

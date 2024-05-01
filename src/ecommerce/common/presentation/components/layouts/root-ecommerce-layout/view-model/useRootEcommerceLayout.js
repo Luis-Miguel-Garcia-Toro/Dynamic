@@ -1,9 +1,9 @@
-import { useCallback } from "react";
-import { useUIStore } from "../../../../../../../common/infrastructure/store/ui.store";
+import { useUIStore } from "@/common/infrastructure/store/ui.store";
 import {
   authenticationMethods,
   uiLoginType,
-} from "../../../../../domain/ui/ui.types";
+} from "@ecommerce/common/domain/ui/ui.types";
+import { useCallback } from "react";
 
 const defaultConfigPage = {
   auth: {
