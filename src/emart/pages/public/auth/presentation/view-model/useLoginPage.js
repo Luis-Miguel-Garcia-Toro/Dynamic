@@ -1,29 +1,25 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
+import { useLoginEmartDataStore } from "../../../../../common/infrastructure/store";
 import { screensList } from "./steps-screen-config";
 
 export const useLoginPage = () => {
-  //TODO: Logica en un estado global, para evitar enviar props a cada componente
-  const [currentStepNumber, setCurrentStepNumber] = useState(1);
+  const { changeTotalSteps, totalSteps, currentStep, onPrevStep } =
+    useLoginEmartDataStore();
 
   const currentKeyStep = useMemo(() => {
-    return screensList[currentStepNumber - 1].key;
-  }, [currentStepNumber]);
+    return screensList[currentStep - 1].key;
+  }, [currentStep]);
 
-  const backStep = () => {
-    if(currentStepNumber === 1) return
-    setCurrentStepNumber(currentStepNumber - 1);
-  };
-
-  const nextStep = () => {
-    if(currentStepNumber === screensList.length) return
-    setCurrentStepNumber(currentStepNumber + 1);
-  }
+  useEffect(() => {
+    changeTotalSteps(screensList.length);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
-    backStep,
     currentKeyStep,
-    currentStepNumber,
-    nextStep,
+    currentStep,
+    onPrevStep,
     screensList,
+    totalSteps,
   };
 };

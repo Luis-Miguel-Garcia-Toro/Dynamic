@@ -1,7 +1,5 @@
 import { Stepper } from "@/common/presentation/components";
 import {
-  // BranchList,
-  // BusinessList,
   ContactSelection,
   LoginCredentials,
   NitEntry,
@@ -12,36 +10,31 @@ import Styles from "./scss/login.module.scss";
 import { useLoginPage } from "./view-model/useLoginPage";
 
 const stepsPages = {
-  nit: (props) => <NitEntry {...props} />,
-  contact: (props) => <ContactSelection {...props} />,
-  verification: (props) => <VerificationCode {...props} />,
-  login: (props) => <LoginCredentials {...props} />,
-  // business: <BusinessList />,
-  // branch: <BranchList />,
+  nit: <NitEntry />,
+  contact: <ContactSelection />,
+  verification: <VerificationCode />,
+  login: <LoginCredentials />,
 };
 
 export const LoginPage = () => {
-  const { currentKeyStep, currentStepNumber, screensList, backStep, nextStep } =
+  const { currentKeyStep, screensList, totalSteps, onPrevStep, currentStep } =
     useLoginPage();
   return (
     <main className={Styles.LoginContainer}>
       <section className={Styles.StepsContainer}>
         <div className={Styles.StepperMobile}>
           <Stepper
-            onBack={backStep}
-            currentStep={currentStepNumber}
-            steps={screensList.length}
+            onBack={onPrevStep}
+            currentStep={currentStep}
+            steps={totalSteps}
           />
         </div>
         <div className={Styles.StepperDesktop}>
-          <StepperLogin
-            currentStep={currentStepNumber}
-            stepsList={screensList}
-          />
+          <StepperLogin currentStep={currentStep} stepsList={screensList} />
         </div>
       </section>
       <section className={Styles.LoginContent}>
-        <div>{stepsPages[currentKeyStep]({ backStep, nextStep })}</div>
+        <div>{stepsPages[currentKeyStep]}</div>
       </section>
     </main>
   );

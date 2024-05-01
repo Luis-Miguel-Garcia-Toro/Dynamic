@@ -1,21 +1,27 @@
 import { InputField } from "@/common/presentation/components";
-import PropTypes from "prop-types";
 import { FaRegAddressCard } from "react-icons/fa6";
 import { StepScreenLayout } from "../subcomponents";
+import { useNitEntry } from "./view-model";
 
-export const NitEntry = ({ nextStep }) => {
+export const NitEntry = () => {
+  const { onChangeNit, nit, errorNitField, onNextStep, isPendingMutation } =
+    useNitEntry();
+
   return (
     <StepScreenLayout
+      isLoading={isPendingMutation}
       icon={<FaRegAddressCard />}
-      description="Para continuar por favor ingresa un Nit a continuación"
+      description="Por favor, ingresa un NIT para continuar."
       title="Ingresar"
-      onNext={nextStep}
+      onNext={onNextStep}
     >
-      <InputField label="Nit" name="nit" onChange={() => {}} value="" />
+      <InputField
+        error={errorNitField}
+        label="Nit"
+        name="nit"
+        onChange={onChangeNit}
+        value={nit}
+      />
     </StepScreenLayout>
   );
-};
-
-NitEntry.propTypes = {
-  nextStep: PropTypes.func.isRequired,
 };

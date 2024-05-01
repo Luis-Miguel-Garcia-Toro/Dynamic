@@ -1,69 +1,57 @@
-import PropTypes from "prop-types";
+import { format } from "@/common/presentation/utils";
 import { BsTelephone } from "react-icons/bs";
-import { IoIosArrowRoundForward } from "react-icons/io";
-import { MdOutlineEmail } from "react-icons/md";
+import { FaCheckCircle } from "react-icons/fa";
 import { RiContactsBookLine } from "react-icons/ri";
 import { StepScreenLayout } from "../subcomponents";
 import Styles from "./scss/contact-selection.module.scss";
+import { useContactSelection } from "./view-model";
 
-const contactsList = [
-  {
-    id: 1,
-    name: "3006730496",
-    type: "tel",
-  },
-  {
-    id: 2,
-    name: "JhX5z@example.com",
-    type: "email",
-  },
-  {
-    id: 3,
-    name: "3006730496",
-    type: "tel",
-  },
-  {
-    id: 4,
-    name: "JhX5z@example.com",
-    type: "email",
-  },
-  {
-    id: 5,
-    name: "3006730496",
-    type: "tel",
-  },
-  {
-    id: 6,
-    name: "JhX5z@example.com",
-    type: "email",
-  },
-];
+export const ContactSelection = () => {
+  const {
+    prevStep,
+    contactList,
+    onChangeSelectedContact,
+    contactSelected,
+    isLoading,
+    onNextStep,
+  } = useContactSelection();
 
-export const ContactSelection = ({ nextStep, backStep }) => {
   return (
     <StepScreenLayout
-      description="Debes seleccionar un número de teléfono o correo para continuar con el proceso de autenticación."
+      description="Para continuar con el proceso de autenticación, selecciona un número de teléfono o correo electrónico."
       title="Selecciona un correo o teléfono"
       icon={<RiContactsBookLine />}
-      onBack={backStep}
+      onBack={prevStep}
+      isLoading={isLoading}
+      onNext={onNextStep}
     >
       <div>
-        {contactsList.map(({ id, name, type }) => (
-          <div onClick={nextStep} className={Styles.ContactItem} key={id}>
-            <div className={Styles.ContactInfo}>
-              {type === "tel" ? <BsTelephone /> : <MdOutlineEmail />}
-              <span>{name}</span>
-            </div>
+        {contactList.map((contact, index) => {
+          const isContactSelected =
+            contact.phone === contactSelected?.phone &&
+            index === contactSelected?.index;
 
-            <IoIosArrowRoundForward size={20} />
-          </div>
-        ))}
+          return (
+            <div
+              onClick={() => onChangeSelectedContact(contact, index)}
+              className={`${Styles.ContactItem} ${
+                isContactSelected ? Styles.Selected : ""
+              }`}
+              key={index}
+            >
+              <div className={Styles.ContactInfo}>
+                {/* {type === "tel" ? <BsTelephone /> : <MdOutlineEmail />} */}
+                <BsTelephone />
+                <span>{format.maskPhone(contact.phone)}</span>
+              </div>
+
+              <div className={Styles.ContactCheck}>
+                <FaCheckCircle size={20} />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </StepScreenLayout>
   );
-};
-
-ContactSelection.propTypes = {
-  nextStep: PropTypes.func.isRequired,
-  backStep: PropTypes.func.isRequired,
 };

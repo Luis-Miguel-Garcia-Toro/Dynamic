@@ -1,3 +1,5 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import 'react-toastify/dist/ReactToastify.css';
 import "./common/presentation/scss/index.scss";
 import { EcommerceRoutes } from "./ecommerce/routes";
 import { EmartRoutes } from "./emart/routes";
@@ -9,13 +11,15 @@ const projects = {
   emart: <EmartRoutes />,
 };
 
+const messageNotFound =
+  "Project Not Found, configure PROJECT NAME in the environments variables, check .env.template file";
+
+const queryClient = new QueryClient();
+
 export const App = () => {
   return (
-    projects[CURRENT_PROJECT_NAME] || (
-      <h3>
-        Project Not Found, configure PROJECT NAME in the environments variables,
-        check .env.template file
-      </h3>
-    )
+    <QueryClientProvider client={queryClient}>
+      <>{projects[CURRENT_PROJECT_NAME] || <h3>{messageNotFound}</h3>}</>
+    </QueryClientProvider>
   );
 };

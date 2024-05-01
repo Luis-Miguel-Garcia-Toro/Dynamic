@@ -1,31 +1,71 @@
 import { InputField } from "@/common/presentation/components";
-import PropTypes from "prop-types";
 import { IoIosLogIn } from "react-icons/io";
 import { StepScreenLayout } from "../subcomponents";
+import { useLoginCredentials } from "./view-model/useLoginCredentials";
 
-export const LoginCredentials = ({ backStep }) => {
+export const LoginCredentials = () => {
+  const {
+    form,
+    formErrors,
+    hasPassword,
+    isPendingLogin,
+    onChangeFieldForm,
+    onNextStep,
+    prevStep,
+    isPendingCreatePass,
+  } = useLoginCredentials();
+
   return (
     <StepScreenLayout
-      description="Inicia sesión con tu usuario y contraseña"
+      description={
+        hasPassword
+          ? "Accede con tu número de nit y contraseña."
+          : "Antes de iniciar sesión, necesitas establecer una contraseña para tu cuenta."
+      }
       icon={<IoIosLogIn />}
-      title="Iniciar sesión"
-      onNext={() => {}}
-      onBack={backStep}
+      title={hasPassword ? "Iniciar sesión" : "Establecer contraseña"}
+      onNext={onNextStep}
+      onBack={prevStep}
+      isLoading={isPendingLogin || isPendingCreatePass}
     >
-      <div>
-        <InputField label="Usuario" name="user" onChange={() => {}} value="" />
-        <InputField
-          type="password"
-          label="Contraseña"
-          name="password"
-          onChange={() => {}}
-          value=""
-        />
-      </div>
+      {hasPassword ? (
+        <div>
+          <InputField
+            label="Nit"
+            name="nit"
+            onChange={(value) => onChangeFieldForm(value, "nit")}
+            value={form.nit}
+            error={formErrors.nit}
+          />
+          <InputField
+            type="password"
+            label="Contraseña"
+            name="password"
+            onChange={(value) => onChangeFieldForm(value, "password")}
+            value={form.password}
+            error={formErrors.password}
+          />
+        </div>
+      ) : (
+        <div>
+          <InputField
+            type="password"
+            label="Nueva contraseña"
+            name="newPassword"
+            onChange={(value) => onChangeFieldForm(value, "newPassword")}
+            value={form.newPassword}
+            error={formErrors.newPassword}
+          />
+          <InputField
+            type="password"
+            label="Confirmar contraseña"
+            name="newPassword2"
+            onChange={(value) => onChangeFieldForm(value, "newPassword2")}
+            value={form.newPassword2}
+            error={formErrors.newPassword2}
+          />
+        </div>
+      )}
     </StepScreenLayout>
   );
-};
-
-LoginCredentials.propTypes = {
-  backStep: PropTypes.func.isRequired,
 };

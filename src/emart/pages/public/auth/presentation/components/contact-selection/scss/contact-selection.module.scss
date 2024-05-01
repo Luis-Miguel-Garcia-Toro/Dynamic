@@ -13,6 +13,22 @@
   &:hover {
     transform: scale(1.03);
   }
+
+  .ContactCheck {
+    & svg {
+      color: var(--color-cancel);
+    }
+  }
+
+  &.Selected {
+    border: 1px solid var(--color-primary);
+
+    .ContactCheck {
+      & svg {
+        color: var(--color-primary);
+      }
+    }
+  }
 }
 
 .ContactInfo {

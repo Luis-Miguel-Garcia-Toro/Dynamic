@@ -10,7 +10,7 @@ $width-steps-container: 25%;
   grid-template-areas: "steps" "content";
   min-height: 100vh;
   position: relative;
-  background-color: #f3f4f5;
+  background-color: var(--color-bg-primary);
 
   .StepsContainer {
     position: fixed;
@@ -29,7 +29,7 @@ $width-steps-container: 25%;
   .LoginContent {
     padding-left: 1rem;
     padding-right: 1rem;
-    background-color: #f3f4f5;
+    background-color: var(--color-bg-primary);
   }
 
   .LoginContent {

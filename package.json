@@ -4,17 +4,23 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode development",
+    "qa": "vite --mode quality",
     "build": "vite build",
+    "build:dev": "vite build --mode development",
+    "build:qa": "vite build --mode quality",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.32.1",
+    "axios": "^1.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-lazy-load-image-component": "^1.6.0",
     "react-router-dom": "^6.22.3",
+    "react-toastify": "^10.0.5",
     "react-verification-input": "^4.1.2",
     "zustand": "^4.5.2"
   },

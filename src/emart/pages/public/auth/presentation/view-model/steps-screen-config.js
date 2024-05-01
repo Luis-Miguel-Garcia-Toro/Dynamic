@@ -7,7 +7,7 @@ export const screensList = [
   {
     pageNumber: 2,
     key: "contact",
-    label: "Metodo de autenticación",
+    label: "Método de autenticación",
   },
   {
     pageNumber: 3,
