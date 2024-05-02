@@ -1,0 +1,30 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.BranchItemContainer {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-light);
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--color-label);
+  }
+
+  &:hover {
+    box-shadow: var(--box-shadow-medium);
+  }
+}
+
+@include media-up($breakpoint-md) {
+  .BranchItemContainer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

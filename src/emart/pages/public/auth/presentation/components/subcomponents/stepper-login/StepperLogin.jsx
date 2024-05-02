@@ -5,7 +5,7 @@ import Styles from "./scss/stepper-login.module.scss";
 
 export const StepperLogin = ({ currentStep, stepsList }) => {
   return (
-    <div className={Styles.StepperLoginContainer}>
+    <div className={`${Styles.StepperLoginContainer} fadeIn`}>
       <figure className={Styles.StepperLoginLogoContainer}>
         <img src={Logo} alt="logo cw" />
       </figure>

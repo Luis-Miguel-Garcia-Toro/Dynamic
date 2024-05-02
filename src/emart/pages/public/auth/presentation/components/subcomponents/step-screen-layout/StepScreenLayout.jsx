@@ -14,7 +14,7 @@ export const StepScreenLayout = ({
   isLoading,
 }) => {
   return (
-    <div className={Styles.StepLayoutContainer}>
+    <div className={`${Styles.StepLayoutContainer} fadeIn`}>
       <LoadingFull show={isLoading} />
       <div className={Styles.StepLayoutInfo}>
         <figure className={Styles.StepLayoutIconContainer}>{icon}</figure>

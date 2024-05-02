@@ -34,4 +34,5 @@ export const useLoginEmartDataStore = create((set) => ({
         return { currentStep: state.currentStep + 1 };
       }
     }),
+  resetData: () => set({ ...initialState }),
 }));

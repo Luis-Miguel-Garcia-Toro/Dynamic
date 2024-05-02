@@ -4,26 +4,31 @@ import Styles from "./scss/home.module.scss";
 import { useHomePage } from "./view-model";
 
 export const HomePage = () => {
-  const { businessList, nit, logout } = useHomePage();
-
-  console.log({ businessList });
-
+  const { businessList, nit, onLogout, onNavigateToBranch } = useHomePage();
   return (
     <main className={Styles.HomePageContainer}>
       <div className={Styles.HomePageHeader}>
-        <div className={Styles.HomePageHeaderOptions}>
+        <div className={`${Styles.HomePageHeaderOptions} fadeIn`}>
           <h1>Tus negocios disponibles</h1>
           <div className={Styles.LogoutContainer}>
             <span>Salir</span>
-            <CiLogout onClick={logout} size={40} color="var(--color-primary)" />
+            <CiLogout
+              onClick={onLogout}
+              size={40}
+              color="var(--color-primary)"
+            />
           </div>
         </div>
-        <h2>NIt - {nit}</h2>
+        <h2>Nit - {nit}</h2>
       </div>
 
       <section className={Styles.BusinessListContainer}>
         {businessList.map((business) => (
-          <BusinessCard business={business} key={business.business} />
+          <BusinessCard
+            navigateTo={() => onNavigateToBranch(business)}
+            business={business}
+            key={business.business}
+          />
         ))}
       </section>
     </main>

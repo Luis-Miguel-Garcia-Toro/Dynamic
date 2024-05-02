@@ -1,0 +1,108 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.BranchPageContainer {
+  min-height: 100vh;
+  background-color: var(--color-bg-primary);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  padding: 4rem 2rem;
+
+  .BranchInfo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+
+    figure {
+      width: 200px;
+      overflow: hidden;
+      margin-right: 1rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      line-height: 1.8rem;
+    }
+
+    span {
+      font-size: 0.9rem;
+      color: var(--color-label);
+    }
+  }
+
+  .BranchListContainer {
+    margin-top: 2rem;
+    .BranchListTitle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .BranchList {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+  }
+
+  .NoBranches {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px dashed var(--color-cancel);
+    border-radius: var(--border-radius-md);
+    margin-top: 2rem;
+    color: var(--color-cancel);
+    text-align: center;
+
+    h3{
+      font-weight: normal;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+@include media-up($breakpoint-md) {
+  .BranchPageContainer {
+    grid-template-columns: 30% 1fr;
+    padding: 0;
+
+    .BranchInfoContainer {
+      padding: 0 2rem;
+      background-color: var(--color-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .BranchListContainer {
+      width: 90%;
+      margin: 0 auto;
+      margin-top: 4rem;
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .BranchList {
+        width: 60%;
+        justify-content: center;
+        margin: 0 auto;
+        margin-top: 4rem;
+      }
+    }
+  }
+}

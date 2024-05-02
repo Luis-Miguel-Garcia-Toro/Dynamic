@@ -17,34 +17,18 @@ export const useNitEntry = () => {
   const getPhoneListMutation = useMutation({
     mutationFn: (nit) => fetchGetPhoneList(nit),
     onSuccess: (response) => {
-      console.log({ response });
       changeNit(nit);
-      changeContactList(response);
+      // changeContactList(response);
+      changeContactList([
+        ...response,
+        { email: "carlos@example.com", phone: "3006730496", state_password: 1 },
+      ]); //TODO: Eliminar
       nextStep();
     },
     onError: () => {
       toast.error(
         "Lo sentimos, ha ocurrido un error al validar el NIT. Por favor, inténtalo de nuevo más tarde."
       );
-
-      //TODO: Eliminar
-      const fakeResponse = [
-        {
-          phone: "3217516054",
-          email: "carlosmartinezm0708@gmail.com",
-          state_password: 1,
-        },
-        {
-          phone: "3217516054",
-          email: "carlosmartinezm0708@gmail.com",
-          state_password: 1,
-        },
-        { phone: "3217516054", email: "null@null.com", state_password: 1 },
-      ];
-
-      changeNit(nit);
-      changeContactList(fakeResponse);
-      nextStep();
     },
   });
 

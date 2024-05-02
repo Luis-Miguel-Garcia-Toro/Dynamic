@@ -1,6 +1,4 @@
 export const phoneListAdapter = (response) => {
-  console.log({ response });
-
   const phoneLists = response.map((item) => {
     return {
       phone: item.phone,
@@ -20,7 +18,6 @@ export const sendCodeAdapter = (response) => {
 };
 
 export const loginAdapter = (response) => {
-  //TODO: Aplanar data
   return response;
 };
 

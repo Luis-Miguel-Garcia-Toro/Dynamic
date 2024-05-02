@@ -33,15 +33,10 @@ export const useContactSelection = () => {
 
       setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       toast.error(
         "Ocurrió un error al enviar el código de validación. Por favor intente de nuevo más tarde."
       );
-      setIsLoading(false);
-
-      //TODO: Eliminar
-      changeAuthMethod(contactSelected);
-      changeVerificationCode("262617");
-      nextStep();
     }
   };
 

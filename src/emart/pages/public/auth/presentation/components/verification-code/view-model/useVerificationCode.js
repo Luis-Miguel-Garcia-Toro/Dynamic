@@ -21,7 +21,6 @@ export const useVerificationCode = () => {
   };
 
   const checkCodeIsValid = () => {
-    console.log({ verificationCode });
     const isSameCode = verificationCode === code;
 
     if (!isSameCode) {

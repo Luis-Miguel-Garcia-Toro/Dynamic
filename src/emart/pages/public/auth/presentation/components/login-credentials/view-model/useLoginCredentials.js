@@ -24,10 +24,11 @@ const errorsForm = {
 
 export const useLoginCredentials = () => {
   const {
-    onPrevStep: prevStep,
-    nit,
-    hasPassword,
     authMethodSelected,
+    hasPassword,
+    nit,
+    onPrevStep: prevStep,
+    resetData,
   } = useLoginEmartDataStore();
   const [form, setForm] = useState({ ...initialForm, nit });
   const [formErrors, setFormErrors] = useState(errorsForm);
@@ -36,77 +37,30 @@ export const useLoginCredentials = () => {
   const loginMutation = useMutation({
     mutationFn: ({ nit, password }) => fetchLogin({ nit, password }),
     onSuccess: (response) => {
-      console.log({ response });
-
       const user = {
         nit: form.nit,
         authMethodSelected,
         businessUnitList: response,
       };
       login(user);
+      resetData();
     },
     onError: () => {
       toast.error(
         "Ocurrió un error al iniciar sesión, por favor verifica tus datos."
       );
-
-      //TODO: Eliminar
-
-      const fakeBusinessList = [
-        [
-          {
-            business: 1000,
-            organization: "ALQUERIA",
-            primary_color: "#ed1b2e",
-            secondary_color: "#550008",
-            logo: "https://usc1.contabostorage.com/d069ea98e2df4b0e9e99b1e7b2ca9a58:pruebasceluweb/ company_logos/1000/logo.png",
-            splash:
-              "http://fuerzaventas2.celuwebdev.com/CLCGAZ_PRD/catalogo/prebel/splash.png",
-            primary_color_web: "237,27,46",
-            secondary_color_web: "85,0,8",
-            comercial_name: "Productos Naturales De La Sabana S.A.S",
-          },
-        ],
-        [
-          {
-            business: 1015,
-            organization: "MEALS",
-            primary_color: "#054493",
-            secondary_color: "#dc2824",
-            logo: "https://cw20-api-media.sandboxcw.net/api/contabo/get_file?document_aux=1015_file_0_1015-Mealsdecolombia&business_unit=1015&environment=QA&media_type=0&path=assets",
-            splash:
-              "http://fuerzaventas2.celuwebdev.com/CLCGAZ_PRD/catalogo/prebel/splash.png",
-            primary_color_web: "48,105,178",
-            secondary_color_web: "36,74,124",
-            comercial_name: "Meals",
-          },
-        ],
-      ];
-
-      const flattenedData = fakeBusinessList.flatMap((arr) => arr);
-
-      const user = {
-        nit: form.nit,
-        authMethodSelected,
-        businessUnitList: flattenedData,
-      };
-      login(user);
     },
   });
 
   const createPasswordMutation = useMutation({
     mutationFn: ({ nit, password }) => fetchCreatePassword({ nit, password }),
-    onSuccess: (response) => {
-      console.log({ response });
+    onSuccess: () => {
       loginMutation.mutate({ nit, password: form.newPassword });
     },
     onError: () => {
       toast.error(
         "Ocurrió un error al crear la contrasena, por favor intenta de nuevo más tarde."
       );
-
-      //TODO: Eliminar
-      loginMutation.mutate({ nit, password: form.newPassword });
     },
   });
 
@@ -154,14 +108,12 @@ export const useLoginCredentials = () => {
 
   const onLogin = () => {
     if (!checkIsValidForm()) return;
-    console.log({ form });
     const { nit, password } = form;
     loginMutation.mutate({ nit, password });
   };
 
   const createPassword = () => {
     if (!checkIsValidForm()) return;
-    console.log({ form });
     createPasswordMutation.mutate({ nit, password: form.newPassword });
   };
 

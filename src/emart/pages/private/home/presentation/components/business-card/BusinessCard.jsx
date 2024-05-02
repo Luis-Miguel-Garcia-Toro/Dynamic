@@ -1,8 +1,11 @@
+import defaultImage from "@/assets/img/default_image.png";
 import PropTypes from "prop-types";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import Styles from "./scss/business-card.module.scss";
 
-export const BusinessCard = ({ business }) => {
+export const BusinessCard = ({ business, navigateTo }) => {
   const {
     comercial_name,
     logo,
@@ -12,9 +15,20 @@ export const BusinessCard = ({ business }) => {
   } = business;
 
   return (
-    <div className={Styles.BusinessCardContainer}>
+    <div
+      onClick={() => navigateTo(business)}
+      className={`${Styles.BusinessCardContainer} fadeIn`}
+    >
       <figure>
-        <img src={logo} alt={comercial_name} />
+        <LazyLoadImage
+          src={logo}
+          alt={comercial_name}
+          onError={(e) => {
+            e.target.src = defaultImage;
+          }}
+          effect="blur"
+          delayTime={500}
+        />
       </figure>
       <div>
         <h2>{comercial_name}</h2>
@@ -30,4 +44,5 @@ export const BusinessCard = ({ business }) => {
 
 BusinessCard.propTypes = {
   business: PropTypes.object.isRequired,
+  navigateTo: PropTypes.func.isRequired,
 };

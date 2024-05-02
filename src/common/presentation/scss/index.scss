@@ -2,6 +2,7 @@
 @import "./vars";
 @import "./globals";
 @import "./mixins/responsive.mixin";
+@import "./base/animations";
 
 :root {
   --box-shadow-light: 0px 0px 12px -4px rgba(168, 168, 171, 1);
@@ -15,7 +16,7 @@
   --border-radius-md: 20px;
   --border-radius-full: 50%;
 
-  --color-primary: #123C5C;
+  --color-primary: #123c5c;
   --color-secondary: #f4d224;
   --color-text: #132436;
 
