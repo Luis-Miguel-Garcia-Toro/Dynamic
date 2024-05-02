@@ -18,11 +18,7 @@ export const useNitEntry = () => {
     mutationFn: (nit) => fetchGetPhoneList(nit),
     onSuccess: (response) => {
       changeNit(nit);
-      // changeContactList(response);
-      changeContactList([
-        ...response,
-        { email: "carlos@example.com", phone: "3006730496", state_password: 1 },
-      ]); //TODO: Eliminar
+      changeContactList(response);
       nextStep();
     },
     onError: () => {
