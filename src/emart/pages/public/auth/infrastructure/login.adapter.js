@@ -20,6 +20,7 @@ export const sendCodeAdapter = (response) => {
 };
 
 export const loginAdapter = (response) => {
+  //TODO: Aplanar data
   return response;
 };
 

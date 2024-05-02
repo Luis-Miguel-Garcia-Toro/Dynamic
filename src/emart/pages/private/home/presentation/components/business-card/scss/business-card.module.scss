@@ -1,0 +1,52 @@
+.BusinessCardContainer {
+  background-color: var(--color-white);
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 80px 1fr auto;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-light);
+  transition: 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: var(--box-shadow-medium);
+  }
+
+  figure {
+    width: 40%;
+    height: 100%;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  span {
+    font-size: 0.9rem;
+    color: var(--color-cancel);
+  }
+
+  .BusinessCardButtonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}

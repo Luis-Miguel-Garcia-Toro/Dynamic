@@ -83,10 +83,12 @@ export const useLoginCredentials = () => {
         ],
       ];
 
+      const flattenedData = fakeBusinessList.flatMap((arr) => arr);
+
       const user = {
         nit: form.nit,
         authMethodSelected,
-        businessUnitList: fakeBusinessList,
+        businessUnitList: flattenedData,
       };
       login(user);
     },
