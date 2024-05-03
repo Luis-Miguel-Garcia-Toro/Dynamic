@@ -6,8 +6,9 @@ import { fetchGetPhoneList } from "../../../../infrastructure/login-repository";
 
 export const useNitEntry = () => {
   const {
-    changeNit,
+    changeAuthMethod,
     changeContactList,
+    changeNit,
     nit: nitStore,
     onNextStep: nextStep,
   } = useLoginEmartDataStore();
@@ -19,6 +20,7 @@ export const useNitEntry = () => {
     onSuccess: (response) => {
       changeNit(nit);
       changeContactList(response);
+      changeAuthMethod(undefined)
       nextStep();
     },
     onError: () => {

@@ -1,12 +1,15 @@
-import { create } from "zustand";
+import { create } from "zustand"
 
 const initialState = {
   authMethodSelected: undefined,
   contactList: [],
+  businessList: [],
+  contactSelected: undefined,
   currentStep: 1,
   hasPassword: false,
   nit: "",
-  totalSteps: 4,
+  totalSteps: 3,
+  validatedCode: false,
   verificationCode: undefined,
 };
 
@@ -21,7 +24,10 @@ export const useLoginEmartDataStore = create((set) => ({
     return set({ contactList, hasPassword });
   },
   changeAuthMethod: (authMethod) => set({ authMethodSelected: authMethod }),
+  changeContactSelected: (contactSelected) => set({ contactSelected }),
   changeVerificationCode: (verificationCode) => set({ verificationCode }),
+  changeValidatedCode: (validatedCode) => set({ validatedCode }),
+  changeBusinessList: (businessList) => set({ businessList }),
   onPrevStep: () =>
     set((state) => {
       if (state.currentStep > 1) {

@@ -1,16 +1,24 @@
-import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store/login-data.store";
-import { useState } from "react";
-import { toast } from "react-toastify";
+import { useAuthStore } from "@/common/infrastructure/store/auth.store"
+import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store/login-data.store"
+import { useState } from "react"
+import { toast } from "react-toastify"
 
 export const useVerificationCode = () => {
   const [code, setCode] = useState("");
   const [errorInputCode, setErrorInputCode] = useState("");
 
   const {
-    onNextStep: nextStep,
+    businessList,
+    changeAuthMethod,
+    changeValidatedCode,
+    contactSelected,
+    hasPassword,
+    nit,
     onPrevStep: prevStep,
     verificationCode,
+    resetData,
   } = useLoginEmartDataStore();
+  const { login } = useAuthStore();
 
   const onChangeCode = (newCode) => {
     if (newCode.length >= 6) {
@@ -25,10 +33,24 @@ export const useVerificationCode = () => {
 
     if (!isSameCode) {
       toast.error("El código de validación es incorrecto.");
-      return;
+      return false;
     }
 
-    nextStep();
+    return true;
+  };
+
+  const navigateCreatePassword = () => {
+    changeAuthMethod("password");
+  };
+
+  const loginWithCode = () => {
+    const user = {
+      nit,
+      contactSelected,
+      businessUnitList: businessList,
+    };
+    login(user);
+    resetData();
   };
 
   const onNextStep = () => {
@@ -37,7 +59,16 @@ export const useVerificationCode = () => {
       return;
     }
 
-    checkCodeIsValid();
+    if (!checkCodeIsValid()) return;
+
+    changeValidatedCode(true);
+
+    if (!hasPassword) {
+      navigateCreatePassword();
+      return;
+    }
+
+    loginWithCode();
   };
 
   return {

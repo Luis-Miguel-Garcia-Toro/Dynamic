@@ -1,5 +1,6 @@
-export * from "./contact-selection/ContactSelection";
-export * from "./login-credentials/LoginCredentials";
-export * from "./nit-entry/NitEntry";
-export * from "./verification-code/VerificationCode";
+export * from "./auth-method/AuthMethod"
+export * from "./contact-selection/ContactSelection"
+export * from "./login-credentials/LoginCredentials"
+export * from "./nit-entry/NitEntry"
+export * from "./verification-code/VerificationCode"
 

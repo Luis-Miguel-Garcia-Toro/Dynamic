@@ -1,10 +1,10 @@
-import { http } from "@/common/infrastructure/connection/Http";
+import { http } from "@/common/infrastructure/connection/Http"
 import {
   createPasswordAdapter,
   loginAdapter,
   phoneListAdapter,
   sendCodeAdapter,
-} from "./login.adapter";
+} from "./login.adapter"
 
 const API_EMART_URL = import.meta.env.VITE_API_EMART_URL;
 
@@ -24,10 +24,11 @@ export const fetchGetPhoneList = (nit) => {
     .then((response) => phoneListAdapter(response));
 };
 
-export const fetchSendCode = ({ nit, phone }) => {
+export const fetchSendCode = ({ nit, phone, autenticate_code }) => {
   const params = {
     nit,
     phone,
+    autenticate_code
   };
 
   return http

@@ -1,18 +1,16 @@
-import { Stepper } from "@/common/presentation/components";
+import { Stepper } from "@/common/presentation/components"
 import {
-  ContactSelection,
+  AuthMethod,
   LoginCredentials,
-  NitEntry,
-  VerificationCode,
-} from "./components";
-import { StepperLogin } from "./components/subcomponents";
-import Styles from "./scss/login.module.scss";
-import { useLoginPage } from "./view-model/useLoginPage";
+  NitEntry
+} from "./components"
+import { StepperLogin } from "./components/subcomponents"
+import Styles from "./scss/login.module.scss"
+import { useLoginPage } from "./view-model/useLoginPage"
 
 const stepsPages = {
   nit: <NitEntry />,
-  contact: <ContactSelection />,
-  verification: <VerificationCode />,
+  ["auth-method"]: <AuthMethod />, 
   login: <LoginCredentials />,
 };
 

@@ -1,12 +1,12 @@
-import { useAuthStore } from "@/common/infrastructure/store/auth.store";
-import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store/login-data.store";
-import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
-import { toast } from "react-toastify";
+import { useAuthStore } from "@/common/infrastructure/store/auth.store"
+import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store/login-data.store"
+import { useMutation } from "@tanstack/react-query"
+import { useState } from "react"
+import { toast } from "react-toastify"
 import {
   fetchCreatePassword,
   fetchLogin,
-} from "../../../../infrastructure/login-repository";
+} from "../../../../infrastructure/login-repository"
 
 const initialForm = {
   nit: "",
@@ -25,10 +25,12 @@ const errorsForm = {
 export const useLoginCredentials = () => {
   const {
     authMethodSelected,
+    contactSelected,
     hasPassword,
     nit,
     onPrevStep: prevStep,
     resetData,
+    validatedCode,
   } = useLoginEmartDataStore();
   const [form, setForm] = useState({ ...initialForm, nit });
   const [formErrors, setFormErrors] = useState(errorsForm);
@@ -39,7 +41,7 @@ export const useLoginCredentials = () => {
     onSuccess: (response) => {
       const user = {
         nit: form.nit,
-        authMethodSelected,
+        contactSelected,
         businessUnitList: response,
       };
       login(user);
@@ -126,6 +128,7 @@ export const useLoginCredentials = () => {
   };
 
   return {
+    authMethodSelected,
     form,
     formErrors,
     hasPassword,
@@ -134,5 +137,6 @@ export const useLoginCredentials = () => {
     onChangeFieldForm,
     onNextStep,
     prevStep,
+    validatedCode,
   };
 };

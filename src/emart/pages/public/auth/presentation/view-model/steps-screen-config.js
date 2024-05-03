@@ -6,25 +6,12 @@ export const screensList = [
   },
   {
     pageNumber: 2,
-    key: "contact",
+    key: "auth-method",
     label: "Método de autenticación",
   },
   {
     pageNumber: 3,
-    key: "verification",
-    label: "Código de verificación",
-  },
-  {
-    pageNumber: 4,
     key: "login",
     label: "Iniciar sesión",
   },
-  // {
-  //   pageNumber: 5,
-  //   key: "business",
-  // },
-  // {
-  //   pageNumber: 6,
-  //   key: "branch",
-  // },
 ];

@@ -14,6 +14,7 @@ export const sendCodeAdapter = (response) => {
   return {
     code: response.code[0],
     status: response.status_pass,
+    business: response.data || [],
   };
 };
 

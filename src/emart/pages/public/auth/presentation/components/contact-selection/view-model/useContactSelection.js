@@ -1,16 +1,20 @@
-import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store";
-import { useState } from "react";
-import { toast } from "react-toastify";
-import { fetchSendCode } from "../../../../infrastructure/login-repository";
+import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store"
+import { useState } from "react"
+import { toast } from "react-toastify"
+import { fetchSendCode } from "../../../../infrastructure/login-repository"
 
 export const useContactSelection = () => {
   const {
+    onPrevStep,
     changeAuthMethod,
+    changeBusinessList,
+    changeContactSelected,
+    changeValidatedCode,
     changeVerificationCode,
     contactList,
+    hasPassword,
     nit,
     onNextStep: nextStep,
-    onPrevStep: prevStep,
   } = useLoginEmartDataStore();
 
   const [contactSelected, setContactSelected] = useState();
@@ -25,10 +29,16 @@ export const useContactSelection = () => {
       setIsLoading(true);
 
       const phone = contactSelected.phone;
-      const response = await fetchSendCode({ phone, nit });
+      const response = await fetchSendCode({
+        phone,
+        nit,
+        autenticate_code: hasPassword ? 1 : 0,
+      });
 
-      changeAuthMethod(contactSelected);
+      changeContactSelected(contactSelected);
       changeVerificationCode(response.code);
+      changeBusinessList(response.business);
+      changeValidatedCode(false);
       nextStep();
 
       setIsLoading(false);
@@ -51,12 +61,20 @@ export const useContactSelection = () => {
     sendCode();
   };
 
+  const onBackStep = () => {
+    if (!hasPassword) {
+      onPrevStep();
+    } else {
+      changeAuthMethod(undefined);
+    }
+  };
+
   return {
     contactList,
     contactSelected,
     isLoading,
     onChangeSelectedContact,
     onNextStep,
-    prevStep,
+    onBackStep,
   };
 };

@@ -1,14 +1,15 @@
-import { format } from "@/common/presentation/utils";
-import { BsTelephone } from "react-icons/bs";
-import { FaCheckCircle } from "react-icons/fa";
-import { RiContactsBookLine } from "react-icons/ri";
-import { StepScreenLayout } from "../subcomponents";
-import Styles from "./scss/contact-selection.module.scss";
-import { useContactSelection } from "./view-model";
+import { format } from "@/common/presentation/utils"
+import { BsTelephone } from "react-icons/bs"
+import { FaCheckCircle } from "react-icons/fa"
+import { RiContactsBookLine } from "react-icons/ri"
+import { StepScreenLayout } from "../subcomponents"
+import Styles from "./scss/contact-selection.module.scss"
+import { useContactSelection } from "./view-model"
 
+//TODO: Mover a subcomponents, mejorar siguiente y volver atrás
 export const ContactSelection = () => {
   const {
-    prevStep,
+    onBackStep,
     contactList,
     onChangeSelectedContact,
     contactSelected,
@@ -18,10 +19,10 @@ export const ContactSelection = () => {
 
   return (
     <StepScreenLayout
-      description="Para continuar con el proceso de autenticación, selecciona un número de teléfono o correo electrónico."
-      title="Selecciona un correo o teléfono"
+      description="Para continuar con el proceso de autenticación, selecciona un número de teléfono para enviar el código de validación."
+      title="Selecciona un teléfono de la lista"
       icon={<RiContactsBookLine />}
-      onBack={prevStep}
+      onBack={onBackStep}
       isLoading={isLoading}
       onNext={onNextStep}
     >
