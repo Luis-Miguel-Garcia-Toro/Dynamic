@@ -1,8 +1,7 @@
-import { InputField } from "@/common/presentation/components"
-import { IoIosLogIn } from "react-icons/io"
-import { StepScreenLayout } from "../subcomponents"
-import { VerificationCode } from "../verification-code/VerificationCode"
-import { useLoginCredentials } from "./view-model/useLoginCredentials"
+import { InputField } from "@/common/presentation/components";
+import { IoIosLogIn } from "react-icons/io";
+import { StepScreenLayout, VerificationCode } from "../subcomponents";
+import { useLoginCredentials } from "./view-model/useLoginCredentials";
 
 export const LoginCredentials = () => {
   const {
@@ -15,12 +14,11 @@ export const LoginCredentials = () => {
     onChangeFieldForm,
     onNextStep,
     prevStep,
-    validatedCode,
   } = useLoginCredentials();
 
   return (
     <>
-      {authMethodSelected !== "password" || (!hasPassword && !validatedCode) ? (
+      {authMethodSelected === "code" ? (
         <VerificationCode />
       ) : (
         <StepScreenLayout

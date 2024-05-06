@@ -1,4 +1,4 @@
-import { create } from "zustand"
+import { create } from "zustand";
 
 const initialState = {
   authMethodSelected: undefined,
@@ -11,11 +11,27 @@ const initialState = {
   totalSteps: 3,
   validatedCode: false,
   verificationCode: undefined,
+  currentAuthMethodScreen: undefined,
 };
 
 export const useLoginEmartDataStore = create((set) => ({
   ...initialState,
-  changeNit: (nit) => set({ nit }),
+  changeNit: ({ nit, contactList }) => {
+    const hasPassword = contactList[0]
+      ? contactList[0].state_password === 1
+      : false;
+
+    return set({
+      authMethodSelected: undefined,
+      businessList: [],
+      contactList,
+      contactSelected: undefined,
+      currentAuthMethodScreen: undefined,
+      hasPassword,
+      nit,
+      verificationCode: undefined,
+    });
+  },
   changeTotalSteps: (totalSteps) => set({ totalSteps }),
   changeContactList: (contactList) => {
     const hasPassword = contactList[0]
@@ -24,7 +40,14 @@ export const useLoginEmartDataStore = create((set) => ({
     return set({ contactList, hasPassword });
   },
   changeAuthMethod: (authMethod) => set({ authMethodSelected: authMethod }),
-  changeContactSelected: (contactSelected) => set({ contactSelected }),
+  changeContactSelected: ({ contactSelected, code, business }) => {
+    return set({
+      contactSelected,
+      verificationCode: code,
+      businessList: business,
+      validatedCode: false,
+    });
+  },
   changeVerificationCode: (verificationCode) => set({ verificationCode }),
   changeValidatedCode: (validatedCode) => set({ validatedCode }),
   changeBusinessList: (businessList) => set({ businessList }),
@@ -40,5 +63,7 @@ export const useLoginEmartDataStore = create((set) => ({
         return { currentStep: state.currentStep + 1 };
       }
     }),
+  changeCurrentAuthMethodScreen: (screenName) =>
+    set({ currentAuthMethodScreen: screenName }),
   resetData: () => set({ ...initialState }),
 }));

@@ -1,7 +1,8 @@
-import { useAuthStore } from "@/common/infrastructure/store/auth.store"
-import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store/login-data.store"
-import { useState } from "react"
-import { toast } from "react-toastify"
+import { useAuthStore } from "@/common/infrastructure/store/auth.store";
+import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store/login-data.store";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { authMethodsViews } from "../../../../../../../../common/domain";
 
 export const useVerificationCode = () => {
   const [code, setCode] = useState("");
@@ -9,14 +10,17 @@ export const useVerificationCode = () => {
 
   const {
     businessList,
-    changeAuthMethod,
+    changeCurrentAuthMethodScreen,
     changeValidatedCode,
     contactSelected,
+    currentStep,
     hasPassword,
     nit,
+    onNextStep: nextStep,
     onPrevStep: prevStep,
-    verificationCode,
     resetData,
+    totalSteps,
+    verificationCode,
   } = useLoginEmartDataStore();
   const { login } = useAuthStore();
 
@@ -40,7 +44,7 @@ export const useVerificationCode = () => {
   };
 
   const navigateCreatePassword = () => {
-    changeAuthMethod("password");
+    nextStep();
   };
 
   const loginWithCode = () => {
@@ -60,7 +64,6 @@ export const useVerificationCode = () => {
     }
 
     if (!checkCodeIsValid()) return;
-
     changeValidatedCode(true);
 
     if (!hasPassword) {
@@ -71,11 +74,19 @@ export const useVerificationCode = () => {
     loginWithCode();
   };
 
+  const onPrevStep = () => {
+    if (totalSteps === currentStep) {
+      prevStep();
+    } else {
+      changeCurrentAuthMethodScreen(authMethodsViews.CONTACT_SELECTION);
+    }
+  };
+
   return {
     onChangeCode,
     code,
-    prevStep,
     errorInputCode,
     onNextStep,
+    onPrevStep,
   };
 };

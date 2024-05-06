@@ -2,11 +2,10 @@ import { format } from "@/common/presentation/utils"
 import { BsTelephone } from "react-icons/bs"
 import { FaCheckCircle } from "react-icons/fa"
 import { RiContactsBookLine } from "react-icons/ri"
-import { StepScreenLayout } from "../subcomponents"
+import { StepScreenLayout } from '../../../subcomponents'
 import Styles from "./scss/contact-selection.module.scss"
 import { useContactSelection } from "./view-model"
 
-//TODO: Mover a subcomponents, mejorar siguiente y volver atrás
 export const ContactSelection = () => {
   const {
     onBackStep,

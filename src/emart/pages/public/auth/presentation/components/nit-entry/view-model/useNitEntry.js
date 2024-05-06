@@ -6,8 +6,6 @@ import { fetchGetPhoneList } from "../../../../infrastructure/login-repository";
 
 export const useNitEntry = () => {
   const {
-    changeAuthMethod,
-    changeContactList,
     changeNit,
     nit: nitStore,
     onNextStep: nextStep,
@@ -18,9 +16,7 @@ export const useNitEntry = () => {
   const getPhoneListMutation = useMutation({
     mutationFn: (nit) => fetchGetPhoneList(nit),
     onSuccess: (response) => {
-      changeNit(nit);
-      changeContactList(response);
-      changeAuthMethod(undefined)
+      changeNit({ nit, contactList: response });
       nextStep();
     },
     onError: () => {

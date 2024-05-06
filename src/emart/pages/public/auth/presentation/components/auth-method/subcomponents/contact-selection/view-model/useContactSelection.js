@@ -1,20 +1,20 @@
-import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store"
-import { useState } from "react"
-import { toast } from "react-toastify"
-import { fetchSendCode } from "../../../../infrastructure/login-repository"
+import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import {
+  authMethodsViews
+} from "../../../../../../../../../common/domain";
+import { fetchSendCode } from "../../../../../../infrastructure/login-repository";
 
 export const useContactSelection = () => {
   const {
-    onPrevStep,
-    changeAuthMethod,
-    changeBusinessList,
     changeContactSelected,
-    changeValidatedCode,
-    changeVerificationCode,
+    changeCurrentAuthMethodScreen,
     contactList,
     hasPassword,
     nit,
     onNextStep: nextStep,
+    onPrevStep,
   } = useLoginEmartDataStore();
 
   const [contactSelected, setContactSelected] = useState();
@@ -29,19 +29,20 @@ export const useContactSelection = () => {
       setIsLoading(true);
 
       const phone = contactSelected.phone;
-      const response = await fetchSendCode({
+      const { code, business } = await fetchSendCode({
         phone,
         nit,
         autenticate_code: hasPassword ? 1 : 0,
       });
 
-      changeContactSelected(contactSelected);
-      changeVerificationCode(response.code);
-      changeBusinessList(response.business);
-      changeValidatedCode(false);
-      nextStep();
-
+      changeContactSelected({ contactSelected, code, business });
       setIsLoading(false);
+
+      if (hasPassword) {
+        nextStep();
+      } else {
+        changeCurrentAuthMethodScreen(authMethodsViews.VERIFICATION_CODE);
+      }
     } catch (error) {
       setIsLoading(false);
       toast.error(
@@ -65,7 +66,7 @@ export const useContactSelection = () => {
     if (!hasPassword) {
       onPrevStep();
     } else {
-      changeAuthMethod(undefined);
+      changeCurrentAuthMethodScreen(authMethodsViews.AUTH_METHODS);
     }
   };
 

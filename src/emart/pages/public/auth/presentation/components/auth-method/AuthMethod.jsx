@@ -1,17 +1,8 @@
-import { ContactSelection } from "../contact-selection/ContactSelection"
-import { AuthMethodSelection } from "./subcomponents"
-import { useAuthMethod } from "./view-model"
+import { AuthHasPassword, AuthNoPassword } from "./subcomponents";
+import { useAuthMethod } from "./view-model";
 
 export const AuthMethod = () => {
-  const { hasPassword, authMethodSelected } = useAuthMethod();
+  const { hasPassword } = useAuthMethod();
 
-  return (
-    <div>
-      {!hasPassword || authMethodSelected === "code" ? (
-        <ContactSelection />
-      ) : (
-        <AuthMethodSelection />
-      )}
-    </div>
-  );
+  return <div>{!hasPassword ? <AuthNoPassword /> : <AuthHasPassword />}</div>;
 };

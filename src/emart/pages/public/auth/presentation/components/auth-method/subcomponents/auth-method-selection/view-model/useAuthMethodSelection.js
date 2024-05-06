@@ -1,12 +1,20 @@
-import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store"
+import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store";
+import { authMethodsViews } from "../../../../../../../../../common/domain";
 
 export const useAuthMethodSelection = () => {
-  const { changeAuthMethod, onPrevStep, onNextStep } = useLoginEmartDataStore();
+  const {
+    changeAuthMethod,
+    changeCurrentAuthMethodScreen,
+    onNextStep,
+    onPrevStep,
+  } = useLoginEmartDataStore();
 
   const onSelectedAuthMethod = (value) => {
     changeAuthMethod(value);
     if (value === "password") {
       onNextStep();
+    } else {
+      changeCurrentAuthMethodScreen(authMethodsViews.CONTACT_SELECTION);
     }
   };
 
