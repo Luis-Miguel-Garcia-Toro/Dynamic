@@ -5,6 +5,7 @@ import { EcommerceRoutes } from "./ecommerce/routes";
 import { EmartRoutes } from "./emart/routes";
 
 const CURRENT_PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME;
+// const CURRENT_PROJECT_NAME = 'emart';
 
 const projects = {
   ecommerce: <EcommerceRoutes />,

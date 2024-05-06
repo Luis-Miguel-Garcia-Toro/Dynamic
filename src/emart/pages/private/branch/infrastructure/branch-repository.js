@@ -2,6 +2,7 @@ import { http } from "@/common/infrastructure/connection/Http";
 import { branchesAdapter } from "./branch-adapter";
 
 const API_EMART_URL = import.meta.env.VITE_API_EMART_URL;
+// const API_EMART_URL = 'https://api-tiendaclubshop.sandboxcw.net/api';
 
 export const fetchGetBranches = ({ nit, business, config = {} }) => {
   const params = {
