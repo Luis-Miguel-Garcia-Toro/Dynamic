@@ -1,0 +1,36 @@
+@import "../../../../scss/vars";
+
+.PrivateLayoutContainer {
+  background-color: var(--color-bg-primary);
+  min-height: 100vh;
+  position: relative;
+
+  .PrivateLayoutHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $height-header;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1rem 2rem;
+    z-index: 2;
+  }
+
+  .LogoutContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  .PrivateLayoutContent {
+    min-height: 100vh;
+    z-index: 1;
+    position: relative;
+  }
+}

@@ -2,8 +2,6 @@
 @import "@/common/presentation/scss/vars";
 
 .BranchPageContainer {
-  min-height: 100vh;
-  background-color: var(--color-bg-primary);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;

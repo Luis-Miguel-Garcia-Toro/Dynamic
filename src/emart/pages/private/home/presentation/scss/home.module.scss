@@ -1,32 +1,17 @@
 @import "@/common/presentation/scss/mixins/responsive.mixin";
 @import "@/common/presentation/scss/vars";
+@import "../../../../../common/presentation/scss/vars";
 
 .HomePageContainer {
-  min-height: 100vh;
-  background-color: var(--color-bg-primary);
-  padding: 4rem 2rem;
-
+  padding: $height-header 2rem 4rem;
   .HomePageHeader {
     margin-bottom: 2rem;
 
-    .HomePageHeaderOptions, .LogoutContainer{
+    .HomePageHeaderOptions {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-    }
-
-    .LogoutContainer{
-      justify-content: center;
-      gap: 0.5rem;
-
-      & svg{
-        cursor: pointer;     
-      }
-
-      & span{
-        display: none;
-      }
     }
 
     h1 {
@@ -46,19 +31,9 @@
   }
 }
 
-
 @include media-up($breakpoint-md) {
   .HomePageContainer {
-
-    .HomePageHeader{
-      .LogoutContainer{
-        & span{
-          display: inline-block;
-        }
-      }
-    }
-
-    .BusinessListContainer{
+    .BusinessListContainer {
       grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
     }

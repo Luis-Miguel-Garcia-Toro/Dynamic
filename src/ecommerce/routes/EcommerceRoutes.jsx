@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { authStateStatus } from "../../common/domain";
 import { useAuthStore } from "../../common/infrastructure/store/auth.store";
+import { LoadingFull } from "../../common/presentation/components";
 import { RootEcommerceLayout } from "../common/presentation/components";
 import { PublicRoutes } from "./PublicRoutes";
 import { PrivateRoutes } from "./private-routes/PrivateRoutes";
@@ -11,8 +12,7 @@ export const EcommerceRoutes = () => {
   const { status } = useAuthStore();
 
   return (
-    //TODO: Configurar loading en el suspense
-    <Suspense>
+    <Suspense fallback={<LoadingFull show={true} />}>
       <BrowserRouter>
         <RootLayout>
           <RootEcommerceLayout>

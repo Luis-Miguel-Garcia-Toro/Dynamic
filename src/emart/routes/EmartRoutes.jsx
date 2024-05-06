@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { authStateStatus } from "../../common/domain";
 import { useAuthStore } from "../../common/infrastructure/store/auth.store";
-import { RootLayout } from "../../common/presentation/components";
+import { LoadingFull, RootLayout } from "../../common/presentation/components";
 import { PublicRoutes } from "./PublicRoutes";
 import { PrivateRoutes } from "./private-routes/PrivateRoutes";
 
@@ -10,8 +10,7 @@ export const EmartRoutes = () => {
   const { status } = useAuthStore();
 
   return (
-    //TODO: Configurar loading en el suspense
-    <Suspense>
+    <Suspense fallback={<LoadingFull show={true} />}>
       <BrowserRouter>
         <RootLayout>
           <Routes>
