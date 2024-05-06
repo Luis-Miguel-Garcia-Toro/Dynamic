@@ -1,8 +1,19 @@
-import { AuthHasPassword, AuthNoPassword } from "./subcomponents";
+import { authMethodsViews } from "../../../../../../common/domain";
+import { VerificationCode } from "../subcomponents";
+import {
+  AuthMethodSelection,
+  ContactSelection
+} from "./subcomponents";
 import { useAuthMethod } from "./view-model";
 
-export const AuthMethod = () => {
-  const { hasPassword } = useAuthMethod();
+const views = {
+  [authMethodsViews.AUTH_METHODS]: <AuthMethodSelection />,
+  [authMethodsViews.CONTACT_SELECTION]: <ContactSelection />,
+  [authMethodsViews.VERIFICATION_CODE]: <VerificationCode />,
+};
 
-  return <div>{!hasPassword ? <AuthNoPassword /> : <AuthHasPassword />}</div>;
+export const AuthMethod = () => {
+  const { currentScreen } = useAuthMethod();
+
+  return <>{views[currentScreen]}</>;
 };

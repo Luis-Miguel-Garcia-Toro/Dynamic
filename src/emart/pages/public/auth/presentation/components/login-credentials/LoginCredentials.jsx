@@ -1,5 +1,6 @@
 import { InputField } from "@/common/presentation/components";
 import { IoIosLogIn } from "react-icons/io";
+import { authMethods } from "../../../../../../common/domain";
 import { StepScreenLayout, VerificationCode } from "../subcomponents";
 import { useLoginCredentials } from "./view-model/useLoginCredentials";
 
@@ -18,7 +19,7 @@ export const LoginCredentials = () => {
 
   return (
     <>
-      {authMethodSelected === "code" ? (
+      {authMethodSelected === authMethods.CODE ? (
         <VerificationCode />
       ) : (
         <StepScreenLayout

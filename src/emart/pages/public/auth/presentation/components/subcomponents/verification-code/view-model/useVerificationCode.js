@@ -11,7 +11,6 @@ export const useVerificationCode = () => {
   const {
     businessList,
     changeCurrentAuthMethodScreen,
-    changeValidatedCode,
     contactSelected,
     currentStep,
     hasPassword,
@@ -64,7 +63,6 @@ export const useVerificationCode = () => {
     }
 
     if (!checkCodeIsValid()) return;
-    changeValidatedCode(true);
 
     if (!hasPassword) {
       navigateCreatePassword();

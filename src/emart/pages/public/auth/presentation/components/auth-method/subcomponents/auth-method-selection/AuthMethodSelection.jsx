@@ -1,10 +1,11 @@
-import { GoPasskeyFill } from "react-icons/go"
-import { IoArrowForwardOutline } from "react-icons/io5"
-import { MdOutlineTextsms } from "react-icons/md"
-import { TbPasswordUser } from "react-icons/tb"
-import { StepScreenLayout } from "../../../subcomponents"
-import Styles from "./scss/auth-method-selection.module.scss"
-import { useAuthMethodSelection } from "./view-model"
+import { GoPasskeyFill } from "react-icons/go";
+import { IoArrowForwardOutline } from "react-icons/io5";
+import { MdOutlineTextsms } from "react-icons/md";
+import { TbPasswordUser } from "react-icons/tb";
+import { authMethods as authMethodsTypes } from "../../../../../../../../common/domain";
+import { StepScreenLayout } from "../../../subcomponents";
+import Styles from "./scss/auth-method-selection.module.scss";
+import { useAuthMethodSelection } from "./view-model";
 
 const authMethods = [
   {
@@ -12,14 +13,14 @@ const authMethods = [
     name: "Usuario y contraseña",
     description: "Iniciar sesión con un usuario y contraseña.",
     icon: <TbPasswordUser />,
-    value: "password",
+    value: authMethodsTypes.PASSWORD,
   },
   {
     id: 2,
     name: "Código SMS",
     description: "Iniciar sesión con un código enviado a tu teléfono.",
     icon: <MdOutlineTextsms />,
-    value: "code",
+    value: authMethodsTypes.CODE,
   },
 ];
 

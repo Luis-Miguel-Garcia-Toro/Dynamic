@@ -30,6 +30,7 @@ $icon-size-container: 30px;
     grid-template-columns: calc($icon-size-container + 10px) 1fr;
     align-items: center;
     position: relative;
+    transition: 0.3s;
 
     .StepperLoginStepIndicator {
       display: flex;
@@ -40,6 +41,7 @@ $icon-size-container: 30px;
       position: relative;
       z-index: 2;
       background-color: var(--color-primary);
+      transform: 0.3s;
     }
 
     .StepperLoginLine {

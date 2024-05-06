@@ -11,7 +11,7 @@
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.03);
+    box-shadow: var(--box-shadow-medium);
   }
 
   .ContactCheck {

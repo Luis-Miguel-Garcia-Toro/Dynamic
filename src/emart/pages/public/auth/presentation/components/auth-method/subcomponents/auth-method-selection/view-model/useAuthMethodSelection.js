@@ -1,5 +1,8 @@
 import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store";
-import { authMethodsViews } from "../../../../../../../../../common/domain";
+import {
+  authMethods,
+  authMethodsViews,
+} from "../../../../../../../../../common/domain";
 
 export const useAuthMethodSelection = () => {
   const {
@@ -11,7 +14,7 @@ export const useAuthMethodSelection = () => {
 
   const onSelectedAuthMethod = (value) => {
     changeAuthMethod(value);
-    if (value === "password") {
+    if (value === authMethods.PASSWORD) {
       onNextStep();
     } else {
       changeCurrentAuthMethodScreen(authMethodsViews.CONTACT_SELECTION);

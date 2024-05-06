@@ -9,7 +9,6 @@ const initialState = {
   hasPassword: false,
   nit: "",
   totalSteps: 3,
-  validatedCode: false,
   verificationCode: undefined,
   currentAuthMethodScreen: undefined,
 };
@@ -33,24 +32,14 @@ export const useLoginEmartDataStore = create((set) => ({
     });
   },
   changeTotalSteps: (totalSteps) => set({ totalSteps }),
-  changeContactList: (contactList) => {
-    const hasPassword = contactList[0]
-      ? contactList[0].state_password === 1
-      : false;
-    return set({ contactList, hasPassword });
-  },
   changeAuthMethod: (authMethod) => set({ authMethodSelected: authMethod }),
   changeContactSelected: ({ contactSelected, code, business }) => {
     return set({
       contactSelected,
       verificationCode: code,
       businessList: business,
-      validatedCode: false,
     });
   },
-  changeVerificationCode: (verificationCode) => set({ verificationCode }),
-  changeValidatedCode: (validatedCode) => set({ validatedCode }),
-  changeBusinessList: (businessList) => set({ businessList }),
   onPrevStep: () =>
     set((state) => {
       if (state.currentStep > 1) {

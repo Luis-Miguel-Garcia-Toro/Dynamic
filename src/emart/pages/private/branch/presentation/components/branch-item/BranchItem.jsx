@@ -1,5 +1,6 @@
 import { ButtonNavigate } from "@/common/presentation/components";
 import PropTypes from "prop-types";
+import { IoStorefrontOutline } from "react-icons/io5";
 import Styles from "./scss/branch-item.module.scss";
 
 export const BranchItem = ({ branch, colorBusiness }) => {
@@ -7,7 +8,10 @@ export const BranchItem = ({ branch, colorBusiness }) => {
 
   return (
     <div className={`${Styles.BranchItemContainer} fadeIn`} key={code}>
-      <h3>Código - {code}</h3>
+      <div className={Styles.BranchItemCode}>
+        <IoStorefrontOutline size={20} />
+        <h3>Código - {code}</h3>
+      </div>
       <div>
         <ButtonNavigate
           color={colorBusiness}

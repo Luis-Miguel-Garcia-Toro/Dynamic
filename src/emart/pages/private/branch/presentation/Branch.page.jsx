@@ -19,15 +19,15 @@ export const BranchPage = () => {
     <main className={Styles.BranchPageContainer}>
       {/* Business Info */}
       <section className={Styles.BranchInfoContainer}>
-        <div className={`${Styles.BranchInfo} fadeIn`}>
-          <div>
-            <ButtonNavigate
-              color="var(--color-label)"
-              navigateTo={() => window.history.back()}
-              text="Regresar al listado"
-            />
-          </div>
+        <div className={Styles.BranchInfoButtonContainer}>
+          <ButtonNavigate
+            color="var(--color-label)"
+            navigateTo={() => window.history.back()}
+            text="Regresar al listado"
+          />
+        </div>
 
+        <div className={`${Styles.BranchInfo} fadeIn`}>
           <figure>
             <LazyLoadImage
               src={business.logo}
