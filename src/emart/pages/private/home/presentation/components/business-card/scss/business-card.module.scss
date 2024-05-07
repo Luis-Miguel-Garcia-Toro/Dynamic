@@ -1,25 +1,24 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
 .BusinessCardContainer {
   background-color: var(--color-white);
-  margin-bottom: 1rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 80px 1fr auto;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 2rem;
-  border-radius: var(--border-radius-md);
+  padding: 1rem;
+  border-radius: var(--border-radius-sm);
   box-shadow: var(--box-shadow-light);
   transition: 0.3s;
   cursor: pointer;
+  display: flex;
+  min-height: 150px;
+  position: relative;
+  overflow: hidden;
 
   &:hover {
     box-shadow: var(--box-shadow-medium);
   }
 
   figure {
-    width: 40%;
+    // width: 80%;
     height: 100%;
     overflow: hidden;
     margin-bottom: 0.5rem;
@@ -27,6 +26,7 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    transition: 0.3s;
 
     img {
       width: 100%;
@@ -35,7 +35,12 @@
   }
 
   h2 {
-    font-size: 1.3rem;
+    font-size: 1rem;
+    display: none;
+    opacity: 0;
+    color: var(--color-cancel);
+    transition: 0.3s;
+    transform: translateY(-30px);
   }
 
   span {
@@ -48,5 +53,37 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+  }
+}
+
+@include media-up($breakpoint-md) {
+  .BusinessCardContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px auto;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 250px;
+
+    &:hover {
+
+      figure{
+        transform: translateY(25%);
+      }
+
+      h2 {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    figure {
+      width: 50%;
+      height: 100px;
+      transform: translateY(50%);
+    }
   }
 }

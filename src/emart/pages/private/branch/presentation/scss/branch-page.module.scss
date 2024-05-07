@@ -5,13 +5,22 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
-  padding: 4rem 2rem;
+
+  .BranchInfoContainer{
+    padding: 4rem 2rem 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--color-white);
+    border-radius: 0 0 50% 0;
+  }
 
   .BranchInfo {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.5rem;
-    margin-top: 0.5rem;
+    margin: 2rem 0;
+    align-self: center;
 
     figure {
       width: 200px;
@@ -37,7 +46,9 @@
   }
 
   .BranchListContainer {
+    padding: 0 2rem;
     margin-top: 2rem;
+
     .BranchListTitle {
       display: flex;
       align-items: center;
@@ -64,6 +75,7 @@
     margin-top: 2rem;
     color: var(--color-cancel);
     text-align: center;
+    padding: 0 2rem;
 
     h3 {
       font-weight: normal;
@@ -83,19 +95,18 @@
       align-items: center;
       text-align: center;
       gap: 1rem;
+      margin-top: 0;
+      align-self: initial;
     }
 
     .BranchInfoContainer {
       padding: 0 2rem;
       padding-top: 4rem;
-      background-color: var(--color-white);
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: 20% 1fr;
-      // display: flex;
-      // flex-direction: column;
-      // justify-content: center;
+      border-radius: 0;
     }
 
     .BranchListContainer {

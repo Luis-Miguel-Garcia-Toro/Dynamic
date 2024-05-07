@@ -15,7 +15,7 @@ export const BranchItem = ({ branch, colorBusiness }) => {
       <div>
         <ButtonNavigate
           color={colorBusiness}
-          navigateTo={() => window.open(`${url_redirect}${code}`, "_blank")}
+          navigateTo={() => (window.location.href = `${url_redirect}${code}`)}
           text="Ir al comercio"
           iconPosition="right"
         />

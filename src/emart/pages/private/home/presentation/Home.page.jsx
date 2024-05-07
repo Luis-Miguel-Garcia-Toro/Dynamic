@@ -6,6 +6,8 @@ export const HomePage = () => {
   const { businessList, nit, onNavigateToBranch } = useHomePage();
   return (
     <main className={Styles.HomePageContainer}>
+      <div className={Styles.HomeBackground} />
+
       <div className={Styles.HomePageHeader}>
         <div className={`${Styles.HomePageHeaderOptions} fadeIn`}>
           <h1>Tus negocios disponibles</h1>

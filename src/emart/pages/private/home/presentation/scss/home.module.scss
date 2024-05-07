@@ -4,7 +4,23 @@
 
 .HomePageContainer {
   padding: $height-header 2rem 4rem;
+  position: relative;
+  color: var(--color-secondary);
+
+  .HomeBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70%;
+    border-radius: 0 0 50% 0px;
+    background-color: var(--color-primary);
+    transition: 0.3s;
+  }
+
   .HomePageHeader {
+    position: relative;
+    z-index: 2;
     margin-bottom: 2rem;
 
     .HomePageHeaderOptions {
@@ -27,15 +43,22 @@
 
   .BusinessListContainer {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 2;
   }
 }
 
 @include media-up($breakpoint-md) {
   .HomePageContainer {
     .BusinessListContainer {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 1rem;
+    }
+
+    .HomeBackground {
+      border-radius: initial;
     }
   }
 }
