@@ -2,7 +2,11 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 const initialState = {
-  configPages: {},
+  configPages: {
+    globals: {
+      headerHeight: 60,
+    },
+  },
   theme: {
     colors: {
       primary: "#123C5C",
@@ -17,7 +21,21 @@ export const useUIStore = create(
     (set) => ({
       ...initialState,
       updateTheme: (theme) => set({ theme }),
-      updateConfigPage: (configPages) => set({ configPages }),
+      updateConfigPage: (configPages) =>
+        set((state) => ({
+          configPages: { ...state.configPages, ...configPages },
+        })),
+      changeHeaderHeight: (height) => {
+        return set((state) => ({
+          configPages: {
+            ...state.configPages,
+            globals: {
+              ...state.configPages.globals,
+              headerHeight: height,
+            },
+          },
+        }));
+      },
     }),
     { name: "uiStore" }
   )

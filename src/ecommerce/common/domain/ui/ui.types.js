@@ -11,3 +11,9 @@ export const authenticationMethods = {
 };
 
 export const cartProductUiTypes = ["vertical", "horizontal"];
+
+export const categoryStyle = {
+  HEADER: "HEADER",
+  SIDEBAR: "SIDEBAR",
+  LIST: "LIST",
+};

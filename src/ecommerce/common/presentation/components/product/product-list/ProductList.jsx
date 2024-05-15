@@ -5,10 +5,15 @@ import Styles from "./scss/product-list.module.scss";
 
 export const ProductList = ({ products, typeCards }) => {
   return (
-    <div className={`${Styles.ProductList} ${Styles[typeCards]}`}>
-      {products.map((product) => (
-        <CardProduct key={product.id} product={product} type={typeCards} />
-      ))}
+    <div className={Styles.ProductListContainer}>
+      <div className={Styles.ProductListContent}>
+        <h2>Listado de productos</h2>
+        <div className={`${Styles.ProductList} ${Styles[typeCards]}`}>
+          {products.map((product) => (
+            <CardProduct key={product.id} product={product} type={typeCards} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

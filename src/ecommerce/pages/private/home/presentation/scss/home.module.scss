@@ -1,3 +1,15 @@
-.HomeContainer{
-  padding: 2rem;
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.HomeContainer {
+  background-color: var(--color-bg-primary);
+}
+
+@include media-up(1220px) {
+  .HomeContainer {
+    &.SIDEBAR {
+      display: grid;
+      grid-template-columns: 20% 1fr;
+    }
+  }
 }

@@ -4,6 +4,7 @@ import {
   uiLoginType,
 } from "@ecommerce/common/domain/ui/ui.types";
 import { useCallback } from "react";
+import { cartProductUiTypes, categoryStyle } from "../../../../../domain";
 
 const defaultConfigPage = {
   auth: {
@@ -15,6 +16,38 @@ const defaultConfigPage = {
         "https://images.pexels.com/photos/3648269/pexels-photo-3648269.jpeg?auto=compress",
       codeValidationLength: 6,
     },
+  },
+  products: {
+    typeCard: cartProductUiTypes[1],
+  },
+  categories: {
+    categoriesStyle: categoryStyle.LIST,
+    categoriesList: [
+      {
+        name: "Leches",
+        icon: "https://www.svgrepo.com/show/355481/milk.svg",
+      },
+      {
+        name: "Cremas",
+        icon: "https://www.svgrepo.com/show/285051/cream-skin.svg",
+      },
+      {
+        name: "Esparcibles",
+        icon: "https://www.svgrepo.com/show/195139/spoon.svg",
+      },
+      {
+        name: "Quesos",
+        icon: "https://www.svgrepo.com/show/164619/cheese.svg",
+      },
+      {
+        name: "Yogurt y bebidas",
+        icon: "https://www.svgrepo.com/show/295426/curd.svg",
+      },
+      {
+        name: "Jugos",
+        icon: "https://www.svgrepo.com/show/28071/juice.svg",
+      },
+    ],
   },
 };
 

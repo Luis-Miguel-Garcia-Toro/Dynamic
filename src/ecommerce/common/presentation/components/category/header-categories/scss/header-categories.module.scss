@@ -1,0 +1,65 @@
+.HeaderCategoriesContainer {
+  background-color: var(--color-white);
+  color: var(--color-text);
+  padding: 0.5rem 2rem;
+  box-shadow: var(--box-shadow-medium);
+
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+
+  .CategoriesContainer {
+    flex: 1;
+    overflow-x: hidden;
+    margin: 0 10px;
+  }
+
+  .CategoriesList {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+
+  .CategoriesListItem {
+    padding: 0.5rem 2rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.3s;
+    border-right: 1px solid var(--color-input-border);
+    box-sizing: border-box;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    & figure {
+      width: 20px;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &:hover {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  .ArrowButton {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}

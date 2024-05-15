@@ -3,6 +3,7 @@
 @import "./globals";
 @import "./mixins/responsive.mixin";
 @import "./base/animations";
+@import "./base/container";
 
 :root {
   --box-shadow-light: 0px 0px 12px -4px rgba(168, 168, 171, 1);

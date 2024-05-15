@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { PrivateLayout } from "../../common/presentation/components";
 
 const HomePage = lazy(() =>
   import("@/ecommerce/pages/private/home/presentation/Home.page")
@@ -7,9 +8,11 @@ const HomePage = lazy(() =>
 
 export const PrivateRoutes = () => {
   return (
-    <Routes>
-      <Route path="/home" element={<HomePage />} />
-      <Route path="/*" element={<Navigate to="/home" />} />
-    </Routes>
+    <PrivateLayout>
+      <Routes>
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/*" element={<Navigate to="/home" />} />
+      </Routes>
+    </PrivateLayout>
   );
 };
