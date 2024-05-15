@@ -1,13 +1,13 @@
-import { useAuthStore } from "@/common/infrastructure/store/auth.store";
 import { useCallback, useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { useAppStore } from "../../../../../../common/infrastructure/store";
 import { fetchGetBranches } from "../../infrastructure/branch-repository";
 
 export const useBranchPage = () => {
   const [branchList, setBranchList] = useState([]);
   const [isLoadingBranches, setIsLoadingBranches] = useState(true);
 
-  const { user } = useAuthStore();
+  const { user } = useAppStore();
   const location = useLocation();
   const { business } = location.state || {};
   const { business: businessUnit } = useParams();

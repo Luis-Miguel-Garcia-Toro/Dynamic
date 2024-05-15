@@ -1,8 +1,8 @@
-import { useAuthStore } from "@/common/infrastructure/store/auth.store";
 import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store/login-data.store";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useAppStore } from "../../../../../../../../common/infrastructure/store";
 import {
   fetchCreatePassword,
   fetchLogin,
@@ -33,7 +33,7 @@ export const useLoginCredentials = () => {
   } = useLoginEmartDataStore();
   const [form, setForm] = useState({ ...initialForm, nit });
   const [formErrors, setFormErrors] = useState(errorsForm);
-  const { login } = useAuthStore();
+  const { login } = useAppStore();
 
   const loginMutation = useMutation({
     mutationFn: ({ nit, password }) => fetchLogin({ nit, password }),

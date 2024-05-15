@@ -1,7 +1,7 @@
-import { useUIStore } from "../../../../../../../common/infrastructure/store/ui.store";
+import { useAppStore } from "../../../../../../../common/infrastructure/store";
 
 export const useCategoriesList = () => {
-  const configPage = useUIStore((state) => state.configPages);
+  const configPage = useAppStore((state) => state.configPages);
   const { categories = {} } = configPage;
 
   return {

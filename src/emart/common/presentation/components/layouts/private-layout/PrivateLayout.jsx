@@ -2,12 +2,12 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { IoSettingsSharp } from "react-icons/io5";
 import { MdOutlinePowerSettingsNew } from "react-icons/md";
-import { useAuthStore } from "../../../../../../common/infrastructure/store/auth.store";
+import { useAppStore } from "../../../../../../common/infrastructure/store";
 import Styles from "./scss/private-layout.module.scss";
 
 export const PrivateLayout = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false);
-  const { logout } = useAuthStore();
+  const { logout } = useAppStore();
 
   const onLogout = () => {
     setShowMenu(false);

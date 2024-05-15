@@ -1,7 +1,7 @@
-import { useUIStore } from "../../../../../../../common/infrastructure/store/ui.store";
+import { useAppStore } from "../../../../../../../common/infrastructure/store";
 
 export const usePrivateLayout = () => {
-  const headerHeight = useUIStore(
+  const headerHeight = useAppStore(
     (state) => state.configPages.globals.headerHeight
   );
 

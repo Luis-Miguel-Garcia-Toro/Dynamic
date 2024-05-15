@@ -1,8 +1,8 @@
-import { useUIStore } from "@/common/infrastructure/store";
 import { useMemo } from "react";
+import { useAppStore } from "../../../../../../common/infrastructure/store";
 
 export const useLogin = () => {
-  const { configPages } = useUIStore();
+  const { configPages } = useAppStore();
   const loginUiType = useMemo(() => {
     return configPages?.auth?.login?.uiType;
   }, [configPages]);

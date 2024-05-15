@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
-import { useUIStore } from "../../../../../../common/infrastructure/store/ui.store";
+import { useAppStore } from "../../../../../../common/infrastructure/store";
 import { categoryStyle } from "../../../../domain";
 
 export const useHeader = () => {
-  const configPage = useUIStore((state) => state.configPages);
-  const changeHeaderHeight = useUIStore((state) => state.changeHeaderHeight);
+  const configPage = useAppStore((state) => state.configPages);
+  const changeHeaderHeight = useAppStore((state) => state.changeHeaderHeight);
 
   const showHeaderCategories =
     configPage?.categories?.categoriesStyle === categoryStyle.HEADER;

@@ -1,9 +1,9 @@
-import { useUIStore } from "@/common/infrastructure/store/ui.store";
 import {
   authenticationMethods,
   uiLoginType,
 } from "@ecommerce/common/domain/ui/ui.types";
 import { useCallback } from "react";
+import { useAppStore } from "../../../../../../../common/infrastructure/store";
 import { cartProductUiTypes, categoryStyle } from "../../../../../domain";
 
 const defaultConfigPage = {
@@ -52,7 +52,7 @@ const defaultConfigPage = {
 };
 
 export const useRootEcommerceLayout = () => {
-  const updateConfigPage = useUIStore((state) => state.updateConfigPage);
+  const updateConfigPage = useAppStore((state) => state.updateConfigPage);
 
   const updateConfigPageEcommerce = useCallback(() => {
     updateConfigPage(defaultConfigPage);

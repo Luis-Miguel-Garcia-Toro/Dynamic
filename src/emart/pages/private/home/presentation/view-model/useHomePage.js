@@ -1,8 +1,8 @@
-import { useAuthStore } from "@/common/infrastructure/store/auth.store";
 import { useNavigate } from "react-router-dom";
+import { useAppStore } from "../../../../../../common/infrastructure/store";
 
 export const useHomePage = () => {
-  const { user } = useAuthStore();
+  const { user } = useAppStore();
   const navigate = useNavigate();
 
   const onNavigateToBranch = (business) => {

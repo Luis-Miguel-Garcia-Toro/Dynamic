@@ -1,7 +1,7 @@
-import { useAuthStore } from "@/common/infrastructure/store/auth.store";
 import { useLoginEmartDataStore } from "@/emart/common/infrastructure/store/login-data.store";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useAppStore } from "../../../../../../../../../common/infrastructure/store";
 import { authMethodsViews } from "../../../../../../../../common/domain";
 
 export const useVerificationCode = () => {
@@ -21,7 +21,7 @@ export const useVerificationCode = () => {
     totalSteps,
     verificationCode,
   } = useLoginEmartDataStore();
-  const { login } = useAuthStore();
+  const { login } = useAppStore();
 
   const onChangeCode = (newCode) => {
     if (newCode.length >= 6) {

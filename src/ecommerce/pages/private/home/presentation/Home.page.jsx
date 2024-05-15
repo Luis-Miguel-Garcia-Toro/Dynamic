@@ -1,5 +1,5 @@
 import { ProductList } from "@/ecommerce/common/presentation/components";
-import { useUIStore } from "../../../../../common/infrastructure/store/ui.store";
+import { useAppStore } from "../../../../../common/infrastructure/store";
 import { categoryStyle } from "../../../../common/domain";
 import {
   CategoriesList,
@@ -9,7 +9,7 @@ import { fakeProductsSanity } from "../domain/products.data";
 import Styles from "./scss/home.module.scss";
 
 export const HomePage = () => {
-  const configPage = useUIStore((state) => state.configPages);
+  const configPage = useAppStore((state) => state.configPages);
   const categoryType = configPage?.categories?.categoriesStyle || "";
 
   return (

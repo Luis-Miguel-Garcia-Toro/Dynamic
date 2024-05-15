@@ -1,9 +1,9 @@
-import { useUIStore } from "@/common/infrastructure/store/ui.store";
 import { InputCode, InputField } from "@/common/presentation/components";
 import { authenticationMethods } from "@/ecommerce/common/domain";
 import PropTypes from "prop-types";
 import { FiUser } from "react-icons/fi";
 import { RiKey2Line } from "react-icons/ri";
+import { useAppStore } from "../../../../../../../../../common/infrastructure/store";
 
 export const DynamicInputFields = ({
   authMethod,
@@ -76,7 +76,7 @@ UserPasswordFields.propTypes = {
 };
 
 const CodeField = ({ form, onChangeForm, errors }) => {
-  const { configPages } = useUIStore();
+  const { configPages } = useAppStore();
   const codeLength = configPages?.auth?.login?.codeValidationLength;
 
   return (

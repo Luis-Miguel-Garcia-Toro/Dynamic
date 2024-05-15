@@ -1,6 +1,6 @@
-import { useAuthStore, useUIStore } from "@/common/infrastructure/store";
 import { authenticationMethods } from "@/ecommerce/common/domain";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useAppStore } from "../../../../../../../../common/infrastructure/store";
 import { fetchLogin } from "../../../../infrastructure/login-repository";
 import { validateLoginForm } from "./validate-form";
 
@@ -24,8 +24,8 @@ export const useLoginForm = () => {
 
   const [isActiveSteps, setIsActiveSteps] = useState(false);
   const [step, setStep] = useState(1);
-  const { configPages } = useUIStore();
-  const { login } = useAuthStore();
+  const { configPages } = useAppStore();
+  const { login } = useAppStore();
 
   const onChangeForm = (value, key) => {
     setForm({ ...form, [key]: value });

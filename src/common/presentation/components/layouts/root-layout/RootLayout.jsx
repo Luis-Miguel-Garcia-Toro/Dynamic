@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
-import { useUIStore } from "../../../../infrastructure/store/ui.store";
+import { useAppStore } from "../../../../infrastructure/store";
 
 export const RootLayout = ({ children }) => {
-  const { theme, configPages } = useUIStore();
+  const { theme, configPages } = useAppStore();
 
   const setCSSVariablesColors = (colors) => {
     const root = document.querySelector(":root");
