@@ -5,6 +5,16 @@ $padding-sm: 1.5rem;
 $padding-md: 2rem;
 
 .CardProductContainer {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-input-border);
+  overflow: hidden;
+  transition: 0.3s;
+
+  &:hover {
+    border-color: var(--color-primary);
+  }
+
   .CardProductContent {
     overflow: hidden;
     display: grid;
@@ -12,20 +22,16 @@ $padding-md: 2rem;
     grid-template-columns: 1fr;
     width: 100%;
     height: 100%;
-    border: 1px solid var(--color-input-border);
-    border-radius: var(--border-radius-sm);
     transition: 0.3s;
 
     &.horizontal {
       grid-template-rows: 250px;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 40% 1fr;
     }
 
     &.vertical:hover,
     &.horizontal:hover,
     &:hover {
-      border-color: var(--color-primary);
-
       .CardProductButton {
         button {
           border-color: var(--color-primary) !important;
@@ -56,7 +62,7 @@ $padding-md: 2rem;
     }
 
     .CardProductBody {
-      padding: 1rem $padding-sm;
+      padding: 1rem;
       display: grid;
       grid-template-rows: 1fr auto auto;
 

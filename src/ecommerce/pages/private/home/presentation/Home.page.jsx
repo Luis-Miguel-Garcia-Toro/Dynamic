@@ -14,12 +14,12 @@ export const HomePage = () => {
 
   return (
     <div className={`${Styles.HomeContainer} ${Styles[categoryType]}`}>
-      <section className={`${Styles.HomeCategories} ${Styles[categoryType]}`}>
+      <section className={Styles.HomeCategories}>
         {categoryType === categoryStyle.LIST && <CategoriesList />}
         {categoryType === categoryStyle.SIDEBAR && <SidebarCategories />}
       </section>
 
-      <section className={`${Styles.HomeProducts} ${Styles[categoryType]}`}>
+      <section className={Styles.HomeProducts}>
         <ProductList
           products={fakeProductsSanity}
           typeCards={configPage?.products?.typeCard}

@@ -9,7 +9,7 @@ export const RootEcommerceLayout = ({ children }) => {
     updateConfigPageEcommerce();
   }, [updateConfigPageEcommerce]);
 
-  return <main>{children}</main>;
+  return <div>{children}</div>;
 };
 
 RootEcommerceLayout.propTypes = {

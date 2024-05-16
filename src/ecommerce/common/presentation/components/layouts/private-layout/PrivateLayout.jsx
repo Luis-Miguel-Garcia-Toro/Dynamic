@@ -8,7 +8,14 @@ export const PrivateLayout = ({ children }) => {
   return (
     <>
       <Header />
-      <div style={{ marginTop: `${headerHeight}px` }}>{children}</div>
+      <div
+        style={{
+          marginTop: `${headerHeight}px`,
+          minHeight: `calc(100vh - ${headerHeight}px)`,
+        }}
+      >
+        {children}
+      </div>
     </>
   );
 };

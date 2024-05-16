@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { ToastContainer } from "react-toastify";
 import { cartProductUiTypes } from "../../../../domain";
 import { CardProduct } from "../card-product/CardProduct";
 import Styles from "./scss/product-list.module.scss";
@@ -7,13 +8,15 @@ export const ProductList = ({ products, typeCards }) => {
   return (
     <div className={Styles.ProductListContainer}>
       <div className={Styles.ProductListContent}>
-        <h2>Listado de productos</h2>
+        <h2 className="title fadeIn">Listado de productos</h2>
         <div className={`${Styles.ProductList} ${Styles[typeCards]}`}>
           {products.map((product) => (
             <CardProduct key={product.id} product={product} type={typeCards} />
           ))}
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 };

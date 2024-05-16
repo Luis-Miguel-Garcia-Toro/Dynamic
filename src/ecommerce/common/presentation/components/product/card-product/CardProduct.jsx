@@ -8,13 +8,18 @@ import { cartProductUiTypes } from "../../../../domain";
 import Styles from "./scss/card-product.module.scss";
 import { useCardProduct } from "./view-model/useCardProduct";
 
-export const CardProduct = ({ product, type }) => {
+export const CardProduct = ({ product, type, contentClassName }) => {
   const { title, image } = product;
-  const { onChangeQuantity, quantity } = useCardProduct();
+  const { quantity, onAddProductToCart, onUpdateProductQuantity } =
+    useCardProduct({ product });
 
   return (
-    <div className={Styles.CardProductContainer}>
-      <div className={`${Styles.CardProductContent} ${Styles[type]}`}>
+    <div className={`${Styles.CardProductContainer} fadeIn`}>
+      <div
+        className={`${Styles.CardProductContent} ${
+          contentClassName ? contentClassName : ""
+        } ${Styles[type]}`}
+      >
         {/* thumbnail */}
         <div className={Styles.CardProductThumbnail}>
           <figure>
@@ -31,20 +36,27 @@ export const CardProduct = ({ product, type }) => {
         </div>
 
         <div className={`${Styles.CardProductBody} ${Styles[type]}`}>
-          <h2 className={Styles.CardProductTitle}>{title}</h2>
+          <h2 className={Styles.CardProductTitle}>
+            {`${title}`.length > 50 ? `${title.slice(0, 50)}...` : `${title}`}
+          </h2>
           <span className={Styles.CardProductPrice}>
             {format.formatPrice(product.price)}
           </span>
           <div>
             {quantity <= 0 ? (
               <Button
-                onClick={() => onChangeQuantity(1)}
+                onClick={() => onAddProductToCart(product)}
                 className={`${Styles.CardProductButton} ${Styles[type]}`}
                 label="Añadir"
               />
             ) : (
               <div className={Styles.CardProductCounter}>
-                <Counter value={quantity} onChangeValue={onChangeQuantity} />
+                <Counter
+                  value={quantity}
+                  onChangeValue={(value) =>
+                    onUpdateProductQuantity(product, value)
+                  }
+                />
               </div>
             )}
           </div>
@@ -61,8 +73,10 @@ CardProduct.propTypes = {
     description: PropTypes.string,
     price: PropTypes.number,
     image: PropTypes.string,
+    quantity: PropTypes.number,
   }).isRequired,
   type: PropTypes.oneOf(cartProductUiTypes),
+  contentClassName: PropTypes.string,
 };
 
 CardProduct.defaultProps = {

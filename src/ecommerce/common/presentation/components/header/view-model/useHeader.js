@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 import { useAppStore } from "../../../../../../common/infrastructure/store";
 import { categoryStyle } from "../../../../domain";
+import { useCartStore } from "../../../../infrastructure/store";
 
 export const useHeader = () => {
   const configPage = useAppStore((state) => state.configPages);
   const changeHeaderHeight = useAppStore((state) => state.changeHeaderHeight);
+  const { getTotalItems } = useCartStore();
 
   const showHeaderCategories =
     configPage?.categories?.categoriesStyle === categoryStyle.HEADER;
@@ -30,6 +32,7 @@ export const useHeader = () => {
   }, []);
 
   return {
+    getTotalItems,
     headerRef,
     showHeaderCategories,
   };

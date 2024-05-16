@@ -12,5 +12,33 @@
 
   .HeaderContent {
     padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .HeaderLinkLogo {
+      color: var(--color-white);
+      text-decoration: none;
+    }
+
+    .HeaderCart {
+      position: relative;
+      text-decoration: none;
+
+      & span {
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        background-color: var(--color-danger);
+        border-radius: var(--border-radius-full);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--color-white);
+        font-size: 0.7rem;
+        top: -5px;
+        right: -10px;
+      }
+    }
   }
 }

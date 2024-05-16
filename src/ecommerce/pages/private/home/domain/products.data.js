@@ -4,7 +4,7 @@ export const fakeDataProducts = {
     data: [
       {
         code: "0102",
-        title: "FORTIKIDS BEBIDA SABORIZ CHOCO 180ML",
+        title: "FORTIKIDS BEBIDA SABORIZ CHOCO 180ML FORTIKIDS BEBIDA SABORIZ CHOCO 180ML FORTIKIDS BEBIDA SABORIZ CHOCO 180ML",
         price: "1502",
         unit: "UN",
         units: "UN",

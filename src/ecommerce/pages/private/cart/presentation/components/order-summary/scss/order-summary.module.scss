@@ -1,0 +1,41 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.OrderSummaryContainer {
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .OrderSummaryItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+
+    &.Total {
+      font-weight: bold;
+      color: var(--color-primary);
+    }
+  }
+
+  .OrderSummarySeparator{
+    display: none;
+  }
+}
+
+@include media-up($breakpoint-md) {
+  .OrderSummaryContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .OrderSummarySeparator{
+      display: block;
+      flex: 1;
+    }
+
+    button{
+      justify-self: end;
+    }
+  }
+}

@@ -5,10 +5,6 @@
   /* Set the sizing of an element to include it's border */
 }
 
-#root {
-  height: 100%;
-}
-
 * {
   margin: 0;
   /* Set the default margin to 0 */
@@ -91,7 +87,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 body,
 html {
-  height: 100%;
   /* Makes the body element full screen */
   scroll-behavior: smooth;
   /* Makes normal scrolling smooth */
