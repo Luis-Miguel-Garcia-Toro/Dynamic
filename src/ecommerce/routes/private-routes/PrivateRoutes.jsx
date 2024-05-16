@@ -2,8 +2,8 @@ import { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { PrivateLayout } from "../../common/presentation/components";
 
-const HomePage = lazy(() =>
-  import("../../pages/private/home/presentation/Home.page")
+const ProductsPage = lazy(() =>
+  import("../../pages/private/products/presentation/Products.page")
 );
 
 const CartPage = lazy(() =>
@@ -14,7 +14,7 @@ export const PrivateRoutes = () => {
   return (
     <PrivateLayout>
       <Routes>
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/home" element={<ProductsPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/*" element={<Navigate to="/home" />} />
       </Routes>

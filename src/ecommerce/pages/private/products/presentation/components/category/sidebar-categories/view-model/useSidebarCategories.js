@@ -1,5 +1,5 @@
+import { useAppStore } from "@/common/infrastructure/store";
 import { useState } from "react";
-import { useAppStore } from "../../../../../../../common/infrastructure/store";
 
 export const useSidebarCategories = () => {
   const [showMenu, setShowMenu] = useState(false);

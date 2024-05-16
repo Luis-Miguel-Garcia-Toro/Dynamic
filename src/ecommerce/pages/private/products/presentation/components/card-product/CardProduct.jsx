@@ -4,7 +4,7 @@ import { format } from "@/common/presentation/utils";
 import PropTypes from "prop-types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { cartProductUiTypes } from "../../../../domain";
+import { cartProductUiTypes } from "../../../../../../common/domain";
 import Styles from "./scss/card-product.module.scss";
 import { useCardProduct } from "./view-model/useCardProduct";
 

@@ -1,25 +1,21 @@
-import { ProductList } from "@/ecommerce/common/presentation/components";
 import { useAppStore } from "../../../../../common/infrastructure/store";
 import { categoryStyle } from "../../../../common/domain";
-import {
-  CategoriesList,
-  SidebarCategories,
-} from "../../../../common/presentation/components";
 import { fakeProductsSanity } from "../domain/products.data";
-import Styles from "./scss/home.module.scss";
+import { CategoriesList, ProductList, SidebarCategories } from "./components";
+import Styles from "./scss/products.module.scss";
 
-export const HomePage = () => {
+const ProductsPage = () => {
   const configPage = useAppStore((state) => state.configPages);
   const categoryType = configPage?.categories?.categoriesStyle || "";
 
   return (
-    <div className={`${Styles.HomeContainer} ${Styles[categoryType]}`}>
-      <section className={Styles.HomeCategories}>
+    <div className={`${Styles.ProductsContainer} ${Styles[categoryType]}`}>
+      <section className={Styles.ProductsCategories}>
         {categoryType === categoryStyle.LIST && <CategoriesList />}
         {categoryType === categoryStyle.SIDEBAR && <SidebarCategories />}
       </section>
 
-      <section className={Styles.HomeProducts}>
+      <section className={Styles.ProductsList}>
         <ProductList
           products={fakeProductsSanity}
           typeCards={configPage?.products?.typeCard}
@@ -29,4 +25,4 @@ export const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default ProductsPage;

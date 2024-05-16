@@ -1,7 +1,6 @@
-import Styles from "./scss/cart.module.scss";
-
-import { CardProduct } from "../../../../common/presentation/components/product/card-product/CardProduct";
+import { CardProduct } from "../../products/presentation/components";
 import { EmptyCart, OrderSummary } from "./components";
+import Styles from "./scss/cart.module.scss";
 import { useCartPage } from "./view-model/useCartPage";
 
 const CartPage = () => {

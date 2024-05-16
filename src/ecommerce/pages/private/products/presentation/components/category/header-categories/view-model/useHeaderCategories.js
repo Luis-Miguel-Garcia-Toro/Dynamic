@@ -1,5 +1,5 @@
+import { useAppStore } from "@/common/infrastructure/store";
 import { useRef, useState } from "react";
-import { useAppStore } from "../../../../../../../common/infrastructure/store";
 
 export const useHeaderCategories = () => {
   const configPage = useAppStore((state) => state.configPages);

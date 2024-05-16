@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { ToastContainer } from "react-toastify";
-import { cartProductUiTypes } from "../../../../domain";
+import { cartProductUiTypes } from "../../../../../../common/domain";
 import { CardProduct } from "../card-product/CardProduct";
 import Styles from "./scss/product-list.module.scss";
 

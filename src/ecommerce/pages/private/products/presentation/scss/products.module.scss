@@ -1,12 +1,11 @@
 @import "@/common/presentation/scss/mixins/responsive.mixin";
-@import "@/common/presentation/scss/vars";
 
-.HomeContainer {
+.ProductsContainer {
   background-color: var(--color-bg-primary);
 }
 
 @include media-up(1220px) {
-  .HomeContainer {
+  .ProductsContainer {
     &.SIDEBAR {
       display: grid;
       grid-template-columns: 20% 1fr;
