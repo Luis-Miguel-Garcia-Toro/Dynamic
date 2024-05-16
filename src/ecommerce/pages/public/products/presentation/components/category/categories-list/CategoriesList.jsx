@@ -12,7 +12,7 @@ export const CategoriesList = () => {
           {(categories?.categoriesList || []).map((category) => (
             <div className={`${Styles.CategoriesItem} fadeIn`} key={category.name}>
               <figure>
-                <img src={category.icon} alt={category.name} />
+                <img src={category.icon} alt={`Ir a la categoría ${category.name}`} />
               </figure>
               <span>{category.name}</span>
             </div>

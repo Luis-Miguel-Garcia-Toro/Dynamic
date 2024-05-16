@@ -12,7 +12,7 @@ export const LoginContentLayout = ({ className }) => {
     <div className={className}>
       {loginLogo && (
         <figure className={Styles.LoginLogoContainer}>
-          <img alt="Logo" src={loginLogo} />
+          <img alt="" src={loginLogo} />
         </figure>
       )}
 

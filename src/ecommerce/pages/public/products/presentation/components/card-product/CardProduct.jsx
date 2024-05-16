@@ -25,7 +25,7 @@ export const CardProduct = ({ product, type, contentClassName }) => {
           <figure>
             <LazyLoadImage
               src={image}
-              alt={title}
+              alt=""
               onError={(e) => {
                 e.target.src = defaultImage;
               }}

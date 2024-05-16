@@ -26,7 +26,7 @@ export const HeaderCategories = () => {
           {(categories?.categoriesList || []).map((category) => (
             <li className={Styles.CategoriesListItem} key={category.name}>
               <figure>
-                <img src={category.icon} alt={category.name} />
+                <img src={category.icon} alt={`Ir a la categoría ${category.name}`} />
               </figure>
               {category.name}
             </li>

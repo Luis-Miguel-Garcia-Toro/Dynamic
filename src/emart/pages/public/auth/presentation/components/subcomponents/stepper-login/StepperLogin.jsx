@@ -7,7 +7,7 @@ export const StepperLogin = ({ currentStep, stepsList }) => {
   return (
     <div className={`${Styles.StepperLoginContainer} fadeIn`}>
       <figure className={Styles.StepperLoginLogoContainer}>
-        <img src={Logo} alt="logo cw" />
+        <img src={Logo} alt="" />
       </figure>
 
       <div className={Styles.StepperLoginSteps}>

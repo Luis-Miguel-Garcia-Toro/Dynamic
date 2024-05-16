@@ -31,7 +31,7 @@ export const BranchPage = () => {
           <figure>
             <LazyLoadImage
               src={business.logo}
-              alt={business.comercial_name}
+              alt=""
               effect="blur"
               delayTime={500}
             />

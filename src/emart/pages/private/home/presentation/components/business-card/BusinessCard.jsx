@@ -15,7 +15,7 @@ export const BusinessCard = ({ business, navigateTo }) => {
       <figure>
         <LazyLoadImage
           src={logo}
-          alt={comercial_name ? comercial_name : organization}
+          alt=""
           onError={(e) => {
             e.target.src = defaultImage;
           }}
