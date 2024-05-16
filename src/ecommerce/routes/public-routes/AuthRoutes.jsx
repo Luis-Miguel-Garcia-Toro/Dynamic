@@ -2,10 +2,10 @@ import { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 const LoginPage = lazy(() =>
-  import("../pages/public/auth/presentation/Login.page")
+  import("../../pages/public/auth/presentation/Login.page")
 );
 
-export const PublicRoutes = () => {
+export const AuthRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />

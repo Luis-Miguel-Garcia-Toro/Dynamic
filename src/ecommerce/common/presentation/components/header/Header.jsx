@@ -1,6 +1,6 @@
 import { FaCartShopping } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { HeaderCategories } from "../../../../pages/private/products/presentation/components";
+import { HeaderCategories } from "../../../../pages/public/products/presentation/components";
 import Styles from "./scss/header.module.scss";
 import { useHeader } from "./view-model/useHeader";
 

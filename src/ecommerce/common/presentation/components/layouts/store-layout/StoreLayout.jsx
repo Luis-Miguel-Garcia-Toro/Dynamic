@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { Header } from "../../header/Header";
-import { usePrivateLayout } from "./view-model/usePrivateLayout";
+import { useStoreLayout } from "./view-model/useStoreLayout";
 
-export const PrivateLayout = ({ children }) => {
-  const { headerHeight } = usePrivateLayout();
+export const StoreLayout = ({ children }) => {
+  const { headerHeight } = useStoreLayout();
 
   return (
     <>
@@ -20,6 +20,6 @@ export const PrivateLayout = ({ children }) => {
   );
 };
 
-PrivateLayout.propTypes = {
+StoreLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };

@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import 'react-toastify/dist/ReactToastify.css';
 import "./common/presentation/scss/index.scss";
-import { EcommerceRoutes } from "./ecommerce/routes";
+import { EcommerceRoutes } from "./ecommerce/routes/EcommerceRoutes";
 import { EmartRoutes } from "./emart/routes";
 
 const CURRENT_PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME;
