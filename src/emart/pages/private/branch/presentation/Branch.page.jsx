@@ -1,8 +1,6 @@
-import { ButtonNavigate, Loading } from "@/common/presentation/components";
+import { ButtonNavigate, ImageLazy, Loading } from "@/common/presentation/components";
 import { BsBuildingCheck } from "react-icons/bs";
 import { MdSearchOff } from "react-icons/md";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import { Navigate } from "react-router-dom";
 import { BranchItem } from "./components";
 import Styles from "./scss/branch-page.module.scss";
@@ -29,12 +27,7 @@ export const BranchPage = () => {
 
         <div className={`${Styles.BranchInfo} fadeIn`}>
           <figure>
-            <LazyLoadImage
-              src={business.logo}
-              alt=""
-              effect="blur"
-              delayTime={500}
-            />
+            <ImageLazy imageUri={business.logo} />
           </figure>
           <div>
             <h1>{business.comercial_name}</h1>

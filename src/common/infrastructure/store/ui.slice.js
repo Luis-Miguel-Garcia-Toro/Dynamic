@@ -22,6 +22,9 @@ export const createUiSlice = (set) => ({
       configPages: { ...state.configPages, ...configPages },
     })),
   changeHeaderHeight: (height) => {
+    const root = document.querySelector(":root");
+    root.style.setProperty(`--header-height`, height);
+
     return set((state) => ({
       configPages: {
         ...state.configPages,

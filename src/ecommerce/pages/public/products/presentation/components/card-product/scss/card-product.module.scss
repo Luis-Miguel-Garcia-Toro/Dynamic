@@ -73,9 +73,14 @@ $padding-md: 2rem;
       }
 
       .CardProductTitle {
-        font-size: 0.9rem;
-        font-weight: bold;
-        word-wrap: break-word;
+        text-decoration: none;
+        color: var(--color-text);
+
+        h2 {
+          font-size: 0.9rem;
+          font-weight: bold;
+          word-wrap: break-word;
+        }
       }
 
       .CardProductPrice {

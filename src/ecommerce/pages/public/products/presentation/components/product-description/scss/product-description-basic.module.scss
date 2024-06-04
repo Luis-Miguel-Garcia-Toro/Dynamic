@@ -1,0 +1,124 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.ProductDescriptionContainer {
+  position: relative;
+
+  h1 {
+    font-size: 1.3rem;
+    margin: 1rem 0;
+  }
+
+  .ProductDescription {
+    margin: 1rem 0;
+  }
+
+  .ProductPrice {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary);
+  }
+
+  .ProductAddToCart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+
+    &.Layout-2 {
+      justify-content: center;
+    }
+
+    p {
+      align-self: flex-start;
+    }
+
+    .ProductCounter {
+      display: flex;
+      justify-content: center;
+      min-width: 200px;
+    }
+  }
+
+  .ProductTotal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+    & span:first-child {
+      font-weight: bold;
+      color: var(--color-primary);
+      font-size: 2rem;
+    }
+  }
+
+  .ButtonToCart {
+    margin: 1rem 0;
+  }
+}
+
+@include media-up(390px) {
+  .ProductDescriptionContainer {
+    .ProductAddToCart {
+      flex-direction: row;
+
+      p {
+        align-self: initial;
+      }
+
+      .ProductCounter {
+        justify-content: flex-end;
+
+        &.Layout-2 {
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+@include media-up($breakpoint-md) {
+  .ProductDescriptionContainer {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .ProductDescription {
+      margin: 2rem 0;
+    }
+
+    .ProductAddToCart {
+      flex-direction: column;
+      align-items: flex-start;
+      row-gap: 0;
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      .ProductCounter {
+        justify-content: flex-start;
+      }
+    }
+
+    .ProductTotal {
+      flex-direction: row;
+      gap: 0.2rem;
+      justify-content: start;
+      align-items: end;
+      margin-top: 2rem;
+
+      & span:last-child {
+        line-height: 30px;
+      }
+    }
+
+    .ButtonToCart {
+      width: 40%;
+    }
+  }
+}

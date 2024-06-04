@@ -1519,22 +1519,14 @@ export const fakeDataProducts = {
     page: 1,
   },
 };
-const fakeProduct1 = fakeDataProducts.data.data[0];
 
 export const fakeProductsSanity = fakeDataProducts.data.data.map((product) => {
   return {
     ...product,
     id: product.code,
-    description: "",
     image: product.imagen,
-    price: +product.price
+    price: +product.price,
+    // description: "",
+    description: "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   };
 })
-
-export const fakeProduct1Sanity = {
-  ...fakeProduct1,
-  id: fakeProduct1.code,
-  description: "",
-  image: fakeProduct1.imagen,
-  price: +fakeProduct1.price
-};

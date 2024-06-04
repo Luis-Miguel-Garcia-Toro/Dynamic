@@ -1,7 +1,5 @@
-import defaultImage from "@/assets/img/default_image.png";
 import PropTypes from "prop-types";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
+import { ImageLazy } from "../../../../../../../common/presentation/components";
 import Styles from "./scss/business-card.module.scss";
 
 export const BusinessCard = ({ business, navigateTo }) => {
@@ -13,20 +11,10 @@ export const BusinessCard = ({ business, navigateTo }) => {
       className={`${Styles.BusinessCardContainer} fadeIn`}
     >
       <figure>
-        <LazyLoadImage
-          src={logo}
-          alt=""
-          onError={(e) => {
-            e.target.src = defaultImage;
-          }}
-          effect="blur"
-          delayTime={500}
-        />
+        <ImageLazy imageUri={logo} />
       </figure>
 
-      <h2>
-        {comercial_name ? comercial_name : organization}
-      </h2>
+      <h2>{comercial_name ? comercial_name : organization}</h2>
     </div>
   );
 };

@@ -1,17 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { useManageCart } from "../../../../../../../common/presentation/hooks";
 
-export const useCardProduct = ({ product }) => {
+export const useProductDescriptionBasic = ({ product }) => {
   const { onAddProductToCart, onUpdateProductQuantity, quantity } =
     useManageCart({ product });
+  const navigate = useNavigate();
 
-  const generateProductSlug = (product) => {
-    const slug =
-      product.title.toLowerCase().replace(/\s/g, "-") + "-" + product.id;
-    return slug;
-  };
+  const goToCart = () => navigate("/cart");
 
   return {
-    generateProductSlug,
+    goToCart,
     onAddProductToCart,
     onUpdateProductQuantity,
     quantity,

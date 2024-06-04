@@ -1,17 +1,19 @@
-import defaultImage from "@/assets/img/default_image.png";
-import { Button, Counter } from "@/common/presentation/components";
+import { Button, Counter, ImageLazy } from "@/common/presentation/components";
 import { format } from "@/common/presentation/utils";
 import PropTypes from "prop-types";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
+import { Link } from "react-router-dom";
 import { cartProductUiTypes } from "../../../../../../common/domain";
 import Styles from "./scss/card-product.module.scss";
 import { useCardProduct } from "./view-model/useCardProduct";
 
 export const CardProduct = ({ product, type, contentClassName }) => {
   const { title, image } = product;
-  const { quantity, onAddProductToCart, onUpdateProductQuantity } =
-    useCardProduct({ product });
+  const {
+    quantity,
+    onAddProductToCart,
+    onUpdateProductQuantity,
+    generateProductSlug,
+  } = useCardProduct({ product });
 
   return (
     <div className={`${Styles.CardProductContainer} fadeIn`}>
@@ -23,22 +25,29 @@ export const CardProduct = ({ product, type, contentClassName }) => {
         {/* thumbnail */}
         <div className={Styles.CardProductThumbnail}>
           <figure>
-            <LazyLoadImage
-              src={image}
-              alt=""
-              onError={(e) => {
-                e.target.src = defaultImage;
+            <Link
+              to={`/products/${generateProductSlug(product)}`}
+              state={{
+                product: product,
               }}
-              effect="blur"
-              delayTime={500}
-            />
+            >
+              <ImageLazy imageUri={image} />
+            </Link>
           </figure>
         </div>
 
         <div className={`${Styles.CardProductBody} ${Styles[type]}`}>
-          <h2 className={Styles.CardProductTitle}>
-            {`${title}`.length > 50 ? `${title.slice(0, 50)}...` : `${title}`}
-          </h2>
+          <Link
+            className={Styles.CardProductTitle}
+            to={`/products/${generateProductSlug(product)}`}
+            state={{
+              product: product,
+            }}
+          >
+            <h2>
+              {`${title}`.length > 50 ? `${title.slice(0, 50)}...` : `${title}`}
+            </h2>
+          </Link>
           <span className={Styles.CardProductPrice}>
             {format.formatPrice(product.price)}
           </span>

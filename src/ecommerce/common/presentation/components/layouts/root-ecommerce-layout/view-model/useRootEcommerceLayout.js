@@ -1,10 +1,10 @@
 import {
   authenticationMethods,
   uiLoginType,
-} from "@ecommerce/common/domain/ui/ui.types";
-import { useCallback } from "react";
-import { useAppStore } from "../../../../../../../common/infrastructure/store";
-import { cartProductUiTypes, categoryStyle } from "../../../../../domain";
+} from "@ecommerce/common/domain/ui/ui.types"
+import { useCallback } from "react"
+import { useAppStore } from "../../../../../../../common/infrastructure/store"
+import { cartProductUiTypes, categoryStyle } from "../../../../../domain"
 
 const defaultConfigPage = {
   auth: {
