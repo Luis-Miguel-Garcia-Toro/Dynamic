@@ -4,7 +4,11 @@ import {
 } from "@ecommerce/common/domain/ui/ui.types"
 import { useCallback } from "react"
 import { useAppStore } from "../../../../../../../common/infrastructure/store"
-import { cartProductUiTypes, categoryStyle } from "../../../../../domain"
+import {
+  bannerStyle,
+  cartProductUiTypes,
+  categoryStyle,
+} from "../../../../../domain"
 
 const defaultConfigPage = {
   auth: {
@@ -48,6 +52,9 @@ const defaultConfigPage = {
         icon: "https://www.svgrepo.com/show/28071/juice.svg",
       },
     ],
+  },
+  banner: {
+    style: bannerStyle.BASIC,
   },
 };
 

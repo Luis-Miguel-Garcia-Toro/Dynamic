@@ -1,0 +1,15 @@
+@import "@/common/presentation/scss/base/container";
+
+.ProductBanner {
+  background-color: var(--color-white);
+  box-sizing: border-box;
+
+  &.BASIC {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    .ProductBannerContainer {
+      @extend .Container;
+    }
+  }
+}

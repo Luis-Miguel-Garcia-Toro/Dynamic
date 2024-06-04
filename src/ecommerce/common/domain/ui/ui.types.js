@@ -17,3 +17,8 @@ export const categoryStyle = {
   SIDEBAR: "SIDEBAR",
   LIST: "LIST",
 };
+
+export const bannerStyle = {
+  BASIC: "BASIC",
+  HERO: "HERO",
+};
