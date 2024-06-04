@@ -18,7 +18,7 @@ const defaultConfigPage = {
     },
   },
   products: {
-    typeCard: cartProductUiTypes[1],
+    typeCard: cartProductUiTypes[0],
   },
   categories: {
     categoriesStyle: categoryStyle.LIST,

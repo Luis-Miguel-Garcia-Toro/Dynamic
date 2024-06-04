@@ -15,16 +15,44 @@
   grid-template-columns: 1fr;
   grid-gap: 1rem;
   transition: 0.3s;
+
+  &.vertical {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@include media-up(430px) {
+  .ProductList {
+    &.vertical {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 }
 
 @include media-up($breakpoint-md) {
   .ProductList {
     grid-template-columns: repeat(2, 1fr);
+
+    &.vertical {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@include media-up(855px) {
+  .ProductList {
+    &.vertical {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 }
 
 @include media-up($breakpoint-lg) {
   .ProductList {
     grid-template-columns: repeat(3, 1fr);
+
+    &.vertical {
+      grid-template-columns: repeat(5, 1fr);
+    }
   }
 }
