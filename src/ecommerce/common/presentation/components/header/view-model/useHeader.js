@@ -1,12 +1,15 @@
-import { useEffect, useRef } from "react";
-import { useAppStore } from "../../../../../../common/infrastructure/store";
-import { categoryStyle } from "../../../../domain";
-import { useCartStore } from "../../../../infrastructure/store";
+import { useEffect, useRef } from "react"
+import { useAppStore } from "../../../../../../common/infrastructure/store"
+import { categoryStyle } from "../../../../domain"
+import { useCartStore } from "../../../../infrastructure/store"
 
 export const useHeader = () => {
   const configPage = useAppStore((state) => state.configPages);
   const changeHeaderHeight = useAppStore((state) => state.changeHeaderHeight);
-  const totalItemsInCart = useCartStore(state => state.getTotalItems());
+  const totalItemsInCart = useCartStore((state) => state.getTotalItems());
+  const summaryInformationCart = useCartStore((state) =>
+    state.getSummaryInformation()
+  );
 
   const showHeaderCategories =
     configPage?.categories?.categoriesStyle === categoryStyle.HEADER;
@@ -35,5 +38,6 @@ export const useHeader = () => {
     totalItemsInCart,
     headerRef,
     showHeaderCategories,
+    summaryTotal: summaryInformationCart.total || 0,
   };
 };

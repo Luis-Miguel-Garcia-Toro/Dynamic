@@ -1,0 +1,24 @@
+.ScrollToTopButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+
+  button {
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-full);
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    box-shadow: var(--box-shadow-medium);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  svg {
+    color: var(--color-white);
+  }
+}

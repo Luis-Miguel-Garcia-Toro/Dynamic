@@ -24,8 +24,30 @@
     .HeaderCart {
       position: relative;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background-color: var(--color-white);
+      height: 40px;
+      width: 40px;
+      border-radius: var(--border-radius-full);
+      justify-content: center;
+      transition: 0.3s;
 
-      & span {
+      &.HasTotal {
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+        border-radius: var(--border-radius-md);
+        // height: auto;
+        width: auto;
+      }
+
+      .HeaderCartIcon {
+        position: relative;
+        color: var(--color-text);
+      }
+
+      & span:first-child {
         position: absolute;
         height: 15px;
         width: 15px;
@@ -38,6 +60,10 @@
         font-size: 0.7rem;
         top: -5px;
         right: -10px;
+      }
+
+      & span:last-child {
+        font-size: 0.85rem;
       }
     }
   }

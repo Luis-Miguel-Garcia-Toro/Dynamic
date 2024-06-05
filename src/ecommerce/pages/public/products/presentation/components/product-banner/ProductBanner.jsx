@@ -10,7 +10,7 @@ import "swiper/css/pagination"
 import "./scss/swiper-styles.scss"
 
 // import required modules
-import { Navigation, Pagination } from "swiper/modules"
+import { Autoplay, Navigation, Pagination } from "swiper/modules"
 
 import imageBanner1 from "@/assets/img/banner-1.png"
 import imageBanner2 from "@/assets/img/banner-2.png"
@@ -33,17 +33,16 @@ export const ProductBanner = () => {
           }}
           slidesPerView={1}
           spaceBetween={30}
-          // autoplay={{
-          //   delay: 3000,
-          //   disableOnInteraction: false,
-          // }}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
           loop={true}
           pagination={{
             clickable: true,
           }}
           navigation={true}
-          modules={[Pagination, Navigation]}
-          // modules={[Pagination, Navigation, Autoplay]}
+          modules={[Pagination, Navigation, Autoplay]}
           className={`product-banner ${bannerStyle}`}
         >
           <SwiperSlide>

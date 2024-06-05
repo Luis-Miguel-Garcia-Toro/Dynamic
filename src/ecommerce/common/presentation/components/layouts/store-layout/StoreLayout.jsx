@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import { Header } from "../../header/Header";
-import { useStoreLayout } from "./view-model/useStoreLayout";
+import PropTypes from "prop-types"
+import { Header } from "../../header/Header"
+import { useStoreLayout } from "./view-model/useStoreLayout"
 
 export const StoreLayout = ({ children }) => {
   const { headerHeight } = useStoreLayout();

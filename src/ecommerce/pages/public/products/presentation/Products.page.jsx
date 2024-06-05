@@ -1,5 +1,7 @@
 import { useAppStore } from "../../../../../common/infrastructure/store"
+import { ScrollToTopButton } from "../../../../../common/presentation/components"
 import { categoryStyle } from "../../../../common/domain"
+import { Footer } from "../../../../common/presentation/components/footer/Footer"
 import { fakeProductsSanity } from "../domain/products.data"
 import {
   CategoriesList,
@@ -28,6 +30,10 @@ const ProductsPage = () => {
           typeCards={configPage?.products?.typeCard}
         />
       </section>
+
+      <ScrollToTopButton />
+
+      <Footer />
     </div>
   );
 };
