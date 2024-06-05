@@ -25,8 +25,15 @@ $padding-md: 2rem;
     transition: 0.3s;
 
     &.horizontal {
-      grid-template-rows: 250px;
       grid-template-columns: 40% 1fr;
+
+      &.small {
+        grid-template-rows: 180px;
+      }
+
+      &.medium {
+        grid-template-rows: 250px;
+      }
     }
 
     &.vertical:hover,

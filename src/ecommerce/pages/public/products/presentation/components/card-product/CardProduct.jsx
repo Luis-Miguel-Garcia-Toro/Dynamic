@@ -6,7 +6,12 @@ import { cartProductUiTypes } from "../../../../../../common/domain";
 import Styles from "./scss/card-product.module.scss";
 import { useCardProduct } from "./view-model/useCardProduct";
 
-export const CardProduct = ({ product, type, contentClassName }) => {
+export const CardProduct = ({
+  product,
+  type,
+  contentClassName,
+  sizeCardRow,
+}) => {
   const { title, image } = product;
   const {
     quantity,
@@ -20,7 +25,7 @@ export const CardProduct = ({ product, type, contentClassName }) => {
       <div
         className={`${Styles.CardProductContent} ${
           contentClassName ? contentClassName : ""
-        } ${Styles[type]}`}
+        } ${Styles[type]} ${Styles[sizeCardRow]}`}
       >
         {/* thumbnail */}
         <div className={Styles.CardProductThumbnail}>
@@ -45,7 +50,7 @@ export const CardProduct = ({ product, type, contentClassName }) => {
             }}
           >
             <h2>
-              {`${title}`.length > 50 ? `${title.slice(0, 50)}...` : `${title}`}
+              {`${title}`.length > 30 ? `${title.slice(0, 30)}...` : `${title}`}
             </h2>
           </Link>
           <span className={Styles.CardProductPrice}>
@@ -86,8 +91,10 @@ CardProduct.propTypes = {
   }).isRequired,
   type: PropTypes.oneOf(cartProductUiTypes),
   contentClassName: PropTypes.string,
+  sizeCardRow: PropTypes.oneOf(["small", "medium"]),
 };
 
 CardProduct.defaultProps = {
   type: "vertical",
+  sizeCardRow: "medium",
 };

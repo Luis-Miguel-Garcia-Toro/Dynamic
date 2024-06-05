@@ -1,0 +1,125 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+$width-aside-cart: 400px;
+$sm-width-aside-cart: 320px;
+$height-order-detail: 235px;
+
+.SideCart {
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+}
+
+.SideCartContent {
+  position: relative;
+  padding: 4rem;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.SideCartContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  width:$sm-width-aside-cart;
+  padding: 1rem 2rem;
+  background-color: var(--color-bg-primary);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+
+  &.Active {
+    transform: translateX(0);
+  }
+
+  &.slide-in {
+    animation: slideIn 0.3s ease-in-out;
+  }
+
+  &.slide-out {
+    animation: slideOut 0.3s ease-in-out;
+  }
+}
+
+.CartContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .CartHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    button {
+      border: none;
+      background-color: transparent;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      color: var(--color-primary);
+    }
+
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  .CartProductsGrid {
+    overflow-y: auto;
+    height: calc(100% - $height-order-detail);
+    margin-bottom: $height-order-detail;
+
+    & > div{
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .CartSummary {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: $sm-width-aside-cart;
+    padding: 2rem;
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow-top);
+    height: $height-order-detail;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@include media-up($breakpoint-md) {
+  .SideCartContainer,
+  .CartContent .CartSummary {
+    width: $width-aside-cart;
+  }
+}

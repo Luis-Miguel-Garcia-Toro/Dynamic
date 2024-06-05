@@ -22,3 +22,8 @@ export const bannerStyle = {
   BASIC: "BASIC",
   HERO: "HERO",
 };
+
+export const cartModeTypes = {
+  BAR: "bar",
+  WINDOW: "window",
+};

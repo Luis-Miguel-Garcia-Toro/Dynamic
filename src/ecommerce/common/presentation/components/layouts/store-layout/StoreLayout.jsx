@@ -1,9 +1,11 @@
-import PropTypes from "prop-types"
-import { Header } from "../../header/Header"
-import { useStoreLayout } from "./view-model/useStoreLayout"
+import PropTypes from "prop-types";
+import { SideCart } from "../../../../../pages/private/cart/presentation/components";
+import { cartModeTypes } from "../../../../domain";
+import { Header } from "../../header/Header";
+import { useStoreLayout } from "./view-model/useStoreLayout";
 
 export const StoreLayout = ({ children }) => {
-  const { headerHeight } = useStoreLayout();
+  const { headerHeight, cartMode } = useStoreLayout();
 
   return (
     <>
@@ -12,9 +14,11 @@ export const StoreLayout = ({ children }) => {
         style={{
           marginTop: `${headerHeight}px`,
           minHeight: `calc(100vh - ${headerHeight}px)`,
+          position: "relative",
         }}
       >
         {children}
+        {cartMode === cartModeTypes.BAR && <SideCart />}
       </div>
     </>
   );

@@ -1,4 +1,3 @@
-
 const initialState = {
   configPages: {
     globals: {
@@ -17,10 +16,19 @@ const initialState = {
 export const createUiSlice = (set) => ({
   ...initialState,
   updateTheme: (theme) => set({ theme }),
-  updateConfigPage: (configPages) =>
-    set((state) => ({
-      configPages: { ...state.configPages, ...configPages },
-    })),
+  updateConfigPage: (configPages) => {
+    const newConfigPages = {
+      ...configPages,
+      cart: {
+        ...configPages.cart,
+        isActiveSideCart: false,
+      },
+    };
+
+    return set((state) => ({
+      configPages: { ...state.configPages, ...newConfigPages },
+    }));
+  },
   changeHeaderHeight: (height) => {
     const root = document.querySelector(":root");
     root.style.setProperty(`--header-height`, height);
@@ -31,6 +39,17 @@ export const createUiSlice = (set) => ({
         globals: {
           ...state.configPages.globals,
           headerHeight: height,
+        },
+      },
+    }));
+  },
+  toggleActiveSideCart: () => {
+    return set((state) => ({
+      configPages: {
+        ...state.configPages,
+        cart: {
+          ...state.configPages.cart,
+          isActiveSideCart: !state.configPages.cart.isActiveSideCart,
         },
       },
     }));

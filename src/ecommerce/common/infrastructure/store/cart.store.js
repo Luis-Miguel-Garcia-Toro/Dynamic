@@ -30,11 +30,6 @@ export const useCartStore = create(
         };
       },
 
-      getItemFromCart: (id) => {
-        const { cart } = get();
-        return cart.find((item) => item.id === id);
-      },
-
       addProductToCart: (product) => {
         const { cart } = get();
         const productExist = cart.some((item) => item.id === product.id);
