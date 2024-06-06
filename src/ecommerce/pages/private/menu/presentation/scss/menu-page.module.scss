@@ -1,0 +1,15 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.MenuContent {
+  margin-left: 0px;
+  padding: 6rem 4rem 2rem;
+  transition: 0.3s;
+}
+
+@include media-up($breakpoint-md) {
+  .MenuContent {
+    margin-left: 300px;
+    padding: 2rem 4rem;
+  }
+}

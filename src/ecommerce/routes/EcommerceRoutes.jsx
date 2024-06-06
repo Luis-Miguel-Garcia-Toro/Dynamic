@@ -8,9 +8,10 @@ import { RootEcommerceLayout } from "../common/presentation/components";
 import { PrivateRoutes } from "./private-routes/PrivateRoutes";
 import { AuthRoutes, ProductsRoutes } from "./public-routes";
 
-
 export const EcommerceRoutes = () => {
   const { authStatus } = useAppStore();
+  const isAuthenticated = authStatus === authStateStatus.AUTHENTICATED;
+  
 
   return (
     <Suspense fallback={<LoadingFull show={true} />}>
@@ -18,14 +19,14 @@ export const EcommerceRoutes = () => {
         <RootLayout>
           <RootEcommerceLayout>
             <Routes>
-              {authStatus === authStateStatus.AUTHENTICATED ? (
-                <Route path="/*" element={<PrivateRoutes />} />
-              ) : (
-                <Route path="/*" element={<AuthRoutes />} />
-              )}
-
+              <Route path="/*" element={<PrivateRoutes />} />
+              <Route
+                path="/auth/*"
+                element={
+                  isAuthenticated ? <Navigate to="/products" /> : <AuthRoutes />
+                }
+              />
               <Route path="/products/*" element={<ProductsRoutes />} />
-              <Route path="/*" element={<Navigate to="/" />} />
             </Routes>
           </RootEcommerceLayout>
         </RootLayout>

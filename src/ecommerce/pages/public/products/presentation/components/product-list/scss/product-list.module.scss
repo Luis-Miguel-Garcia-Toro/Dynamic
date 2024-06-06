@@ -13,7 +13,7 @@
 .ProductList {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 1rem;
+  grid-gap: 0.5rem;
   transition: 0.3s;
 
   &.vertical {
@@ -21,7 +21,7 @@
   }
 }
 
-@include media-up(430px) {
+@include media-up(390px) {
   .ProductList {
     &.vertical {
       grid-template-columns: repeat(2, 1fr);
@@ -31,6 +31,7 @@
 
 @include media-up($breakpoint-md) {
   .ProductList {
+    grid-gap: 0.5rem;
     grid-template-columns: repeat(2, 1fr);
 
     &.vertical {
@@ -57,7 +58,7 @@
   }
 }
 
-@include media-up($breakpoint-lg) {
+@include media-up(1280px) {
   .ProductList {
     &.vertical {
       grid-template-columns: repeat(6, 1fr);

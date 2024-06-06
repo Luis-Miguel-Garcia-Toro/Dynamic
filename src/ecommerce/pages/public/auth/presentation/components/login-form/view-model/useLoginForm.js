@@ -1,5 +1,6 @@
 import { authenticationMethods } from "@/ecommerce/common/domain";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useAppStore } from "../../../../../../../../common/infrastructure/store";
 import { fetchLogin } from "../../../../infrastructure/login-repository";
 import { validateLoginForm } from "./validate-form";
@@ -26,6 +27,7 @@ export const useLoginForm = () => {
   const [step, setStep] = useState(1);
   const { configPages } = useAppStore();
   const { login } = useAppStore();
+  const [searchParams] = useSearchParams();
 
   const onChangeForm = (value, key) => {
     setForm({ ...form, [key]: value });
@@ -91,7 +93,8 @@ export const useLoginForm = () => {
 
   const onLogin = async () => {
     const response = await fetchLogin(form);
-    login(response.user);
+    const redirectTo = searchParams.get("q");
+    login(response.user, redirectTo);
   };
 
   const onSubmit = () => {

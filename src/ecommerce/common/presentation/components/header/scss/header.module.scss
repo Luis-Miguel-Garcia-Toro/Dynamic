@@ -1,4 +1,6 @@
 @import "../../../scss/vars";
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
 
 .HeaderContainer {
   min-height: $height-header;
@@ -9,63 +11,116 @@
   left: 0;
   right: 0;
   z-index: 100;
+}
 
-  .HeaderContent {
-    padding: 1rem 2rem;
+.HeaderContent {
+  padding: 1rem 2rem;
+  display: flex;
+  // grid-template-columns: 1fr auto;
+  // grid-template-areas:
+  //   "logo cart"
+  //   "menu menu";
+  align-items: center;
+  justify-content: space-between;
+}
+
+.HeaderLinkLogo {
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.HeaderOptions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.HeaderMenu {
+  height: 100%;
+
+  ul {
     display: flex;
-    justify-content: space-between;
+    gap: 1rem;
+    list-style: none;
+    justify-content: center;
     align-items: center;
+  }
 
-    .HeaderLinkLogo {
-      color: var(--color-white);
-      text-decoration: none;
+  li a {
+    text-decoration: none;
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+
+    & svg {
+      font-size: 1.5rem;
     }
 
-    .HeaderCart {
-      border: none;
-      position: relative;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      background-color: var(--color-white);
-      height: 40px;
-      width: 40px;
-      border-radius: var(--border-radius-full);
-      justify-content: center;
-      transition: 0.3s;
-      cursor: pointer;
+    & span {
+      display: none;
+    }
+  }
+}
 
-      &.HasTotal {
-        justify-content: space-between;
-        padding: 0.5rem 1rem;
-        border-radius: var(--border-radius-md);
-        // height: auto;
-        width: auto;
-      }
+.HeaderCart {
+  // grid-area: cart;
+  border: none;
+  position: relative;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--color-white);
+  height: 40px;
+  width: 40px;
+  border-radius: var(--border-radius-full);
+  justify-content: center;
+  transition: 0.3s;
+  cursor: pointer;
 
-      .HeaderCartIcon {
-        position: relative;
-        color: var(--color-text);
-      }
+  &.HasTotal {
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-md);
+    // height: auto;
+    width: auto;
+  }
 
-      & span:first-child {
-        position: absolute;
-        height: 15px;
-        width: 15px;
-        background-color: var(--color-danger);
-        border-radius: var(--border-radius-full);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: var(--color-white);
-        font-size: 0.7rem;
-        top: -5px;
-        right: -10px;
-      }
+  .HeaderCartIcon {
+    position: relative;
+    color: var(--color-text);
+  }
 
-      & span:last-child {
-        font-size: 0.85rem;
+  & span:first-child {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    background-color: var(--color-danger);
+    border-radius: var(--border-radius-full);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: 0.7rem;
+    top: -5px;
+    right: -10px;
+  }
+
+  & span:last-child {
+    font-size: 0.85rem;
+  }
+}
+
+@include media-up($breakpoint-md) {
+  .HeaderOptions {
+    gap: 1rem;
+  }
+
+  .HeaderMenu {
+    ul li a {
+      & span {
+        display: inline;
       }
     }
   }

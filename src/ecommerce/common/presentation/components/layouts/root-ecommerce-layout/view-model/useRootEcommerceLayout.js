@@ -60,6 +60,43 @@ const defaultConfigPage = {
   cart: {
     mode: cartModeTypes.BAR,
   },
+  menuOptions: [
+    {
+      url_redirect: "wallet",
+      title: "Cartera",
+      order: 1,
+    },
+    {
+      url_redirect: "dashboard",
+      title: "Dashboard",
+      order: 2,
+    },
+    {
+      url_redirect: "faq",
+      title: "FAQ",
+      order: 3,
+    },
+    {
+      url_redirect: "help",
+      title: "Ayuda",
+      order: 4,
+    },
+    {
+      url_redirect: "logout",
+      title: "Cerrar sesión",
+      order: 4,
+    },
+    {
+      url_redirect: "orders",
+      title: "Ordenes",
+      order: 5,
+    },
+    {
+      url_redirect: "profile",
+      title: "Mi perfil",
+      order: 6,
+    },
+  ],
 };
 
 export const useRootEcommerceLayout = () => {
