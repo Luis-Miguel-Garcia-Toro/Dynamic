@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppStore } from "../../../../../../../common/infrastructure/store";
+import { useEcommerceStore } from "../../../../../infrastructure/store";
 
 export const useStoreLayout = () => {
-  const configPage = useAppStore((state) => state.configPages);
+  const configPage = useEcommerceStore((state) => state.configPages);
   const headerHeight = configPage?.globals?.headerHeight || 0;
-  const cartMode = configPage?.cart?.mode;
+  const cartMode = configPage?.cart_type;
 
   const redirectAfterLogin = useAppStore((state) => state.redirectAfterLogin);
   const cleanRedirectAfterLogin = useAppStore(

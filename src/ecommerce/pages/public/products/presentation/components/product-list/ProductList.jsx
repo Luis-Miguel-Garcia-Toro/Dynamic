@@ -11,7 +11,7 @@ export const ProductList = ({ products, typeCards }) => {
         <h2 className="title fadeIn">Listado de productos</h2>
         <div className={`${Styles.ProductList} ${Styles[typeCards]}`}>
           {products.map((product) => (
-            <CardProduct key={product.id} product={product} type={typeCards} />
+            <CardProduct sizeCardRow="small" key={product.id} product={product} type={typeCards} />
           ))}
         </div>
       </div>

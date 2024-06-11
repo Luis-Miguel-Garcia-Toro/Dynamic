@@ -21,7 +21,7 @@ const MenuPage = () => {
         onChangeOptionSelected={onChangeOptionSelected}
         optionSelected={optionSelected}
       />
-      <div className={Styles.MenuContent}>
+      <div className={`${Styles.MenuContent} fadeIn`}>
         {optionsMenu[optionSelected] || <Dashboard />}
       </div>
     </div>

@@ -1,8 +1,8 @@
-import { useAppStore } from "@/common/infrastructure/store";
 import { useRef, useState } from "react";
+import { useEcommerceStore } from "../../../../../../../../common/infrastructure/store";
 
 export const useHeaderCategories = () => {
-  const configPage = useAppStore((state) => state.configPages);
+  const configPage = useEcommerceStore((state) => state.configPages);
   const { categories = {} } = configPage;
 
   const [scrollLeft, setScrollLeft] = useState(0);

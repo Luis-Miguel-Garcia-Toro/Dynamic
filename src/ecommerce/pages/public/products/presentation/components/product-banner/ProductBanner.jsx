@@ -1,28 +1,31 @@
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react"
-import Styles from "./scss/product-banner.module.scss"
+import { Swiper, SwiperSlide } from "swiper/react";
+import Styles from "./scss/product-banner.module.scss";
 
 // Import Swiper styles
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-import "./scss/swiper-styles.scss"
+import "./scss/swiper-styles.scss";
 
 // import required modules
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
-import imageBanner1 from "@/assets/img/banner-1.png"
-import imageBanner2 from "@/assets/img/banner-2.png"
-import { useAppStore } from "../../../../../../../common/infrastructure/store"
-import { bannerStyle as bannerStyleOptions } from "../../../../../../common/domain"
+import imageBanner1 from "@/assets/img/banner-1.png";
+import imageBanner2 from "@/assets/img/banner-2.png";
+import { bannerStyle as bannerStyleOptions } from "../../../../../../common/domain";
+import { useEcommerceStore } from "../../../../../../common/infrastructure/store";
 
 export const ProductBanner = () => {
-  const configPage = useAppStore((state) => state.configPages);
-  const bannerStyle = configPage?.banner?.style || bannerStyleOptions.BASIC;
+  const configPage = useEcommerceStore((state) => state.configPages);
+  const bannerStyle = configPage?.banner_type || bannerStyleOptions.BASIC;
+  const categoryStyle = configPage?.categories_type;
 
   return (
-    <div className={`${Styles.ProductBanner} fadeIn ${Styles[bannerStyle]}`}>
+    <div
+      className={`${Styles.ProductBanner} fadeIn ${Styles[bannerStyle]} ${Styles[categoryStyle]}`}
+    >
       <div
         className={`${Styles.ProductBannerContainer} ${Styles[bannerStyle]}`}
       >

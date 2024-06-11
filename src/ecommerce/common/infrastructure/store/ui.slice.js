@@ -2,29 +2,14 @@ const initialState = {
   configPages: {
     globals: {
       headerHeight: 60,
-    },
-  },
-  theme: {
-    colors: {
-      primary: "#123C5C",
-      secondary: "#f4d224",
-      text: "#132436",
+      isActiveSideCart: false,
     },
   },
 };
 
 export const createUiSlice = (set) => ({
   ...initialState,
-  updateTheme: (theme) => set({ theme }),
-  updateConfigPage: (configPages) => {
-    const newConfigPages = {
-      ...configPages,
-      cart: {
-        ...configPages.cart,
-        isActiveSideCart: false,
-      },
-    };
-
+  updateConfigPage: (newConfigPages) => {
     return set((state) => ({
       configPages: { ...state.configPages, ...newConfigPages },
     }));
@@ -47,9 +32,9 @@ export const createUiSlice = (set) => ({
     return set((state) => ({
       configPages: {
         ...state.configPages,
-        cart: {
-          ...state.configPages.cart,
-          isActiveSideCart: !state.configPages.cart.isActiveSideCart,
+        globals: {
+          ...state.configPages.globals,
+          isActiveSideCart: !state.configPages.globals.isActiveSideCart,
         },
       },
     }));

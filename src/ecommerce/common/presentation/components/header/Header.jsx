@@ -21,16 +21,19 @@ export const Header = () => {
     totalItemsInCart,
     summaryTotal,
     goToCart,
+    imageLogo,
   } = useHeader();
 
   return (
     <header ref={headerRef} className={Styles.HeaderContainer}>
       <div className={Styles.HeaderContent}>
-        <Link className={Styles.HeaderLinkLogo} to="/products">
-          <h1>Logo</h1>
+        <Link className={`${Styles.HeaderLinkLogo} fadeIn`} to="/products">
+          <figure>
+            <img src={imageLogo} alt="Ir a la tienda" />
+          </figure>
         </Link>
 
-        <div className={Styles.HeaderOptions}>
+        <div className={`${Styles.HeaderOptions} fadeIn`}>
           <nav className={Styles.HeaderMenu}>
             <ul>
               {menuItems.map((item) => (

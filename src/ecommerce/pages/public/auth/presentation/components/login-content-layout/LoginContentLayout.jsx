@@ -1,16 +1,17 @@
 import PropTypes from "prop-types";
 import { LoginForm } from "../login-form/LoginForm";
 
-import { useAppStore } from "../../../../../../../common/infrastructure/store";
+import { useEcommerceStore } from "../../../../../../common/infrastructure/store";
 import Styles from "./scss/login-content-layout.module.scss";
 
 export const LoginContentLayout = ({ className }) => {
-  const { configPages } = useAppStore();
-  const loginLogo = configPages?.auth?.login?.logo;
+  const { configPages } = useEcommerceStore();
+  const loginLogo = configPages?.images?.icon;
+  const showLoginLogo = configPages?.images?.icon_login || "off"
 
   return (
     <div className={className}>
-      {loginLogo && (
+      {loginLogo && showLoginLogo !== "off" && (
         <figure className={Styles.LoginLogoContainer}>
           <img alt="" src={loginLogo} />
         </figure>

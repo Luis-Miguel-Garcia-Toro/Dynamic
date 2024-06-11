@@ -1,26 +1,26 @@
 export const uiLoginType = {
-  LOGIN_CENTERED: "LOGIN_CENTERED",
-  IMAGE_LEFT: "IMAGE_LEFT",
-  IMAGE_RIGHT: "IMAGE_RIGHT",
+  LOGIN_CENTERED: "login_centered",
+  IMAGE_LEFT: "image_left",
+  IMAGE_RIGHT: "image_right",
 };
 
 export const authenticationMethods = {
-  USER_PASSWORD: "USER_PASSWORD",
-  CODE: "CODE",
-  USER_PASSWORD_CODE: "USER_PASSWORD_CODE",
+  USER_PASSWORD: "user_password",
+  CODE: "code",
+  USER_PASSWORD_CODE: "user_password_code",
 };
 
 export const cartProductUiTypes = ["vertical", "horizontal"];
 
 export const categoryStyle = {
-  HEADER: "HEADER",
-  SIDEBAR: "SIDEBAR",
-  LIST: "LIST",
+  HEADER: "header",
+  SIDEBAR: "sidebar",
+  LIST: "list",
 };
 
 export const bannerStyle = {
-  BASIC: "BASIC",
-  HERO: "HERO",
+  BASIC: "basic",
+  HERO: "hero",
 };
 
 export const cartModeTypes = {

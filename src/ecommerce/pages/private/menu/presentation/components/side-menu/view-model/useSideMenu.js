@@ -1,20 +1,20 @@
 import { useMemo, useState } from "react";
-import { useAppStore } from "../../../../../../../../common/infrastructure/store";
+import { useEcommerceStore } from "../../../../../../../common/infrastructure/store";
 
 export const useSideMenu = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
 
-  const configPage = useAppStore((state) => state.configPages);
-  const { menuOptions = [], globals } = configPage;
+  const configPage = useEcommerceStore((state) => state.configPages);
+  const { menu = [], globals } = configPage;
   const { headerHeight } = globals;
 
   const sortMenuOptions = useMemo(() => {
-    if (!menuOptions) return [];
+    if (!menu) return [];
 
-    const logoutOption = menuOptions.find(
+    const logoutOption = menu.find(
       (option) => option.url_redirect === "logout"
     );
-    const otherOptions = menuOptions.filter(
+    const otherOptions = menu.filter(
       (option) => option.url_redirect !== "logout"
     );
 
@@ -26,7 +26,7 @@ export const useSideMenu = () => {
       ? [...sortMenuOptions, logoutOption]
       : sortMenuOptions;
     return newOptions;
-  }, [menuOptions]);
+  }, [menu]);
 
   const onToggleMenu = () => {
     setIsMenuActive(!isMenuActive);
@@ -35,7 +35,7 @@ export const useSideMenu = () => {
   return {
     headerHeight,
     isMenuActive,
-    menuOptions,
+    menu,
     onToggleMenu,
     sortMenuOptions,
   };

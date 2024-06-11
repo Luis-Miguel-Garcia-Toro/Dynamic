@@ -1,10 +1,10 @@
 import { useMemo } from "react";
-import { useAppStore } from "../../../../../../common/infrastructure/store";
+import { useEcommerceStore } from "../../../../../common/infrastructure/store";
 
 export const useLogin = () => {
-  const { configPages } = useAppStore();
+  const { configPages } = useEcommerceStore();
   const loginUiType = useMemo(() => {
-    return configPages?.auth?.login?.uiType;
+    return configPages?.ui_type;
   }, [configPages]);
 
   return {

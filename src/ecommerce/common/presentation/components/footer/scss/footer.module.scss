@@ -14,10 +14,22 @@
 
   li {
     margin: 0.5rem 0;
+
+    a {
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      color: var(--color-white);
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
   }
 
   .FooterContent {
     @extend .Container;
+    padding: 2rem;
     padding-bottom: 4rem;
     display: grid;
     grid-template-columns: 1fr;
@@ -28,6 +40,7 @@
       width: 150px;
       overflow: hidden;
       margin: 0 auto;
+      margin-bottom: 1.5rem;
 
       & image {
         height: 100%;
@@ -41,6 +54,10 @@
       justify-content: center;
       gap: 1rem;
       align-items: center;
+
+      & a{
+        color: var(--color-white);
+      }
 
       & svg {
         font-size: 1.5rem;

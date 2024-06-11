@@ -1,0 +1,84 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.helpCenterGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+  transition: 0.3s;
+}
+
+.helpCenterImages,
+.helpCenterOpeningHours {
+  padding: 1rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-light);
+}
+
+.helpCenterOpeningHours {
+  margin-top: 2rem;
+  text-align: center;
+
+  h3 {
+    margin: 2rem 0;
+    color: var(--color-primary);
+  }
+}
+
+.helpCenterImagesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  transition: 0.3s;
+
+  & figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & span {
+      height: 100px;
+      overflow: hidden;
+    }
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+.helpCenterOpeningHoursGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  transition: 0.3s;
+  margin: 0 auto;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+@include media-up($breakpoint-md) {
+  .helpCenterGrid,
+  .helpCenterImagesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@include media-up($breakpoint-lg) {
+  .helpCenterGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .helpCenterOpeningHoursGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@include media-up(1450px) {
+  .helpCenterOpeningHoursGrid {
+    width: 60%;
+  }
+}

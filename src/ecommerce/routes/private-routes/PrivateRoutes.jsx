@@ -3,6 +3,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { authStateStatus } from "../../../common/domain";
 import { useAppStore } from "../../../common/infrastructure/store";
 import { cartModeTypes } from "../../common/domain";
+import { useEcommerceStore } from "../../common/infrastructure/store";
 import { StoreLayout } from "../../common/presentation/components";
 
 const CartPage = lazy(() =>
@@ -13,18 +14,24 @@ const MenuPage = lazy(() =>
 );
 
 export const PrivateRoutes = () => {
-  const configPage = useAppStore((state) => state.configPages);
-  const cartMode = configPage?.cart?.mode;
+  const configPage = useEcommerceStore((state) => state.configPages);
+  const cartMode = configPage?.cart_type;
 
-  const { authStatus } = useAppStore();
+  const { authStatus, isSessionJustClosed } = useAppStore();
   const isAuthenticated = authStatus === authStateStatus.AUTHENTICATED;
   const location = useLocation();
 
   if (!isAuthenticated) {
     const isMainRoute = location.pathname === "/";
+    const redirectBeforeLogin = !isMainRoute && !isSessionJustClosed;
+
     return (
       <Navigate
-        to={isMainRoute ? "/auth/login" : `/auth/login?q=${location.pathname}`}
+        to={
+          redirectBeforeLogin
+            ? `/auth/login?q=${location.pathname}`
+            : "/auth/login"
+        }
       />
     );
   }

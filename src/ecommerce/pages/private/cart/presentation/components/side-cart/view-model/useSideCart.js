@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { useAppStore } from "../../../../../../../../common/infrastructure/store";
-import { useCartStore } from "../../../../../../../common/infrastructure/store";
+import {
+  useEcommerceStore
+} from "../../../../../../../common/infrastructure/store";
 
 export const useSideCart = () => {
-  const cart = useCartStore((state) => state.cart);
-  const toggleActiveSideCart = useAppStore(
+  const cart = useEcommerceStore((state) => state.cart);
+  const toggleActiveSideCart = useEcommerceStore(
     (state) => state.toggleActiveSideCart
   );
-  const configPage = useAppStore((state) => state.configPages);
-  const isActiveSideCart = configPage?.cart?.isActiveSideCart || false;
+  const configPage = useEcommerceStore((state) => state.configPages);
+  const isActiveSideCart = configPage?.globals?.isActiveSideCart || false;
 
   const [isVisible, setIsVisible] = useState(isActiveSideCart);
   const [animationClass, setAnimationClass] = useState("");

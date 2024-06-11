@@ -1,7 +1,7 @@
-import { useCartStore } from "../../../../../common/infrastructure/store/cart.store";
+import { useEcommerceStore } from "../../../../../common/infrastructure/store";
 
 export const useCartPage = () => {
-  const cart = useCartStore((state) => state.cart);
+  const cart = useEcommerceStore((state) => state.cart);
 
   return {
     cart,

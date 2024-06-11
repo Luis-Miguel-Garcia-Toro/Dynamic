@@ -1,10 +1,9 @@
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa"
-import { useAppStore } from "../../../../../common/infrastructure/store"
-import Styles from "./scss/footer.module.scss"
+import { icons } from "../../../../../common/presentation/utils";
+import Styles from "./scss/footer.module.scss";
+import { useFooter } from "./view-model/useFooter";
 
 export const Footer = () => {
-  const { configPages } = useAppStore();
-  const logo = configPages?.auth?.login?.logo;
+  const { logo, menuPolicies, socialMedia, clientServiceData } = useFooter();
 
   return (
     <footer className={Styles.FooterContainer}>
@@ -17,36 +16,35 @@ export const Footer = () => {
           )}
 
           <div className={Styles.FooterSocialContainer}>
-            <FaFacebook />
-            <FaTwitter  />
-            <FaInstagram />
+            {socialMedia.map(({ title, url_redirect }) => (
+              <a key={title} target="_blank" href={url_redirect}>
+                {icons.getIcons(title)}
+              </a>
+            ))}
           </div>
         </section>
         <section className={Styles.FooterListContainer}>
           <ul className={Styles.FooterList}>
-            <li>Aviso de privacidad</li>
-            <li>Política de tratamiento protección de datos</li>
-            <li>Términos y condiciones</li>
+            {menuPolicies.map((menu) => (
+              <li key={menu.title}>
+                <a target="_blank" href={menu.url_redirect}>
+                  {menu.title}
+                </a>
+              </li>
+            ))}
           </ul>
 
           <div className={Styles.ContactContainer}>
-            <div>
-              <h3>Servicio al cliente</h3>
-              <ul>
-                <li>Línea gratuita nacional: 018000110000</li>
-                <li>Líneas de WhatsApp: 311 2361452 - 311 2361453</li>
-                <li>Correo electrónico: ccbogota@alquería.com.co</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3>Horario de atención</h3>
-              <ul>
-                <li>Lunes a jueves de 8:00 am a 5:00 pm</li>
-                <li>Viernes 8:00 am a 4:00 pm</li>
-                <li>Sábado 8:00 am a 2:00 pm</li>
-              </ul>
-            </div>
+            {Object.keys(clientServiceData).map((key) => (
+              <div key={key}>
+                <h3>{key}</h3>
+                <ul>
+                  {clientServiceData[key].map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </section>
       </div>

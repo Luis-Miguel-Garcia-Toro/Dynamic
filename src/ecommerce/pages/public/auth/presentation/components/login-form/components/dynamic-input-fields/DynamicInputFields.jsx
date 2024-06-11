@@ -3,7 +3,6 @@ import { authenticationMethods } from "@/ecommerce/common/domain";
 import PropTypes from "prop-types";
 import { FiUser } from "react-icons/fi";
 import { RiKey2Line } from "react-icons/ri";
-import { useAppStore } from "../../../../../../../../../common/infrastructure/store";
 
 export const DynamicInputFields = ({
   authMethod,
@@ -76,13 +75,9 @@ UserPasswordFields.propTypes = {
 };
 
 const CodeField = ({ form, onChangeForm, errors }) => {
-  const { configPages } = useAppStore();
-  const codeLength = configPages?.auth?.login?.codeValidationLength;
-
   return (
     <InputCode
       error={errors?.code}
-      length={codeLength || 6}
       label="Código"
       code={form.code}
       onChangeCode={(value) => onChangeForm(value, "code")}

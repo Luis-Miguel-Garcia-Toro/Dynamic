@@ -1,5 +1,6 @@
 @import "@/common/presentation/scss/mixins/responsive.mixin";
 @import "@/common/presentation/scss/vars";
+@import "../../../../../../../../common/presentation/scss/vars";
 
 .SidebarCategoriesContainer {
   position: relative;
@@ -24,16 +25,16 @@
   }
 
   .SidebarMenu {
+    background-color: var(--color-primary);
+    bottom: 0;
+    box-shadow: var(--box-shadow-medium);
+    left: 0;
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
-    height: 100vh;
-    z-index: 200;
-    background-color: var(--color-primary);
-    padding: 2rem;
     transform: translateX(-100%);
     transition: 0.3s;
+    z-index: 99;
+    min-width: 200px;
 
     &.Show {
       transform: translateX(0);
@@ -43,7 +44,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 2rem;
+      padding: 4rem 2rem 2rem;
 
       h2 {
         color: var(--color-white);
@@ -57,6 +58,7 @@
     }
 
     .SidebarMenuContent {
+      padding-top: 4rem;
       overflow: scroll;
       height: 80%;
       -ms-overflow-style: none;
@@ -77,11 +79,11 @@
       color: var(--color-white);
       font-size: 0.9rem;
       cursor: pointer;
-      border-radius: var(--border-radius-md);
       transition: 0.3s;
 
       &:hover {
-        background: rgba(0, 0, 0, 0.3);
+        background: var(--color-primary);
+        color: var(--color-white);
       }
 
       figure {
@@ -89,6 +91,14 @@
         height: 30px;
         border-radius: var(--border-radius-full);
       }
+    }
+  }
+}
+
+@include media-up($breakpoint-md) {
+  .SidebarCategoriesContainer {
+    .SidebarMenu {
+      width: $width-aside-categories;
     }
   }
 }
@@ -101,9 +111,10 @@
 
     .SidebarMenu {
       transform: translateX(0);
-      width: 20%;
       z-index: 99;
       background-color: var(--color-white);
+      padding-top: 8rem;
+      right: auto;
       padding-top: 8rem;
 
       .CategoriesHeader {

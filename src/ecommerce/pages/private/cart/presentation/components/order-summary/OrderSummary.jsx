@@ -1,10 +1,12 @@
 import { Button } from "../../../../../../../common/presentation/components/ui/button/Button";
 import { format } from "../../../../../../../common/presentation/utils";
-import { useCartStore } from "../../../../../../common/infrastructure/store";
+import {
+  useEcommerceStore
+} from "../../../../../../common/infrastructure/store";
 import Styles from "./scss/order-summary.module.scss";
 
 export const OrderSummary = () => {
-  const { itemsInCart, total } = useCartStore((state) =>
+  const { itemsInCart, total } = useEcommerceStore((state) =>
     state.getSummaryInformation()
   );
 
@@ -26,5 +28,3 @@ export const OrderSummary = () => {
     </div>
   );
 };
-
-

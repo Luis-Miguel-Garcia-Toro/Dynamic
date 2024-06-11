@@ -7,14 +7,14 @@
 
 .SideMenu {
   background-color: var(--color-bg-primary);
+  bottom: 0;
   box-shadow: var(--box-shadow-medium);
+  left: 0;
+  min-width: 200px;
   position: fixed;
   top: 0;
-  left: 0;
-  bottom: 0;
-  width: 200px;
+  transform: translateX(-400px);
   transition: 0.3s;
-  transform: translateX(-100%);
   z-index: 99;
 
   &.Active {
@@ -32,6 +32,7 @@
       right: 1rem;
       border: none;
       background: transparent;
+      cursor: pointer;
 
       svg {
         font-size: 1.5rem;
@@ -70,8 +71,7 @@
 }
 
 .OpenButton {
-  position: absolute;
-  top: 1rem;
+  position: fixed;
   left: 1rem;
   background-color: var(--color-primary);
   height: 40px;

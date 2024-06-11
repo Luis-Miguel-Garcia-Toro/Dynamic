@@ -1,0 +1,32 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.OpeningHoursItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    .Title {
+      font-weight: bold;
+    }
+  }
+}
+
+@include media-up($breakpoint-md) {
+  .OpeningHoursItem {
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+}

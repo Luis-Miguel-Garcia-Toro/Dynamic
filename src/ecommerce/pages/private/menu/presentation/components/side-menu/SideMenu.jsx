@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { IoClose } from "react-icons/io5";
 import { MdMenuOpen } from "react-icons/md";
-import { getMenuIcons } from "../../utils/getMenuIcon";
+import { icons } from "../../../../../../../common/presentation/utils";
 import Styles from "./scss/side-menu.module.scss";
 import { useSideMenu } from "./view-model/useSideMenu";
 
@@ -15,7 +15,9 @@ export const SideMenu = ({ onChangeOptionSelected, optionSelected }) => {
         style={{
           paddingTop: `${headerHeight}px`,
         }}
-        className={`${Styles.SideMenu} ${isMenuActive ? Styles.Active : ""}`}
+        className={`${Styles.SideMenu} fadeIn ${
+          isMenuActive ? Styles.Active : ""
+        }`}
       >
         <nav>
           <button onClick={onToggleMenu} className={Styles.CloseButton}>
@@ -34,7 +36,7 @@ export const SideMenu = ({ onChangeOptionSelected, optionSelected }) => {
                     onToggleMenu();
                   }}
                 >
-                  {getMenuIcons(item.url_redirect)}
+                  {icons.getIcons(item.url_redirect)}
                   <span>{item.title}</span>
                 </button>
               </li>
@@ -43,7 +45,13 @@ export const SideMenu = ({ onChangeOptionSelected, optionSelected }) => {
         </nav>
       </aside>
 
-      <button onClick={onToggleMenu} className={Styles.OpenButton}>
+      <button
+        style={{
+          top: `calc(${headerHeight}px + 2rem)`,
+        }}
+        onClick={onToggleMenu}
+        className={Styles.OpenButton}
+      >
         <MdMenuOpen />
       </button>
     </div>

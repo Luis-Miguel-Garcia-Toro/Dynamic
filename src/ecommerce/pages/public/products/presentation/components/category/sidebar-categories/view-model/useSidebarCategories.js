@@ -1,10 +1,11 @@
-import { useAppStore } from "@/common/infrastructure/store";
 import { useState } from "react";
+import { useEcommerceStore } from "../../../../../../../../common/infrastructure/store";
 
 export const useSidebarCategories = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const configPage = useAppStore((state) => state.configPages);
-  const { categories = {} } = configPage;
+  const configPage = useEcommerceStore((state) => state.configPages);
+  const { categories = {}, globals } = configPage;
+  const { headerHeight } = globals;
 
   const onToggleMenu = () => {
     setShowMenu(!showMenu);
@@ -12,6 +13,7 @@ export const useSidebarCategories = () => {
 
   return {
     categories,
+    headerHeight,
     onToggleMenu,
     showMenu,
   };

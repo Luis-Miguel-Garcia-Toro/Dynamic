@@ -2,6 +2,7 @@ import { authenticationMethods } from "@/ecommerce/common/domain";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useAppStore } from "../../../../../../../../common/infrastructure/store";
+import { useEcommerceStore } from "../../../../../../../common/infrastructure/store";
 import { fetchLogin } from "../../../../infrastructure/login-repository";
 import { validateLoginForm } from "./validate-form";
 
@@ -22,11 +23,12 @@ const initialFormErrors = {
 export const useLoginForm = () => {
   const [form, setForm] = useState(initialValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-
   const [isActiveSteps, setIsActiveSteps] = useState(false);
+
   const [step, setStep] = useState(1);
-  const { configPages } = useAppStore();
-  const { login } = useAppStore();
+  const { configPages } = useEcommerceStore();
+  const { login, isSessionJustClosed, changeIsSessionJustClosed } =
+    useAppStore();
   const [searchParams] = useSearchParams();
 
   const onChangeForm = (value, key) => {
@@ -37,7 +39,7 @@ export const useLoginForm = () => {
   };
 
   const authMethod = useMemo(() => {
-    const method = configPages?.auth?.login?.authMethod;
+    const method = configPages?.auth_method;
     return method;
   }, [configPages]);
 
@@ -52,7 +54,7 @@ export const useLoginForm = () => {
       return;
     }
 
-    const authMethod = configPages?.auth?.login?.authMethod;
+    const authMethod = configPages?.auth_method;
     if (
       !authMethod ||
       authMethod !== authenticationMethods.USER_PASSWORD_CODE
@@ -75,11 +77,10 @@ export const useLoginForm = () => {
   };
 
   const checkIsValidForm = () => {
-    const inputCodeLength = configPages?.auth?.login?.codeValidationLength;
     const { isValid, validations } = validateLoginForm({
       form,
       authMethod,
-      codeLength: inputCodeLength,
+      codeLength: 6,
       step: step,
     });
 
@@ -111,6 +112,13 @@ export const useLoginForm = () => {
   useEffect(() => {
     checkEnableSteps();
   }, [checkEnableSteps]);
+
+  //clean store
+  useEffect(() => {
+    if (isSessionJustClosed) {
+      changeIsSessionJustClosed(false);
+    }
+  }, [isSessionJustClosed, changeIsSessionJustClosed]);
 
   return {
     authMethod,

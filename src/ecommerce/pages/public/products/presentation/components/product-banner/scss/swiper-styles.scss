@@ -29,13 +29,13 @@
 
 @include media-up($breakpoint-md) {
   .product-banner {
-    &.BASIC {
+    &.basic {
       .swiper-slide {
         max-height: 370px;
       }
     }
 
-    &.HERO {
+    &.hero {
       .swiper-slide {
         width: 100%;
 
