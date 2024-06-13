@@ -6,7 +6,7 @@ export const useCardProduct = ({ product }) => {
 
   const generateProductSlug = (product) => {
     const slug =
-      product.title.toLowerCase().replace(/\s/g, "-") + "-" + product.id;
+      product.title.toLowerCase().replace(/\s/g, "-") + "-" + product.code;
     return slug;
   };
 

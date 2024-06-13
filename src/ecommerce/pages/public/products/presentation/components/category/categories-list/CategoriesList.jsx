@@ -1,20 +1,34 @@
+import { useEffect, useState } from "react";
 import Styles from "./scss/categories-list.module.scss";
-import { useCategoriesList } from "./view-model/useCategoriesList";
+import AuthCategories from "../../../../../../../auth/categories/AuthCategories"
 
 export const CategoriesList = () => {
-  const { categories } = useCategoriesList();
+  const [listCategories, setListCategories] = useState([]);
+
+  const getCategoriesList = async () => {
+    try {
+      let result = await AuthCategories();
+      setListCategories(result);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getCategoriesList();
+  },[])
 
   return (
     <div className={`${Styles.CategoriesListContainer} fadeIn`}>
       <div className={Styles.CategoriesListContent}>
         <h2 className="title">Categorías</h2>
         <div className={Styles.CategoriesGrid}>
-          {(categories?.categoriesList || []).map((category) => (
-            <div className={`${Styles.CategoriesItem} fadeIn`} key={category.name}>
+          {(listCategories || []).map((category) => (
+            <div className={`${Styles.CategoriesItem} fadeIn`} key={category.descripcion}>
               <figure>
-                <img src={category.icon} alt={`Ir a la categoría ${category.name}`} />
+                <img src='https://www.svgrepo.com/show/355481/milk.svg' alt={`Ir a la categoría ${category.descripcion}`} />
               </figure>
-              <span>{category.name}</span>
+              <span>{category.descripcion}</span>
             </div>
           ))}
         </div>

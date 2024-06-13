@@ -19,7 +19,7 @@ export const useManageCart = ({ product }) => {
   };
 
   const getQuantityOfProduct = useCallback(() => {
-    const itemInCart = cart.find((prod) => prod.id === product?.id);
+    const itemInCart = cart.find((prod) => prod.code === product?.code);
     if (itemInCart) {
       setQuantity(itemInCart.quantity);
     } else {

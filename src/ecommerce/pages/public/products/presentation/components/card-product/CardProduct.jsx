@@ -12,7 +12,7 @@ export const CardProduct = ({
   contentClassName,
   sizeCardRow,
 }) => {
-  const { title, image } = product;
+  const { title, imagen } = product;
   const {
     quantity,
     onAddProductToCart,
@@ -36,7 +36,7 @@ export const CardProduct = ({
                 product: product,
               }}
             >
-              <ImageLazy imageUri={image} />
+              <ImageLazy imageUri={imagen} />
             </Link>
           </figure>
         </div>

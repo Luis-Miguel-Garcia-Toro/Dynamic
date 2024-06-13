@@ -1,8 +1,8 @@
+import { useEffect, useState } from "react";
 import { ScrollToTopButton } from "../../../../../common/presentation/components";
 import { categoryStyle } from "../../../../common/domain";
 import { useEcommerceStore } from "../../../../common/infrastructure/store";
 import { Footer } from "../../../../common/presentation/components/footer/Footer";
-import { fakeProductsSanity } from "../domain/products.data";
 import {
   CategoriesList,
   ProductBanner,
@@ -10,10 +10,28 @@ import {
   SidebarCategories
 } from "./components";
 import Styles from "./scss/products.module.scss";
+import AuthProducts from "../../../../auth/products/AuthProducts";
 
 const ProductsPage = () => {
   const configPage = useEcommerceStore((state) => state.configPages);
   const categoryType = configPage?.categories_type || "";
+  const [listProducts, setListProducts] = useState([]);
+
+
+  const getProductsList = async () => {
+    try {
+      let result = await AuthProducts();
+      console.log(result);
+      setListProducts(result);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getProductsList();
+  },[])
+ 
 
   return (
     <div className={`${Styles.ProductsContainer} ${Styles[categoryType]}`}>
@@ -25,7 +43,7 @@ const ProductsPage = () => {
 
         <section className={Styles.ProductsList}>
           <ProductList
-            products={fakeProductsSanity}
+            products={listProducts}
             typeCards={configPage?.card_product_type}
           />
         </section>

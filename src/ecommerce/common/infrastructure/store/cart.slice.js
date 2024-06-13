@@ -24,15 +24,16 @@ export const createCartSlice = (set, get) => ({
   },
 
   addProductToCart: (product) => {
+    console.log(product);
     const { cart } = get();
-    const productExist = cart.some((item) => item.id === product.id);
+    const productExist = cart.some((item) => item.code === product.code);
 
     if (!productExist) {
       return set({ cart: [...cart, product] });
     }
 
     const updatedCartProducts = cart.map((item) => {
-      if (item.id === product.id) {
+      if (item.code === product.code) {
         return {
           ...item,
           quantity: item.quantity + product.quantity,
@@ -54,7 +55,7 @@ export const createCartSlice = (set, get) => ({
     }
 
     const updatedCartProducts = cart.map((item) => {
-      if (item.id === product.id) {
+      if (item.code === product.code) {
         return { ...item, quantity: quantity };
       }
       return item;
@@ -65,7 +66,7 @@ export const createCartSlice = (set, get) => ({
 
   removeProduct: (product) => {
     const { cart } = get();
-    const updatedCartProducts = cart.filter((item) => item.id !== product.id);
+    const updatedCartProducts = cart.filter((item) => item.code !== product.code);
 
     set({ cart: updatedCartProducts });
   },
