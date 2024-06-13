@@ -30,7 +30,7 @@ const ProductPage = () => {
           </div>
 
           <figure>
-            <ImageLazy imageUri={product.image} />
+            <ImageLazy imageUri={product.imagen} />
           </figure>
         </section>
 

@@ -1,4 +1,3 @@
-
 export const createCartSlice = (set, get) => ({
   cart: [],
 
@@ -24,7 +23,6 @@ export const createCartSlice = (set, get) => ({
   },
 
   addProductToCart: (product) => {
-    console.log(product);
     const { cart } = get();
     const productExist = cart.some((item) => item.code === product.code);
 
@@ -66,7 +64,9 @@ export const createCartSlice = (set, get) => ({
 
   removeProduct: (product) => {
     const { cart } = get();
-    const updatedCartProducts = cart.filter((item) => item.code !== product.code);
+    const updatedCartProducts = cart.filter(
+      (item) => item.code !== product.code
+    );
 
     set({ cart: updatedCartProducts });
   },

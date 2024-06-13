@@ -30,6 +30,8 @@
 @include media-up($breakpoint-md) {
   .product-banner {
     &.basic {
+      border-radius: var(--border-radius-md);
+
       .swiper-slide {
         max-height: 370px;
       }

@@ -32,11 +32,11 @@ export const SideCart = () => {
               <EmptyCart showButton={false} showTitle={false} />
             ) : (
               <div className={Styles.CartProductsGrid}>
-                {cart.map((product) => (
+                {cart.map((product, index) => (
                   <CardProduct
                     contentClassName={Styles.CartProductContent}
                     type="horizontal"
-                    key={product.id}
+                    key={`${product.code}-${index}`}
                     product={product}
                     sizeCardRow="small"
                   />

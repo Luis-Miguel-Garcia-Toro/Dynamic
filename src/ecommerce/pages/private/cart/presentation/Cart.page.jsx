@@ -5,7 +5,6 @@ import { useCartPage } from "./view-model/useCartPage";
 
 const CartPage = () => {
   const { cart } = useCartPage();
-
   return (
     <main className={Styles.CartPageContainer}>
       <>
@@ -17,11 +16,11 @@ const CartPage = () => {
               <h1 className="title fadeIn">Mi carrito</h1>
 
               <div className={Styles.CartProductsList}>
-                {cart.map((product) => (
+                {cart.map((product, index) => (
                   <CardProduct
                     contentClassName={Styles.CartProductContent}
-                    type="horizontal"
-                    key={product.id}
+                    type="full"
+                    key={`${product.code}-${index}`}
                     product={product}
                   />
                 ))}
