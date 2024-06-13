@@ -14,7 +14,6 @@ export const Help = () => {
 
   return (
     <div>
-      <h1>Centro de ayuda</h1>
       <section className={Styles.helpCenterGrid}>
         {helpCenterSection.map((item, index) => (
           <HelpCenterItem item={item} key={`${item.title}-${index}`} />

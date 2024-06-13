@@ -13,7 +13,8 @@ const optionsMenu = {
 };
 
 const MenuPage = () => {
-  const { onChangeOptionSelected, optionSelected } = useMenuPage();
+  const { onChangeOptionSelected, optionSelected, dataSelectedMenu } =
+    useMenuPage();
 
   return (
     <div>
@@ -22,6 +23,7 @@ const MenuPage = () => {
         optionSelected={optionSelected}
       />
       <div className={`${Styles.MenuContent} fadeIn`}>
+        <h1>{dataSelectedMenu?.title}</h1>
         {optionsMenu[optionSelected] || <Dashboard />}
       </div>
     </div>
