@@ -24,9 +24,9 @@ export const CategoriesList = () => {
         <h2 className="title">Categorías</h2>
         <div className={Styles.CategoriesGrid}>
           {(listCategories || []).map((category) => (
-            <div className={`${Styles.CategoriesItem} fadeIn`} key={category.descripcion}>
+            <div className={`${Styles.CategoriesItem} fadeIn`} key={category.descripcion} onClick={() => window.location.href = 'products?category=' + category.code}>
               <figure>
-                <img src='https://www.svgrepo.com/show/355481/milk.svg' alt={`Ir a la categoría ${category.descripcion}`} />
+                <img src='https://www.svgrepo.com/show/355481/milk.svg' />
               </figure>
               <span>{category.descripcion}</span>
             </div>

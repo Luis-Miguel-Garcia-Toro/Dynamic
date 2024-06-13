@@ -18,9 +18,9 @@ const ProductsPage = () => {
   const [listProducts, setListProducts] = useState([]);
 
 
-  const getProductsList = async () => {
+  const getProductsList = async (category) => {
     try {
-      let result = await AuthProducts();
+      let result = await AuthProducts(category);
       console.log(result);
       setListProducts(result);
     } catch (error) {
@@ -29,9 +29,11 @@ const ProductsPage = () => {
   };
 
   useEffect(() => {
-    getProductsList();
-  },[])
- 
+    let params = new URLSearchParams(window.location.href.split("?")[1]);
+    let codeCategory = params.get("category")
+    getProductsList(codeCategory ? codeCategory : '-1');
+  }, [])
+
 
   return (
     <div className={`${Styles.ProductsContainer} ${Styles[categoryType]}`}>
@@ -42,10 +44,12 @@ const ProductsPage = () => {
         {categoryType === categoryStyle.LIST && <CategoriesList />}
 
         <section className={Styles.ProductsList}>
-          <ProductList
-            products={listProducts}
-            typeCards={configPage?.card_product_type}
-          />
+          {listProducts.length === 0 ? <h2>No hay productos</h2> : (
+            <ProductList
+              products={listProducts}
+              typeCards={configPage?.card_product_type}
+            />
+          )}
         </section>
         <Footer />
       </div>

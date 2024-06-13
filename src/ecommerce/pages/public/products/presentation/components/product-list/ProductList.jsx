@@ -10,8 +10,9 @@ export const ProductList = ({ products, typeCards }) => {
       <div className={Styles.ProductListContent}>
         <h2 className="title fadeIn">Listado de productos</h2>
         <div className={`${Styles.ProductList} ${Styles[typeCards]}`}>
-          {products.map((product) => (
-            <CardProduct sizeCardRow="small" key={product.id} product={product} type={typeCards} />
+          
+          {products.map((product,index) => (
+            <CardProduct sizeCardRow="small" key={index} product={product} type={typeCards} />
           ))}
         </div>
       </div>
@@ -27,7 +28,7 @@ ProductList.propTypes = {
       id: PropTypes.string,
       title: PropTypes.string,
       description: PropTypes.string,
-      price: PropTypes.number,
+      price: PropTypes.any,
       image: PropTypes.string,
     })
   ).isRequired,

@@ -12,7 +12,7 @@ export const ProductDescriptionBasic = ({ product, layout }) => {
     useProductDescriptionBasic({ product });
 
   const classNameLayout = `Layout-${layout}`;
-
+console.log(product);
   return (
     <div className={Styles.ProductDescriptionContainer}>
       {layout === 2 && (

@@ -85,7 +85,7 @@ CardProduct.propTypes = {
     id: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
-    price: PropTypes.number,
+    price: PropTypes.any,
     image: PropTypes.string,
     quantity: PropTypes.number,
   }).isRequired,
