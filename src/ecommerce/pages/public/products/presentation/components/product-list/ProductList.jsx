@@ -1,8 +1,8 @@
-import PropTypes from "prop-types"
-import { ToastContainer } from "react-toastify"
-import { cartProductUiTypes } from "../../../../../../common/domain"
-import { CardProduct } from "../card-product/CardProduct"
-import Styles from "./scss/product-list.module.scss"
+import PropTypes from "prop-types";
+import { ToastContainer } from "react-toastify";
+import { cartProductUiTypes } from "../../../../../../common/domain";
+import { CardProduct } from "../card-product/CardProduct";
+import Styles from "./scss/product-list.module.scss";
 
 export const ProductList = ({ products, typeCards }) => {
   return (
@@ -10,9 +10,13 @@ export const ProductList = ({ products, typeCards }) => {
       <div className={Styles.ProductListContent}>
         <h2 className="title fadeIn">Listado de productos</h2>
         <div className={`${Styles.ProductList} ${Styles[typeCards]}`}>
-          
-          {products.map((product,index) => (
-            <CardProduct sizeCardRow="small" key={index} product={product} type={typeCards} />
+          {products.map((product, index) => (
+            <CardProduct
+              sizeCardRow="small"
+              key={`${product.code}-${index}`}
+              product={product}
+              type={typeCards}
+            />
           ))}
         </div>
       </div>
@@ -23,15 +27,7 @@ export const ProductList = ({ products, typeCards }) => {
 };
 
 ProductList.propTypes = {
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      title: PropTypes.string,
-      description: PropTypes.string,
-      price: PropTypes.any,
-      image: PropTypes.string,
-    })
-  ).isRequired,
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
   typeCards: PropTypes.oneOf(cartProductUiTypes),
 };
 

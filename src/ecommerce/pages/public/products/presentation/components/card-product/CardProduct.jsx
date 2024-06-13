@@ -53,10 +53,12 @@ export const CardProduct = ({
               {`${title}`.length > 30 ? `${title.slice(0, 30)}...` : `${title}`}
             </h2>
           </Link>
-          <span className={Styles.CardProductPrice}>
-            {format.formatPrice(product.price)}
-          </span>
-          <div>
+          <div className={Styles.CardProductPriceContainer}>
+            <span className={Styles.CardProductPrice}>
+              {format.formatPrice(product.price)}
+            </span>
+          </div>
+          <div className={Styles.CardProductButtonContainer}>
             {quantity <= 0 ? (
               <Button
                 onClick={() => onAddProductToCart(product)}
@@ -81,14 +83,7 @@ export const CardProduct = ({
 };
 
 CardProduct.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    price: PropTypes.any,
-    image: PropTypes.string,
-    quantity: PropTypes.number,
-  }).isRequired,
+  product: PropTypes.object.isRequired,
   type: PropTypes.oneOf(cartProductUiTypes),
   contentClassName: PropTypes.string,
   sizeCardRow: PropTypes.oneOf(["small", "medium"]),

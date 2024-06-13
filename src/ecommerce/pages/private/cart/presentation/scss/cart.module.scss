@@ -56,13 +56,12 @@ $sm-height-detail: 390px;
 
     .CartProducts {
       padding-bottom: 4rem;
-      width: 80%;
+      // width: 80%;
+      width: 100%;
       margin: 0 auto;
-      // min-height: 50vh;
     }
 
     .CartDetail {
-      // position: relative;
       width: 40%;
       top: 0;
       right: 0;
@@ -83,9 +82,9 @@ $sm-height-detail: 390px;
       grid-template-columns: 1fr 30%;
     }
 
-    .CartProducts {
-      width: 50%;
-    }
+    // .CartProducts {
+    //   width: 50%;
+    // }
 
     .CartDetail {
       width: 30%;

@@ -76,14 +76,7 @@ console.log(product);
 };
 
 ProductDescriptionBasic.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    price: PropTypes.number,
-    image: PropTypes.string,
-    quantity: PropTypes.number,
-  }).isRequired,
+  product: PropTypes.object.isRequired,
   layout: PropTypes.number,
 };
 
