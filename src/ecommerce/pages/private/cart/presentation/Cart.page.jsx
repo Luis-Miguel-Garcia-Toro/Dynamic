@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { CardProductCart } from "../../../public/products/presentation/components"
 import { EmptyCart, OrderSummary } from "./components"
 import Styles from "./scss/cart.module.scss"
@@ -5,6 +6,7 @@ import { useCartPage } from "./view-model/useCartPage"
 
 const CartPage = () => {
   const { cart } = useCartPage();
+  const [checkout, setChekcout] = useState(false)
   return (
     <main className={Styles.CartPageContainer}>
       <>
@@ -22,6 +24,7 @@ const CartPage = () => {
                     type="full"
                     key={`${product.code}-${index}`}
                     product={product}
+                    checkout={setChekcout}
                   />
                 ))}
               </div>
@@ -29,7 +32,7 @@ const CartPage = () => {
 
             <article className={Styles.CartDetail}>
               <div className={Styles.CartDetailContent}>
-                <OrderSummary />
+                <OrderSummary checkout={checkout} changeCheckout={setChekcout}/>
               </div>
             </article>
           </section>

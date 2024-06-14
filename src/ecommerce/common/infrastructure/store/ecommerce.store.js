@@ -51,7 +51,7 @@ export const useDataStore = create(
   persist(
     (set) => ({
       dataUser: initialDataUser,
-      fechaEntrega: '',
+      fechaEntrega: new Date(),
       updateDataUser: () =>
         set({
           dataUser: initialDataUser

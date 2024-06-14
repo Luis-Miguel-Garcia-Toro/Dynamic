@@ -1,21 +1,18 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useDataStore, useEcommerceStore } from "../../../../../common/infrastructure/store";
+import { useAppStore } from "../../../../../../common/infrastructure/store/app.store" 
+import {AuthNewOrder} from "../../../../../auth/order/AuthOrder"
 
 export const useCartPage = () => {
   const cart = useEcommerceStore((state) => state.cart);
-  const {dataUser, updateFechaEntrega} = useDataStore();
-  const [dayDelivery, setDayDelivery] = useState('')
+  const { user } = useAppStore();
+  const { dataUser, updateFechaEntrega, fechaEntrega } = useDataStore();
   const [observation, setObservation] = useState('')
   const [startDate, setStartDate] = useState(new Date())
   const [daysCalendar, setDaysCalendar] = useState([])
   const [prevStartDate, setPrevStarDate] = useState()
 
-  const handleObservacion = (value) => {
-    let cliente = props.usuario
-    cliente.observacion = value
-    props.ActualizarUsuario(cliente)
-  }
 
   const getDateDelivery = () => {
     let BaseDate = new Date()
@@ -41,7 +38,6 @@ export const useCartPage = () => {
     }
     BaseDate.setDate(BaseDate.getDate() + resultDay - diaActual + 1)
     updateFechaEntrega(moment(BaseDate))
-    setDayDelivery(moment(BaseDate).format('DD/MM/YYYY'))
   }
 
   const filterDate = (date) => {
@@ -135,6 +131,74 @@ export const useCartPage = () => {
     setStartDate(new Date(BaseDate))
   }
 
+  const sendOrder = (total) => {
+    console.log(user);
+    console.log(cart);
+    let detalle = []
+    let orderDetalle = 0
+    let datetime = new Date()
+    let year = datetime.getFullYear()
+    let month = datetime.getMonth()
+    let day = datetime.getDay()
+    let hour = datetime.getHours()
+    let minutes = datetime.getMinutes()
+    let segundos = datetime.getSeconds()
+    let miliSegundos = datetime.getMilliseconds()
+    let codigoPedido = user.application_type === 3 ? `C${year}${month}${day}${hour}${minutes}${segundos}${miliSegundos}${user.code}`
+      : `E${year}${month}${day}${hour}${minutes}${segundos}${miliSegundos}${user.code}`
+    cart.map((item, i) => {
+      orderDetalle += 1
+      detalle.push({
+        document: codigoPedido,
+        product_id: item.code,
+        quantity: item.quantity,
+        price: parseInt(item.price),
+        total: item.quantity * item.price,
+        subtotal: item.quantity * item.price,
+        total_tax:
+          ((parseFloat(item.tax) * parseFloat(item.price)) / 100) *
+          item.quantity,
+        total_disc: 0,
+        created_at: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+        reason: 'ORDER',
+        business_id: 1000,
+        unit: '',
+        unit2: '',
+        product: JSON.stringify({ code: item.title }),
+        type: 'Web',
+        business_Unit: 1000,
+        item: orderDetalle,
+        total_tax2: ((item.price * parseFloat(item.tax2)) / 100) * item.quantity,
+        tax2_percentage: parseFloat(item.tax2),
+        total_tax3: parseFloat(item.tax3) * item.quantity,
+        tax3_percentage: parseFloat(item.tax3)
+      })
+    })
+
+    let finishOrder = {
+      document: codigoPedido,
+      transaction_type: "NEW",
+      created_at: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+      owner_id: user.seller,
+      client_id: user.code,
+      express: '-1',
+      type: '1',
+      reason: 'ORDER',
+      total: total,
+      subtotal: total,
+      total_tax: 0,
+      total_disc: 0,
+      delivery_date: fechaEntrega === '' ? moment(new Date()).format('YYYY-MM-DD HH:mm:ss') : moment(fechaEntrega).format('YYYY-MM-DD HH:mm:ss'),
+      online: 1,
+      details: detalle,
+      application_type: user.application_type === 3 ? '3' : '1',
+      platform_type: 'web',
+      approved_web: '0'
+    }
+    let result = AuthNewOrder(finishOrder)
+    console.log(result);
+  }
+
   useEffect(() => {
     getDateDelivery()
     prepareFilterDays()
@@ -142,13 +206,13 @@ export const useCartPage = () => {
 
   return {
     cart,
-    dayDelivery,
-    setDayDelivery,
     observation,
     setObservation,
     updateFechaEntrega,
+    fechaEntrega,
     filterDate,
-    startDate, 
-    dataUser
+    startDate,
+    dataUser,
+    sendOrder
   };
 };

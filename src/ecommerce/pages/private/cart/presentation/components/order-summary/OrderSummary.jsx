@@ -13,21 +13,22 @@ import { useCartPage } from "../../view-model/useCartPage"
 import Styles from "./scss/order-summary.module.scss"
 registerLocale("es", es);
 
-export const OrderSummary = () => {
+export const OrderSummary = ({checkout, changeCheckout}) => {
   const {
-    dayDelivery,
     observation,
     setObservation,
     updateFechaEntrega,
     filterDate,
     startDate,
     dataUser,
+    fechaEntrega,
+    sendOrder
   } = useCartPage();
   const { subtotal, Iva, impAzucarados, total, ultraProcesados } =
     useEcommerceStore((state) => state.getSummaryInformation());
   const { configPages } = useEcommerceStore();
-  const [checkOut, setCheckOut] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
 
   return (
     <div className={`${Styles.OrderSummaryContainer} fadeIn`}>
@@ -65,13 +66,13 @@ export const OrderSummary = () => {
       <p
         className={`${Styles.ContentInfoDeliveryDate} ${Styles.infoDeliveryDate}`}
       >
-        Su pedido será entregado el próximo {dayDelivery}
+        Su pedido será entregado el próximo {moment(fechaEntrega).format("DD/MM/YYYY")}
       </p>
 
       <div className={Styles.OrderSummarySeparator} />
       {total > 20000 ? (
         <>
-          {checkOut ? (
+          {checkout ? (
             <div
               className={`${Styles.OrderSummaryData} ${
                 isOpen ? Styles.IsOpenCalendar : ""
@@ -88,7 +89,7 @@ export const OrderSummary = () => {
                   <p>Fecha de entrega:</p>
                   <Button
                     onClick={() => setIsOpen(!isOpen)}
-                    label={moment(startDate).format("DD/MM/YYYY")}
+                    label={moment(fechaEntrega).format("DD/MM/YYYY")}
                   />
                 </div>
               )}
@@ -116,6 +117,7 @@ export const OrderSummary = () => {
                 <div className={Styles.PaymentMethodsGrid}>
                   {configPages.payment_methods.map((item, i) => (
                     <div key={i} className={Styles.PaymentMethodsItem}>
+                      <div style={{ color: item.title == 'Efectivo' ? 'green' : 'orange' }}>
                       {React.createElement(
                         FontAwesome[
                           item.title == "Efectivo"
@@ -123,6 +125,7 @@ export const OrderSummary = () => {
                             : "FaRegCreditCard"
                         ]
                       )}
+                      </div>
                       <p>{item.title}</p>
                     </div>
                   ))}
@@ -139,7 +142,7 @@ export const OrderSummary = () => {
               </div>
             </div>
           ) : null}
-          <Button label="Realizar pedido" onClick={() => setCheckOut(true)} />
+          <Button label="Realizar pedido" onClick={() => checkout == false ? changeCheckout(true) : sendOrder(total)} />
         </>
       ) : (
         <div style={{ marginTop: "1rem" }}>

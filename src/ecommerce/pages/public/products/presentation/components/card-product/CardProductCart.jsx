@@ -11,6 +11,7 @@ export const CardProductCart = ({
   type,
   contentClassName,
   sizeCardRow,
+  checkout
 }) => {
   const { title, imagen } = product;
   const {
@@ -89,8 +90,10 @@ export const CardProductCart = ({
               <div className={Styles.CardProductCounter}>
                 <Counter
                   value={quantity}
-                  onChangeValue={(value) =>
-                    onUpdateProductQuantity(product, value)
+                  onChangeValue={(value) =>(
+                    onUpdateProductQuantity(product, value),
+                    checkout(false)
+                  )
                   }
                 />
               </div>

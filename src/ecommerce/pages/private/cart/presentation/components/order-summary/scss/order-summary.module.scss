@@ -59,6 +59,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 1rem;
+    cursor: pointer;
   }
 
   .PaymentMethodsItem {
@@ -67,6 +68,7 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+
 
     svg {
       font-size: 1.5rem;
@@ -92,14 +94,17 @@
 
   .OrderSummaryData {
     &.IsOpenCalendar {
-      -ms-overflow-style: none; /* Internet Explorer 10+ */
-      scrollbar-width: none; /* Firefox */
-
-      max-height: 500px;
+      -ms-overflow-style: none;
+      /* Internet Explorer 10+ */
+      scrollbar-width: none;
+      /* Firefox */
+  
+      height : calc(100vh - 000px);
       overflow-y: auto;
 
       &::-webkit-scrollbar {
-        display: none; /* Safari and Chrome */
+        display: none;
+        /* Safari and Chrome */
       }
     }
   }
