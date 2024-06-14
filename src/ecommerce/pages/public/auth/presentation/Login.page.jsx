@@ -1,5 +1,6 @@
-import { LoginCentered, LoginImageLeft, LoginImageRight } from "./templates";
-import { useLogin } from "./view-model";
+import { ToastContainer } from "react-toastify"
+import { LoginCentered, LoginImageLeft, LoginImageRight } from "./templates"
+import { useLogin } from "./view-model"
 
 const loginTemplateOptions = {
   login_centered: <LoginCentered />,
@@ -9,10 +10,15 @@ const loginTemplateOptions = {
 
 export const LoginPage = () => {
   const { loginUiType } = useLogin();
-  
+
   const CURRENT_TEMPLATE =
     loginTemplateOptions[loginUiType] || "Login template not configured";
-  return <main>{CURRENT_TEMPLATE}</main>;
+  return (
+    <main>
+      <>{CURRENT_TEMPLATE}</>
+      <ToastContainer />
+    </main>
+  );
 };
 
 export default LoginPage;

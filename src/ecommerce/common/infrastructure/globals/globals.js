@@ -5,7 +5,7 @@ const BUSINESS_UNIT = import.meta.env.VITE_BUSINESS_UNIT;
 
 
 // url base for ecommerce
-export const URL_BASE_ECOMMERCE = import.meta.env.VITE_URL_API_PRD
+export const URL_BASE_ECOMMERCE = import.meta.env.VITE_URL_API_DEV
 export const ENV_ECOMMERCE = import.meta.env.VITE_ENVIRONMENT_ECOMMERCE
 // services for configuration page
 export const GET_CONFIG_PAGE = `${URL_BASE_API}/business/get_config_business?business=${BUSINESS_UNIT}&environment=${ENV}`;

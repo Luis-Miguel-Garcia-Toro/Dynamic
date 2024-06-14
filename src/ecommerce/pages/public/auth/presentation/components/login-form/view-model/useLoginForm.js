@@ -1,19 +1,19 @@
-import { authenticationMethods } from "@/ecommerce/common/domain";
-import { useMutation } from "@tanstack/react-query";
-import { jwtDecode } from "jwt-decode";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { useAppStore } from "../../../../../../../../common/infrastructure/store";
+import { authenticationMethods } from "@/ecommerce/common/domain"
+import { useMutation } from "@tanstack/react-query"
+import { jwtDecode } from "jwt-decode"
+import { useCallback, useEffect, useMemo, useState } from "react"
+import { useSearchParams } from "react-router-dom"
+import { toast } from "react-toastify"
+import { useAppStore } from "../../../../../../../../common/infrastructure/store"
 import {
   useDataStore,
   useEcommerceStore,
-} from "../../../../../../../common/infrastructure/store";
+} from "../../../../../../../common/infrastructure/store"
 import {
   fetchGetAuthCode,
   fetchValidateCode,
-} from "../../../../infrastructure/login-repository";
-import { validateLoginForm } from "./validate-form";
+} from "../../../../infrastructure/login-repository"
+import { validateLoginForm } from "./validate-form"
 
 const TOTAL_STEPS = 2;
 
@@ -84,7 +84,9 @@ export const useLoginForm = () => {
       setAuthToken(response.Data.accessToken);
       onNextStep();
     },
-    onError: () => {
+    onError: (error) => {
+      console.log(error);
+
       toast.error(
         "Ocurrió un error al enviar el código de validación, por favor verifica tus datos."
       );
@@ -94,7 +96,14 @@ export const useLoginForm = () => {
   const validateCodeMutation = useMutation({
     mutationFn: ({ user, password, code }) =>
       fetchValidateCode(user, password, code),
-    onSuccess: () => {
+    onSuccess: (response) => {
+      if (response.state === "ERROR") {
+        toast.error(
+          "Ocurrió un error al validar el código, el código es incorrecto."
+        );
+        return;
+      }
+
       let userJWT = jwtDecode(authToken);
       const redirectTo = searchParams.get("q");
       updateDataUser(userJWT); //TODO: Eliminar, dejar solo el auth global
