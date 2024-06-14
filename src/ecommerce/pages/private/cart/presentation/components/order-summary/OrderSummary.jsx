@@ -1,24 +1,33 @@
-import React, { useState } from "react";
-import { Button } from "../../../../../../../common/presentation/components/ui/button/Button";
-import { format } from "../../../../../../../common/presentation/utils";
-import { useEcommerceStore } from "../../../../../../common/infrastructure/store";
-import Styles from "./scss/order-summary.module.scss";
+import es from "date-fns/locale/es"
+import moment from "moment"
+import "moment/locale/es"
+import React, { useState } from "react"
+import DatePicker, { registerLocale } from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
+import * as FontAwesome from "react-icons/fa"
+import { InputField } from "../../../../../../../common/presentation/components"
+import { Button } from "../../../../../../../common/presentation/components/ui/button/Button"
+import { format } from "../../../../../../../common/presentation/utils"
+import { useEcommerceStore } from "../../../../../../common/infrastructure/store"
 import { useCartPage } from "../../view-model/useCartPage"
-import * as FontAwesome from 'react-icons/fa'
-import moment from "moment";
-import 'moment/locale/es'
-import DatePicker, { registerLocale } from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
-import es from 'date-fns/locale/es'
-registerLocale('es', es)
+import Styles from "./scss/order-summary.module.scss"
+registerLocale("es", es);
 
 export const OrderSummary = () => {
-  const { dayDelivery, setDayDelivery, observation, setObservation,
-    updateFechaEntrega, filterDate, startDate, dataUser } = useCartPage()
-  const { subtotal, Iva, impAzucarados, total, ultraProcesados } = useEcommerceStore((state) => state.getSummaryInformation());
-  const { configPages } = useEcommerceStore()
-  const [checkOut, setCheckOut] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
+  const {
+    dayDelivery,
+    observation,
+    setObservation,
+    updateFechaEntrega,
+    filterDate,
+    startDate,
+    dataUser,
+  } = useCartPage();
+  const { subtotal, Iva, impAzucarados, total, ultraProcesados } =
+    useEcommerceStore((state) => state.getSummaryInformation());
+  const { configPages } = useEcommerceStore();
+  const [checkOut, setCheckOut] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className={`${Styles.OrderSummaryContainer} fadeIn`}>
@@ -53,106 +62,100 @@ export const OrderSummary = () => {
         <span>{format.formatPrice(total)}</span>
       </div>
 
-      <p className={`${Styles.ContentInfoDeliveryDate} ${Styles.infoDeliveryDate}`}>
+      <p
+        className={`${Styles.ContentInfoDeliveryDate} ${Styles.infoDeliveryDate}`}
+      >
         Su pedido será entregado el próximo {dayDelivery}
       </p>
 
       <div className={Styles.OrderSummarySeparator} />
       {total > 20000 ? (
         <>
-
           {checkOut ? (
-            <>
-             <div className="item" style={{ 'padding-top': '15px' }}>
-          <p className="opc">Dirección:</p>
-        </div>
-        <div className="item" style={{ 'padding-top': '15px' }}>
-          <p>{dataUser.main_address}</p>
-        </div>
+            <div
+              className={`${Styles.OrderSummaryData} ${
+                isOpen ? Styles.IsOpenCalendar : ""
+              }`}
+            >
+              <div className={Styles.OrderSummaryDataItem}>
+                <p className="opc">Dirección:</p>
+                <p>{dataUser.main_address}</p>
+              </div>
               {configPages.activateDateDelivery === 1 && (
-                <>
-                
-                  <div>
-                    <p >Fecha de entrega:</p>
-                    <button  onClick={ (e) => (e.preventDefault(), setIsOpen(!isOpen))}>
-                      {moment(startDate).format('DD/MM/YYYY')}
-                    </button>
-                  </div>
-                </>
+                <div
+                  className={`${Styles.OrderSummaryDataItem} ${Styles.DateDelivery}`}
+                >
+                  <p>Fecha de entrega:</p>
+                  <Button
+                    onClick={() => setIsOpen(!isOpen)}
+                    label={moment(startDate).format("DD/MM/YYYY")}
+                  />
+                </div>
               )}
-
 
               {isOpen && (
-                <>
-
-                  <br></br>
-                  <div className="Calendar-Order">
-                    <DatePicker
-                      locale="es"
-                      selected={startDate}
-                      onChange={(date) => {
-                        setIsOpen(!isOpen)
-                        setStartDate(date)
-                        updateFechaEntrega(moment(date))
-                      }}
-                      dateFormat="dd/MM/yyyy"
-                      minDate={startDate}
-                      filterDate={filterDate}
-                      // maxDate={maxCalendar}
-                      inline
-                    />
-                  </div>
-                </>
+                <div className="Calendar-Order">
+                  <DatePicker
+                    locale="es"
+                    selected={startDate}
+                    onChange={(date) => {
+                      setIsOpen(!isOpen);
+                      // setStartDate(date);
+                      updateFechaEntrega(moment(date));
+                    }}
+                    dateFormat="dd/MM/yyyy"
+                    minDate={startDate}
+                    filterDate={filterDate}
+                    // maxDate={maxCalendar}
+                    inline
+                  />
+                </div>
               )}
-              <div>
+              <div className={Styles.OrderSummaryDataItem}>
                 <p className="opc">Método de pago:</p>
-                <div style={{ display: 'flex' }}>
+                <div className={Styles.PaymentMethodsGrid}>
                   {configPages.payment_methods.map((item, i) => (
-                    <div className="valEmployed">
-                      <div
-                        className="card"
-                      >
-                        <div className="option">
-                          {React.createElement(FontAwesome[item.title == 'Efectivo' ? 'FaDollarSign' : 'FaRegCreditCard'])}
-                          <p>{item.title}</p>
-                        </div>
-                      </div>
+                    <div key={i} className={Styles.PaymentMethodsItem}>
+                      {React.createElement(
+                        FontAwesome[
+                          item.title == "Efectivo"
+                            ? "FaDollarSign"
+                            : "FaRegCreditCard"
+                        ]
+                      )}
+                      <p>{item.title}</p>
                     </div>
                   ))}
                 </div>
               </div>
-              <div >
-                <input
-                  className="input"
-                  onChange={(e) => setObservation(e.target.value)}
-                  placeholder="Observaciones"
+              <div className={Styles.OrderSummaryDataItem}>
+                <InputField
+                  label="Observaciones"
                   value={observation}
+                  name="observation"
+                  onChange={(value) => setObservation(value)}
+                  type="text"
                 />
               </div>
-            </>
-
+            </div>
           ) : null}
           <Button label="Realizar pedido" onClick={() => setCheckOut(true)} />
         </>
-
-      ) :
-        (
-          <div>
-            <p style={{ color: "red" }}>
-              <b>
-                El valor mínimo de envío es de
-                {" $" + new Intl.NumberFormat("es-CO", {
+      ) : (
+        <div style={{ marginTop: "1rem" }}>
+          <p style={{ color: "red" }}>
+            <b>
+              El valor mínimo de envío es de
+              {" $" +
+                new Intl.NumberFormat("es-CO", {
                   style: "decimal",
                   currency: "COP",
                 }).format(20000)}
-              </b>
-            </p>
-            <p>
-              Completa tu pedido para que disfrutes todos nuestros
-              productos
-            </p>
-          </div>
-        )}
+            </b>
+          </p>
+          <p>Completa tu pedido para que disfrutes todos nuestros productos</p>
+        </div>
+      )}
     </div>
   );
 };

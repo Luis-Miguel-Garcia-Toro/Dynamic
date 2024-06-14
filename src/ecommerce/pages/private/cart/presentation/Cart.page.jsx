@@ -1,7 +1,7 @@
-import { CardProductCart } from "../../../public/products/presentation/components";
-import { EmptyCart, OrderSummary } from "./components";
-import Styles from "./scss/cart.module.scss";
-import { useCartPage } from "./view-model/useCartPage";
+import { CardProductCart } from "../../../public/products/presentation/components"
+import { EmptyCart, OrderSummary } from "./components"
+import Styles from "./scss/cart.module.scss"
+import { useCartPage } from "./view-model/useCartPage"
 
 const CartPage = () => {
   const { cart } = useCartPage();
@@ -28,7 +28,9 @@ const CartPage = () => {
             </article>
 
             <article className={Styles.CartDetail}>
-              <OrderSummary/>
+              <div className={Styles.CartDetailContent}>
+                <OrderSummary />
+              </div>
             </article>
           </section>
         )}

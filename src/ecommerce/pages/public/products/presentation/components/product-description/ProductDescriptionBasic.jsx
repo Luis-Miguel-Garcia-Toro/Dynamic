@@ -1,18 +1,18 @@
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"
 import {
   Button,
   Counter,
-} from "../../../../../../../common/presentation/components";
-import { format } from "../../../../../../../common/presentation/utils";
-import Styles from "./scss/product-description-basic.module.scss";
-import { useProductDescriptionBasic } from "./view-model/useProductDescriptionBasic";
+} from "../../../../../../../common/presentation/components"
+import { format } from "../../../../../../../common/presentation/utils"
+import Styles from "./scss/product-description-basic.module.scss"
+import { useProductDescriptionBasic } from "./view-model/useProductDescriptionBasic"
 
 export const ProductDescriptionBasic = ({ product, layout }) => {
   const { goToCart, onAddProductToCart, onUpdateProductQuantity, quantity } =
     useProductDescriptionBasic({ product });
 
   const classNameLayout = `Layout-${layout}`;
-console.log(product);
+
   return (
     <div className={Styles.ProductDescriptionContainer}>
       {layout === 2 && (

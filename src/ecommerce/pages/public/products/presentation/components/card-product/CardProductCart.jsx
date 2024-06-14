@@ -1,10 +1,10 @@
-import { Button, Counter, ImageLazy } from "@/common/presentation/components";
-import { format } from "@/common/presentation/utils";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { cartProductUiTypes } from "../../../../../../common/domain";
-import Styles from "./scss/card-product.module.scss";
-import { useCardProduct } from "./view-model/useCardProduct";
+import { Button, Counter, ImageLazy } from "@/common/presentation/components"
+import { format } from "@/common/presentation/utils"
+import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
+import { cartProductUiTypes } from "../../../../../../common/domain"
+import Styles from "./scss/card-product.module.scss"
+import { useCardProduct } from "./view-model/useCardProduct"
 
 export const CardProductCart = ({
   product,
@@ -20,7 +20,6 @@ export const CardProductCart = ({
     generateProductSlug,
   } = useCardProduct({ product });
 
-  console.log(product);
   return (
     <div className={`${Styles.CardProductContainer} fadeIn`}>
       <div

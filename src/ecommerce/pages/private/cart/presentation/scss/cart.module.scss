@@ -18,7 +18,7 @@ $sm-height-detail: 390px;
 
   .CartProducts {
     padding: 4rem 2rem;
-    padding-bottom: $sm-height-detail;
+    // padding-bottom: $sm-height-detail;
     transition: 0.3s;
 
     .CartProductsList {
@@ -33,17 +33,26 @@ $sm-height-detail: 390px;
   }
 
   .CartDetail {
-    position: fixed;
+    // position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     background-color: var(--color-white);
     z-index: 2;
     padding: 2rem;
-    max-height: $sm-height-detail;
-    box-shadow: var(--box-shadow-top);
+    // max-height: $sm-height-detail;
+    // box-shadow: var(--box-shadow-top);
     transition: 0.3s;
     border-radius: 30px 30px 0 0;
+
+    //
+
+    // .CartDetailContent{
+    // border: 1px solid red;
+    // height: $sm-height-detail;
+    // overflow-y: auto;
+    // padding-bottom: 4rem;
+    // }
   }
 }
 
@@ -62,6 +71,8 @@ $sm-height-detail: 390px;
     }
 
     .CartDetail {
+      position: fixed;
+
       width: 40%;
       top: 0;
       right: 0;

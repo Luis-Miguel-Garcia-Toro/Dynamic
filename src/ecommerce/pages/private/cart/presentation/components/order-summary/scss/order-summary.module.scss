@@ -23,7 +23,6 @@
   }
 }
 
-
 .infoDeliveryDate {
   padding: 5px;
   font-weight: 600;
@@ -36,6 +35,43 @@
   margin-top: 10px;
   text-align: center;
   color: #756f6f;
+  margin-bottom: 1rem;
+}
+
+.OrderSummaryData {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+
+  .OrderSummaryDataItem {
+    border-bottom: 1px solid var(--color-input-border);
+    padding: 1rem 0;
+  }
+
+  .DateDelivery {
+    button {
+      margin-top: 1rem;
+    }
+  }
+
+  .PaymentMethodsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1rem;
+  }
+
+  .PaymentMethodsItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    svg {
+      font-size: 1.5rem;
+    }
+  }
 }
 
 @include media-up($breakpoint-md) {
@@ -51,6 +87,20 @@
 
     button {
       justify-self: end;
+    }
+  }
+
+  .OrderSummaryData {
+    &.IsOpenCalendar {
+      -ms-overflow-style: none; /* Internet Explorer 10+ */
+      scrollbar-width: none; /* Firefox */
+
+      max-height: 500px;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+      }
     }
   }
 }

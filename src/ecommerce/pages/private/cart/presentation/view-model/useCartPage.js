@@ -1,6 +1,6 @@
+import moment from "moment";
 import { useEffect, useState } from "react";
-import { useEcommerceStore, useDataStore } from "../../../../../common/infrastructure/store";
-import moment from "moment"; 
+import { useDataStore, useEcommerceStore } from "../../../../../common/infrastructure/store";
 
 export const useCartPage = () => {
   const cart = useEcommerceStore((state) => state.cart);
@@ -45,7 +45,6 @@ export const useCartPage = () => {
   }
 
   const filterDate = (date) => {
-    console.log(daysCalendar);
     const day = date.getDay()
     let data = daysCalendar
     if (data.length === 1) {
