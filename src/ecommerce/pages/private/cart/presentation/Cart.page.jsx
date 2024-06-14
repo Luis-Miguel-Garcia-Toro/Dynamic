@@ -1,4 +1,4 @@
-import { CardProduct } from "../../../public/products/presentation/components";
+import { CardProductCart } from "../../../public/products/presentation/components";
 import { EmptyCart, OrderSummary } from "./components";
 import Styles from "./scss/cart.module.scss";
 import { useCartPage } from "./view-model/useCartPage";
@@ -17,7 +17,7 @@ const CartPage = () => {
 
               <div className={Styles.CartProductsList}>
                 {cart.map((product, index) => (
-                  <CardProduct
+                  <CardProductCart
                     contentClassName={Styles.CartProductContent}
                     type="full"
                     key={`${product.code}-${index}`}
@@ -28,7 +28,7 @@ const CartPage = () => {
             </article>
 
             <article className={Styles.CartDetail}>
-              <OrderSummary />
+              <OrderSummary/>
             </article>
           </section>
         )}

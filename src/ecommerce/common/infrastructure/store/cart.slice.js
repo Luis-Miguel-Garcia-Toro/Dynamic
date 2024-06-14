@@ -8,17 +8,29 @@ export const createCartSlice = (set, get) => ({
 
   getSummaryInformation: () => {
     const { cart } = get();
+    console.log(cart);
 
-    const total = cart.reduce(
-      (total, product) => product.quantity * product.price + total,
-      0
-    );
+    let Iva = 0;
+    let impAzucarados = 0;
+    let subtotal = 0;
+    let ultraProcesados = 0;
+    cart.map((item) => {
+      Iva = Iva +((item.quantity * item.price) * item.tax1) / 100
+      impAzucarados = impAzucarados + parseFloat(item.tax3)
+      subtotal = subtotal + item.quantity * item.price
+      ultraProcesados = ultraProcesados +((item.quantity * item.price) * item.tax2) / 100
+    })
+
+    const total = subtotal + Iva + parseFloat(impAzucarados) + ultraProcesados
 
     const itemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
-
     return {
+      Iva,
+      subtotal,
       total,
       itemsInCart,
+      impAzucarados,
+      ultraProcesados
     };
   },
 

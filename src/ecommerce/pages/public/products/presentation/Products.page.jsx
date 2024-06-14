@@ -11,11 +11,13 @@ import {
   SidebarCategories,
 } from "./components";
 import Styles from "./scss/products.module.scss";
+import {useDataStore} from '../../../../../ecommerce/common/infrastructure/store/ecommerce.store'
 
 const ProductsPage = () => {
   const configPage = useEcommerceStore((state) => state.configPages);
   const categoryType = configPage?.categories_type || "";
   const [listProducts, setListProducts] = useState([]);
+  const {updateDataUser} = useDataStore()
 
 
   const getProductsList = async (category) => {
@@ -29,9 +31,11 @@ const ProductsPage = () => {
   };
 
   useEffect(() => {
+    updateDataUser()
     let params = new URLSearchParams(window.location.href.split("?")[1]);
     let codeCategory = params.get("category")
     getProductsList(codeCategory ? codeCategory : '-1');
+
   }, [])
 
 

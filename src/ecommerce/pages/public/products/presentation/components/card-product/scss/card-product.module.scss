@@ -84,7 +84,7 @@ $padding-md: 2rem;
 
       .CardProductTitle {
         text-decoration: none;
-        color: var(--color-text);
+        color: var(--color-primary);
 
         h2 {
           font-size: 0.9rem;
@@ -98,6 +98,10 @@ $padding-md: 2rem;
         font-weight: bold;
         color: var(--color-primary);
         margin-top: 0.5rem;
+      }
+
+      .CardProductTax {
+        font-size: 0.8rem;
       }
 
       .CardProductButton {
@@ -146,7 +150,7 @@ $padding-md: 2rem;
     .CardProductContent {
       &.full {
         grid-template-rows: 140px 1fr !important;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: 150px 1fr;
 
         .CardProductThumbnail {
           padding: 1rem;
@@ -169,6 +173,13 @@ $padding-md: 2rem;
 
           & .CardProductPriceContainer {
             grid-area: price;
+            align-self: flex-start;
+          }
+
+          & .CardProductPriceContainerCart {
+            grid-area: price;
+            display: flex;
+            flex-direction: column;
             align-self: flex-start;
           }
 

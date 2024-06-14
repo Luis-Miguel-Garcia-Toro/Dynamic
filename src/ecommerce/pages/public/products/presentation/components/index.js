@@ -1,4 +1,5 @@
 export * from "./card-product/CardProduct"
+export * from "./card-product/CardProductCart"
 export * from "./category/categories-list/CategoriesList"
 export * from "./category/header-categories/HeaderCategories"
 export * from "./category/sidebar-categories/SidebarCategories"

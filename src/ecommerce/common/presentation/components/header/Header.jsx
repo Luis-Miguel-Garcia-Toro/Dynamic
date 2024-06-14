@@ -54,7 +54,7 @@ export const Header = () => {
           >
             <div className={Styles.HeaderCartIcon}>
               {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}
-              <FaCartShopping size={20} />
+              <FaCartShopping size={20} style={{ color: '#E4061F' }} />
             </div>
             {summaryTotal > 0 && (
               <span>{format.formatPrice(summaryTotal)}</span>
