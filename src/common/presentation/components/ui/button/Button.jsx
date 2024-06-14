@@ -10,6 +10,7 @@ export const Button = ({
   label,
   onClick,
   type,
+  disabled,
 }) => {
   const { backgroundColor, textColor } = useButton({
     color,
@@ -20,6 +21,7 @@ export const Button = ({
   return (
     <div className={`${className ? className : ""} ${Styles.ButtonContainer}`}>
       <button
+        disabled={disabled}
         onClick={onClick}
         style={{
           backgroundColor,
@@ -41,6 +43,7 @@ Button.propTypes = {
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   type: PropTypes.oneOf(["button", "submit", "reset"]),
+  disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {

@@ -9,6 +9,8 @@ export const LoginForm = () => {
     formErrors,
     isActiveSteps,
     isLastStep,
+    isPendingCode,
+    isPendingValidateCode,
     onChangeForm,
     onPrevStep,
     onSubmit,
@@ -30,7 +32,9 @@ export const LoginForm = () => {
           onChangeForm={onChangeForm}
           step={step}
         />
+        {/* TODO: Implementar loading spinner */}
         <Button
+          disabled={isPendingCode || isPendingValidateCode}
           onClick={onSubmit}
           label={isLastStep ? "Iniciar sesión" : "Continuar"}
         />

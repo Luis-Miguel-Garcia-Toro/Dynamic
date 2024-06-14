@@ -1,9 +1,18 @@
 import { authenticationMethods } from "@/ecommerce/common/domain";
+import { useMutation } from "@tanstack/react-query";
+import { jwtDecode } from "jwt-decode";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAppStore } from "../../../../../../../../common/infrastructure/store";
-import { useEcommerceStore } from "../../../../../../../common/infrastructure/store";
-import { fetchLogin } from "../../../../infrastructure/login-repository";
+import {
+  useDataStore,
+  useEcommerceStore,
+} from "../../../../../../../common/infrastructure/store";
+import {
+  fetchGetAuthCode,
+  fetchValidateCode,
+} from "../../../../infrastructure/login-repository";
 import { validateLoginForm } from "./validate-form";
 
 const TOTAL_STEPS = 2;
@@ -24,12 +33,15 @@ export const useLoginForm = () => {
   const [form, setForm] = useState(initialValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [isActiveSteps, setIsActiveSteps] = useState(false);
+  const [authToken, setAuthToken] = useState();
 
   const [step, setStep] = useState(1);
   const { configPages } = useEcommerceStore();
   const { login, isSessionJustClosed, changeIsSessionJustClosed } =
     useAppStore();
   const [searchParams] = useSearchParams();
+
+  const { updateDataUser } = useDataStore();
 
   const onChangeForm = (value, key) => {
     setForm({ ...form, [key]: value });
@@ -66,6 +78,35 @@ export const useLoginForm = () => {
     setIsActiveSteps(true);
   }, [configPages]);
 
+  const getCodeMutation = useMutation({
+    mutationFn: ({ user, password }) => fetchGetAuthCode(user, password),
+    onSuccess: (response) => {
+      setAuthToken(response.Data.accessToken);
+      onNextStep();
+    },
+    onError: () => {
+      toast.error(
+        "Ocurrió un error al enviar el código de validación, por favor verifica tus datos."
+      );
+    },
+  });
+
+  const validateCodeMutation = useMutation({
+    mutationFn: ({ user, password, code }) =>
+      fetchValidateCode(user, password, code),
+    onSuccess: () => {
+      let userJWT = jwtDecode(authToken);
+      const redirectTo = searchParams.get("q");
+      updateDataUser(userJWT); //TODO: Eliminar, dejar solo el auth global
+      login(userJWT, redirectTo);
+    },
+    onError: () => {
+      toast.error(
+        "Ocurrió un error al validar el código, el código es incorrecto."
+      );
+    },
+  });
+
   const onNextStep = () => {
     if (step >= TOTAL_STEPS) return;
     setStep(step + 1);
@@ -92,21 +133,23 @@ export const useLoginForm = () => {
     return true;
   };
 
-  const onLogin = async () => {
-    const response = await fetchLogin(form);
-    const redirectTo = searchParams.get("q");
-    login(response.user, redirectTo);
-  };
-
   const onSubmit = () => {
     const isValidForm = checkIsValidForm();
     if (!isValidForm) return;
     if (isActiveSteps && !isLastStep) {
-      onNextStep();
+      // onNextStep();
+      const dataLogin = {
+        user: form.username,
+        password: form.password,
+      };
+
+      getCodeMutation.mutate(dataLogin);
       return;
     }
 
-    onLogin();
+    const { code, password, username } = form;
+    validateCodeMutation.mutate({ code, password, user: username });
+    // onLogin();
   };
 
   useEffect(() => {
@@ -126,6 +169,8 @@ export const useLoginForm = () => {
     formErrors,
     isActiveSteps,
     isLastStep,
+    isPendingCode: getCodeMutation.isPending,
+    isPendingValidateCode: validateCodeMutation.isPending,
     onChangeForm,
     onPrevStep,
     onSubmit,

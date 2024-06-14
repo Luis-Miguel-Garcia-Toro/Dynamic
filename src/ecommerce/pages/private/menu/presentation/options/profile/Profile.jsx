@@ -4,26 +4,23 @@ import {
   ImageLazy,
 } from "../../../../../../../common/presentation/components";
 
+import { useMemo } from "react";
 import { FaStoreAlt } from "react-icons/fa";
+import { useAppStore } from "../../../../../../../common/infrastructure/store/app.store";
 import { icons } from "../../../../../../../common/presentation/utils";
 import Styles from "./scss/profile.module.scss";
 
-const user = {
-  name: "I.R.C.C LA SABANA",
-  email: "Jp0pG@example.com",
-  cel: "123456789",
-  phone: "123456789",
-};
-
-const branch = {
-  social_reason: "C.C LA SABANA",
-  code: "123456789",
-  email: "",
-  delivery_frequency: "LU-MA-MI-JU-VI-SA",
-  route: "V012",
-};
-
 export const Profile = () => {
+  const { user } = useAppStore();
+  const userDataToShow = useMemo(() => {
+    return {
+      name: user.name,
+      email: user.email || "-",
+      cel: user.phone,
+      phone: "01 8000 110000", //TODO: Ver de donde obtener este dato
+    };
+  }, [user]);
+
   return (
     <main className={Styles.Profile}>
       <section className={Styles.ProfileContainer}>
@@ -32,7 +29,7 @@ export const Profile = () => {
         </figure>
 
         <div className={Styles.ProfileContent}>
-          {Object.keys(user).map((key) => {
+          {Object.keys(userDataToShow).map((key) => {
             const mainKey = "name";
             const isMainKey = key === mainKey;
 
@@ -44,7 +41,7 @@ export const Profile = () => {
                 key={key}
               >
                 {!isMainKey && <>{icons.getIcons(key)}</>}
-                <span>{user[key]}</span>
+                <span>{userDataToShow[key]}</span>
               </p>
             );
           })}
@@ -58,11 +55,11 @@ export const Profile = () => {
         <div className={Styles.ProfileBranchContent}>
           <p>
             <span>Razón social</span>
-            <span>{branch.social_reason}</span>
+            <span>{user.business_name}</span>
           </p>
           <p>
             <span>Código secuencia</span>
-            <span>{branch.code}</span>
+            <span>{user.code}</span>
           </p>
           <p>
             <span>Correo PDV</span>
@@ -70,11 +67,11 @@ export const Profile = () => {
           </p>
           <p>
             <span>Frecuencia de entrega</span>
-            <span>{branch.delivery_frequency}</span>
+            <span>{user.frequent}</span>
           </p>
           <p>
             <span>Ruta</span>
-            <span>{branch.route}</span>
+            <span>{user.delivery_route}</span>
           </p>
         </div>
       </section>

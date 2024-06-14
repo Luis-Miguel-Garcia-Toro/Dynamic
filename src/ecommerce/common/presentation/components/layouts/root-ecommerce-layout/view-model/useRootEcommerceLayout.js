@@ -1,7 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { useCallback, useEffect } from "react";
-import { useEcommerceStore } from "../../../../../infrastructure/store";
-import { fetchGetConfigPage } from "../../infrastructure/config-page-repository";
+import { useQuery } from "@tanstack/react-query"
+import { useCallback, useEffect } from "react"
+import { useEcommerceStore } from "../../../../../infrastructure/store"
+import { fetchGetConfigPage } from "../../infrastructure/config-page-repository"
 
 export const useRootEcommerceLayout = () => {
   const updateConfigPage = useEcommerceStore((state) => state.updateConfigPage);
@@ -28,6 +28,7 @@ export const useRootEcommerceLayout = () => {
     if (configPageQuery.data) {
       updateConfigPage({
         ...configPageQuery.data,
+        auth_method: "user_password_code", //TODO: Eliminar
         categories: {
           categoriesList: [
             {
