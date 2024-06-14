@@ -7,18 +7,20 @@ import {
   FaTwitter,
   FaUserCircle,
   FaWhatsapp,
-  FaYoutube
+  FaYoutube,
 } from "react-icons/fa";
 import { HiOutlineDocumentCheck } from "react-icons/hi2";
 import { IoDocumentTextOutline, IoWallet } from "react-icons/io5";
-import { MdDashboard, MdOutlineManageHistory } from "react-icons/md";
-import { RiLogoutBoxFill } from "react-icons/ri";
+import { MdDashboard, MdEmail, MdOutlineManageHistory } from "react-icons/md";
+import { RiCellphoneFill, RiLogoutBoxFill } from "react-icons/ri";
 import { TbWorld } from "react-icons/tb";
 import { TiMessages } from "react-icons/ti";
 
 const optionsIcons = {
+  cel: <RiCellphoneFill />,
   dashboard: <MdDashboard />,
   document: <IoDocumentTextOutline />,
+  email: <MdEmail />,
   facebook: <FaFacebook />,
   faq: <TiMessages />,
   help: <FaQuestionCircle />,

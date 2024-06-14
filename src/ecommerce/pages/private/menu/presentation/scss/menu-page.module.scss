@@ -5,6 +5,10 @@
   margin-left: 0px;
   padding: 6rem 2rem 2rem;
   transition: 0.3s;
+
+  h1 {
+    margin-bottom: 2rem;
+  }
 }
 
 @include media-up($breakpoint-md) {

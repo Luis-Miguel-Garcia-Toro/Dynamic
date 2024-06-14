@@ -1,0 +1,17 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.FaqGrid {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: start;
+  grid-auto-rows: min-content;
+}
+
+@include media-up($breakpoint-lg) {
+  .FaqGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
