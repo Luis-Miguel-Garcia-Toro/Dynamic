@@ -79,6 +79,8 @@
 @include media-up($breakpoint-md) {
   .OrderSummaryContainer {
     height: 100%;
+    // height: calc(100vh - 150px);
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
 
@@ -93,19 +95,24 @@
   }
 
   .OrderSummaryData {
-    &.IsOpenCalendar {
-      -ms-overflow-style: none;
-      /* Internet Explorer 10+ */
-      scrollbar-width: none;
-      /* Firefox */
-  
-      height : calc(100vh - 000px);
-      overflow-y: auto;
+    padding-right: 5px;
+    height: calc(100vh - 480px);
+    overflow-y: auto;
 
-      &::-webkit-scrollbar {
-        display: none;
-        /* Safari and Chrome */
-      }
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color-primary);
+      border-radius: 10px;
+      box-shadow: var(--box-shadow-light);
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+      border-radius: 10px;
     }
   }
 }
