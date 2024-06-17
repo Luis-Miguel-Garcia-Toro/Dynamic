@@ -1,17 +1,19 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useDataStore, useEcommerceStore } from "../../../../../common/infrastructure/store";
-import { useAppStore } from "../../../../../../common/infrastructure/store/app.store" 
-import {AuthNewOrder} from "../../../../../auth/order/AuthOrder"
+import { useAppStore } from "../../../../../../common/infrastructure/store/app.store"
+import AuthNewOrder from "../../../../../auth/order/AuthOrder"
 
 export const useCartPage = () => {
   const cart = useEcommerceStore((state) => state.cart);
   const { user } = useAppStore();
+  const logout = useAppStore((state) => state.logout);
   const { dataUser, updateFechaEntrega, fechaEntrega } = useDataStore();
   const [observation, setObservation] = useState('')
   const [startDate, setStartDate] = useState(new Date())
   const [daysCalendar, setDaysCalendar] = useState([])
   const [prevStartDate, setPrevStarDate] = useState()
+  const [finishOrder, setFinishOrder] = useState('')
 
 
   const getDateDelivery = () => {
@@ -131,9 +133,7 @@ export const useCartPage = () => {
     setStartDate(new Date(BaseDate))
   }
 
-  const sendOrder = (total) => {
-    console.log(user);
-    console.log(cart);
+  const sendOrder = async (total) => {
     let detalle = []
     let orderDetalle = 0
     let datetime = new Date()
@@ -195,8 +195,19 @@ export const useCartPage = () => {
       platform_type: 'web',
       approved_web: '0'
     }
-    let result = AuthNewOrder(finishOrder)
-    console.log(result);
+    let result = await AuthNewOrder(finishOrder, user.userToken)
+    if (result.response) {
+      if (result.response.status === 401) {
+        logout()
+        window.location.replace('/auth/login')
+      } else if(result.response.status === 500){
+        setFinishOrder('error')
+      }else{
+        setFinishOrder('error')
+      }
+    } else {
+      setFinishOrder(codigoPedido)
+    }
   }
 
   useEffect(() => {
@@ -213,6 +224,8 @@ export const useCartPage = () => {
     filterDate,
     startDate,
     dataUser,
-    sendOrder
+    sendOrder,
+    finishOrder,
+    setFinishOrder
   };
 };

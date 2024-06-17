@@ -22,7 +22,7 @@ const ProductsPage = () => {
 
   const getProductsList = async (category) => {
     try {
-      let result = await AuthProducts(category);
+      let result = await AuthProducts(category, '-1');
       setListProducts(result);
     } catch (error) {
       console.error(error);

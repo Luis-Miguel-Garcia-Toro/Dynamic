@@ -103,11 +103,10 @@ export const useLoginForm = () => {
         );
         return;
       }
-
       let userJWT = jwtDecode(authToken);
       const redirectTo = searchParams.get("q");
       updateDataUser(userJWT); //TODO: Eliminar, dejar solo el auth global
-      login(userJWT, redirectTo);
+      login({...userJWT, userToken : authToken}, redirectTo);
     },
     onError: () => {
       toast.error(

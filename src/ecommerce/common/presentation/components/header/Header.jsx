@@ -5,6 +5,8 @@ import { format } from "../../../../../common/presentation/utils";
 import { HeaderCategories } from "../../../../pages/public/products/presentation/components";
 import Styles from "./scss/header.module.scss";
 import { useHeader } from "./view-model/useHeader";
+import SearchBar from "../searchBar/Search"
+
 
 const menuItems = [
   {
@@ -33,6 +35,8 @@ export const Header = () => {
           </figure>
         </Link>
 
+        <SearchBar />
+
         <div className={`${Styles.HeaderOptions} fadeIn`}>
           <nav className={Styles.HeaderMenu}>
             <ul>
@@ -47,9 +51,8 @@ export const Header = () => {
           </nav>
 
           <button
-            className={`${Styles.HeaderCart} ${
-              summaryTotal > 0 ? Styles.HasTotal : ""
-            }`}
+            className={`${Styles.HeaderCart} ${summaryTotal > 0 ? Styles.HasTotal : ""
+              }`}
             onClick={goToCart}
           >
             <div className={Styles.HeaderCartIcon}>

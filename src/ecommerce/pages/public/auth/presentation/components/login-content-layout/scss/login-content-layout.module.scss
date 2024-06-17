@@ -17,6 +17,21 @@
   }
 }
 
+.redirectEcommerce {
+  position: absolute;
+  top: 30px;
+  left: 51%;
+  a {
+    display: flex;
+    text-decoration: none;
+    p {
+      margin-left: 0.5rem;
+    font-weight: 600 ;
+    color: #E71939;
+    }
+  }
+}
+
 @include media-up($breakpoint-md) {
   .login-logo-container {
     width: 50%;
