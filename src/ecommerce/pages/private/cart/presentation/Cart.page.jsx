@@ -1,17 +1,28 @@
+import { useEffect } from "react"
 import { useEcommerceStore } from "../../../../common/infrastructure/store"
 import { CardProductCart } from "../../../public/products/presentation/components"
 import { EmptyCart, OrderSummary } from "./components"
+import ResultOrder from "./components/result-order/result"
 import Styles from "./scss/cart.module.scss"
 const CartPage = () => {
-  const { cart, orderResult } = useEcommerceStore();
+  const { cart, orderResult, resetOrder, clearCart } = useEcommerceStore();
 
-  console.log({ orderResult });
+  useEffect(() => {
+    if (orderResult) {
+      resetOrder();
+      clearCart();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <main className={Styles.CartPageContainer}>
-      {cart.length === 0 && <EmptyCart />}
+      {orderResult && <ResultOrder />}
 
-      {cart.length > 0 && (
+      {cart.length === 0 && !orderResult && <EmptyCart />}
+
+      {cart.length > 0 && !orderResult && (
         <section className={Styles.CartPageContent}>
           <article className={Styles.CartProducts}>
             <h1 className="title fadeIn">Mi carrito</h1>

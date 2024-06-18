@@ -204,7 +204,6 @@ export const useCheckout = () => {
         setOrderInfo({ status: "error" });
       }
     } else {
-      debugger
       setOrderInfo({ status: "success", orderId: codigoPedido, total });
     }
   };
