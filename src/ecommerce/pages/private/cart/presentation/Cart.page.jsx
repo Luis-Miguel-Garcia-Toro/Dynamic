@@ -1,43 +1,40 @@
-import { useState } from "react";
+import { useEcommerceStore } from "../../../../common/infrastructure/store"
 import { CardProductCart } from "../../../public/products/presentation/components"
 import { EmptyCart, OrderSummary } from "./components"
 import Styles from "./scss/cart.module.scss"
-import { useCartPage } from "./view-model/useCartPage"
 const CartPage = () => {
-  const { cart} = useCartPage();
-  const [checkout, setChekcout] = useState(false)
+  const { cart, orderResult } = useEcommerceStore();
+
+  console.log({ orderResult });
 
   return (
     <main className={Styles.CartPageContainer}>
-      <>
-        {cart.length === 0 ? (
-          <EmptyCart />
-        ) : (
-          <section className={Styles.CartPageContent}>
-            <article className={Styles.CartProducts}>
-              <h1 className="title fadeIn">Mi carrito</h1>
+      {cart.length === 0 && <EmptyCart />}
 
-              <div className={Styles.CartProductsList}>
-                {cart.map((product, index) => (
-                  <CardProductCart
-                    contentClassName={Styles.CartProductContent}
-                    type="full"
-                    key={`${product.code}-${index}`}
-                    product={product}
-                    checkout={setChekcout}
-                  />
-                ))}
-              </div>
-            </article>
+      {cart.length > 0 && (
+        <section className={Styles.CartPageContent}>
+          <article className={Styles.CartProducts}>
+            <h1 className="title fadeIn">Mi carrito</h1>
 
-            <article className={Styles.CartDetail}>
-              <div className={Styles.CartDetailContent}>
-                <OrderSummary checkout={checkout} changeCheckout={setChekcout} />
-              </div>
-            </article>
-          </section>
-        )}
-      </>
+            <div className={Styles.CartProductsList}>
+              {cart.map((product, index) => (
+                <CardProductCart
+                  contentClassName={Styles.CartProductContent}
+                  type="full"
+                  key={`${product.code}-${index}`}
+                  product={product}
+                />
+              ))}
+            </div>
+          </article>
+
+          <article className={Styles.CartDetail}>
+            <div className={Styles.CartDetailContent}>
+              <OrderSummary />
+            </div>
+          </article>
+        </section>
+      )}
     </main>
   );
 };

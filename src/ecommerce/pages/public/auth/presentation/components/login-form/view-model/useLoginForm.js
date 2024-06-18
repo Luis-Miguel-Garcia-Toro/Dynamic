@@ -6,8 +6,7 @@ import { useSearchParams } from "react-router-dom"
 import { toast } from "react-toastify"
 import { useAppStore } from "../../../../../../../../common/infrastructure/store"
 import {
-  useDataStore,
-  useEcommerceStore,
+  useEcommerceStore
 } from "../../../../../../../common/infrastructure/store"
 import {
   fetchGetAuthCode,
@@ -40,8 +39,6 @@ export const useLoginForm = () => {
   const { login, isSessionJustClosed, changeIsSessionJustClosed } =
     useAppStore();
   const [searchParams] = useSearchParams();
-
-  const { updateDataUser } = useDataStore();
 
   const onChangeForm = (value, key) => {
     setForm({ ...form, [key]: value });
@@ -105,8 +102,7 @@ export const useLoginForm = () => {
       }
       let userJWT = jwtDecode(authToken);
       const redirectTo = searchParams.get("q");
-      updateDataUser(userJWT); //TODO: Eliminar, dejar solo el auth global
-      login({...userJWT, userToken : authToken}, redirectTo);
+      login({ ...userJWT, userToken: authToken }, redirectTo);
     },
     onError: () => {
       toast.error(

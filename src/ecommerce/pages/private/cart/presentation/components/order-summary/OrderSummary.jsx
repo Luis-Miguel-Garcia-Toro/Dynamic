@@ -1,172 +1,75 @@
 import es from "date-fns/locale/es"
 import moment from "moment"
 import "moment/locale/es"
-import React, { useState } from "react"
-import DatePicker, { registerLocale } from "react-datepicker"
+import { registerLocale } from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
-import * as FontAwesome from "react-icons/fa"
-import { InputField } from "../../../../../../../common/presentation/components"
-import { Button } from "../../../../../../../common/presentation/components/ui/button/Button"
+import { Button } from "../../../../../../../common/presentation/components"
 import { format } from "../../../../../../../common/presentation/utils"
-import { useEcommerceStore } from "../../../../../../common/infrastructure/store"
-import { useCartPage } from "../../view-model/useCartPage"
+import { Checkout, MinShippingValue } from "../index"
 import Styles from "./scss/order-summary.module.scss"
-import ResultOrder from "../result-order/result"
+import { useOrderSummary } from "./view-model/useOrderSummary"
 registerLocale("es", es);
 
-export const OrderSummary = ({ checkout, changeCheckout }) => {
+export const OrderSummary = () => {
   const {
-    observation,
-    setObservation,
-    updateFechaEntrega,
-    filterDate,
-    startDate,
-    dataUser,
-    fechaEntrega,
-    sendOrder,
-    finishOrder,
-    setFinishOrder
-  } = useCartPage();
-  const { subtotal, Iva, impAzucarados, total, ultraProcesados } =
-    useEcommerceStore((state) => state.getSummaryInformation());
-  const { configPages } = useEcommerceStore();
-  const [isOpen, setIsOpen] = useState(false);
-
+    deliveryDate,
+    isCheckout,
+    MIN_SHIPPING_VALUE,
+    onToggleIsCheckout,
+    total,
+    totalData,
+  } = useOrderSummary();
 
   return (
-    <React.Fragment>
-      {finishOrder.length > 0 ? (
-        <ResultOrder finishOrder={finishOrder} setFinishOrder={setFinishOrder} total={total} />
-      ) : (
-        <div className={`${Styles.OrderSummaryContainer} fadeIn`}>
-          <h2 className="title">Resumen de compra</h2>
+    <div className={`${Styles.OrderSummaryContainer} fadeIn`}>
+      {/* Resumen de pedido */}
+      {!isCheckout && (
+        <div className={`${Styles.OrderSummary} fadeIn`}>
+          <div className={Styles.OrderInfo}>
+            <h2 className="title">Resumen de compra</h2>
 
-          <div className={Styles.OrderSummaryItem}>
-            <span>Subtotal : </span>
-            <span>{format.formatPrice(subtotal)}</span>
-          </div>
-
-          <div className={Styles.OrderSummaryItem}>
-            <span>Iva :</span>
-            <span>{format.formatDecimalPrice(Iva)}</span>
-          </div>
-
-          {impAzucarados > 0 && (
-            <div className={Styles.OrderSummaryItem}>
-              <span>Imp. Azucarados :</span>
-              <span>{format.formatDecimalPrice(impAzucarados)}</span>
-            </div>
-          )}
-
-          {ultraProcesados > 0 && (
-            <div className={Styles.OrderSummaryItem}>
-              <span>Imp. Azucarados :</span>
-              <span>{format.formatDecimalPrice(ultraProcesados)}</span>
-            </div>
-          )}
-
-          <div className={`${Styles.OrderSummaryItem} ${Styles.Total}`}>
-            <span>Total</span>
-            <span>{format.formatPrice(total)}</span>
-          </div>
-
-          <p
-            className={`${Styles.ContentInfoDeliveryDate} ${Styles.infoDeliveryDate}`}
-          >
-            Su pedido será entregado el próximo {moment(fechaEntrega).format("DD/MM/YYYY")}
-          </p>
-
-          <div className={Styles.OrderSummarySeparator} />
-          {total > 20000 ? (
-            <>
-              {checkout ? (
-                <div
-                  className={`${Styles.OrderSummaryData} ${isOpen ? Styles.IsOpenCalendar : ""
+            <section>
+              {Object.keys(totalData).map((key) => {
+                const { label, value } = totalData[key];
+                if (value === 0) return null;
+                return (
+                  <div
+                    key={key}
+                    className={`${Styles.OrderSummaryItem} ${
+                      key === "total" ? Styles.Total : ""
                     }`}
-                >
-                  <div className={Styles.OrderSummaryDataItem}>
-                    <p className="opc">Dirección:</p>
-                    <p>{dataUser.main_address}</p>
+                  >
+                    <span>{label}:</span>
+                    <span>{format.formatPrice(value)}</span>
                   </div>
-                  {configPages.activateDateDelivery === 1 && (
-                    <div
-                      className={`${Styles.OrderSummaryDataItem} ${Styles.DateDelivery}`}
-                    >
-                      <p>Fecha de entrega:</p>
-                      <Button
-                        onClick={() => setIsOpen(!isOpen)}
-                        label={moment(fechaEntrega).format("DD/MM/YYYY")}
-                      />
-                    </div>
-                  )}
+                );
+              })}
+            </section>
 
-                  {isOpen && (
-                    <div className="Calendar-Order">
-                      <DatePicker
-                        locale="es"
-                        selected={startDate}
-                        onChange={(date) => {
-                          setIsOpen(!isOpen);
-                          // setStartDate(date);
-                          updateFechaEntrega(moment(date));
-                        }}
-                        dateFormat="dd/MM/yyyy"
-                        minDate={startDate}
-                        filterDate={filterDate}
-                        // maxDate={maxCalendar}
-                        inline
-                      />
-                    </div>
-                  )}
-                  <div className={Styles.OrderSummaryDataItem}>
-                    <p className="opc">Método de pago:</p>
-                    <div className={Styles.PaymentMethodsGrid}>
-                      {configPages.payment_methods.map((item, i) => (
-                        <div key={i} className={Styles.PaymentMethodsItem}>
-                          <div style={{ color: item.title == 'Efectivo' ? 'green' : 'orange' }}>
-                            {React.createElement(
-                              FontAwesome[
-                              item.title == "Efectivo"
-                                ? "FaDollarSign"
-                                : "FaRegCreditCard"
-                              ]
-                            )}
-                          </div>
-                          <p>{item.title}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className={Styles.OrderSummaryDataItem}>
-                    <InputField
-                      label="Observaciones"
-                      value={observation}
-                      name="observation"
-                      onChange={(value) => setObservation(value)}
-                      type="text"
-                    />
-                  </div>
-                </div>
-              ) : null}
-              <Button label="Realizar pedido" onClick={() => checkout == false ? changeCheckout(true) : sendOrder(total)} />
-            </>
-          ) : (
-            <div style={{ marginTop: "1rem" }}>
-              <p style={{ color: "red" }}>
-                <b>
-                  El valor mínimo de envío es de
-                  {" $" +
-                    new Intl.NumberFormat("es-CO", {
-                      style: "decimal",
-                      currency: "COP",
-                    }).format(20000)}
-                </b>
+            <section>
+              <p className={Styles.ContentInfoDeliveryDate}>
+                Su pedido será entregado el próximo{" "}
+                {moment(deliveryDate).format("DD/MM/YYYY")}
               </p>
-              <p>Completa tu pedido para que disfrutes todos nuestros productos</p>
-            </div>
-          )}
+            </section>
+
+            {total <= MIN_SHIPPING_VALUE && (
+              <MinShippingValue minValue={MIN_SHIPPING_VALUE} />
+            )}
+          </div>
+
+          <div className={Styles.OrderActions}>
+            {total > MIN_SHIPPING_VALUE && (
+              <Button label="Realizar pedido" onClick={onToggleIsCheckout} />
+            )}
+          </div>
         </div>
       )}
-    </ React.Fragment>
+
+      {/* Confirmar pedido */}
+      {total > MIN_SHIPPING_VALUE && isCheckout && (
+        <Checkout onBack={onToggleIsCheckout} />
+      )}
+    </div>
   );
 };

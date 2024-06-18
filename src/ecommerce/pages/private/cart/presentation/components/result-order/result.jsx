@@ -1,37 +1,30 @@
-import React from "react";
 import { format } from "../../../../../../../../src/common/presentation/utils"
-import errors from '../../../../../../../assets/img/error.svg'
-import success from '../../../../../../../assets/img/success.svg'
+import errors from "../../../../../../../assets/img/error.svg"
+import success from "../../../../../../../assets/img/success.svg"
 
-const ResultOrder = ({ finishOrder, setFinishOrder, total }) => {
+const ResultOrder = () => {
+  return (
+    <div>
+      <h1>Gracias por tu compra</h1>
+      <div className="alert-icon">
+        <img
+          src={finishOrder === "error" ? errors : success}
+          alt="icon alert"
+        />
+      </div>
 
-    return (
-        <div>
-            <h1>Gracias por tu compra</h1>
-            <div className="alert-icon">
-                <img
-                    src={finishOrder === 'error' ? errors : success}
-                    alt="icon alert"
-                    onError={(e) => {
-                        e.target.onerror = null
-                        e.target.src = noimage
-                    }}
-                />
-            </div>
-
-            <div className="alert-content">
-                <p className="alert-title">Pedido </p>
-                <p className="alert-message">
-                    N° {finishOrder}
-                </p>
-                <p className="alert-message">
-                    Su pedido por valor de {format.formatPrice(total)} se encuentra en proceso de Alistamiento.
-                    Una vez quede procesado se enviará su factura electrónica de Pedido.
-                </p>
-                <button onClick={() => setFinishOrder('')}> Aceptar </button>
-            </div>
-        </div>
-    );
+      <div className="alert-content">
+        <p className="alert-title">Pedido </p>
+        <p className="alert-message">N° {finishOrder}</p>
+        <p className="alert-message">
+          Su pedido por valor de {format.formatPrice(total)} se encuentra en
+          proceso de Alistamiento. Una vez quede procesado se enviará su factura
+          electrónica de Pedido.
+        </p>
+        <button onClick={() => setFinishOrder("")}> Aceptar </button>
+      </div>
+    </div>
+  );
 };
 
 export default ResultOrder;

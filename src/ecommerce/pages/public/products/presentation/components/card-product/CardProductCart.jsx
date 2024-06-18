@@ -11,7 +11,6 @@ export const CardProductCart = ({
   type,
   contentClassName,
   sizeCardRow,
-  checkout
 }) => {
   const { title, imagen } = product;
   const {
@@ -24,8 +23,9 @@ export const CardProductCart = ({
   return (
     <div className={`${Styles.CardProductContainer} fadeIn`}>
       <div
-        className={`${Styles.CardProductContent} ${contentClassName ? contentClassName : ""
-          } ${Styles[type]} ${Styles[sizeCardRow]}`}
+        className={`${Styles.CardProductContent} ${
+          contentClassName ? contentClassName : ""
+        } ${Styles[type]} ${Styles[sizeCardRow]}`}
       >
         {/* thumbnail */}
         <div className={Styles.CardProductThumbnail}>
@@ -58,25 +58,37 @@ export const CardProductCart = ({
             <span className={Styles.CardProductTax}>
               Precio sin impuestos: {format.formatPrice(product.price)}
             </span>
-            {parseInt(product.tax) > 0 &&
+            {parseInt(product.tax) > 0 && (
               <span className={Styles.CardProductTax}>
-                Precio con Iva: {format.formatDecimalPrice((parseFloat(product.price)) + (parseFloat(product.price) * parseFloat(product.tax) / 100))}
-              </span>}
-            {parseInt(product.tax2) > 0 &&
+                Precio con Iva:{" "}
+                {format.formatDecimalPrice(
+                  parseFloat(product.price) +
+                    (parseFloat(product.price) * parseFloat(product.tax)) / 100
+                )}
+              </span>
+            )}
+            {parseInt(product.tax2) > 0 && (
               <span className={Styles.CardProductTax}>
-                Precio con Iva: {format.formatDecimalPrice((parseFloat(product.price)) + (parseFloat(product.price) * parseFloat(product.tax2) / 100))}
-              </span>}
-            {parseInt(product.tax3) > 0 &&
+                Precio con Iva:{" "}
+                {format.formatDecimalPrice(
+                  parseFloat(product.price) +
+                    (parseFloat(product.price) * parseFloat(product.tax2)) / 100
+                )}
+              </span>
+            )}
+            {parseInt(product.tax3) > 0 && (
               <span className={Styles.CardProductTax}>
                 Imp. Azucarados: {format.formatDecimalPrice(product.tax3)}
-              </span>}
+              </span>
+            )}
             <span className={Styles.CardProductPrice}>
-              Total {format.formatPrice(
-                (parseInt(product.price)) + (parseInt(product.price) * parseInt(product.tax) / 100) + parseFloat(product.tax3)
+              Total{" "}
+              {format.formatPrice(
+                parseInt(product.price) +
+                  (parseInt(product.price) * parseInt(product.tax)) / 100 +
+                  parseFloat(product.tax3)
               )}
             </span>
-
-
           </div>
 
           <div className={Styles.CardProductButtonContainer}>
@@ -90,10 +102,8 @@ export const CardProductCart = ({
               <div className={Styles.CardProductCounter}>
                 <Counter
                   value={quantity}
-                  onChangeValue={(value) =>(
-                    onUpdateProductQuantity(product, value),
-                    checkout(false)
-                  )
+                  onChangeValue={(value) =>
+                    onUpdateProductQuantity(product, value)
                   }
                 />
               </div>
