@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { ScrollToTopButton } from "../../../../../common/presentation/components"
-import { useDataStore } from '../../../../../ecommerce/common/infrastructure/store/ecommerce.store'
 import AuthProducts from "../../../../auth/products/AuthProducts"
 import { categoryStyle } from "../../../../common/domain"
 import { useEcommerceStore } from "../../../../common/infrastructure/store"
@@ -17,12 +16,10 @@ const ProductsPage = () => {
   const configPage = useEcommerceStore((state) => state.configPages);
   const categoryType = configPage?.categories_type || "";
   const [listProducts, setListProducts] = useState([]);
-  const {updateDataUser} = useDataStore()
-
 
   const getProductsList = async (category) => {
     try {
-      let result = await AuthProducts(category, '-1');
+      let result = await AuthProducts(category, "-1");
       setListProducts(result);
     } catch (error) {
       console.error(error);
@@ -30,13 +27,10 @@ const ProductsPage = () => {
   };
 
   useEffect(() => {
-    updateDataUser()
     let params = new URLSearchParams(window.location.href.split("?")[1]);
-    let codeCategory = params.get("category")
-    getProductsList(codeCategory ? codeCategory : '-1');
-
-  }, [])
-
+    let codeCategory = params.get("category");
+    getProductsList(codeCategory ? codeCategory : "-1");
+  }, []);
 
   return (
     <div className={`${Styles.ProductsContainer} ${Styles[categoryType]}`}>
@@ -47,7 +41,9 @@ const ProductsPage = () => {
         {categoryType === categoryStyle.LIST && <CategoriesList />}
 
         <section className={Styles.ProductsList}>
-          {listProducts.length === 0 ? <h2>No hay productos</h2> : (
+          {listProducts.length === 0 ? (
+            <h2>No hay productos</h2>
+          ) : (
             <ProductList
               products={listProducts}
               typeCards={configPage?.card_product_type}

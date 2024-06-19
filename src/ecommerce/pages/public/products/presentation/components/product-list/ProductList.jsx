@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
-import { ToastContainer } from "react-toastify";
-import { cartProductUiTypes } from "../../../../../../common/domain";
-import { CardProduct } from "../card-product/CardProduct";
-import Styles from "./scss/product-list.module.scss";
+import PropTypes from "prop-types"
+import { ToastContainer } from "react-toastify"
+import { cartProductUiTypes } from "../../../../../../common/domain"
+import { CardProduct } from "../card-product/CardProduct"
+import Styles from "./scss/product-list.module.scss"
 
 export const ProductList = ({ products, typeCards }) => {
   return (
@@ -21,7 +21,7 @@ export const ProductList = ({ products, typeCards }) => {
         </div>
       </div>
 
-      <ToastContainer />
+      <ToastContainer position='bottom-right' />
     </div>
   );
 };

@@ -1,0 +1,12 @@
+.MinShippingValue {
+  margin: 1rem 0;
+
+  p:first-child {
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+
+  p {
+    margin: 0.5rem 0;
+  }
+}

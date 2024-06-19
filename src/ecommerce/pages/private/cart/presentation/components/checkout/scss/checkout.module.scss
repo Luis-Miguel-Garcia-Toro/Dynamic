@@ -1,0 +1,94 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.Checkout {
+  height: inherit;
+
+  h2 {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
+}
+
+.CheckoutInfoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 0.8rem 0;
+
+  &.ItemTotal {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  p {
+    &:first-child {
+      font-weight: 600;
+      color: var(--color-label);
+    }
+  }
+
+  .DateButton {
+    button {
+      background-color: transparent !important;
+      color: var(--color-primary) !important;
+      border: 1px solid var(--color-primary) !important;
+    }
+  }
+
+  .DatePickerContainer {
+    margin: 0 auto !important;
+  }
+
+  .PaymentMethodsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1rem;
+
+    .PaymentMethodsItem {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+
+      svg {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@include media-up($breakpoint-md) {
+  .Checkout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .CheckoutInfoItems {
+    height: calc(100vh - 300px);
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color-primary);
+      border-radius: 10px;
+      box-shadow: var(--box-shadow-light);
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+      border-radius: 10px;
+    }
+  }
+}

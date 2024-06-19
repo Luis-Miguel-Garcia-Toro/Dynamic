@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
-import { useState } from "react";
-import Styles from "./scss/input-field.module.scss";
+import PropTypes from "prop-types"
+import { useState } from "react"
+import Styles from "./scss/input-field.module.scss"
 
-import { VscEye, VscEyeClosed } from "react-icons/vsc";
+import { VscEye, VscEyeClosed } from "react-icons/vsc"
 
 export const InputField = ({
   className,
@@ -11,6 +11,7 @@ export const InputField = ({
   label,
   name,
   onChange,
+  placeholder,
   type,
   value,
 }) => {
@@ -25,12 +26,15 @@ export const InputField = ({
     <div
       className={`${className ? className : ""} ${Styles.InputFieldContainer}`}
     >
-      <label htmlFor="" className={Styles.Label}>
-        {label}
-      </label>
+      {label && (
+        <label htmlFor="" className={Styles.Label}>
+          {label}
+        </label>
+      )}
 
       <div className={Styles.InputContainer}>
         <input
+          placeholder={placeholder}
           name={name}
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -69,9 +73,10 @@ InputField.propTypes = {
   className: PropTypes.string,
   error: PropTypes.string,
   icon: PropTypes.element,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
   type: PropTypes.oneOf(["text", "number", "password"]),
   value: PropTypes.string.isRequired,
 };

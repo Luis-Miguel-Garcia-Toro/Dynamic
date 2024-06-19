@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  useEcommerceStore
-} from "../../../../../../../common/infrastructure/store";
+import { useEffect, useRef, useState } from "react"
+import { useEcommerceStore } from "../../../../../../../common/infrastructure/store"
 
 export const useSideCart = () => {
-  const cart = useEcommerceStore((state) => state.cart);
+  const { cart, orderResult, resetCartStore } = useEcommerceStore();
   const toggleActiveSideCart = useEcommerceStore(
     (state) => state.toggleActiveSideCart
   );
@@ -50,10 +48,19 @@ export const useSideCart = () => {
     };
   }, [toggleActiveSideCart, isActiveSideCart]);
 
+  useEffect(() => {
+    if (orderResult) {
+      resetCartStore();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return {
     animationClass,
     cart,
     isVisible,
+    orderResult,
     sideCartRef,
     toggleActiveSideCart,
   };

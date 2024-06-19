@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { useEcommerceStore } from "../../infrastructure/store";
+import { useCallback, useEffect, useState } from "react"
+import { toast } from "react-toastify"
+import { useEcommerceStore } from "../../infrastructure/store"
 
 export const useManageCart = ({ product }) => {
   const [quantity, setQuantity] = useState(0);

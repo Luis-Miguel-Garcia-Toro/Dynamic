@@ -10,7 +10,7 @@ export const authenticationMethods = {
   USER_PASSWORD_CODE: "user_password_code",
 };
 
-export const cartProductUiTypes = ["vertical", "horizontal", "full"];
+export const cartProductUiTypes = ["vertical", "horizontal"];
 
 export const categoryStyle = {
   HEADER: "header",

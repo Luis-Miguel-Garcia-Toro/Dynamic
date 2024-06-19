@@ -1,12 +1,11 @@
-import { FaCartShopping } from "react-icons/fa6";
-import { IoMdMenu } from "react-icons/io";
-import { Link } from "react-router-dom";
-import { format } from "../../../../../common/presentation/utils";
-import { HeaderCategories } from "../../../../pages/public/products/presentation/components";
-import Styles from "./scss/header.module.scss";
-import { useHeader } from "./view-model/useHeader";
+import { FaCartShopping } from "react-icons/fa6"
+import { IoMdMenu } from "react-icons/io"
+import { Link } from "react-router-dom"
+import { format } from "../../../../../common/presentation/utils"
+import { HeaderCategories } from "../../../../pages/public/products/presentation/components"
 import SearchBar from "../searchBar/Search"
-
+import Styles from "./scss/header.module.scss"
+import { useHeader } from "./view-model/useHeader"
 
 const menuItems = [
   {
@@ -35,7 +34,9 @@ export const Header = () => {
           </figure>
         </Link>
 
-        <SearchBar />
+        <div className={`${Styles.HeaderSearch} fadeIn`}>
+          <SearchBar />
+        </div>
 
         <div className={`${Styles.HeaderOptions} fadeIn`}>
           <nav className={Styles.HeaderMenu}>
@@ -51,13 +52,14 @@ export const Header = () => {
           </nav>
 
           <button
-            className={`${Styles.HeaderCart} ${summaryTotal > 0 ? Styles.HasTotal : ""
-              }`}
+            className={`${Styles.HeaderCart} ${
+              summaryTotal > 0 ? Styles.HasTotal : ""
+            }`}
             onClick={goToCart}
           >
             <div className={Styles.HeaderCartIcon}>
               {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}
-              <FaCartShopping size={20} style={{ color: '#E4061F' }} />
+              <FaCartShopping size={20} style={{ color: "#E4061F" }} />
             </div>
             {summaryTotal > 0 && (
               <span>{format.formatPrice(summaryTotal)}</span>

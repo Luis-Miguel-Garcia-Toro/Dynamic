@@ -1,0 +1,50 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.OrderResult {
+  padding: 2rem;
+}
+
+.OrderResultImage {
+  figure {
+    width: 100px;
+    margin: 0 auto;
+  }
+}
+
+.OrderResultContent {
+  margin-top: 2rem;
+  text-align: center;
+
+  .OrderId {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 1rem 0;
+
+    p {
+      &:last-child {
+        color: var(--color-primary);
+        font-weight: 600;
+      }
+    }
+  }
+
+  .OrderResultMessage {
+    margin: 1rem 0;
+  }
+}
+
+@include media-up($breakpoint-md) {
+  .OrderResult {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 8rem;
+  }
+}
+
+@include media-up($breakpoint-lg) {
+  .OrderResult {
+    width: 35%;
+  }
+}
