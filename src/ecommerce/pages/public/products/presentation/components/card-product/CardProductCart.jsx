@@ -1,32 +1,21 @@
-import { Button, Counter, ImageLazy } from "@/common/presentation/components"
-import { format } from "@/common/presentation/utils"
+import { Counter, ImageLazy } from "@/common/presentation/components"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
-import { cartProductUiTypes } from "../../../../../../common/domain"
-import Styles from "./scss/card-product.module.scss"
+import Styles from "./scss/card-product-cart.module.scss"
 import { useCardProduct } from "./view-model/useCardProduct"
 
-export const CardProductCart = ({
-  product,
-  type,
-  contentClassName,
-  sizeCardRow,
-}) => {
+export const CardProductCart = ({ product, size, showButtons }) => {
   const { title, imagen } = product;
   const {
-    quantity,
-    onAddProductToCart,
-    onUpdateProductQuantity,
     generateProductSlug,
+    onUpdateProductQuantity,
+    productPrices,
+    quantity,
   } = useCardProduct({ product });
 
   return (
-    <div className={`${Styles.CardProductContainer} fadeIn`}>
-      <div
-        className={`${Styles.CardProductContent} ${
-          contentClassName ? contentClassName : ""
-        } ${Styles[type]} ${Styles[sizeCardRow]}`}
-      >
+    <div className={`${Styles.CardProductCartContainer} fadeIn`}>
+      <div className={`${Styles.CardProductContent} ${Styles[size]}`}>
         {/* thumbnail */}
         <div className={Styles.CardProductThumbnail}>
           <figure>
@@ -41,7 +30,7 @@ export const CardProductCart = ({
           </figure>
         </div>
 
-        <div className={`${Styles.CardProductBody} ${Styles[type]}`}>
+        <div className={Styles.CardProductBody}>
           <Link
             className={Styles.CardProductTitle}
             to={`/products/${generateProductSlug(product)}`}
@@ -54,61 +43,42 @@ export const CardProductCart = ({
             </h2>
           </Link>
 
-          <div className={Styles.CardProductPriceContainerCart}>
-            <span className={Styles.CardProductTax}>
-              Precio sin impuestos: {format.formatPrice(product.price)}
+          <div className={Styles.CardProductPriceContainer}>
+            <span className={Styles.CardProductPriceItem}>
+              Precio sin impuestos: {productPrices.priceWithoutTax}
             </span>
-            {parseInt(product.tax) > 0 && (
-              <span className={Styles.CardProductTax}>
-                Precio con Iva:{" "}
-                {format.formatDecimalPrice(
-                  parseFloat(product.price) +
-                    (parseFloat(product.price) * parseFloat(product.tax)) / 100
-                )}
+            {productPrices.priceWithTax && (
+              <span className={Styles.CardProductPriceItem}>
+                Precio con Iva: {productPrices.priceWithTax}
               </span>
             )}
-            {parseInt(product.tax2) > 0 && (
-              <span className={Styles.CardProductTax}>
-                Precio con Iva:{" "}
-                {format.formatDecimalPrice(
-                  parseFloat(product.price) +
-                    (parseFloat(product.price) * parseFloat(product.tax2)) / 100
-                )}
+            {productPrices.priceWithTax2 && (
+              <span className={Styles.CardProductPriceItem}>
+                Precio con Iva: {productPrices.priceWithTax2}
               </span>
             )}
-            {parseInt(product.tax3) > 0 && (
-              <span className={Styles.CardProductTax}>
-                Imp. Azucarados: {format.formatDecimalPrice(product.tax3)}
+            {productPrices.sugaryTax && (
+              <span className={Styles.CardProductPriceItem}>
+                Imp. Azucarados: {productPrices.sugaryTax}
               </span>
             )}
-            <span className={Styles.CardProductPrice}>
-              Total{" "}
-              {format.formatPrice(
-                parseInt(product.price) +
-                  (parseInt(product.price) * parseInt(product.tax)) / 100 +
-                  parseFloat(product.tax3)
-              )}
+            <span className={Styles.CardProductPriceTotal}>
+              Total {productPrices.totalPrice}
             </span>
           </div>
+        </div>
 
-          <div className={Styles.CardProductButtonContainer}>
-            {quantity <= 0 ? (
-              <Button
-                onClick={() => onAddProductToCart(product)}
-                className={`${Styles.CardProductButton} ${Styles[type]}`}
-                label="Añadir"
+        <div className={Styles.CardProductButtonContainer}>
+          {quantity > 0 && showButtons && (
+            <div className={Styles.CardProductCounter}>
+              <Counter
+                value={quantity}
+                onChangeValue={(value) =>
+                  onUpdateProductQuantity(product, value)
+                }
               />
-            ) : (
-              <div className={Styles.CardProductCounter}>
-                <Counter
-                  value={quantity}
-                  onChangeValue={(value) =>
-                    onUpdateProductQuantity(product, value)
-                  }
-                />
-              </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -117,12 +87,11 @@ export const CardProductCart = ({
 
 CardProductCart.propTypes = {
   product: PropTypes.object.isRequired,
-  type: PropTypes.oneOf(cartProductUiTypes),
-  contentClassName: PropTypes.string,
-  sizeCardRow: PropTypes.oneOf(["small", "medium"]),
+  size: PropTypes.oneOf(["small", "large"]),
+  showButtons: PropTypes.bool,
 };
 
 CardProductCart.defaultProps = {
-  type: "vertical",
-  sizeCardRow: "medium",
+  size: "large",
+  showButtons: true,
 };

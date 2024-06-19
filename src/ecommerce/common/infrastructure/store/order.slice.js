@@ -1,6 +1,7 @@
 const initialState = {
   deliveryDate: new Date(),
   orderResult: undefined,
+  isCheckout: false,
 };
 
 export const createOrderSlice = (set) => ({
@@ -19,6 +20,12 @@ export const createOrderSlice = (set) => ({
         total,
       },
     });
+  },
+
+  toggleIsCheckout: () => {
+    set((state) => ({
+      isCheckout: !state.isCheckout,
+    }));
   },
 
   resetOrder: () => {

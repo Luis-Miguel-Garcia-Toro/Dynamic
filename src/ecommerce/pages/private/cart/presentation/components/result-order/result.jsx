@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { useNavigate } from "react-router-dom"
 import { format } from "../../../../../../../../src/common/presentation/utils"
 import errors from "../../../../../../../assets/img/error.svg"
@@ -6,21 +7,30 @@ import { Button } from "../../../../../../../common/presentation/components"
 import { useEcommerceStore } from "../../../../../../common/infrastructure/store"
 import Styles from "./scss/result-order.module.scss"
 
-const ResultOrder = () => {
-  const { orderResult: order, resetOrder, clearCart } = useEcommerceStore();
+const ResultOrder = ({ customClassName }) => {
+  const {
+    orderResult: order,
+    resetCartStore,
+    toggleActiveSideCart,
+  } = useEcommerceStore();
   const navigate = useNavigate();
 
   if (!order) return null;
 
   const onAccept = () => {
-    resetOrder();
-    clearCart();
-
+    resetCartStore();
+    if (toggleActiveSideCart) {
+      toggleActiveSideCart();
+    }
     navigate("/");
   };
 
   return (
-    <div className={Styles.OrderResult}>
+    <div
+      className={`${Styles.OrderResult} ${
+        customClassName ? customClassName : ""
+      }`}
+    >
       <section className={Styles.OrderResultImage}>
         <figure className="fadeIn">
           <img src={order.status === "error" ? errors : success} />
@@ -60,3 +70,7 @@ const ResultOrder = () => {
 };
 
 export default ResultOrder;
+
+ResultOrder.propTypes = {
+  customClassName: PropTypes.string,
+};

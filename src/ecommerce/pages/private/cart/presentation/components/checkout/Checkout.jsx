@@ -1,6 +1,5 @@
 import es from "date-fns/locale/es"
 import moment from "moment"
-import PropTypes from "prop-types"
 import DatePicker, { registerLocale } from "react-datepicker"
 import { IoCardOutline, IoCashOutline } from "react-icons/io5"
 import {
@@ -14,7 +13,7 @@ import { useCheckout } from "./view-model/useCheckout"
 
 registerLocale("es", es);
 
-export const Checkout = ({ onBack }) => {
+export const Checkout = () => {
   const {
     configPages,
     deliveryDate,
@@ -26,6 +25,7 @@ export const Checkout = ({ onBack }) => {
     sendOrder,
     setDeliveryDate,
     startDate,
+    toggleIsCheckout,
     total,
     user,
   } = useCheckout();
@@ -35,7 +35,7 @@ export const Checkout = ({ onBack }) => {
       <section className={Styles.CheckoutInfo}>
         <ButtonNavigate
           color="var(--color-label)"
-          navigateTo={onBack}
+          navigateTo={() => toggleIsCheckout()}
           text="Regresar"
         />
         <h2 className="title">Confirmar compra</h2>
@@ -115,8 +115,4 @@ export const Checkout = ({ onBack }) => {
       </section>
     </div>
   );
-};
-
-Checkout.propTypes = {
-  onBack: PropTypes.func.isRequired,
 };

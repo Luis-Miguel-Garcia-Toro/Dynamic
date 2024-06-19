@@ -12,7 +12,7 @@ export const useCheckout = () => {
   const [daysCalendar, setDaysCalendar] = useState([]);
 
   const { user, logout } = useAppStore();
-  const { configPages, cart, setDeliveryDate, setOrderInfo } =
+  const { configPages, cart, setDeliveryDate, setOrderInfo, toggleIsCheckout } =
     useEcommerceStore();
   const { total, deliveryDate } = useEcommerceStore((state) =>
     state.getSummaryInformation()
@@ -28,7 +28,6 @@ export const useCheckout = () => {
 
   const filterDate = (date) => {
     const day = date.getDay();
-    console.log({ day });
     let data = daysCalendar;
     if (data.length === 1) {
       return day !== data[0];
@@ -225,6 +224,7 @@ export const useCheckout = () => {
     sendOrder,
     setDeliveryDate,
     startDate,
+    toggleIsCheckout,
     total,
     user,
   };

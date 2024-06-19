@@ -7,10 +7,16 @@ import { createUiSlice } from "./ui.slice"
 export const useEcommerceStore = create(
   devtools(
     persist(
-      (...a) => ({
-        ...createCartSlice(...a),
-        ...createUiSlice(...a),
-        ...createOrderSlice(...a),
+      (set, get, api) => ({
+        ...createCartSlice(set, get, api),
+        ...createUiSlice(set, get, api),
+        ...createOrderSlice(set, get, api),
+
+        resetCartStore: () => {
+          const { clearCart, resetOrder } = get();
+          clearCart();
+          resetOrder();
+        },
       }),
       { name: "app-ecommerce-store" }
     )

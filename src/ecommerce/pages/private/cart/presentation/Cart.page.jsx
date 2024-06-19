@@ -5,12 +5,11 @@ import { EmptyCart, OrderSummary } from "./components"
 import ResultOrder from "./components/result-order/result"
 import Styles from "./scss/cart.module.scss"
 const CartPage = () => {
-  const { cart, orderResult, resetOrder, clearCart } = useEcommerceStore();
+  const { cart, orderResult, resetCartStore, isCheckout } = useEcommerceStore();
 
   useEffect(() => {
     if (orderResult) {
-      resetOrder();
-      clearCart();
+      resetCartStore();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,8 +29,8 @@ const CartPage = () => {
             <div className={Styles.CartProductsList}>
               {cart.map((product, index) => (
                 <CardProductCart
+                  showButtons={!isCheckout}
                   contentClassName={Styles.CartProductContent}
-                  type="full"
                   key={`${product.code}-${index}`}
                   product={product}
                 />

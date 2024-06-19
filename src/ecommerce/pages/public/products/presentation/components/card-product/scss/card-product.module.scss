@@ -10,6 +10,7 @@ $padding-md: 2rem;
   border: 1px solid var(--color-input-border);
   overflow: hidden;
   transition: 0.3s;
+  width: 100%;
 
   &:hover {
     border-color: var(--color-primary);
@@ -24,8 +25,7 @@ $padding-md: 2rem;
     height: 100%;
     transition: 0.3s;
 
-    &.horizontal,
-    &.full {
+    &.horizontal {
       grid-template-columns: 40% 1fr;
 
       &.small {
@@ -39,7 +39,6 @@ $padding-md: 2rem;
 
     &.vertical:hover,
     &.horizontal:hover,
-    &.full:hover,
     &:hover {
       .CardProductButton {
         button {
@@ -75,8 +74,7 @@ $padding-md: 2rem;
       display: grid;
       grid-template-rows: 1fr auto auto;
 
-      &.horizontal,
-      &.full {
+      &.horizontal {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -115,8 +113,7 @@ $padding-md: 2rem;
           font-size: 0.8rem;
         }
 
-        &.horizontal,
-        &.full {
+        &.horizontal {
           button {
             width: auto !important;
           }
@@ -140,58 +137,6 @@ $padding-md: 2rem;
 
       .CardProductBody {
         padding: 1rem $padding-md;
-      }
-    }
-  }
-}
-
-@include media-up($breakpoint-lg) {
-  .CardProductContainer {
-    .CardProductContent {
-      &.full {
-        grid-template-rows: 140px 1fr !important;
-        grid-template-columns: 150px 1fr;
-
-        .CardProductThumbnail {
-          padding: 1rem;
-        }
-
-        .CardProductBody {
-          display: grid;
-          grid-template-columns: auto 1fr;
-          grid-template-areas:
-            "title buttons"
-            "price buttons";
-          align-items: center;
-          grid-template-rows: 1fr 1fr;
-          gap: 0.5rem;
-
-          & .CardProductTitle {
-            grid-area: title;
-            align-self: flex-end;
-          }
-
-          & .CardProductPriceContainer {
-            grid-area: price;
-            align-self: flex-start;
-          }
-
-          & .CardProductPriceContainerCart {
-            grid-area: price;
-            display: flex;
-            flex-direction: column;
-            align-self: flex-start;
-          }
-
-          & .CardProductButtonContainer {
-            grid-area: buttons;
-
-            .CardProductCounter {
-              display: flex;
-              justify-content: flex-end;
-            }
-          }
-        }
       }
     }
   }

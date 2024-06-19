@@ -1,17 +1,16 @@
 import moment from "moment"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo } from "react"
 import { useAppStore } from "../../../../../../../../common/infrastructure/store/app.store"
 import { useEcommerceStore } from "../../../../../../../common/infrastructure/store"
 
 const MIN_SHIPPING_VALUE = 20000;
 
 export const useOrderSummary = () => {
-  const [isCheckout, setIsCheckout] = useState(false);
-
   const { user } = useAppStore();
   const { subtotal, Iva, impAzucarados, total, ultraProcesados } =
     useEcommerceStore((state) => state.getSummaryInformation());
-  const { deliveryDate, setDeliveryDate } = useEcommerceStore();
+  const { deliveryDate, setDeliveryDate, isCheckout, toggleIsCheckout } =
+    useEcommerceStore();
 
   const totalData = useMemo(() => {
     return {
@@ -64,10 +63,6 @@ export const useOrderSummary = () => {
     setDeliveryDate(moment(BaseDate));
   };
 
-  const onToggleIsCheckout = () => {
-    setIsCheckout(!isCheckout);
-  };
-
   useEffect(() => {
     getDateDelivery();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -77,7 +72,7 @@ export const useOrderSummary = () => {
     deliveryDate,
     isCheckout,
     MIN_SHIPPING_VALUE,
-    onToggleIsCheckout,
+    toggleIsCheckout,
     total,
     totalData,
   };

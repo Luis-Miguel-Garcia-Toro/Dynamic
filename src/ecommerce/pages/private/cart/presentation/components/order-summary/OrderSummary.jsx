@@ -15,7 +15,7 @@ export const OrderSummary = () => {
     deliveryDate,
     isCheckout,
     MIN_SHIPPING_VALUE,
-    onToggleIsCheckout,
+    toggleIsCheckout,
     total,
     totalData,
   } = useOrderSummary();
@@ -60,16 +60,14 @@ export const OrderSummary = () => {
 
           <div className={Styles.OrderActions}>
             {total > MIN_SHIPPING_VALUE && (
-              <Button label="Realizar pedido" onClick={onToggleIsCheckout} />
+              <Button label="Realizar pedido" onClick={toggleIsCheckout} />
             )}
           </div>
         </div>
       )}
 
       {/* Confirmar pedido */}
-      {total > MIN_SHIPPING_VALUE && isCheckout && (
-        <Checkout onBack={onToggleIsCheckout} />
-      )}
+      {total > MIN_SHIPPING_VALUE && isCheckout && <Checkout />}
     </div>
   );
 };
