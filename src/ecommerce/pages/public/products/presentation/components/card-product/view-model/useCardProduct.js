@@ -37,9 +37,13 @@ export const useCardProduct = ({ product }) => {
   }, [product]);
 
   const generateProductSlug = (product) => {
-    const slug =
-      product.title.toLowerCase().replace(/\s/g, "-") + "-" + product.code;
-    return slug;
+    try {
+      const slug =
+        product.title.toLowerCase().replace(/\s/g, "-") + "-" + product.code;
+      return slug;
+    } catch (error) {
+      return "";
+    }
   };
 
   return {

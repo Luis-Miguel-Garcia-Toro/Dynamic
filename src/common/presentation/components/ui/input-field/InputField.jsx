@@ -11,6 +11,7 @@ export const InputField = ({
   label,
   name,
   onChange,
+  placeholder,
   type,
   value,
 }) => {
@@ -33,6 +34,7 @@ export const InputField = ({
 
       <div className={Styles.InputContainer}>
         <input
+          placeholder={placeholder}
           name={name}
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -74,6 +76,7 @@ InputField.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
   type: PropTypes.oneOf(["text", "number", "password"]),
   value: PropTypes.string.isRequired,
 };

@@ -15,18 +15,21 @@
 
 .HeaderContent {
   padding: 1rem 2rem;
-  display: flex;
-  // grid-template-columns: 1fr auto;
-  // grid-template-areas:
-  //   "logo cart"
-  //   "menu menu";
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "logo cart"
+    "search search";
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .HeaderLinkLogo {
   color: var(--color-white);
   text-decoration: none;
+  grid-area: logo;
+  transition: 0.3s;
 
   figure {
     width: 150px;
@@ -39,10 +42,18 @@
   }
 }
 
+.HeaderSearch {
+  grid-area: search;
+  transition: 0.3s;
+}
+
 .HeaderOptions {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  grid-area: cart;
+  justify-content: flex-end;
+  transition: 0.3s;
 }
 
 .HeaderMenu {
@@ -123,6 +134,24 @@
 }
 
 @include media-up($breakpoint-md) {
+  .HeaderContent {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "logo search cart";
+    align-items: center;
+  }
+
+  .HeaderSearch {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+
+    & > div {
+      width: 100%;
+    }
+  }
+
   .HeaderOptions {
     gap: 1rem;
   }
@@ -133,5 +162,11 @@
         display: inline;
       }
     }
+  }
+}
+
+@include media-up($breakpoint-lg) {
+  .HeaderSearch {
+    width: 50%;
   }
 }
