@@ -2,7 +2,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { useDataStore, useEcommerceStore } from "../../../../../common/infrastructure/store";
 import { useAppStore } from "../../../../../../common/infrastructure/store/app.store"
-import AuthNewOrder from "../../../../../auth/order/AuthOrder"
+import {AuthNewOrder} from "../../../../../auth/order/AuthOrder"
 
 export const useCartPage = () => {
   const cart = useEcommerceStore((state) => state.cart);

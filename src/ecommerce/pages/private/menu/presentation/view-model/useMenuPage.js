@@ -3,7 +3,7 @@ import { useAppStore } from "../../../../../../common/infrastructure/store";
 import { useEcommerceStore } from "../../../../../common/infrastructure/store";
 
 export const useMenuPage = () => {
-  const [optionSelected, setOptionSelected] = useState("wallet");
+  const [optionSelected, setOptionSelected] = useState("orders");
   const logout = useAppStore((state) => state.logout);
   const configPage = useEcommerceStore((state) => state.configPages);
   const { menu = [] } = configPage;
