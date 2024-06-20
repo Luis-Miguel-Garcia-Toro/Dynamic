@@ -1,0 +1,25 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+
+.filtroEmpresaCartera{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    .input-date{
+        margin: 0 20px;
+    }
+}
+
+.downloadHistory{
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    button{
+        border: none;
+        background-color: transparent;
+    }
+}
+
+
+

@@ -1,7 +1,7 @@
 // url base for configuration page
 
 const URL_BASE_API = import.meta.env.VITE_API_EMART_URL;
-const ENV = import.meta.env.VITE_ENVIRONMENT;
+export const ENV = import.meta.env.VITE_ENVIRONMENT;
 export const BUSINESS_UNIT = import.meta.env.VITE_BUSINESS_UNIT;
 
 
@@ -19,5 +19,8 @@ export const LOGIN_BOOT = `${URL_BASE_ECOMMERCE}auth_b2b/login_b2b_web_bot`
 export const VALIDATE_CODE = `${URL_BASE_ECOMMERCE}auth_b2b/validate_code_login_b2b_web?`
 export const NEW_ORDER = `${URL_BASE_ECOMMERCE}order/new_order`
 export const GET_ORDER_HISTORY = `${URL_BASE_ECOMMERCE}order_b2b/get_history_order`
+export const GET_BANNER = `${URL_BASE_ECOMMERCE}products_b2b/get_list_banners?&branch=-1&business_unit=1000&environment=prd`
+
+
 
 

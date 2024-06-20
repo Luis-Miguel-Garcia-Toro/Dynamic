@@ -10,7 +10,7 @@ export const useRootEcommerceLayout = () => {
     const root = document.querySelector(":root");
     const { theme, images } = configPage;
     root.style.setProperty("--color-primary", theme.primary_color);
-    root.style.setProperty("--color-secondary", theme.secondary_color);
+    root.style.setProperty("--color-secondary", theme.primary_button);
     root.style.setProperty("--color-text", theme.text_color);
     root.style.setProperty(
       "--login-background-image",

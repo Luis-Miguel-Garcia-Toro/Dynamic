@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NEW_ORDER, URL_BASE_ECOMMERCE } from "../../common/infrastructure/globals/globals";
+import { NEW_ORDER, GET_ORDER_HISTORY } from "../../common/infrastructure/globals/globals";
 
 export const AuthNewOrder = async (order, userToken) => {
 
@@ -21,8 +21,8 @@ export const AuthNewOrder = async (order, userToken) => {
   return result
 }
 
-export const OrderHistory = async (token) => {
-  let url = `${URL_BASE_ECOMMERCE}?initialDate=2024-06-01&endDate=2024-06-19`
+export const OrderHistory = async (token, initial, end) => {
+  let url = `${GET_ORDER_HISTORY}?initialDate=${initial}&endDate=${end}`
   const option = {
     method: 'POST',
     url: url,

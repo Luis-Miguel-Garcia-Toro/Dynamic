@@ -8,9 +8,10 @@ export const ImageLazy = ({ imageUri }) => {
   const imageDefaultBusiness = useEcommerceStore(
     (state) => state.configPages?.images?.no_found_product
   );
+  let imageProduct = imageUri ? imageUri : imageDefaultBusiness
   return (
     <LazyLoadImage
-      src={imageUri}
+      src={imageProduct}
       alt=""
       onError={(e) => {
         e.target.src = imageDefaultBusiness

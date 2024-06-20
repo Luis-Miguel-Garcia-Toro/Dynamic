@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import { cartProductUiTypes } from "../../../../../../common/domain"
 import Styles from "./scss/card-product.module.scss"
 import { useCardProduct } from "./view-model/useCardProduct"
+import {useEcommerceStore} from '../../../../../../common/infrastructure/store'
 
 export const CardProduct = ({
   product,
@@ -12,6 +13,7 @@ export const CardProduct = ({
   contentClassName,
   sizeCardRow,
 }) => {
+  const configPage = useEcommerceStore((state) => state.configPages);
   const { title, imagen } = product;
   const {
     quantity,

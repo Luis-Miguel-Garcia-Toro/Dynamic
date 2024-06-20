@@ -11,15 +11,18 @@ import {
   SidebarCategories,
 } from "./components"
 import Styles from "./scss/products.module.scss"
+import { useAppStore } from "../../../../../common/infrastructure/store"
+
 
 const ProductsPage = () => {
+  const { user } = useAppStore();
   const configPage = useEcommerceStore((state) => state.configPages);
   const categoryType = configPage?.categories_type || "";
   const [listProducts, setListProducts] = useState([]);
 
-  const getProductsList = async (category) => {
+  const getProductsList = async (category, user) => {
     try {
-      let result = await AuthProducts(category, "-1");
+      let result = await AuthProducts(category, "-1", user);
       setListProducts(result);
     } catch (error) {
       console.error(error);
@@ -29,7 +32,7 @@ const ProductsPage = () => {
   useEffect(() => {
     let params = new URLSearchParams(window.location.href.split("?")[1]);
     let codeCategory = params.get("category");
-    getProductsList(codeCategory ? codeCategory : "-1");
+    getProductsList(codeCategory ? codeCategory : "-1", user ? user.code : "-1");
   }, []);
 
   return (

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useAppStore } from "../../../../../../../../common/infrastructure/store/app.store"
 import {AuthNewOrder} from "../../../../../../../auth/order/AuthOrder"
 import { useEcommerceStore } from "../../../../../../../common/infrastructure/store"
+import { BUSINESS_UNIT} from "../../../../../../../common/infrastructure/globals/globals";
 
 export const useCheckout = () => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
@@ -71,7 +72,7 @@ export const useCheckout = () => {
 
   const prepareFilterDays = () => {
     let actualDate = new Date();
-    let rute = user.delivery_area.split("");
+    let rute = user.delivery_area ? user.delivery_area.split("") : '1111110'.split("");
     let result = [];
     let getLastDay = rute.pop();
     rute.unshift(getLastDay);
@@ -99,7 +100,7 @@ export const useCheckout = () => {
   const getDateDelivey = () => {
     let BaseDate = new Date();
     let resultDay = "";
-    let dataOrigen = user.delivery_area;
+    let dataOrigen = user.delivery_area ? user.delivery_area : "1111110";
     let dataorigenFinish = dataOrigen + dataOrigen;
     let actualyDate = new Date();
     let diaActual = actualyDate.getDay();
@@ -154,12 +155,12 @@ export const useCheckout = () => {
         total_disc: 0,
         created_at: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
         reason: "ORDER",
-        business_id: 1000,
+        business_id: BUSINESS_UNIT,
         unit: "",
         unit2: "",
         product: JSON.stringify({ code: item.title }),
         type: "Web",
-        business_Unit: 1000,
+        business_Unit: BUSINESS_UNIT,
         item: orderDetalle,
         total_tax2:
           ((item.price * parseFloat(item.tax2)) / 100) * item.quantity,

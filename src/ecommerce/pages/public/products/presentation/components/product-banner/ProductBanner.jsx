@@ -1,27 +1,28 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import Styles from "./scss/product-banner.module.scss";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
 import "./scss/swiper-styles.scss";
-
 // import required modules
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-
-import imageBanner1 from "@/assets/img/banner-1.png";
-import imageBanner2 from "@/assets/img/banner-2.png";
+import { useEffect } from "react";
+import imageBanner1 from "@/assets/img/banner-1.jpg";
 import { bannerStyle as bannerStyleOptions } from "../../../../../../common/domain";
 import { useEcommerceStore } from "../../../../../../common/infrastructure/store";
+import useProductBanner from "./view_model/useProductBanner"
 
 export const ProductBanner = () => {
+  const {getBanners, banner} = useProductBanner()
   const configPage = useEcommerceStore((state) => state.configPages);
   const bannerStyle = configPage?.banner_type || bannerStyleOptions.BASIC;
   const categoryStyle = configPage?.categories_type;
 
+  useEffect(() => {
+    getBanners()
+  }, [])
   return (
     <div
       className={`${Styles.ProductBanner} fadeIn ${Styles[bannerStyle]} ${Styles[categoryStyle]}`}
@@ -51,9 +52,9 @@ export const ProductBanner = () => {
           <SwiperSlide>
             <img alt="" src={imageBanner1} />
           </SwiperSlide>
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <img alt="" src={imageBanner2} />
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
       </div>
     </div>
