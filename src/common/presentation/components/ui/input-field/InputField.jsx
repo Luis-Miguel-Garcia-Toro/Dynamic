@@ -14,6 +14,7 @@ export const InputField = ({
   placeholder,
   type,
   value,
+  inputAutocomplete,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const isFieldTypePassword = type === "password";
@@ -34,6 +35,7 @@ export const InputField = ({
 
       <div className={Styles.InputContainer}>
         <input
+          autoComplete={inputAutocomplete ? "on" : "off"}
           placeholder={placeholder}
           name={name}
           value={value}
@@ -79,9 +81,11 @@ InputField.propTypes = {
   placeholder: PropTypes.string,
   type: PropTypes.oneOf(["text", "number", "password"]),
   value: PropTypes.string.isRequired,
+  inputAutocomplete: PropTypes.bool,
 };
 
 InputField.defaultProps = {
   type: "text",
   className: undefined,
+  inputAutocomplete: true,
 };
