@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Styles from "./scss/categories-list.module.scss";
 import AuthCategories from "../../../../../../../auth/categories/AuthCategories"
 
+
 export const CategoriesList = () => {
   const [listCategories, setListCategories] = useState([]);
 
@@ -26,7 +27,7 @@ export const CategoriesList = () => {
           {(listCategories || []).map((category) => (
             <div className={`${Styles.CategoriesItem} fadeIn`} key={category.descripcion} onClick={() => window.location.href = 'products?category=' + category.code}>
               <figure>
-                <img src='https://www.svgrepo.com/show/355481/milk.svg' />
+                <img src={category.img == null ? 'https://www.svgrepo.com/show/355481/milk.svg' : category.img} />
               </figure>
               <span>{category.descripcion}</span>
             </div>

@@ -3,11 +3,12 @@
 
 .MenuContent {
   margin-left: 0px;
-  padding: 6rem 2rem 2rem;
+  padding: 4rem 1.5rem 1rem;
   transition: 0.3s;
 
   h1 {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
   }
 }
 
@@ -15,5 +16,8 @@
   .MenuContent {
     margin-left: 300px;
     padding: 2rem 4rem;
+    h1{
+      font-size: 1.5rem;
+    }
   }
 }

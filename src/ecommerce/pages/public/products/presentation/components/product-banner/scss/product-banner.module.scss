@@ -1,4 +1,6 @@
 @import "@/common/presentation/scss/base/container";
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
 
 .ProductBanner {
   box-sizing: border-box;
@@ -10,10 +12,19 @@
   }
 
   &.basic {
-    padding: 2rem 4rem;
-
+    padding: 2rem 1.2rem;
     .ProductBannerContainer {
       @extend .Container;
+    }
+  }
+}
+
+
+@include media-up($breakpoint-md) {
+  .ProductBanner {
+    &.basic {
+      padding: 2rem 4rem;
+    
     }
   }
 }

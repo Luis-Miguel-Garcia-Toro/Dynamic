@@ -1,11 +1,13 @@
 import { FaCartShopping } from "react-icons/fa6"
-import { IoMdMenu } from "react-icons/io"
+import { IoMdMenu  } from "react-icons/io"
 import { Link } from "react-router-dom"
 import { format } from "../../../../../common/presentation/utils"
 import { HeaderCategories } from "../../../../pages/public/products/presentation/components"
 import SearchBar from "../searchBar/Search"
 import Styles from "./scss/header.module.scss"
 import { useHeader } from "./view-model/useHeader"
+import { useEffect, useState } from "react"
+import FloatingBar from "../floatingBar/floatingBar"
 
 const menuItems = [
   {
@@ -24,6 +26,13 @@ export const Header = () => {
     goToCart,
     imageLogo,
   } = useHeader();
+  const [urlPoint, setUrlPoint] = useState("");
+
+  useEffect(() => {
+    const url = window.location.href;
+    let logoUrl = url.includes("cart") ? 'carrito' : 'noCarrito'
+    setUrlPoint(logoUrl);
+  }, []);
 
   return (
     <header ref={headerRef} className={Styles.HeaderContainer}>
@@ -33,12 +42,13 @@ export const Header = () => {
             <img src={imageLogo} alt="Ir a la tienda" />
           </figure>
         </Link>
-
+        <div className={urlPoint === 'carrito' ? `${Styles.FatherSearch} fadeIn` :""}>
         <div className={`${Styles.HeaderSearch} fadeIn`}>
           <SearchBar />
         </div>
+        </div>
 
-        <div className={`${Styles.HeaderOptions} fadeIn`}>
+        <div className={`${Styles.HeaderOptions} fadeIn`} >
           <nav className={Styles.HeaderMenu}>
             <ul>
               {menuItems.map((item) => (
@@ -52,22 +62,24 @@ export const Header = () => {
           </nav>
 
           <button
+          style={{  width:"45px", height:"45px" }}
             className={`${Styles.HeaderCart} ${
               summaryTotal > 0 ? Styles.HasTotal : ""
             }`}
             onClick={goToCart}
           >
-            <div className={Styles.HeaderCartIcon}>
-              {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}
-              <FaCartShopping size={20} style={{ color: "#E4061F" }} />
+            <div className={urlPoint === 'carrito' ?  `${Styles.HeaderCartIconCart}` :Styles.HeaderCartIcon}>
+              {totalItemsInCart > 0 && <span >{totalItemsInCart}</span>}
+              <FaCartShopping style={{ color: "#E4061F" }}  size={25}/>
             </div>
             {summaryTotal > 0 && (
-              <span>{format.formatPrice(summaryTotal)}</span>
+              <span className={Styles.Total}>{format.formatPrice(summaryTotal)}</span>
             )}
           </button>
         </div>
       </div>
-
+      {urlPoint != 'carrito' && <FloatingBar />}
+    
       {showHeaderCategories && <HeaderCategories />}
     </header>
   );

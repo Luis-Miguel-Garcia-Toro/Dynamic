@@ -3,7 +3,7 @@
 @import "@/common/presentation/scss/base/container";
 
 .ProductListContainer {
-  padding: 2rem;
+  padding: 0.0rem 1rem;
 
   .ProductListContent {
     @extend .Container;
@@ -37,6 +37,9 @@
     &.vertical {
       grid-template-columns: repeat(3, 1fr);
     }
+  }
+  .ProductListContainer {
+    padding: 2rem;
   }
 }
 

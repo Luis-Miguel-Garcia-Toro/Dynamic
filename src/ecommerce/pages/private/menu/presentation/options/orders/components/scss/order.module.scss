@@ -1,25 +1,107 @@
 @import "@/common/presentation/scss/mixins/responsive.mixin";
 @import "@/common/presentation/scss/vars";
 
-.filtroEmpresaCartera{
-    display: flex;
+.filtroEmpresaCartera {
+    width: 100%;
+    display: block;
     justify-content: center;
     align-items: center;
     margin: 20px 0;
-    .input-date{
+
+    .input-date {
         margin: 0 20px;
     }
 }
 
-.downloadHistory{
+.downloadHistory {
+    position: absolute;
+    top: 50px;
+    right: 50px;
     margin-right: 10px;
     cursor: pointer;
     border: none;
-    button{
+
+    button {
         border: none;
         background-color: transparent;
     }
 }
 
+.orderMovil {
+    display: block;
+    margin-bottom: 80px;
+}
 
 
+.orderWeb {
+    display: none;
+}
+.dateOrder{
+    color: black;
+    font-weight: 600;
+    margin: 10px 10px 5px 10px;
+}
+
+.card {
+    cursor: pointer;
+    margin-bottom: 5px;
+    border-radius: 20px;
+    padding: 30px 10px;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 3px 7px -1px #7e7e81;
+    padding: 10px;
+    background-color: #fff;
+
+    h5 {
+        color: var(--color-primary);
+    }
+    .price {
+        font-weight: 600;
+    }
+    p{
+        font-size: 0.7rem;
+    }
+}
+
+.titleAndPriced{
+display: flex;
+justify-content: space-between;
+}
+
+
+
+@include media-up($breakpoint-md) {
+    .filtroEmpresaCartera {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+
+        .input-date {
+            margin: 0 20px;
+        }
+    }
+
+    .orderWeb {
+        display: block;
+    }
+
+    .orderMovil {
+        display: none;
+    }
+
+
+    .downloadHistory {
+        margin-right: 10px;
+        cursor: pointer;
+        border: none;
+
+        button {
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+        }
+    }
+
+}

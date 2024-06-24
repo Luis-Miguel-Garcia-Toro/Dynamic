@@ -1,64 +1,58 @@
 import { BsFillFileEarmarkExcelFill } from "react-icons/bs";
-import Stack from '@mui/material/Stack'
-import TextField from '@mui/material/TextField'
 import { UseOrdersPage } from "../view-model/UseOrdersPage"
-import React from "react";
+import React, { useState } from "react";
 import OrderTable from './OrderTable';
 import { LoadingFull } from '../../../../../../../../common/presentation/components';
 import Styles from "./scss/order.module.scss";
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import { DateRange } from 'react-date-range';
+import { es } from 'date-fns/locale'
+import OrderMovil from "./OrderMovil";
+
+
 
 const FilterOrder = () => {
-    const { EndDate, initialDate, changeInitialDate, changeEndDate, downloadExcel, HistoryOrders, loader } = UseOrdersPage();
+    const { downloadExcel, HistoryOrders, onChange, rangesPicker, dateOrder, loading } = UseOrdersPage();
 
     return (
         <div>
+            <div className={Styles.downloadHistory}>
+                <button onClick={() => downloadExcel()}>
+                    <BsFillFileEarmarkExcelFill size={30} style={{ color: 'green' }} />
+                </button>
+            </div>
             <div className={Styles.filtroEmpresaCartera}>
-                
-                <div className="input-date">
-                    <Stack component="form" noValidate spacing={3} style={{ marginRight: '10px' }}>
-                        <TextField
-                            id="date"
-                            label="Inicio"
-                            type="date"
-                            defaultValue={initialDate}
-                            sx={{ width: 220 }}
-                            InputLabelProps={{
-                                shrink: true
-                            }}
-                            onChange={(e) => changeInitialDate(e.target.value)}
-                        />
-                    </Stack>
-                </div>
-                <div className="input-date">
-                    <Stack component="form" noValidate spacing={3} style={{ display: 'flex' }}>
-                        <TextField
-                            id="date"
-                            label="Fin"
-                            type="date"
-                            defaultValue={EndDate}
-                            sx={{ width: 220 }}
-                            InputLabelProps={{
-                                shrink: true
-                            }}
-                            onChange={(e) => changeEndDate(e.target.value)}
-                        />
-                    </Stack>
-                </div>
-                <div className={Styles.downloadHistory}>
-                    <button onClick={() => downloadExcel()}>
-                        <BsFillFileEarmarkExcelFill size={30} style={{ color: 'green' }} />
-                    </button>
+
+                <div className={Styles.stylePicker}>
+                    <DateRange
+                        editableDateInputs={false}
+                        onChange={item => onChange([item.selection])}
+                        moveRangeOnFirstSelection={false}
+                        ranges={rangesPicker}
+                        locale={es}
+                    />
                 </div>
             </div>
-            {loader ? (
-                <LoadingFull show={loader} />
+            {loading ? (
+                <LoadingFull show={loading} />
             ) : (
-                <>
-                    {HistoryOrders.length > 0 ? <OrderTable /> : (
-                        <h3>No existen pedidos</h3>
-                    )}
-                </>
+                <div>
+                    <div className={Styles.orderMovil}>
+                        <OrderMovil orders={HistoryOrders} />
+
+                    </div>
+                    <div className={Styles.orderWeb}>
+                        {HistoryOrders.length > 0 ? <OrderTable orders={HistoryOrders} dateOrder={dateOrder} /> : (
+                            <h3>No existen pedidos</h3>
+                        )}
+                    </div>
+                </div>
             )}
+
+
+
+
         </div>
     )
 }

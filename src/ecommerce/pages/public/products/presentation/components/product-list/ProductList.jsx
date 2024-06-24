@@ -8,7 +8,7 @@ export const ProductList = ({ products, typeCards }) => {
   return (
     <div className={Styles.ProductListContainer}>
       <div className={Styles.ProductListContent}>
-        <h2 className="title fadeIn">Listado de productos</h2>
+        <h4 className="title fadeIn">Elige tus productos</h4>
         <div className={`${Styles.ProductList} ${Styles[typeCards]}`}>
           {products.map((product, index) => (
             <CardProduct

@@ -15,7 +15,7 @@
 
 .HeaderContent {
   padding: 1rem 2rem;
-  display: grid;
+  display: flex;
   grid-template-columns: auto 1fr;
   grid-template-areas:
     "logo cart"
@@ -32,7 +32,7 @@
   transition: 0.3s;
 
   figure {
-    width: 110px;
+    width: 70px;
 
     img {
       width: 100%;
@@ -42,10 +42,16 @@
   }
 }
 
+.FatherSearch {
+  display: none;
+}
+
 .HeaderSearch {
   grid-area: search;
   transition: 0.3s;
 }
+
+
 
 .HeaderOptions {
   display: flex;
@@ -58,6 +64,7 @@
 
 .HeaderMenu {
   height: 100%;
+  display: none;
 
   ul {
     display: flex;
@@ -93,8 +100,8 @@
   align-items: center;
   gap: 1rem;
   background-color: var(--color-white);
-  height: 40px;
-  width: 40px;
+  // height: 45px;
+  // width: 20px;
   border-radius: var(--border-radius-full);
   justify-content: center;
   transition: 0.3s;
@@ -106,12 +113,31 @@
     border-radius: var(--border-radius-md);
     // height: auto;
     width: auto;
+
+    .Total {
+      display: none;
+    }
   }
 
   .HeaderCartIcon {
     position: relative;
     color: var(--color-text);
+
+    // & svg {
+    //   font-size: 2.5rem;
+    // }
   }
+
+  .HeaderCartIconCart {
+    position: relative;
+    color: var(--color-text);
+
+    // & svg {
+    //   font-size: 1.2rem;
+    // }
+  }
+
+  
 
   & span:first-child {
     position: absolute;
@@ -138,6 +164,11 @@
     grid-template-columns: auto 1fr auto;
     grid-template-areas: "logo search cart";
     align-items: center;
+    display: grid;
+  }
+
+  .FatherSearch {
+    display: block;
   }
 
   .HeaderSearch {
@@ -147,22 +178,51 @@
     justify-content: center;
     margin: 0 auto;
 
-    & > div {
+    &>div {
       width: 100%;
     }
   }
+
+
+  .HeaderLinkLogo {
+    figure {
+      width: 110px;
+    }
+  }
+  
 
   .HeaderOptions {
     gap: 1rem;
   }
 
   .HeaderMenu {
+    display: block;
     ul li a {
       & span {
         display: inline;
       }
     }
   }
+
+  .HeaderCart {
+    height: 40px;
+    width: 40px;
+    &.HasTotal {
+      .Total {
+        display: block;
+      }
+    }
+    .HeaderCartIcon {
+      position: relative;
+      color: var(--color-text);
+  
+      & svg {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+
 }
 
 @include media-up($breakpoint-lg) {

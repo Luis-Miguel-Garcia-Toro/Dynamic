@@ -6,38 +6,44 @@ import * as XLSX from 'xlsx'
 export const UseOrdersPage = () => {
     const { user } = useAppStore();
     const [HistoryOrders, setHistoryOrders] = useState([]);
-    const [loader, setLoader] = useState(true)
+    const [dateOrder, setDateOrders] = useState([])   
+    const [loading, setLoading] = useState(false)
     const [EndDate, setEndDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
     const [initialDate, setInitialDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
-
+    const [rangesPicker, setRangesPicker] = useState([
+        {
+            startDate: new Date(),
+            endDate: new Date(),
+            key: 'selection'
+        }
+    ])
 
     const getHistoryOrder = async (initial, end) => {
         let result = await OrderHistory(user.userToken, initial === undefined ? initialDate : initial, end === undefined ? EndDate : end)
-        console.log(result);
-        setLoader(false)
         if (result.data === 'Index was outside the bounds of the array.' ||
             result.data === 'Cannot perform runtime binding on a null reference'
         ) {
             setHistoryOrders([])
+            setLoading(false)
         } else if (result.data.data.length === 0) {
             setHistoryOrders([])
+            setLoading(false)
         } else {
-            setHistoryOrders(result.data.data)
+            let res = result.data.data
+            setHistoryOrders(res)
+            setLoading(false)
         }
     }
 
-    const changeInitialDate = (item) => {
-        setLoader(true)
-        setInitialDate(moment(item).format('YYYY-MM-DD'))
-        getHistoryOrder(moment(item).format('YYYY-MM-DD'), EndDate)
+    const onChange = async (date) => {
+        setRangesPicker(date)
+        if(moment(date[0].startDate).format('YYYY-MM-DD') !== moment(date[0].endDate).format('YYYY-MM-DD')){
+            setLoading(true)
+            let initialDate = moment(date[0].startDate).format('YYYY-MM-DD')
+            let endDate = moment(date[0].endDate).format('YYYY-MM-DD')
+            await getHistoryOrder(initialDate, endDate)
+        }
     }
-
-    const changeEndDate = (item) => {
-        setLoader(true)
-        setEndDate(moment(item).format('YYYY-MM-DD'))
-        getHistoryOrder(initialDate, moment(item).format('YYYY-MM-DD'))
-    }
-
 
     const downloadExcel = () => {
         console.log("entra");
@@ -91,20 +97,20 @@ export const UseOrdersPage = () => {
         return detalleData
     }
 
-    useEffect(() => {
-        getHistoryOrder()
-    }, [])
+
     
     return {
         getHistoryOrder,
-        loader,
+        loading,
         HistoryOrders,
         EndDate,
         initialDate,
-        changeInitialDate,
-        changeEndDate,
         downloadExcel,
-        setHistoryOrders
+        setHistoryOrders,
+        onChange,
+        rangesPicker, 
+        setRangesPicker,
+        dateOrder
 
     }
 

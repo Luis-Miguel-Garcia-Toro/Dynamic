@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { authStateStatus } from "../../../common/domain";
 import { useAppStore } from "../../../common/infrastructure/store";

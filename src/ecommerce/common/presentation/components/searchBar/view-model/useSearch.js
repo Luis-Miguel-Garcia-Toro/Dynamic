@@ -2,6 +2,8 @@ import Fuse from "fuse.js"
 import { useState } from "react"
 import AuthProducts from "../../../../../auth/products/AuthProducts"
 import { useEcommerceStore } from "../../../../infrastructure/store"
+// import { useAppStore } from "../"
+import { useAppStore } from "../../../../../../common/infrastructure/store"
 
 export const useSearch = () => {
   const { configPages } = useEcommerceStore();
@@ -9,6 +11,7 @@ export const useSearch = () => {
   const [listProducts, setListProducts] = useState([]);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [findFilter, setFindFilter] = useState("");
+  const { user } = useAppStore();
   let searchProduct = [];
 
   const getProductsSearch = (productSearching) => {
@@ -24,7 +27,7 @@ export const useSearch = () => {
     if (productSearching !== "" && productSearching.length > 0) {
       setLoadingProducts(true);
       setTimeout(async () => {
-        let result = await AuthProducts("-1", "-1");
+        let result = await AuthProducts("-1", "-1",user.code ? user.code : "-1");
         const fuse = new Fuse(result, options);
         const resultSearch = fuse.search(productSearching);
         if (result) {

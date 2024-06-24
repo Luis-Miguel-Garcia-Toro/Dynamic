@@ -5,7 +5,7 @@ const AuthCategories = async () => {
     .then((res) => {
       return res.data.data
     }).catch((err) => {
-      console.log(err)
+      console.error(err)
     })
     return res;
   }

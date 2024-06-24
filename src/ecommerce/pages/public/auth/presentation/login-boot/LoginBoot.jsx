@@ -32,7 +32,6 @@ const LoginBoot = () => {
                 delivery_route: result.data.delivery_route,
                 chatbot_phone: result.data.phone
             }
-            console.log(result)
             login({...userJWT, userToken : result.data.token},'/products');
         }
     };

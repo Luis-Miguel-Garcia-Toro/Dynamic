@@ -2,6 +2,7 @@ import { SideMenu } from "./components";
 import { Dashboard, Faq, Help, Orders, Profile, Wallet } from "./options";
 import Styles from "./scss/menu-page.module.scss";
 import { useMenuPage } from "./view-model/useMenuPage";
+import { useEffect, useState } from "react";
 
 const optionsMenu = {
   dashboard: <Dashboard />,
@@ -15,7 +16,6 @@ const optionsMenu = {
 const MenuPage = () => {
   const { onChangeOptionSelected, optionSelected, dataSelectedMenu } =
     useMenuPage();
-
   return (
     <div>
       <SideMenu

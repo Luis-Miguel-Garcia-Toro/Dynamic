@@ -1,4 +1,6 @@
 @import "../../../scss/vars";
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
 
 .InputSearch {
   margin: 0;
@@ -9,7 +11,8 @@
   position: fixed;
   top: 51px;
   width: -webkit-fill-available;
-  max-width: 420px;
+  max-width: 490px;
+  margin-left: -100px;
 
   .dropFinder {
     position: fixed;
@@ -23,21 +26,22 @@
   }
 
   .finderSearch {
-    max-width: 600px;
-    max-height: 500px;
+    // max-width: 600px;
+    // max-height: 500px;
     border-radius: 0 0 10px 10px;
     background-color: #fff;
     position: absolute;
-    width: 84%;
+    width: 85%;
     height: 500px;
     top: 0;
     left: 0;
     z-index: 2;
     overflow-y: auto;
     border-radius: 15px;
-    margin-right: 2px;
+    margin-right: 0px;
     padding: 1rem 0.5rem;
     box-sizing: border-box;
+    margin-top: 20px;
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -63,4 +67,16 @@
       font-weight: 600;
     }
   }
+}
+
+@include media-up($breakpoint-md) {
+.searchFinderBackdrop{
+  margin-left: 0px;
+}
+}
+
+@include media-up($breakpoint-lg) {
+ .searchFinderBackdrop{
+  margin-left: 0px;
+ }
 }

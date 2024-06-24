@@ -15,7 +15,7 @@ export const useManageCart = ({ product }) => {
   const onAddProductToCart = (product) => {
     addProductToCart({ ...product, quantity: 1 });
     // setQuantity(1);
-    toast.success("Producto agregado al carrito", { autoClose: 2000 });
+    // toast.success("Producto agregado al carrito", { autoClose: 2000 });
   };
 
   const getQuantityOfProduct = useCallback(() => {

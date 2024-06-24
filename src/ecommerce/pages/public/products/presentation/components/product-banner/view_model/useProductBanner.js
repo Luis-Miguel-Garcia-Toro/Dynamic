@@ -5,7 +5,6 @@ const useProductBanner = () => {
     const [banner, setBanner] = useState([])
     const getBanners = () => {
         let result = AuthBanners()
-        console.log(result);
         setBanner(result.data);
     }
  

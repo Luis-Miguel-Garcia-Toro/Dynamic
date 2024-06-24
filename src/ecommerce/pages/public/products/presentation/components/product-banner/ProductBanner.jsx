@@ -52,9 +52,12 @@ export const ProductBanner = () => {
           <SwiperSlide>
             <img alt="" src={imageBanner1} />
           </SwiperSlide>
-          {/* <SwiperSlide>
-            <img alt="" src={imageBanner2} />
-          </SwiperSlide> */}
+          <SwiperSlide>
+            <img alt="" src={imageBanner1} />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img alt="" src={imageBanner1} />
+          </SwiperSlide>
         </Swiper>
       </div>
     </div>

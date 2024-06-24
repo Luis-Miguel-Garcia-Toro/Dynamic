@@ -5,16 +5,32 @@
 .CategoriesListContainer {
   margin-bottom: 2rem;
   background-color: var(--color-white);
-  padding: 2rem;
+  padding: 1rem 1rem;
+ 
 
   .CategoriesListContent {
+    font-size: 0.7rem;
     @extend .Container;
   }
 
   .CategoriesGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 1.5rem;
+    width: 350px;
+    overflow-y: auto;
+  }
+
+  .CategoriesGrid {
+    display: flex;
+    gap: 1.5rem;
+    width: 350px;
+    height: 90px;
+    overflow-y: auto;
+  }
+
+
+  .CategoriesGrid .mover-1 {
+    animation: moveSlideshow 12s linear infinite;
   }
 
   .CategoriesItem {
@@ -24,13 +40,13 @@
     align-items: center;
     cursor: pointer;
     text-align: center;
-
+    
     figure {
       height: 50px;
       width: 50px;
       border-radius: var(--border-radius-full);
       overflow: hidden;
-
+     
       img {
         width: 100%;
         object-fit: cover;
@@ -51,7 +67,17 @@
 @include media-up($breakpoint-md) {
   .CategoriesListContainer {
     .CategoriesGrid {
+      display: grid;
       grid-template-columns: repeat(6, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+      overflow-y: auto;
+    }
+    .CategoriesListContent {
+      font-size: 0.9rem;
+      @extend .Container;
     }
   }
 }
+
+

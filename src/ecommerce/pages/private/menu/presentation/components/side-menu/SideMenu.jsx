@@ -47,7 +47,7 @@ export const SideMenu = ({ onChangeOptionSelected, optionSelected }) => {
 
       <button
         style={{
-          top: `calc(${headerHeight}px + 2rem)`,
+          top: `calc(${headerHeight}px + 1rem)`,
         }}
         onClick={onToggleMenu}
         className={Styles.OpenButton}

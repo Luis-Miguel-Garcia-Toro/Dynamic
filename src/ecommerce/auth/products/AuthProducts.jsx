@@ -6,7 +6,7 @@ const AuthProducts = async (category, search, user) => {
       let result = res.data.data
       return result.data ? result.data : [] 
     }).catch((err) => {
-      console.log(err)
+      console.error(err)
     })
     return res;
   }

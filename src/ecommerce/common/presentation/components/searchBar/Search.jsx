@@ -2,7 +2,7 @@ import {
   InputField,
   Loading,
 } from "../../../../../common/presentation/components"
-import { CardProduct } from "../../../../pages/public/products/presentation/components"
+import { CardSearch} from "../../../../pages/public/products/presentation/components"
 import Styles from "./scss/search.module.scss"
 import { useSearch } from "./view-model/useSearch"
 
@@ -41,7 +41,7 @@ const SearchBar = () => {
                   className={Styles.ProductItem}
                   key={`${product.code}-${index}`}
                 >
-                  <CardProduct
+                  <CardSearch
                     sizeCardRow="small"
                     type="horizontal"
                     product={product}
