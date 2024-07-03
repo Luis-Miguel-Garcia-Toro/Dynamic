@@ -33,8 +33,9 @@ export const useLoginForm = () => {
   const [authToken, setAuthToken] = useState();
   const [step, setStep] = useState(1);
   const [currentScreen, setCurrentScreen] = useState("login");
+  const [openModalFirstLogin, setOpenModalFirstLogin] = useState(false);
 
-  const { configPages } = useEcommerceStore();
+  const { configPages, setUserDocument } = useEcommerceStore();
   const { login, isSessionJustClosed, changeIsSessionJustClosed } =
     useAppStore();
   const [searchParams] = useSearchParams();
@@ -77,12 +78,22 @@ export const useLoginForm = () => {
   const getCodeMutation = useMutation({
     mutationFn: ({ user, password }) => fetchGetAuthCode(user, password),
     onSuccess: (response) => {
+      if (response.State !== "OK") {
+        toast.error(
+          "Ocurrió un error al validar la información ingresada, por favor verifica tus datos."
+        );
+        return;
+      }
+
+      if (isFirstLogin()) {
+        setOpenModalFirstLogin(true);
+        return;
+      }
+
       setAuthToken(response.Data.accessToken);
       onNextStep();
     },
-    onError: (error) => {
-      console.log(error);
-
+    onError: () => {
       toast.error(
         "Ocurrió un error al enviar el código de validación, por favor verifica tus datos."
       );
@@ -99,6 +110,7 @@ export const useLoginForm = () => {
         );
         return;
       }
+
       let userJWT = jwtDecode(authToken);
       const redirectTo = searchParams.get("q");
       login({ ...userJWT, userToken: authToken }, redirectTo);
@@ -109,6 +121,10 @@ export const useLoginForm = () => {
       );
     },
   });
+
+  const isFirstLogin = () => {
+    return form.password === form.username;
+  };
 
   const onChangeCurrentScreen = (screen) => {
     if (["login", "recover", "code", "change"].includes(screen)) {
@@ -124,6 +140,21 @@ export const useLoginForm = () => {
   const onPrevStep = () => {
     if (step <= 1) return;
     setStep(step - 1);
+  };
+
+  const onCloseModalFirstLogin = () => {
+    setOpenModalFirstLogin(false);
+  };
+
+  const goToCreatePassword = () => {
+    setUserDocument(form.username);
+    onCloseModalFirstLogin();
+    setCurrentScreen("change");
+    setForm({
+      code: "",
+      password: "",
+      username: "",
+    });
   };
 
   const checkIsValidForm = () => {
@@ -179,14 +210,17 @@ export const useLoginForm = () => {
     currentScreen,
     form,
     formErrors,
+    goToCreatePassword,
     isActiveSteps,
     isLastStep,
     isPendingCode: getCodeMutation.isPending,
     isPendingValidateCode: validateCodeMutation.isPending,
     onChangeCurrentScreen,
     onChangeForm,
+    onCloseModalFirstLogin,
     onPrevStep,
     onSubmit,
+    openModalFirstLogin,
     step,
     totalSteps: TOTAL_STEPS,
   };

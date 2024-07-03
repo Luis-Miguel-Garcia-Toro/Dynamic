@@ -1,5 +1,10 @@
 import { Button, Stepper } from "@/common/presentation/components";
-import { ChangePassword, CodeRecoverPassword, RecoverPassword } from "../index";
+import {
+  ChangePassword,
+  CodeRecoverPassword,
+  ModalFirstLogin,
+  RecoverPassword,
+} from "../index";
 import { DynamicInputFields } from "./components";
 import Styles from "./scss/login-form.module.scss";
 import { useLoginForm } from "./view-model/useLoginForm";
@@ -7,19 +12,22 @@ import { useLoginForm } from "./view-model/useLoginForm";
 export const LoginForm = () => {
   const {
     authMethod,
+    currentScreen,
     form,
     formErrors,
+    goToCreatePassword,
     isActiveSteps,
     isLastStep,
     isPendingCode,
     isPendingValidateCode,
+    onChangeCurrentScreen,
     onChangeForm,
+    onCloseModalFirstLogin,
     onPrevStep,
     onSubmit,
+    openModalFirstLogin,
     step,
     totalSteps,
-    currentScreen,
-    onChangeCurrentScreen,
   } = useLoginForm();
 
   const optionsScreens = {
@@ -48,7 +56,6 @@ export const LoginForm = () => {
               onChangeForm={onChangeForm}
               step={step}
             />
-            {/* TODO: Implementar loading spinner */}
             <Button
               loading={isPendingCode || isPendingValidateCode}
               disabled={isPendingCode || isPendingValidateCode}
@@ -63,6 +70,12 @@ export const LoginForm = () => {
                 label="¿Olvidaste tu contraseña?"
               />
             )}
+
+            <ModalFirstLogin
+              open={openModalFirstLogin}
+              handleClose={onCloseModalFirstLogin}
+              handleOk={goToCreatePassword}
+            />
           </form>
         </>
       )}

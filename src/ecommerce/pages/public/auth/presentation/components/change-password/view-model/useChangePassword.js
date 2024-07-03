@@ -23,9 +23,8 @@ export const useChangePassword = ({ onChangeCurrentScreen }) => {
 
   const updatePasswordMutation = useMutation({
     mutationFn: ({ user, password }) => fetchUpdatePassword({ user, password }),
-    onSuccess: (response) => {
-      console.log({ response });
-
+    onSuccess: () => {
+      toast.success("Contraseña guardada con éxito.");
       onChangeCurrentScreen("login");
     },
     onError: () => {
