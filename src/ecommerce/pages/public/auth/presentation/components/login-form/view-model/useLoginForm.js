@@ -1,18 +1,16 @@
-import { authenticationMethods } from "@/ecommerce/common/domain"
-import { useMutation } from "@tanstack/react-query"
-import { jwtDecode } from "jwt-decode"
-import { useCallback, useEffect, useMemo, useState } from "react"
-import { useSearchParams } from "react-router-dom"
-import { toast } from "react-toastify"
-import { useAppStore } from "../../../../../../../../common/infrastructure/store"
-import {
-  useEcommerceStore
-} from "../../../../../../../common/infrastructure/store"
+import { authenticationMethods } from "@/ecommerce/common/domain";
+import { useMutation } from "@tanstack/react-query";
+import { jwtDecode } from "jwt-decode";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAppStore } from "../../../../../../../../common/infrastructure/store";
+import { useEcommerceStore } from "../../../../../../../common/infrastructure/store";
 import {
   fetchGetAuthCode,
   fetchValidateCode,
-} from "../../../../infrastructure/login-repository"
-import { validateLoginForm } from "./validate-form"
+} from "../../../../infrastructure/login-repository";
+import { validateLoginForm } from "./validate-form";
 
 const TOTAL_STEPS = 2;
 
@@ -33,8 +31,9 @@ export const useLoginForm = () => {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [isActiveSteps, setIsActiveSteps] = useState(false);
   const [authToken, setAuthToken] = useState();
-
   const [step, setStep] = useState(1);
+  const [currentScreen, setCurrentScreen] = useState("login");
+
   const { configPages } = useEcommerceStore();
   const { login, isSessionJustClosed, changeIsSessionJustClosed } =
     useAppStore();
@@ -111,6 +110,12 @@ export const useLoginForm = () => {
     },
   });
 
+  const onChangeCurrentScreen = (screen) => {
+    if (["login", "recover", "code", "change"].includes(screen)) {
+      setCurrentScreen(screen);
+    }
+  };
+
   const onNextStep = () => {
     if (step >= TOTAL_STEPS) return;
     setStep(step + 1);
@@ -137,7 +142,9 @@ export const useLoginForm = () => {
     return true;
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
+
     const isValidForm = checkIsValidForm();
     if (!isValidForm) return;
     if (isActiveSteps && !isLastStep) {
@@ -169,12 +176,14 @@ export const useLoginForm = () => {
 
   return {
     authMethod,
+    currentScreen,
     form,
     formErrors,
     isActiveSteps,
     isLastStep,
     isPendingCode: getCodeMutation.isPending,
     isPendingValidateCode: validateCodeMutation.isPending,
+    onChangeCurrentScreen,
     onChangeForm,
     onPrevStep,
     onSubmit,

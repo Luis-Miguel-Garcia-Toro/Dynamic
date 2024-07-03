@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { LoadingEllipsis } from "../loading/LoadingEllipsis";
 import Styles from "./scss/button.module.scss";
 import { colorsAvailable, useButton } from "./view-model/useButton";
 
@@ -7,12 +8,13 @@ export const Button = ({
   color,
   customBackgroundColor,
   customColorText,
+  disabled,
   label,
+  loading,
   onClick,
   type,
-  disabled,
 }) => {
-  const { backgroundColor, textColor } = useButton({
+  const { backgroundColor, textColor, borderButton } = useButton({
     color,
     customBackgroundColor,
     customColorText,
@@ -21,15 +23,16 @@ export const Button = ({
   return (
     <div className={`${className ? className : ""} ${Styles.ButtonContainer}`}>
       <button
-        disabled={disabled}
+        disabled={disabled || loading}
         onClick={onClick}
         style={{
           backgroundColor,
           color: textColor,
+          border: borderButton,
         }}
         type={type}
       >
-        {label}
+        {loading ? <LoadingEllipsis /> : label}
       </button>
     </div>
   );
@@ -40,14 +43,16 @@ Button.propTypes = {
   color: PropTypes.oneOf(Object.keys(colorsAvailable)),
   customBackgroundColor: PropTypes.string,
   customColorText: PropTypes.string,
+  disabled: PropTypes.bool,
   label: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
   onClick: PropTypes.func,
   type: PropTypes.oneOf(["button", "submit", "reset"]),
-  disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
   className: undefined,
   color: "primary",
+  loading: false,
   type: "button",
 };

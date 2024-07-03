@@ -4,6 +4,9 @@ const initialState = {
       headerHeight: 60,
       isActiveSideCart: false,
     },
+    loginScreens: {
+      userDocument: undefined,
+    },
   },
 };
 
@@ -35,6 +38,17 @@ export const createUiSlice = (set) => ({
         globals: {
           ...state.configPages.globals,
           isActiveSideCart: !state.configPages.globals.isActiveSideCart,
+        },
+      },
+    }));
+  },
+  setUserDocument: (userDocument) => {
+    return set((state) => ({
+      configPages: {
+        ...state.configPages,
+        loginScreens: {
+          ...state.configPages.loginScreens,
+          userDocument,
         },
       },
     }));
