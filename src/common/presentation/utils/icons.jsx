@@ -9,6 +9,7 @@ import {
   FaWhatsapp,
   FaYoutube,
 } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 import { HiOutlineDocumentCheck } from "react-icons/hi2";
 import { IoDocumentTextOutline, IoWallet } from "react-icons/io5";
 import { MdDashboard, MdEmail, MdOutlineManageHistory } from "react-icons/md";
@@ -31,7 +32,7 @@ const optionsIcons = {
   phone: <FaPhoneAlt />,
   profile: <FaUserCircle />,
   term: <HiOutlineDocumentCheck />,
-  twitter: <FaTwitter />,
+  twitter: <FaSquareXTwitter />,
   wallet: <IoWallet />,
   web: <TbWorld />,
   whatsapp: <FaWhatsapp />,
