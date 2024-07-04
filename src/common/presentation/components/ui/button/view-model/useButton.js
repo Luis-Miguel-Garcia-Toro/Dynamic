@@ -25,6 +25,11 @@ export const colorsAvailable = {
     backgroundColor: "var(--color-white)",
     color: "var(--color-text)",
   },
+  "flat-primary": {
+    backgroundColor: "transparent",
+    color: "var(--color-primary)",
+    border: "1px solid var(--color-primary)",
+  },
 };
 
 export const useButton = ({
@@ -44,8 +49,13 @@ export const useButton = ({
     return colorsAvailable[color].color;
   }, [customColorText, color]);
 
+  const borderButton = useMemo(() => {
+    return colorsAvailable[color].border;
+  }, [color]);
+
   return {
     backgroundColor,
+    borderButton,
     textColor,
   };
 };

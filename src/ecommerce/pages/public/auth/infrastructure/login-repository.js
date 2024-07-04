@@ -1,12 +1,13 @@
 import { http } from "../../../../../common/infrastructure/connection/Http";
 import {
-  LOGIN_USER,
-  VALIDATE_CODE,
   BUSINESS_UNIT,
-  ENV
+  ENV,
+  LOGIN_USER,
+  RECOVER_PASSWORD,
+  UPDATE_PASSWORD,
+  VALIDATE_CODE,
 } from "../../../../common/infrastructure/globals/globals";
 
-//TODO: Crear adapter
 export const fetchGetAuthCode = (user, password) => {
   const body = {
     user,
@@ -32,5 +33,28 @@ export const fetchValidateCode = (user, password, code) => {
   return http.post({
     url: `${VALIDATE_CODE}code=${code}`,
     body,
+  });
+};
+
+export const fetchGenerateCodeRecoveryPass = (user) => {
+  return http.post({
+    url: RECOVER_PASSWORD,
+    body: {
+      branch: user,
+      business_unit: BUSINESS_UNIT,
+      environment: ENV,
+    },
+  });
+};
+
+export const fetchUpdatePassword = ({ user, password }) => {
+  return http.post({
+    url: UPDATE_PASSWORD,
+    body: {
+      password,
+      business_code: BUSINESS_UNIT,
+      environment: ENV,
+      user: user,
+    },
   });
 };

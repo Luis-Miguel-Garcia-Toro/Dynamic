@@ -1,18 +1,16 @@
-import { authenticationMethods } from "@/ecommerce/common/domain"
-import { useMutation } from "@tanstack/react-query"
-import { jwtDecode } from "jwt-decode"
-import { useCallback, useEffect, useMemo, useState } from "react"
-import { useSearchParams } from "react-router-dom"
-import { toast } from "react-toastify"
-import { useAppStore } from "../../../../../../../../common/infrastructure/store"
-import {
-  useEcommerceStore
-} from "../../../../../../../common/infrastructure/store"
+import { authenticationMethods } from "@/ecommerce/common/domain";
+import { useMutation } from "@tanstack/react-query";
+import { jwtDecode } from "jwt-decode";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAppStore } from "../../../../../../../../common/infrastructure/store";
+import { useEcommerceStore } from "../../../../../../../common/infrastructure/store";
 import {
   fetchGetAuthCode,
   fetchValidateCode,
-} from "../../../../infrastructure/login-repository"
-import { validateLoginForm } from "./validate-form"
+} from "../../../../infrastructure/login-repository";
+import { validateLoginForm } from "./validate-form";
 
 const TOTAL_STEPS = 2;
 
@@ -33,9 +31,11 @@ export const useLoginForm = () => {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [isActiveSteps, setIsActiveSteps] = useState(false);
   const [authToken, setAuthToken] = useState();
-
   const [step, setStep] = useState(1);
-  const { configPages } = useEcommerceStore();
+  const [currentScreen, setCurrentScreen] = useState("login");
+  const [openModalFirstLogin, setOpenModalFirstLogin] = useState(false);
+
+  const { configPages, setUserDocument } = useEcommerceStore();
   const { login, isSessionJustClosed, changeIsSessionJustClosed } =
     useAppStore();
   const [searchParams] = useSearchParams();
@@ -78,12 +78,22 @@ export const useLoginForm = () => {
   const getCodeMutation = useMutation({
     mutationFn: ({ user, password }) => fetchGetAuthCode(user, password),
     onSuccess: (response) => {
+      if (response.State !== "OK") {
+        toast.error(
+          "Ocurrió un error al validar la información ingresada, por favor verifica tus datos."
+        );
+        return;
+      }
+
+      if (isFirstLogin()) {
+        setOpenModalFirstLogin(true);
+        return;
+      }
+
       setAuthToken(response.Data.accessToken);
       onNextStep();
     },
-    onError: (error) => {
-      console.log(error);
-
+    onError: () => {
       toast.error(
         "Ocurrió un error al enviar el código de validación, por favor verifica tus datos."
       );
@@ -100,6 +110,7 @@ export const useLoginForm = () => {
         );
         return;
       }
+
       let userJWT = jwtDecode(authToken);
       const redirectTo = searchParams.get("q");
       login({ ...userJWT, userToken: authToken }, redirectTo);
@@ -111,6 +122,16 @@ export const useLoginForm = () => {
     },
   });
 
+  const isFirstLogin = () => {
+    return form.password === form.username;
+  };
+
+  const onChangeCurrentScreen = (screen) => {
+    if (["login", "recover", "code", "change"].includes(screen)) {
+      setCurrentScreen(screen);
+    }
+  };
+
   const onNextStep = () => {
     if (step >= TOTAL_STEPS) return;
     setStep(step + 1);
@@ -119,6 +140,21 @@ export const useLoginForm = () => {
   const onPrevStep = () => {
     if (step <= 1) return;
     setStep(step - 1);
+  };
+
+  const onCloseModalFirstLogin = () => {
+    setOpenModalFirstLogin(false);
+  };
+
+  const goToCreatePassword = () => {
+    setUserDocument(form.username);
+    onCloseModalFirstLogin();
+    setCurrentScreen("change");
+    setForm({
+      code: "",
+      password: "",
+      username: "",
+    });
   };
 
   const checkIsValidForm = () => {
@@ -137,7 +173,9 @@ export const useLoginForm = () => {
     return true;
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
+
     const isValidForm = checkIsValidForm();
     if (!isValidForm) return;
     if (isActiveSteps && !isLastStep) {
@@ -169,15 +207,20 @@ export const useLoginForm = () => {
 
   return {
     authMethod,
+    currentScreen,
     form,
     formErrors,
+    goToCreatePassword,
     isActiveSteps,
     isLastStep,
     isPendingCode: getCodeMutation.isPending,
     isPendingValidateCode: validateCodeMutation.isPending,
+    onChangeCurrentScreen,
     onChangeForm,
+    onCloseModalFirstLogin,
     onPrevStep,
     onSubmit,
+    openModalFirstLogin,
     step,
     totalSteps: TOTAL_STEPS,
   };
