@@ -13,8 +13,13 @@
 
   &.basic {
     padding: 2rem 1.2rem;
+
     .ProductBannerContainer {
       @extend .Container;
+    }
+
+    img {
+      max-width: 350px;
     }
   }
 }
@@ -23,8 +28,11 @@
 @include media-up($breakpoint-md) {
   .ProductBanner {
     &.basic {
-      padding: 2rem 4rem;
-    
+      padding: 2rem 3rem;
+
+      img {
+        max-width: 100%;
+      }
     }
   }
 }

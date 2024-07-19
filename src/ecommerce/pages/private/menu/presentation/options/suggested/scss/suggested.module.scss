@@ -3,37 +3,24 @@
 @import "@/common/presentation/scss/base/container";
 
 .ProductListContainer {
-  padding: 0.0rem 1rem;
-
+  padding: 0.0rem 0rem;
+  margin-bottom: 50px;
   .ProductListContent {
-    @extend .Container;
-  }
-}
-
-.productContainerSuggested {
-  display: flex;
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-  overflow-y: scroll;
-  grid-template-columns: repeat(1, 1fr);
-
-  .ProductListSuggestedContent {
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-bottom: 10px;
-    animation: moveSlideshow 2s linear infinite;
-    
-    .ProductListSuggested {
+    // @extend .Container;
+    .uploadCart{
+      cursor: pointer;
       display: flex;
-      grid-template-columns: 1fr;
-      grid-gap: 0.5rem;
-      transition: 0.3s;
-      animation: moveSlideshow 2s linear infinite;
+      position: absolute;
+     right: 1.5rem;
+     top: 1.5rem;
+     svg{
+      color: var(--color-primary);
+     }
     }
   }
- 
 }
+
+
 .ProductListSuggested .mover-1 {
   animation: moveSlideshow 2s linear infinite;
 }
@@ -51,6 +38,16 @@
     grid-template-columns: repeat(1, 1fr);
   }
 }
+
+
+.iconType{
+  cursor: pointer;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  margin-top: -40px;
+}
+
+
 
 @include media-up(390px) {
   .ProductList {
@@ -73,6 +70,7 @@
 
   .ProductListContainer {
     padding: 2rem;
+
   }
 }
 

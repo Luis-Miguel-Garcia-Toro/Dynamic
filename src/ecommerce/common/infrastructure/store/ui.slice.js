@@ -42,6 +42,7 @@ export const createUiSlice = (set) => ({
       },
     }));
   },
+  
   setUserDocument: (userDocument) => {
     return set((state) => ({
       configPages: {

@@ -31,7 +31,7 @@ export const useHeader = () => {
     if (authStatus === authStateStatus.AUTHENTICATED) {
       toggleActiveSideCart();
     } else {
-      navigate("/");
+      navigate("/login");
     }
   };
 

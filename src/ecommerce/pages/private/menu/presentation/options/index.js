@@ -4,3 +4,6 @@ export * from "./help/Help";
 export * from "./orders/Orders";
 export * from "./profile/Profile";
 export * from "./wallet/Wallet";
+export * from "./sectionCategories/CategorySection"
+export * from "./suggested/Suggested";
+

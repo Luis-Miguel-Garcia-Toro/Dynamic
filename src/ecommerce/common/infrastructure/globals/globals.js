@@ -21,3 +21,5 @@ export const GET_ORDER_HISTORY = `${URL_BASE_ECOMMERCE}order_b2b/get_history_ord
 export const GET_BANNER = `${URL_BASE_ECOMMERCE}products_b2b/get_list_banners?&branch=-1&business_unit=1000&environment=prd`;
 export const RECOVER_PASSWORD = `${URL_BASE_ECOMMERCE}auth_b2b/recover_password`;
 export const UPDATE_PASSWORD = `${URL_BASE_ECOMMERCE}auth_b2b/update_password_b2b`;
+export const GET_SUGGESTED = `${URL_BASE_ECOMMERCE}order/suggested_order`
+

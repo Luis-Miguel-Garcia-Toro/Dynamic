@@ -12,8 +12,8 @@ export const useManageCart = ({ product }) => {
     // setQuantity(quantity);
   };
 
-  const onAddProductToCart = (product) => {
-    addProductToCart({ ...product, quantity: 1 });
+  const onAddProductToCart = (product, suggestedQuantity = 1) => {
+    addProductToCart({ ...product, quantity: suggestedQuantity > 1 ? suggestedQuantity : 1 });
     // setQuantity(1);
     // toast.success("Producto agregado al carrito", { autoClose: 2000 });
   };

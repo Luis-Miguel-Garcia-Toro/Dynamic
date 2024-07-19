@@ -1,5 +1,5 @@
 import { SideMenu } from "./components";
-import { Dashboard, Faq, Help, Orders, Profile, Wallet } from "./options";
+import { Dashboard, Faq, Help, Orders, Profile, Wallet,CategorySection, Suggested } from "./options";
 import Styles from "./scss/menu-page.module.scss";
 import { useMenuPage } from "./view-model/useMenuPage";
 import { useEffect, useState } from "react";
@@ -11,11 +11,15 @@ const optionsMenu = {
   orders: <Orders />,
   profile: <Profile />,
   wallet: <Wallet />,
+  categories : <CategorySection />,
+  suggested : <Suggested />
 };
 
 const MenuPage = () => {
   const { onChangeOptionSelected, optionSelected, dataSelectedMenu } =
     useMenuPage();
+
+    
   return (
     <div>
       <SideMenu

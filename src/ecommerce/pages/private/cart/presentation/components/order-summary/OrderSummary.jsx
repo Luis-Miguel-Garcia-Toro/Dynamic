@@ -32,6 +32,7 @@ export const OrderSummary = () => {
               {Object.keys(totalData).map((key) => {
                 const { label, value } = totalData[key];
                 if (value === 0) return null;
+                console.log(label, value);
                 return (
                   <div
                     key={key}

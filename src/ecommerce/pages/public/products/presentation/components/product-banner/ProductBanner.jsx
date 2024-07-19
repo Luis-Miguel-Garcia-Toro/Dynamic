@@ -45,11 +45,11 @@ export const ProductBanner = () => {
           pagination={{
             clickable: true,
           }}
-          navigation={true}
+          navigation={false}
           modules={[Pagination, Navigation, Autoplay]}
           className={`product-banner ${bannerStyle}`}
         >
-          <SwiperSlide>
+          <SwiperSlide className={Styles.imgContainer}>
             <img alt="" src={imageBanner1} />
           </SwiperSlide>
           <SwiperSlide>

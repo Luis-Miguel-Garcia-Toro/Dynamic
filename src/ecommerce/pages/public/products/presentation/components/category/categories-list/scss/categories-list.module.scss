@@ -3,7 +3,7 @@
 @import "@/common/presentation/scss/base/container";
 
 .CategoriesListContainer {
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
   background-color: var(--color-white);
   padding: 1rem 1rem;
  
@@ -16,19 +16,11 @@
   .CategoriesGrid {
     display: flex;
     gap: 1.5rem;
-    width: 350px;
-    overflow-y: auto;
-  }
-
-  .CategoriesGrid {
-    display: flex;
-    gap: 1.5rem;
-    width: 350px;
+    width: 380px;
     height: 90px;
     overflow-y: auto;
   }
-
-
+  
   .CategoriesGrid .mover-1 {
     animation: moveSlideshow 12s linear infinite;
   }
@@ -73,6 +65,7 @@
       width: 100%;
       overflow-y: auto;
     }
+
     .CategoriesListContent {
       font-size: 0.9rem;
       @extend .Container;

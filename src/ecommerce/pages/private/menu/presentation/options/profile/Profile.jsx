@@ -3,20 +3,26 @@ import {
   Button,
   ImageLazy,
 } from "../../../../../../../common/presentation/components";
-
-import { useMemo } from "react";
+import {usePageContext} from "../../../../../../common/infrastructure/store"
+import { useMemo, useEffect } from "react";
 import { FaStoreAlt } from "react-icons/fa";
 import { useAppStore } from "../../../../../../../common/infrastructure/store/app.store";
 import { icons } from "../../../../../../../common/presentation/utils";
 import Styles from "./scss/profile.module.scss";
 
+
 export const Profile = () => {
+  const {updateOptionActive} = usePageContext();
   const { user } = useAppStore();
   const userDataToShow = useMemo(() => {
+    if (!user){
+      updateOptionActive("home")
+      return window.location.replace("/login");
+    } 
     return {
-      name: user.name,
+      name: user.name ? user.name : "-",
       email: user.email || "-",
-      cel: user.phone,
+      cel: user.phone ? user.phone : "-",
       phone: "01 8000 110000", //TODO: Ver de donde obtener este dato
     };
   }, [user]);

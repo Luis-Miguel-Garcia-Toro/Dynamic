@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { AuthOrderBoot } from '../../../../../auth/orderBoot/AuthOrderBoot'
 import { useAppStore } from "../../../../../../common/infrastructure/store"
 
-const LoginBoot = () => {
+const LoginBoot = (codeClient) => {
     const { login } = useAppStore();
     const loginBoot = async (codeClient) => {
         let result = await AuthOrderBoot(codeClient)
@@ -38,8 +38,6 @@ const LoginBoot = () => {
 
 
     useEffect(() => {
-        let params = new URLSearchParams(window.location.href.split("?")[1]);
-        let codeClient = params.get("sucursal")
         loginBoot(codeClient);
     }, [])
 

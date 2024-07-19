@@ -38,6 +38,7 @@
     "react-toastify": "^10.0.5",
     "react-verification-input": "^4.1.2",
     "styled-components": "^6.1.11",
+    "sweetalert2": "^11.12.2",
     "swiper": "^11.1.4",
     "xlsx": "^0.18.5",
     "zustand": "^4.5.2"

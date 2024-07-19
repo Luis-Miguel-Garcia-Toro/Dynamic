@@ -1,5 +1,5 @@
 import { FaCartShopping } from "react-icons/fa6"
-import { IoMdMenu  } from "react-icons/io"
+import { IoMdMenu } from "react-icons/io"
 import { Link } from "react-router-dom"
 import { format } from "../../../../../common/presentation/utils"
 import { HeaderCategories } from "../../../../pages/public/products/presentation/components"
@@ -8,6 +8,7 @@ import Styles from "./scss/header.module.scss"
 import { useHeader } from "./view-model/useHeader"
 import { useEffect, useState } from "react"
 import FloatingBar from "../floatingBar/floatingBar"
+import {usePageContext} from "../../../../common/infrastructure/store"
 
 const menuItems = [
   {
@@ -26,6 +27,7 @@ export const Header = () => {
     goToCart,
     imageLogo,
   } = useHeader();
+  const {updateOptionActive} = usePageContext();
   const [urlPoint, setUrlPoint] = useState("");
 
   useEffect(() => {
@@ -37,40 +39,35 @@ export const Header = () => {
   return (
     <header ref={headerRef} className={Styles.HeaderContainer}>
       <div className={Styles.HeaderContent}>
-        <Link className={`${Styles.HeaderLinkLogo} fadeIn`} to="/products">
+        <div className={`${Styles.HeaderLinkLogo} fadeIn`} onClick={() => updateOptionActive("home")}>
           <figure>
             <img src={imageLogo} alt="Ir a la tienda" />
           </figure>
-        </Link>
-        <div className={urlPoint === 'carrito' ? `${Styles.FatherSearch} fadeIn` :""}>
-        <div className={`${Styles.HeaderSearch} fadeIn`}>
-          <SearchBar />
         </div>
+        <div className={urlPoint === 'carrito' ? `${Styles.FatherSearch} fadeIn` : ""}>
+          <div className={`${Styles.HeaderSearch} fadeIn`}>
+            <SearchBar />
+          </div>
         </div>
 
         <div className={`${Styles.HeaderOptions} fadeIn`} >
           <nav className={Styles.HeaderMenu}>
             <ul>
-              {menuItems.map((item) => (
-                <li key={item.name}>
-                  <Link to={item.link}>
-                    {item.icon} <span>{item.name}</span>
-                  </Link>
-                </li>
-              ))}
+              <li style={{ cursor: "pointer" }} onClick={() => updateOptionActive("menu")}>
+                <IoMdMenu size={25} /><span> Menú</span>
+              </li>
             </ul>
           </nav>
 
           <button
-          style={{  width:"45px", height:"45px" }}
-            className={`${Styles.HeaderCart} ${
-              summaryTotal > 0 ? Styles.HasTotal : ""
-            }`}
-            onClick={goToCart}
+            style={{ width: "45px", height: "45px" }}
+            className={`${Styles.HeaderCart} ${summaryTotal > 0 ? Styles.HasTotal : ""
+              }`}
+            onClick={() => updateOptionActive("cart")}
           >
-            <div className={urlPoint === 'carrito' ?  `${Styles.HeaderCartIconCart}` :Styles.HeaderCartIcon}>
+            <div className={urlPoint === 'carrito' ? `${Styles.HeaderCartIconCart}` : Styles.HeaderCartIcon}>
               {totalItemsInCart > 0 && <span >{totalItemsInCart}</span>}
-              <FaCartShopping style={{ color: "#E4061F" }}  size={25}/>
+              <FaCartShopping style={{ color: "#E4061F" }} size={25} />
             </div>
             {summaryTotal > 0 && (
               <span className={Styles.Total}>{format.formatPrice(summaryTotal)}</span>
@@ -78,8 +75,8 @@ export const Header = () => {
           </button>
         </div>
       </div>
-      {urlPoint != 'carrito' && <FloatingBar />}
-    
+      {/* {urlPoint != 'carrito' && <FloatingBar />} */}
+
       {showHeaderCategories && <HeaderCategories />}
     </header>
   );

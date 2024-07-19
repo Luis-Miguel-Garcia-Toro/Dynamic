@@ -1,6 +1,7 @@
 import { ToastContainer } from "react-toastify"
 import { LoginCentered, LoginImageLeft, LoginImageRight } from "./templates"
 import { useLogin } from "./view-model"
+import { useEffect } from "react";
 
 const loginTemplateOptions = {
   login_centered: <LoginCentered />,

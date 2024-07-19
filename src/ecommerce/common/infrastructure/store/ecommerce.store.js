@@ -22,3 +22,22 @@ export const useEcommerceStore = create(
     )
   )
 );
+
+export const usePageContext = create(
+  persist(
+    (set) => ({
+      optionActive: 'home',
+      optionSelected: 'orders',
+      updateOptionActive: (item) =>
+        set({
+          optionActive: item
+        }),
+        setOptionSelected: (item) =>
+        set({
+          optionSelected: item
+        })
+    
+    }),
+    { name: "pageContext" }
+  )
+)
