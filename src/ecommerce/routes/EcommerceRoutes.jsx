@@ -9,14 +9,16 @@ import { AuthRoutes, ProductsRoutes } from "./public-routes";
 import { toast } from "react-toastify"
 import { AuthOrderBoot } from '../auth/orderBoot/AuthOrderBoot'
 import {usePageContext} from "../common/infrastructure/store"
+import {useEcommerceStore} from '../common/infrastructure/store'
 
 
 export const EcommerceRoutes = () => {
   const { authStatus } = useAppStore();
   const [loginBoot, setLoginBoot] = useState(false);
-  const {updateOptionActive, setOptionSelected} = usePageContext();
+  const {updateOptionActive, setOptionSelected, setUpdateBoot} = usePageContext();
   const isAuthenticated = authStatus === authStateStatus.AUTHENTICATED;
-  const { login } = useAppStore();
+  const { login, logout } = useAppStore();
+  const {clearCart} = useEcommerceStore()
 
   const OrderBoot = async (codeClient, suggested) => {
     let result = await AuthOrderBoot(codeClient)
@@ -61,10 +63,15 @@ export const EcommerceRoutes = () => {
   useEffect(() => {
     let URLactual = document.location
     const urlParams = new URLSearchParams(URLactual.search)
-    const codeClient = urlParams.get('sucursal');
+    const codeClient = urlParams.get('branch');
     const suggested = urlParams.get('suggested');
    if(codeClient){
+    clearCart()
+    logout();
     OrderBoot(codeClient, suggested)
+    setUpdateBoot(true)
+   }else{
+    setUpdateBoot(false)
    }
    //http://localhost:5173/orderbot?sucursal=400116003&suggested=0
   }, []);

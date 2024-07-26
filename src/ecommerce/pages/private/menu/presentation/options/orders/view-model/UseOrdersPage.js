@@ -46,7 +46,6 @@ export const UseOrdersPage = () => {
     }
 
     const downloadExcel = () => {
-        console.log("entra");
         if (HistoryOrders.length > 0) {
             let fileName = `historialPedidos`
             let dataExport = fomartData(HistoryOrders)

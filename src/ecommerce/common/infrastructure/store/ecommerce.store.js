@@ -28,6 +28,7 @@ export const usePageContext = create(
     (set) => ({
       optionActive: 'home',
       optionSelected: 'orders',
+      activateBoot : false,
       updateOptionActive: (item) =>
         set({
           optionActive: item
@@ -35,7 +36,11 @@ export const usePageContext = create(
         setOptionSelected: (item) =>
         set({
           optionSelected: item
-        })
+        }),
+        setUpdateBoot: (item) =>
+          set({
+            activateBoot: item
+          })
     
     }),
     { name: "pageContext" }

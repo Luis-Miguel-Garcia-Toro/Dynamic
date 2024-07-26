@@ -13,7 +13,6 @@ const OrderMovil = ({ orders }) => {
 
 
     const getdetail = (item) => {
-        console.log(item);
         setDetailsItem(item)
         setIsModalOpen(true)
     }

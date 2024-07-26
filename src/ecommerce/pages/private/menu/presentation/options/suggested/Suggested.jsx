@@ -11,7 +11,7 @@ import { useState } from "react";
 export const Suggested = () => {
     const { configPage, products } = UseSuggestedPage()
     const { addProductToCart } = useEcommerceStore();
-    const [typeSelected, setTypeSelected] = useState(true)
+    const [typeSelected, setTypeSelected] = useState(false)
     const uploadTocart = () => {
 
         products.map((product) => {

@@ -2,8 +2,11 @@ import moment from "moment"
 import { useEffect, useState } from "react"
 import { useAppStore } from "../../../../../../../../common/infrastructure/store/app.store"
 import {AuthNewOrder} from "../../../../../../../auth/order/AuthOrder"
+import {sendNotificactionOrder} from '../../../../../../../auth/orderBoot/AuthOrderBoot'
 import { useEcommerceStore } from "../../../../../../../common/infrastructure/store"
+import {usePageContext} from '../../../../../../../common/infrastructure/store'
 import { BUSINESS_UNIT} from "../../../../../../../common/infrastructure/globals/globals";
+import { format } from "../../../../../../../../common/presentation/utils"
 
 export const useCheckout = () => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
@@ -11,7 +14,7 @@ export const useCheckout = () => {
   const [prevStartDate, setPrevStarDate] = useState();
   const [startDate, setStartDate] = useState(new Date());
   const [daysCalendar, setDaysCalendar] = useState([]);
-
+  const {activateBoot} = usePageContext();
   const { user, logout } = useAppStore();
   const { configPages, cart, setDeliveryDate, setOrderInfo, toggleIsCheckout } =
     useEcommerceStore();
@@ -204,7 +207,30 @@ export const useCheckout = () => {
         setOrderInfo({ status: "error" });
       }
     } else {
+      
+      if(user.application_type === 3 || activateBoot){
+        let data = {
+          whatsapp_messages: [
+            {
+              type: "basic_notification",
+              title: "Confirmación pedido",
+              message : `¡Felicidades, ${user.business_name} 🎉 Nos complace confirmar que hemos recibido tu pedido por valor de ${format.formatPrice(total)} con éxito. El número único de tu pedido es el ${codigoPedido}. Queremos agradecerte por elegirnos y confiar en nuestra empresa para satisfacer tus necesidades.Hemos programado la entrega de tu pedido para el ${ deliveryDate === ""? moment(new Date()).format("YYYY-MM-DD"):moment(deliveryDate).format("YYYY-MM-DD")}. Nos aseguraremos de que tu paquete llegue a tiempo y en perfectas condiciones. ¡Esperamos que estés tan emocionado como nosotros! Gracias nuevamente por tu preferencia. Saludos cordiales`,
+              footer: "",
+              to: [
+                user.chatbot_phone
+              ]
+            }
+          ],
+          country: "CO",
+          app:"b2b",
+          business_unit: user.business
+        }
+        console.log(data);
+        let result = await sendNotificactionOrder(data)
+        console.log(result)
+      }
       setOrderInfo({ status: "success", orderId: codigoPedido, total });
+
     }
   };
 

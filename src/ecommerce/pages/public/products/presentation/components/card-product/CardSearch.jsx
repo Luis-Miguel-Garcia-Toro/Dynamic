@@ -13,7 +13,6 @@ export const CardSearch = ({
   contentClassName,
   sizeCardRow,
 }) => {
-  console.log(product);
   const configPage = useEcommerceStore((state) => state.configPages);
   const { title, imagen, code } = product;
   const {
