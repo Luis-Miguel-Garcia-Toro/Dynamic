@@ -113,6 +113,8 @@
     border-radius: var(--border-radius-md);
     // height: auto;
     width: auto;
+    height: 45px;
+    width: 45px;
 
     .Total {
       display: none;
@@ -229,4 +231,9 @@
   .HeaderSearch {
     width: 50%;
   }
+  .HeaderCart {
+    &.HasTotal {
+      height: 45px;
+      width: auto;
+    }}
 }

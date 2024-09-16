@@ -6,7 +6,7 @@ import Styles from "./scss/login-content-layout.module.scss";
 
 export const LoginContentLayout = ({ className }) => {
   const { configPages } = useEcommerceStore();
-  const loginLogo = configPages?.images?.icon;
+  const loginLogo = configPages?.images?.icon_login;
   const showLoginLogo = configPages?.images?.icon_login || "off"
 
   return (

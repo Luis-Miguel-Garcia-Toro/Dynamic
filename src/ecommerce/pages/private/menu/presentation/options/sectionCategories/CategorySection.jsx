@@ -1,4 +1,5 @@
 import Styles from "./scss/category.module.scss";
+import loreal from '../../../../../../../assets/icon/LOreal.jpg'
 
 export const CategorySection = () => {
 
@@ -93,6 +94,7 @@ export const CategorySection = () => {
                 {(dataMark || []).map((category) => (
                     <div className={`${Styles.CategoriesItem} fadeIn`} key={category.descripcion} onClick={() => window.location.href = 'products?category=' + category.code}>
                         <figure>
+                            {/* <img src={category.img == null ? 'https://www.svgrepo.com/show/355481/milk.svg' : category.img} /> */}
                             <img src={category.img == null ? 'https://www.svgrepo.com/show/355481/milk.svg' : category.img} />
                         </figure>
                         <span>{category.descripcion}</span>

@@ -19,7 +19,7 @@ export const VALIDATE_CODE = `${URL_BASE_ECOMMERCE}auth_b2b/validate_code_login_
 export const NEW_ORDER = `${URL_BASE_ECOMMERCE}order/new_order`;
 export const SEN_NOTIFICATION = `https://cw20-api-notifications.celuwebdev.com/api/messages/send_messages`
 export const GET_ORDER_HISTORY = `${URL_BASE_ECOMMERCE}order_b2b/get_history_order`;
-export const GET_BANNER = `${URL_BASE_ECOMMERCE}products_b2b/get_list_banners?&branch=-1&business_unit=1000&environment=prd`;
+export const GET_BANNER = `${URL_BASE_ECOMMERCE}products_b2b/get_list_banners?&branch=-1&business_unit=${BUSINESS_UNIT}&environment=prd`;
 export const RECOVER_PASSWORD = `${URL_BASE_ECOMMERCE}auth_b2b/recover_password`;
 export const UPDATE_PASSWORD = `${URL_BASE_ECOMMERCE}auth_b2b/update_password_b2b`;
 export const GET_SUGGESTED = `${URL_BASE_ECOMMERCE}order/suggested_order`

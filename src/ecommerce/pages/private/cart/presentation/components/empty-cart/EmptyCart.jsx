@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 import { Button } from "../../../../../../../common/presentation/components/ui/button/Button";
 import Styles from "./scss/empty-cart.module.scss";
-
+import { usePageContext } from "../../../../../../common/infrastructure/store"
 import { useNavigate } from "react-router-dom";
 import emptyCartImage from "../../../../../../../assets/img/box-delivery-package.svg";
 
 export const EmptyCart = ({ showTitle, showButton }) => {
   const navigate = useNavigate();
+  const { updateOptionActive } = usePageContext();
 
   return (
     <div className={Styles.EmptyCartContainer}>
@@ -22,7 +23,7 @@ export const EmptyCart = ({ showTitle, showButton }) => {
           {showButton && (
             <Button
               label="Explorar productos"
-              onClick={() => navigate("/home")}
+              onClick={() => updateOptionActive("home")}
             />
           )}
         </article>

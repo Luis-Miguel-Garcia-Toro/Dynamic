@@ -10,6 +10,7 @@ const CartPage = () => {
   useEffect(() => {
     if (orderResult) {
       resetCartStore();
+      console.log("entra a carrito ")
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

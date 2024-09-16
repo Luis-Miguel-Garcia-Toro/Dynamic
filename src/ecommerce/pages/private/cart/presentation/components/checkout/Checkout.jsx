@@ -10,13 +10,12 @@ import {
 import { format } from "../../../../../../../common/presentation/utils"
 import Styles from "./scss/checkout.module.scss"
 import { useCheckout } from "./view-model/useCheckout"
-
+import { useEcommerceStore } from "../../../../../../../ecommerce/common/infrastructure/store"
 registerLocale("es", es);
 
 export const Checkout = () => {
   const {
     configPages,
-    deliveryDate,
     filterDate,
     isOpenDatePicker,
     observation,
@@ -29,6 +28,8 @@ export const Checkout = () => {
     total,
     user,
   } = useCheckout();
+  const { deliveryDate } = useEcommerceStore();
+
 
   return (
     <div className={Styles.Checkout}>

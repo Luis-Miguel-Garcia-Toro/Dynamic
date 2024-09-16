@@ -14,7 +14,7 @@ export const createCartSlice = (set, get) => ({
     let subtotal = 0;
     let ultraProcesados = 0;
     cart.map((item) => {
-      Iva = Iva + (item.quantity * item.price * item.tax1) / 100;
+      Iva = Iva + (item.quantity * item.price * item.tax) / 100;
       impAzucarados = impAzucarados + parseFloat(item.tax3);
       subtotal = subtotal + item.quantity * item.price;
       ultraProcesados =

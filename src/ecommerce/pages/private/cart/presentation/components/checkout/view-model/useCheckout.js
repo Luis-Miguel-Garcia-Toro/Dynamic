@@ -75,7 +75,7 @@ export const useCheckout = () => {
 
   const prepareFilterDays = () => {
     let actualDate = new Date();
-    let rute = user.delivery_area ? user.delivery_area.split("") : '1111110'.split("");
+    let rute =Array.from(user.delivery_area) ;
     let result = [];
     let getLastDay = rute.pop();
     rute.unshift(getLastDay);
@@ -103,7 +103,7 @@ export const useCheckout = () => {
   const getDateDelivey = () => {
     let BaseDate = new Date();
     let resultDay = "";
-    let dataOrigen = user.delivery_area ? user.delivery_area : "1111110";
+    let dataOrigen = user.delivery_area;
     let dataorigenFinish = dataOrigen + dataOrigen;
     let actualyDate = new Date();
     let diaActual = actualyDate.getDay();

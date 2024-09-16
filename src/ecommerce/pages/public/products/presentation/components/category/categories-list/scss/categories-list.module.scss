@@ -58,12 +58,52 @@
 
 @include media-up($breakpoint-md) {
   .CategoriesListContainer {
+
     .CategoriesGrid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      display: flex;
+      // grid-template-columns: repeat(6, 1fr);
       gap: 1.5rem;
-      width: 100%;
+      min-width: 100%;
+      height: 100px;
       overflow-y: auto;
+    }
+
+    .CategoriesItem {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+      cursor: pointer;
+      text-align: center;
+      height: 90px;
+      width: 90px;
+      border-radius: 50%;
+      
+      figure {
+        height: 90px;
+        width: 90px;
+        border-radius: 50%;
+        border-radius: var(--border-radius-full);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 100px;
+          height: auto;
+          object-fit: cover;
+          transition: 0.3s;
+          position:relative;
+          // top: 40%;
+          &:hover {
+            transform: scale(1.2) rotate(20deg);
+          }
+        }
+      }
+    }
+
+    span {
+      font-size: 0.8rem;
     }
 
     .CategoriesListContent {

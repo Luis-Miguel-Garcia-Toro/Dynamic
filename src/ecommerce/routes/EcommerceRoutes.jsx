@@ -44,7 +44,7 @@ export const EcommerceRoutes = () => {
           seller: result.data.seller,
           application_type: 3,
           role: "0",
-          delivery_area: result.data.delivery_area,
+          delivery_area:  result.data.delivery_area,
           delivery_route: result.data.delivery_route,
           chatbot_phone: result.data.phone
       }

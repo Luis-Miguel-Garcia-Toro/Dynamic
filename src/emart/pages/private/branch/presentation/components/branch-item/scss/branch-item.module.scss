@@ -13,7 +13,6 @@
   .BranchItemCode {
     color: var(--color-label);
     display: flex;
-
     gap: 0.5rem;
     flex-direction: column;
 
@@ -28,12 +27,62 @@
   }
 }
 
+.card{
+  border-radius: 40px;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 3px 7px -1px #a8a8ab;
+  padding: 10px;
+  background-color: #FFF;
+}
+
+.contentCard{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 8%;
+  margin-right: 8%;
+}
+
 @include media-up($breakpoint-md) {
+  .card{
+    border-radius: 40px;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 3px 7px -1px #a8a8ab;
+    padding: 10px;
+    background-color: #FFF;
+  }
+  .contentCard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 8%;
+    margin-right: 8%;
+  }
+  .buttonPay{
+    border-radius: 15px;
+    border: none;
+    box-shadow: #bebaba 0px 2px 0px 0px;
+    background-color: #e71939;
+    color: white;
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+  }
+  .inputPay{
+    border-radius: 15px;
+    width: 150px;
+    height: 30px;
+    padding-left: 10px;
+    
+  }
+
   .BranchItemContainer {
-    flex-direction: row;
+    cursor: pointer;
     align-items: center;
     justify-content: space-between;
-
+    
     .BranchItemCode {
       flex-direction: row;
       align-items: center;

@@ -54,7 +54,7 @@ export const CardProductCart = ({ product, size, showButtons }) => {
             )}
             {productPrices.priceWithTax2 && (
               <span className={Styles.CardProductPriceItem}>
-                Precio con Iva: {productPrices.priceWithTax2}
+                Precio con Ultraprocesado: {productPrices.priceWithTax2}
               </span>
             )}
             {productPrices.sugaryTax && (

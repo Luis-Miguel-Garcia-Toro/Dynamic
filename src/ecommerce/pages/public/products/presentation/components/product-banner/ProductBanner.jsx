@@ -9,7 +9,8 @@ import "./scss/swiper-styles.scss";
 // import required modules
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { useEffect } from "react";
-import imageBanner1 from "@/assets/img/banner-1.jpg";
+// import imageBanner1 from "@/assets/img/banner-1.jpg";
+import imageBanner1 from "@/assets/img/bannerABcarnets.jpg";
 import { bannerStyle as bannerStyleOptions } from "../../../../../../common/domain";
 import { useEcommerceStore } from "../../../../../../common/infrastructure/store";
 import useProductBanner from "./view_model/useProductBanner"

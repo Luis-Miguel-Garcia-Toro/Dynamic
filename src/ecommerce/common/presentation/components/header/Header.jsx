@@ -9,6 +9,7 @@ import { useHeader } from "./view-model/useHeader"
 import { useEffect, useState } from "react"
 import FloatingBar from "../floatingBar/floatingBar"
 import {usePageContext} from "../../../../common/infrastructure/store"
+import { useAppStore } from "../../../../../common/infrastructure/store/app.store";
 
 const menuItems = [
   {
@@ -29,6 +30,7 @@ export const Header = () => {
   } = useHeader();
   const {updateOptionActive} = usePageContext();
   const [urlPoint, setUrlPoint] = useState("");
+  const { user } = useAppStore();
 
   useEffect(() => {
     const url = window.location.href;
@@ -60,10 +62,9 @@ export const Header = () => {
           </nav>
 
           <button
-            style={{ width: "45px", height: "45px" }}
             className={`${Styles.HeaderCart} ${summaryTotal > 0 ? Styles.HasTotal : ""
               }`}
-            onClick={() => updateOptionActive("cart")}
+            onClick={() => {user ?  updateOptionActive("cart") : window.location.href = `/login`}}
           >
             <div className={urlPoint === 'carrito' ? `${Styles.HeaderCartIconCart}` : Styles.HeaderCartIcon}>
               {totalItemsInCart > 0 && <span >{totalItemsInCart}</span>}
