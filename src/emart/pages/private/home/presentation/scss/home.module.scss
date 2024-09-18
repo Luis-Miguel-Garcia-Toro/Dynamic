@@ -2,6 +2,17 @@
 @import "@/common/presentation/scss/vars";
 @import "../../../../../common/presentation/scss/vars";
  
+
+.buttonPay{
+  border-radius: 15px;
+  border: none;
+  box-shadow: #bebaba 0px 2px 0px 0px;
+  background-color: #e71939;
+  color: white;
+  width: 150px;
+  height: 30px;
+  cursor: pointer;
+}
 .HomePageContainer {
   padding: $height-header 2rem 4rem;
   position: relative;

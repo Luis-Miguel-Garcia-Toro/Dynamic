@@ -1,17 +1,28 @@
-import React, { useState } from "react";
 import Styles from "./scss/home.module.scss";
 import { useHomePage } from "./view-model";
-import { BusinessCard } from "./components";
-import {
-  ButtonNavigate,
-  ImageLazy,
-  Loading,
-} from "@/common/presentation/components";
+import { ButtonNavigate } from "@/common/presentation/components";
 import { BsBuildingCheck } from "react-icons/bs";
+import { BusinessCardFactura } from "./components/business-card/BusinessCardFactura";
+import { BranchItemFactura } from "../../branch/presentation/components/branch-item/BranchItemFactura";
 
 export const Wallet = () => {
   const { businessList, nit, onNavigateToBranch } = useHomePage();
-
+  const orders = [
+    {
+      document: 1234678,
+      created_at: "2024-01-01",
+      end_date: "2024-12-01",
+      total: 150000,
+      pending_value: true,
+    },
+    {
+      document: 5678940,
+      created_at: "2023-01-01",
+      end_date: "2023-05-01",
+      total: 180000,
+      pending_value: false,
+    },
+  ];
   return (
     <main className={Styles.HomePageContainer}>
       <div className={Styles.HomeBackground} />
@@ -30,19 +41,23 @@ export const Wallet = () => {
       </div>
       <section className={Styles.BusinessListContainer}>
         {businessList.map((business) => (
-          <BusinessCard
-            navigateTo={() => onNavigateToBranch(business)}
-            business={business}
-            key={business.business}
-          />
+          <BusinessCardFactura business={business} key={business.business} />
         ))}
       </section>
       <section className={Styles.BranchListContainer}>
         <div className={`${Styles.BranchListTitle} fadeIn`}>
           <BsBuildingCheck size={20} color="var(--color-label)" />
           <h2>Sucursales</h2>
+          <BranchItemFactura
+            orders={orders}
+            branch={"branch"}
+            colorBusiness="gris"
+            key="1000"
+          />
         </div>
       </section>
+      <h2>TOTAL A PAGAR : {}</h2>
+      <button className={Styles.buttonPay}>Pagar en linea</button>
     </main>
   );
 };
