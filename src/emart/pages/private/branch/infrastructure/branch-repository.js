@@ -1,8 +1,6 @@
 import { http } from "@/common/infrastructure/connection/Http";
 import { branchesAdapter } from "./branch-adapter";
-
-const API_EMART_URL = import.meta.env.VITE_API_EMART_URL;
-// const API_EMART_URL = 'https://api-tiendaclubshop.sandboxcw.net/api';
+import {GET_BRANCH} from '../../../../Global/globalEmar'
 
 export const fetchGetBranches = ({ nit, business, config = {} }) => {
   const params = {
@@ -12,7 +10,7 @@ export const fetchGetBranches = ({ nit, business, config = {} }) => {
 
   return http
     .post({
-      url: `${API_EMART_URL}/auth/get_branch_cwpay`,
+      url: GET_BRANCH,
       body: null,
       config: {
         ...config,

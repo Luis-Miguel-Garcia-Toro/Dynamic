@@ -1,13 +1,15 @@
 import PropTypes from "prop-types";
 import { ImageLazy } from "../../../../../../../common/presentation/components";
 import Styles from "./scss/business-card.module.scss";
+import {useContextWallet} from '../../../../../../context/ContextWallet'
 
 export const BusinessCardFactura = ({ business }) => {
+  const {updateBusinessSelected} = useContextWallet()
   const { comercial_name, logo, organization } = business;
-  console.log(logo, "De aqui me saco los logos");
+  console.log(business, "De aqui me saco los logos");
   return (
     <div
-      onClick={() => console.log("traer facturas del sitio")}
+      onClick={() =>updateBusinessSelected(business.business) }
       className={`${Styles.BusinessCardContainer} fadeIn`}
     >
       <figure>

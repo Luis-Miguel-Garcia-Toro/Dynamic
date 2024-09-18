@@ -4,25 +4,31 @@ import { ButtonNavigate } from "@/common/presentation/components";
 import { BsBuildingCheck } from "react-icons/bs";
 import { BusinessCardFactura } from "./components/business-card/BusinessCardFactura";
 import { BranchItemFactura } from "../../branch/presentation/components/branch-item/BranchItemFactura";
+import {useContextWallet} from '../../../../context/ContextWallet'
+import { useEffect, useState } from "react";
+import {getWallet} from '../../../../authServices/authWallet/walletAuth'
 
 export const Wallet = () => {
+  const {businessSelected} = useContextWallet()
   const { businessList, nit, onNavigateToBranch } = useHomePage();
-  const orders = [
-    {
-      document: 1234678,
-      created_at: "2024-01-01",
-      end_date: "2024-12-01",
-      total: 150000,
-      pending_value: true,
-    },
-    {
-      document: 5678940,
-      created_at: "2023-01-01",
-      end_date: "2023-05-01",
-      total: 180000,
-      pending_value: false,
-    },
-  ];
+  const [orders, setOrders] = useState([]);
+
+
+  const getWalletClient = async () => {
+    let res = await getWallet('1058058338')
+    if(res.data.data.length > 0){
+      console.log(res.data.data);
+      setOrders(res.data.data)
+    }else{
+      setOrders([])
+    }
+  }
+
+  useEffect(() => {
+    getWalletClient()
+    console.log(businessSelected)
+  },[businessSelected])
+
   return (
     <main className={Styles.HomePageContainer}>
       <div className={Styles.HomeBackground} />

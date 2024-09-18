@@ -5,10 +5,7 @@ import {
   phoneListAdapter,
   sendCodeAdapter,
 } from "./login.adapter"
-
-const API_EMART_URL = import.meta.env.VITE_API_EMART_URL;
-// const API_EMART_URL = 'https://api-tiendaclubshop.sandboxcw.net/api';
-
+import {GET_LIST_PHONE, VALIDATE_CODE_EMART, LOGIN_CW_PAY} from '../../../../Global/globalEmar'
 
 export const fetchGetPhoneList = (nit) => {
   const params = {
@@ -17,7 +14,7 @@ export const fetchGetPhoneList = (nit) => {
 
   return http
     .post({
-      url: `${API_EMART_URL}/auth/get_list_phone`,
+      url: GET_LIST_PHONE,
       body: null,
       config: {
         params,
@@ -35,7 +32,7 @@ export const fetchSendCode = ({ nit, phone, autenticate_code }) => {
 
   return http
     .get({
-      url: `${API_EMART_URL}/auth/send_validation_code`,
+      url: VALIDATE_CODE_EMART,
       config: {
         params,
       },
@@ -51,7 +48,7 @@ export const fetchLogin = ({ nit, password }) => {
 
   return http
     .post({
-      url: `${API_EMART_URL}/auth/login_cwpay`,
+      url: LOGIN_CW_PAY,
       body: null,
       config: {
         params,
@@ -68,7 +65,7 @@ export const fetchCreatePassword = ({ nit, password }) => {
 
   return http
     .post({
-      url: `${API_EMART_URL}/auth/create_password`,
+      url: CREATE_PASS,
       body: null,
       config: {
         params,
