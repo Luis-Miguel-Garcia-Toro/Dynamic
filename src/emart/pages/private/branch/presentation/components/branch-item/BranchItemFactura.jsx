@@ -2,77 +2,86 @@ import { Box, Checkbox, Modal } from "@mui/material";
 import PropTypes from "prop-types";
 import Styles from "./scss/branch-item.module.scss";
 import React, { useState } from "react";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
-import { styled } from "@mui/material/styles";
+import PaymentWompi from '../payment/PaymentWompi'
+import { BsCreditCard } from "react-icons/bs";
 
-const style = {
-  position: "absolute",
-  top: "40%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 1000,
-  bgcolor: "background.paper",
-  borderRadius: "8px",
-  boxShadow: 24,
-  p: 4,
-  display: "flex",
-  flexDirection: "column",
-  gap: "1rem",
-};
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#FFFF",
-    color: "var(--color-primary)",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-    color: "#606093",
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
 
 export const BranchItemFactura = ({ branch, colorBusiness, orders }) => {
   const { code } = branch;
+  const [valuePayment, setValuePayment] = useState(0);
+  const [invoices, setInvoices] = useState([])
+  const {payWompi} = PaymentWompi()
+
+  const seletedBillPayment = (e, data) => {
+    setValuePayment(valuePayment + data.valor)
+    if(e.target.checked){
+      setValuePayment(valuePayment + data.valor)
+      setInvoices([...invoices, {
+        value : data.valor,
+        document : data.documento
+      }])
+    }else{
+      setValuePayment(valuePayment - data.valor)
+      setInvoices(invoices.filter((item) => item.document !== data.documento))
+    }
+  }
+
 
   return (
     <>
       {orders.map((fact) => {
         return (
-          <div className={`${Styles.BranchItemContainer} fadeIn`} key={code}>
-            <div className={Styles.BranchItemCode}>
+
+          <div className={`${Styles.BranchItemBillContainer} fadeIn`} key={code}>
+            <div className={Styles.BranchItemBill}>
               <figure>
                 <img
                   src={
                     "https://usc1.contabostorage.com/d069ea98e2df4b0e9e99b1e7b2ca9a58:pruebasceluweb/%20company_logos/1000/logo.png"
                   }
-                  style={{
-                    width: "50px",
-                  }}
                   alt={branch.name}
                 />
               </figure>
-              <h3>NumeroDoc: {fact.documento}</h3>
+              <h3>Factura N°: <strong>{fact.documento}</strong></h3>
               <h3>
-                Valor: ${fact.valor}
-                {fact.pending_value ? <Checkbox>Seleccionar</Checkbox> : ""}
+                Valor:
+                <label className={fact.state === 0 ? Styles.valuePending : Styles.valueSold}>
+                  {' $' +
+                    new Intl.NumberFormat('en', {
+                      // @ts-ignore
+                      numberingSystem: 'latn',
+                      style: 'decimal',
+                      currency: 'COP'
+                    }).format(Math.round(fact.valor))}
+                </label>{fact.pending_value ? <Checkbox>Seleccionar</Checkbox> : ""}
               </h3>
+              <div className={Styles.BranchCheck}>
+                <input
+                  type="checkbox"
+                  onClick={(e) => seletedBillPayment(e,fact)}
+                />
+              </div>
             </div>
           </div>
+
+
         );
       })}
+      <div className={Styles.paymentContainer}>
+        <div className={Styles.titleTotal}><h2>Total :</h2>
+          <label>{' $' +
+            new Intl.NumberFormat('en', {
+              // @ts-ignores
+              numberingSystem: 'latn',
+              style: 'decimal',
+              currency: 'COP'
+            }).format(Math.round(valuePayment))}
+          </label>
+        </div>
+        <button className={Styles.paymentButton} onClick={() => payWompi({valuePayment, invoices})}>
+          <BsCreditCard size={45} style={{ color: "green" }} />
+        </button>
+      </div>
     </>
   );
 };
@@ -81,3 +90,5 @@ BranchItemFactura.propTypes = {
   branch: PropTypes.object.isRequired,
   colorBusiness: PropTypes.string.isRequired,
 };
+
+

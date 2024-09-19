@@ -4,6 +4,10 @@ export const phoneListAdapter = (response) => {
       phone: item.phone,
       email: item.email,
       state_password: item.state_password,
+      name : item.name ? item.name : '',
+      razon_social : item.razon_social ? item.razon_social : '',
+      code : item.code ? item.code : '',
+      nit : item.nit ? item.nit : ''
     };
   });
 

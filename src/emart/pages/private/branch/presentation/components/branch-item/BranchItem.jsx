@@ -209,15 +209,7 @@ export const BranchItem = ({ branch, colorBusiness }) => {
             </TableContainer>
           </div>
 
-          <div className={Styles.card}>
-            <div className={Styles.contentCard}>
-              <label>
-                <h4>Total a pagar :</h4>
-              </label>
-              <label>{totalEnd}</label>
-              <button className={Styles.buttonPay}>Pagar en linea</button>
-            </div>
-          </div>
+      
         </Box>
       </Modal>
     </>

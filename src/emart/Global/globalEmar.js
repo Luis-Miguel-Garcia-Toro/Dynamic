@@ -7,3 +7,4 @@ export const LOGIN_CW_PAY =  `${URL_BASE_API}/auth/login_cwpay`
 export const CREATE_PASS = `${URL_BASE_API}/auth/create_password`
 
 export const GET_WALLET = `${URL_BASE_API}/business/get_wallet`
+export const SUBMITWOMPY = 'https://api1.cwmovilidad.com/wompi_produccion/api/pay_link_sql/create_pay_link_wompi'

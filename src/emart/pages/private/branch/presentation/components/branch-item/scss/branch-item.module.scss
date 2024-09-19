@@ -21,13 +21,95 @@
       font-weight: normal;
     }
   }
+ 
+  &:hover {
+    box-shadow: var(--box-shadow-medium);
+  }
+}
+
+
+
+.BranchItemBillContainer {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-light);
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 5px;
+
+  .BranchItemBill {
+    color: var(--color-label);
+    display: flex;
+    gap: 0.5rem;
+
+    h3 {
+      font-size: 1rem;
+      font-weight: normal;
+
+    }
+
+    figure {
+      margin-top: 5px;
+      margin-left: -10px;
+      margin-right: 5px;
+
+      img {
+        width: 80px;
+        height: auto;
+      }
+    }
+
+    .valuePending {
+      color: #e71939;
+      font-weight: 650;
+    }
+
+    .valueSold {
+      color: green;
+      font-weight: 650;
+    }
+    .BranchCheck{
+      margin: auto;
+      width: 20px;
+      height: auto;
+    }
+  }
+
 
   &:hover {
     box-shadow: var(--box-shadow-medium);
   }
 }
 
-.card{
+
+.paymentContainer {
+  .titleTotal {
+    h2 {
+      color: #1976D2;
+    }
+    label{
+      color: #1976D2;
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+  }
+
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+
+  .paymentButton {
+    border: none;
+
+  }
+}
+
+
+
+
+.card {
   border-radius: 40px;
   height: 100%;
   width: 100%;
@@ -36,7 +118,7 @@
   background-color: #FFF;
 }
 
-.contentCard{
+.contentCard {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,7 +127,7 @@
 }
 
 @include media-up($breakpoint-md) {
-  .card{
+  .card {
     border-radius: 40px;
     height: 100%;
     width: 100%;
@@ -53,14 +135,16 @@
     padding: 10px;
     background-color: #FFF;
   }
-  .contentCard{
+
+  .contentCard {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-left: 8%;
     margin-right: 8%;
   }
-  .buttonPay{
+
+  .buttonPay {
     border-radius: 15px;
     border: none;
     box-shadow: #bebaba 0px 2px 0px 0px;
@@ -70,19 +154,20 @@
     height: 30px;
     cursor: pointer;
   }
-  .inputPay{
+
+  .inputPay {
     border-radius: 15px;
     width: 150px;
     height: 30px;
     padding-left: 10px;
-    
+
   }
 
   .BranchItemContainer {
     cursor: pointer;
     align-items: center;
     justify-content: space-between;
-    
+
     .BranchItemCode {
       flex-direction: row;
       align-items: center;
