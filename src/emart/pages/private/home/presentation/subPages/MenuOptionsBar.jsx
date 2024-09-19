@@ -29,7 +29,7 @@ const MenuOptionsBar = () => {
                 }}
             >
                 <BottomNavigationAction
-                    label="Recents"
+                    label="Inicio"
                     icon={<RestoreIcon />}
                     onClick={() => updateOptionSeleted('home')} 
                 />

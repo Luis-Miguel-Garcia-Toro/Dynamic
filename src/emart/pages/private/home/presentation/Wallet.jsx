@@ -15,7 +15,7 @@ export const Wallet = () => {
 
 
   const getWalletClient = async () => {
-    let res = await getWallet('1058058338')
+    let res = await getWallet(nit)
     if(res.data.data.length > 0){
       console.log(res.data.data);
       setOrders(res.data.data)

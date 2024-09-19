@@ -1,17 +1,9 @@
-import { ButtonNavigate } from "@/common/presentation/components";
 import { Box, Checkbox, Modal } from "@mui/material";
 import PropTypes from "prop-types";
-import { IoStorefrontOutline } from "react-icons/io5";
 import Styles from "./scss/branch-item.module.scss";
 import React, { useState } from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import Paper from "@mui/material/Paper";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import moment from "moment/moment";
 import { styled } from "@mui/material/styles";
 
 const style = {
@@ -72,9 +64,9 @@ export const BranchItemFactura = ({ branch, colorBusiness, orders }) => {
                   alt={branch.name}
                 />
               </figure>
-              <h3>NumeroDoc: {fact.document}</h3>
+              <h3>NumeroDoc: {fact.documento}</h3>
               <h3>
-                Valor: ${fact.total}
+                Valor: ${fact.valor}
                 {fact.pending_value ? <Checkbox>Seleccionar</Checkbox> : ""}
               </h3>
             </div>
