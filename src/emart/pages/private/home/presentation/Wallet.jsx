@@ -17,7 +17,6 @@ export const Wallet = () => {
   const getWalletClient = async () => {
     let res = await getWallet(nit)
     if (res.data.data.length > 0) {
-      console.log(res.data.data);
       setOrders(res.data.data)
     } else {
       setOrders([])
@@ -26,7 +25,6 @@ export const Wallet = () => {
 
   useEffect(() => {
     getWalletClient()
-    console.log(businessSelected)
   }, [businessSelected])
 
   return (
