@@ -4,28 +4,28 @@ import { ButtonNavigate } from "@/common/presentation/components";
 import { BsBuildingCheck } from "react-icons/bs";
 import { BusinessCardFactura } from "./components/business-card/BusinessCardFactura";
 import { BranchItemFactura } from "../../branch/presentation/components/branch-item/BranchItemFactura";
-import { useContextWallet } from '../../../../context/ContextWallet'
+import { useContextWallet } from "../../../../context/ContextWallet";
 import { useEffect, useState } from "react";
-import { getWallet } from '../../../../authServices/authWallet/walletAuth'
+import { getWallet } from "../../../../authServices/authWallet/walletAuth";
+import { Divider } from "antd";
 
 export const Wallet = () => {
-  const { businessSelected } = useContextWallet()
+  const { businessSelected } = useContextWallet();
   const { businessList, nit, onNavigateToBranch } = useHomePage();
   const [orders, setOrders] = useState([]);
 
-
   const getWalletClient = async () => {
-    let res = await getWallet(nit)
+    let res = await getWallet(nit);
     if (res.data.data.length > 0) {
-      setOrders(res.data.data)
+      setOrders(res.data.data);
     } else {
-      setOrders([])
+      setOrders([]);
     }
-  }
+  };
 
   useEffect(() => {
-    getWalletClient()
-  }, [businessSelected])
+    getWalletClient();
+  }, [businessSelected]);
 
   return (
     <main className={Styles.HomePageContainer}>
@@ -50,18 +50,33 @@ export const Wallet = () => {
       </section>
       <section className={Styles.BranchListContainer}>
         <div className={`${Styles.BranchListTitle} fadeIn`}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '5px', margin:"10px" }}>        <BsBuildingCheck size={20} color="var(--color-label)" />
-            <h2>Sucursales</h2></div>
-
-          <BranchItemFactura
-            orders={orders}
-            branch={"branch"}
-            colorBusiness="gris"
-            key="1000"
-          />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+              margin: "10px",
+            }}
+          >
+            {" "}
+            <BsBuildingCheck size={20} color="var(--color-label)" />
+            <h2>Sucursales</h2>
+          </div>
         </div>
       </section>
+      <Divider style={{ borderColor: "whitesmoke" }} />
+      <div className={Styles.HomePagetitles}>
+        <h2>Tus Facturas</h2>
+      </div>
 
+      <div>
+        <BranchItemFactura
+          orders={orders}
+          branch={"branch"}
+          colorBusiness="gris"
+          key="1000"
+        />
+      </div>
     </main>
   );
 };

@@ -6,7 +6,7 @@ import {useContextWallet} from '../../../../../../context/ContextWallet'
 export const BusinessCardFactura = ({ business }) => {
   const {updateBusinessSelected} = useContextWallet()
   const { comercial_name, logo, organization } = business;
-  console.log(business, "De aqui me saco los logos");
+  // console.log(business, "De aqui me saco los logos");
   return (
     <div
       onClick={() =>updateBusinessSelected(business.business) }

@@ -5,16 +5,15 @@ import { useHomePage } from "./view-model";
 import Wallet from "./Wallet";
 import WalletUser from "./subPages/WalletUser";
 import MenuOptionsBar from "./subPages/MenuOptionsBar";
-import { useContextWallet } from '../../../../context/ContextWallet'
+import { useContextWallet } from "../../../../context/ContextWallet";
 
 export const HomePage = () => {
   const { businessList, nit, onNavigateToBranch } = useHomePage();
-  const {optionSelected} = useContextWallet()
-
+  const { optionSelected } = useContextWallet();
 
   return (
     <>
-      {optionSelected === 'home' ? (
+      {optionSelected === "home" ? (
         <main className={Styles.HomePageContainer}>
           <div className={Styles.HomeBackground} />
           <div className={Styles.HomePageHeader}>
@@ -24,7 +23,7 @@ export const HomePage = () => {
             <h2>Nit - {nit}</h2>
           </div>
           <div className={Styles.HomePageHeaderButton} />
-         
+
           <WalletUser />
 
           <section className={Styles.BusinessListContainer}>
