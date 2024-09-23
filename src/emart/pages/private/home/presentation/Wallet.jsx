@@ -10,16 +10,19 @@ import { getWallet } from "../../../../authServices/authWallet/walletAuth";
 import { Divider } from "antd";
 
 export const Wallet = () => {
-  const { businessSelected } = useContextWallet();
+  const { businessSelected, updateDatabusiness, businessData } =
+    useContextWallet();
   const { businessList, nit, onNavigateToBranch } = useHomePage();
   const [orders, setOrders] = useState([]);
+  // const [businessData, setbusinessData] = useState([]);
 
   const getWalletClient = async () => {
     let res = await getWallet(nit);
     if (res.data.data.length > 0) {
-      setOrders(res.data.data);
+      updateDatabusiness(res.data.data);
+      console.log(res.data.data)
     } else {
-      setOrders([]);
+      updateDatabusiness([]);
     }
   };
 
@@ -69,13 +72,26 @@ export const Wallet = () => {
         <h2>Tus Facturas</h2>
       </div>
 
-      <div>
+      {/* <div>
         <BranchItemFactura
           orders={orders}
           branch={"branch"}
-          colorBusiness="gris"
-          key="1000"
+          // colorBusiness="gris"
+          // key="business_unit"
         />
+      </div> */}
+      <div>
+        {businessData.length > 0 ? (
+          <BranchItemFactura
+          orders={businessData}
+            branch={businessSelected}           
+          />
+        ) : (
+          <div className={Styles.NoBranches}>
+            <MdSearchOff color="var(--color-cancel)" size={50} />
+            <h3>No se encontraron sucursales para este negocio</h3>
+          </div>
+        )}
       </div>
     </main>
   );

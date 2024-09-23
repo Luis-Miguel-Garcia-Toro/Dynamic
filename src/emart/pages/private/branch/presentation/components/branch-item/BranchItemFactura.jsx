@@ -1,7 +1,7 @@
 import { Box, Checkbox, Modal } from "@mui/material";
 import PropTypes from "prop-types";
 import Styles from "./scss/branch-item.module.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PaymentWompi from "../payment/PaymentWompi";
 import { BsCreditCard } from "react-icons/bs";
 
@@ -10,6 +10,8 @@ export const BranchItemFactura = ({ branch, colorBusiness, orders }) => {
   const [valuePayment, setValuePayment] = useState(0);
   const [invoices, setInvoices] = useState([]);
   const { payWompi } = PaymentWompi();
+  const [dataBill, sedataBill] = useState([]);
+
 
   const seletedBillPayment = (e, data) => {
     setValuePayment(valuePayment + data.valor);
@@ -28,11 +30,32 @@ export const BranchItemFactura = ({ branch, colorBusiness, orders }) => {
     }
   };
 
+  // console.log(orders.filter(bill=>
+  //   bill.business_unit === branch
+  // ),"orders")
+// console.log(branch,"bramch")
+  // const billData  = orders.map(bill=>
+  //   bill.business_unit === branch
+  // )
+
+  useEffect(() => {
+    getDataBill();
+  }, [branch]);
+
+function getDataBill (){
+  const billData  = orders.map(bill=>
+    bill.business_unit === branch
+    
+  ) 
+  sedataBill (billData)
+
+}
+
   return (
     <>
       <div className={Styles.BranchItemBillFather}>
         <div className={Styles.bills}>
-          {orders.map((fact) => {
+          {dataBill?.map((fact) => {
             return (
               <div
                 className={`${Styles.BranchItemBillContainer} fadeIn`}
