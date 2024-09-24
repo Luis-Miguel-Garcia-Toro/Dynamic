@@ -2,6 +2,7 @@
 @import "@/common/presentation/scss/vars";
  
 .BusinessCardContainer {
+  width: 100%;
   background-color: var(--color-white);
   padding: 1rem;
   border-radius: var(--border-radius-sm);
@@ -36,6 +37,7 @@
   }
  
   h2 {
+    text-wrap: wrap;
     font-size: 1rem;
     display: none;
     opacity: 0;

@@ -1,9 +1,8 @@
 @import "@/common/presentation/scss/mixins/responsive.mixin";
 @import "@/common/presentation/scss/vars";
 @import "../../../../../common/presentation/scss/vars";
- 
 
-.buttonPay{
+.buttonPay {
   border-radius: 15px;
   border: none;
   box-shadow: #bebaba 0px 2px 0px 0px;
@@ -17,7 +16,7 @@
   padding: $height-header 2rem 4rem;
   position: relative;
   color: var(--color-secondary);
- 
+
   .HomeBackground {
     position: absolute;
     top: 0;
@@ -27,31 +26,32 @@
     border-radius: 0 0 50% 0px;
     background-color: var(--color-primary);
     transition: 0.3s;
+    z-index: -9;
   }
- 
+
   .HomePageHeader {
     position: relative;
     z-index: 2;
     margin-bottom: 2rem;
- 
+
     .HomePageHeaderOptions {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
     }
- 
+
     h1 {
       font-size: 1.8rem;
     }
- 
+
     h2 {
       font-size: 1.2rem;
       color: var(--color-cancel);
       font-weight: normal;
     }
   }
- 
+
   .BusinessListContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -59,17 +59,38 @@
     position: relative;
     z-index: 2;
   }
- 
+
   .BusinessListContainer {
     display: flex;
     overflow-x: auto;
     white-space: nowrap;
     padding: 10px;
     box-sizing: border-box;
- 
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #8b8b8b;
+      border-radius: 20px;
+    }
+  }
+  .HomePagetitles {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2px;
+    margin-bottom: 5px;
+
   }
 }
- 
+
 @include media-up($breakpoint-md) {
   .HomePageContainer {
     .BusinessListContainer {
@@ -78,11 +99,27 @@
       z-index: 2;
       //grid-template-columns: repeat(5, 1fr);
       gap: 1rem;
+      ///
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px;
+      box-sizing: border-box;
+      
     }
- 
- 
+    .HomePagetitles {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      padding: 2px;
+      margin-bottom: 5px;
+    }
+
     .HomeBackground {
       border-radius: initial;
     }
+   
   }
+ 
 }
+

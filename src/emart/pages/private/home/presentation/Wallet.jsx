@@ -4,28 +4,32 @@ import { ButtonNavigate } from "@/common/presentation/components";
 import { BsBuildingCheck } from "react-icons/bs";
 import { BusinessCardFactura } from "./components/business-card/BusinessCardFactura";
 import { BranchItemFactura } from "../../branch/presentation/components/branch-item/BranchItemFactura";
-import { useContextWallet } from '../../../../context/ContextWallet'
+import { useContextWallet } from "../../../../context/ContextWallet";
 import { useEffect, useState } from "react";
-import { getWallet } from '../../../../authServices/authWallet/walletAuth'
+import { getWallet } from "../../../../authServices/authWallet/walletAuth";
+import { Divider } from "antd";
+import { MdSearchOff } from "react-icons/md";
 
 export const Wallet = () => {
-  const { businessSelected } = useContextWallet()
+  const { businessSelected, updateDatabusiness, businessData } =
+    useContextWallet();
   const { businessList, nit, onNavigateToBranch } = useHomePage();
   const [orders, setOrders] = useState([]);
-
+  // const [businessData, setbusinessData] = useState([]);
 
   const getWalletClient = async () => {
-    let res = await getWallet(nit)
+    let res = await getWallet(nit);
     if (res.data.data.length > 0) {
-      setOrders(res.data.data)
+      updateDatabusiness(res.data.data);
+      console.log(res.data.data);
     } else {
-      setOrders([])
+      updateDatabusiness([]);
     }
-  }
+  };
 
   useEffect(() => {
-    getWalletClient()
-  }, [businessSelected])
+    getWalletClient();
+  }, [businessSelected]);
 
   return (
     <main className={Styles.HomePageContainer}>
@@ -50,18 +54,43 @@ export const Wallet = () => {
       </section>
       <section className={Styles.BranchListContainer}>
         <div className={`${Styles.BranchListTitle} fadeIn`}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '5px', margin:"10px" }}>        <BsBuildingCheck size={20} color="var(--color-label)" />
-            <h2>Sucursales</h2></div>
-
-          <BranchItemFactura
-            orders={orders}
-            branch={"branch"}
-            colorBusiness="gris"
-            key="1000"
-          />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+              margin: "10px",
+            }}
+          >
+            {" "}
+            <BsBuildingCheck size={20} color="var(--color-label)" />
+            <h2>Sucursales</h2>
+          </div>
         </div>
       </section>
+      <Divider style={{ borderColor: "whitesmoke" }} />
+      <div className={Styles.HomePagetitles}>
+        <h2>Tus Facturas</h2>
+      </div>
 
+      {/* <div>
+        <BranchItemFactura
+          orders={orders}
+          branch={"branch"}
+          // colorBusiness="gris"
+          // key="business_unit"
+        />
+      </div> */}
+      <div>
+        {businessData.length > 0 ? (
+          <BranchItemFactura orders={businessData} branch={businessSelected} />
+        ) : (
+          <div className={Styles.NoBranches}>
+            <MdSearchOff color="var(--color-cancel)" size={50} />
+            <h3> negocio</h3>
+          </div>
+        )}
+      </div>
     </main>
   );
 };

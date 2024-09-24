@@ -7,6 +7,9 @@ export const useContextWallet = create(
       optionSelected: 'home', // home - wallet - business
       indexoption : 0,
       businessSelected : '0000',
+      businessData:  [1], // para seleccionar  negocio desde wallet
+
+
       updateOptionSeleted: (item) =>
         set({
             optionSelected: item,
@@ -15,6 +18,10 @@ export const useContextWallet = create(
         set({
             indexoption: index
         }),
+        updateDatabusiness: (index) =>
+          set({
+            businessData: index
+          }),
       updateBusinessSelected: (item) =>
         set({
             businessSelected: item

@@ -7,7 +7,7 @@ export const getWallet = async (nit) => {
     let result
     await axios.get(GET_WALLET + `?nit=${nit}&page=1&rows=20`)
     .then((res) => {
-        console.log(result, "api")
+        // console.log(result, "api")
         result = res
     })
     .catch((err) => {
