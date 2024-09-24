@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { BusinessCard } from "./components";
 import Styles from "./scss/home.module.scss";
 import { useHomePage } from "./view-model";

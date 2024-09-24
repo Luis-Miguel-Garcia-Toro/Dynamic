@@ -8,6 +8,7 @@ import { useContextWallet } from "../../../../context/ContextWallet";
 import { useEffect, useState } from "react";
 import { getWallet } from "../../../../authServices/authWallet/walletAuth";
 import { Divider } from "antd";
+import { MdSearchOff } from "react-icons/md";
 
 export const Wallet = () => {
   const { businessSelected, updateDatabusiness, businessData } =
@@ -20,7 +21,7 @@ export const Wallet = () => {
     let res = await getWallet(nit);
     if (res.data.data.length > 0) {
       updateDatabusiness(res.data.data);
-      console.log(res.data.data)
+      console.log(res.data.data);
     } else {
       updateDatabusiness([]);
     }
@@ -82,10 +83,7 @@ export const Wallet = () => {
       </div> */}
       <div>
         {businessData.length > 0 ? (
-          <BranchItemFactura
-          orders={businessData}
-            branch={businessSelected}           
-          />
+          <BranchItemFactura orders={businessData} branch={businessSelected} />
         ) : (
           <div className={Styles.NoBranches}>
             <MdSearchOff color="var(--color-cancel)" size={50} />

@@ -251,3 +251,21 @@
     }
   }
 }
+.NoBranches {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px dashed var(--color-cancel);
+  border-radius: var(--border-radius-md);
+  margin-top: 2rem;
+  color: var(--color-cancel);
+  text-align: center;
+  padding: 0 2rem;
+
+  h3 {
+    font-weight: normal;
+    margin-top: 0.5rem;
+  }
+}
