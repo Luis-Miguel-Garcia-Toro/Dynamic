@@ -106,7 +106,7 @@ export const BranchItemFactura = ({ branch, orders }) => {
           ) : (
             <div className={Styles.NoBranches}>
               <MdSearchOff color="var(--color-cancel)" size={50} />
-              <h3>No se encontraron sucursales para este negocio</h3>
+              <h3>No se encontraron Facturas para este negocio</h3>
             </div>
           )}
         </div>
