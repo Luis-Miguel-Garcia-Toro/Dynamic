@@ -1,0 +1,39 @@
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+@import "../../../../../common/presentation/scss/vars";
+
+
+.containerMenuOption{
+    width: 100%;
+
+
+    .menuOptionMobile{
+        display: block;
+    }
+
+    .menuOptionDesktop{
+        .containerMenu{
+            position: absolute;
+            top : 15px;
+            right: 50px;
+            .buttonMenu{
+                background-color: aliceblue;
+                border-radius: 50%;
+            }
+        }
+    }
+
+}
+
+
+
+@include media-up($breakpoint-md) {
+    .containerMenuOption{
+        .menuOptionMobile{
+            display: none;
+        }
+       
+    }
+  }
+  
+  

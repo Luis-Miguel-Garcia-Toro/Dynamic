@@ -1,0 +1,79 @@
+.containerWompy {
+    margin-top: 100px;
+    margin-left: 20px;
+    width: 100%;
+ 
+    height: calc(100vh - 450px);
+    display: grid;
+    justify-content: space-around;
+    
+    .containerIcon{
+        width: 200px;
+        .success-animation {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .checkmark {
+            margin-top: 10px;
+            display: inline-block;
+        }
+    }
+
+    .containerIconError{
+        width: 220px;
+        margin-left: 30px;
+        .success-animation {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .checkmark {
+            margin-top: 10px;
+            display: inline-block;
+        }
+    }
+
+    .resumePay{
+        display: grid;
+        margin-top: 50px;
+        margin-left: -60px;
+        justify-items: center;
+        label{
+            display: flex;
+            margin-top: 10px;
+            .title{
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #123C5C;
+            }
+            .value{
+                font-size: 1.0rem;
+                font-weight: 600;
+                color: #656568;
+                margin-left: 10px;
+                justify-content: last baseline;
+            }
+        }
+        h2{
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #123C5C;
+        }
+    }
+
+    .containerButton{
+        display: grid;
+        margin-left: 20px;
+        button{
+            border: 1px solid #123C5C;
+            background-color: #123C5C;
+            color: white;
+            border-radius: 5px;
+            width: 200px;
+            height: 40px;
+            margin-top: 20px;
+        }
+    }
+   
+}

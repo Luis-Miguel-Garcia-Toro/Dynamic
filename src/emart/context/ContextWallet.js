@@ -8,8 +8,8 @@ export const useContextWallet = create(
       indexoption :'home' ,
       businessSelected : '0000', // seleccion de negocios
       businessData:  [1], // para seleccionar  negocio desde wallet
-
-
+      tokenWompy : null,
+      idLastPayment : '',
       updateOptionSeleted: (item) =>
         set({
             optionSelected: item,
@@ -25,6 +25,14 @@ export const useContextWallet = create(
       updateBusinessSelected: (item) =>
         set({
             businessSelected: item
+        }),
+      updateTokenWompy: (item) =>
+        set({
+            tokenWompy: item
+        }),
+      updateIdLastPayment: (item) =>
+        set({
+          idLastPayment: item
         }),
     }),
     {

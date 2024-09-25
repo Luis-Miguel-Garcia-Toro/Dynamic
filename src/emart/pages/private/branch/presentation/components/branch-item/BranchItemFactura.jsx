@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import PaymentWompi from "../payment/PaymentWompi";
 import { BsCreditCard } from "react-icons/bs";
 import { MdSearchOff } from "react-icons/md";
+import wompyLogo from '../../../../../../../assets/wompi-logo.png'
 
 export const BranchItemFactura = ({ branch, orders }) => {
   const { code } = branch;
@@ -132,7 +133,7 @@ export const BranchItemFactura = ({ branch, orders }) => {
               onClick={() => payWompi({ valuePayment, invoices })}
             >
               <img
-                src="src/assets/wompi-logo.png"
+                src={wompyLogo}
                 alt="Pago con tarjeta"
                 style={{ width: 118, height: 45 }}
               />
