@@ -5,8 +5,8 @@ export const useContextWallet = create(
   persist(
     (set) => ({
       optionSelected: 'home', // home - wallet - business
-      indexoption : 0,
-      businessSelected : '0000',
+      indexoption :'home' ,
+      businessSelected : '0000', // seleccion de negocios
       businessData:  [1], // para seleccionar  negocio desde wallet
 
 

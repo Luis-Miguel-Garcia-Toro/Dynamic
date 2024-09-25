@@ -3,7 +3,7 @@ import Styles from "./scss/home.module.scss";
 import { useHomePage } from "./view-model";
 import Wallet from "./Wallet";
 import WalletUser from "./subPages/WalletUser";
-import MenuOptions from "./subPages/MenuOptions";
+// import MenuOptions from "./subPages/MenuOptions";
 import { useContextWallet } from "../../../../context/ContextWallet";
 
 export const HomePage = () => {
@@ -38,7 +38,8 @@ export const HomePage = () => {
       ) : (
         <Wallet />
       )}
-      <MenuOptions/>
+      {/* <MenuOptions /> */}
+      
     </>
   );
 };
