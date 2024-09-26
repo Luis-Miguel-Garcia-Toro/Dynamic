@@ -2,38 +2,106 @@
 @import "@/common/presentation/scss/vars";
 @import "../../../../../common/presentation/scss/vars";
 
+.containerMenuOption {
+  width: 100%;
+  position: relative;
 
-.containerMenuOption{
-    width: 100%;
+  .menuOptionMobile {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+  }
 
+  .menuOptionDesktop {
+    display: none;
+    position: absolute;
+    z-index: 9999;
 
-    .menuOptionMobile{
-        display: block;
-    }
+    .containerMenu {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
 
-    .menuOptionDesktop{
-        .containerMenu{
-            position: absolute;
-            top : 15px;
-            right: 50px;
-            .buttonMenu{
-                background-color: aliceblue;
-                border-radius: 50%;
-            }
+      transition: background-color 0.5s ease;
+      &.collapsed {
+        background: transparent;
+      }
+
+      &.expanded {
+        background: rgba(0, 0, 0, 0.4);
+      }
+
+      .buttonMenu {
+        background-color: transparent;
+        border-radius: 50%;
+        color: black;
+        height: 40px;
+        transition: background-color 1s ease, color 1s ease;
+
+        &:hover {
+          cursor: pointer;
         }
-    }
+      }
 
-}
-
-
-
-@include media-up($breakpoint-md) {
-    .containerMenuOption{
-        .menuOptionMobile{
-            display: none;
+      &.expanded {
+        .buttonMenu {
+          background-color: rgba(255, 255, 255, 0.7);
+          color: black;
         }
-       
+      }
+
+      &.collapsed {
+        .buttonMenu {
+          background-color: transparent;
+          color: black;
+        }
+      }
+
+      // Nueva clase para la opción seleccionada
+      .selectedOption {
+        background-color: white;
+        color: black;
+      }
     }
   }
-  
-  
+}
+
+@include media-up($breakpoint-md) {
+  .containerMenuOption {
+    .menuOptionMobile {
+      display: none;
+    }
+
+    .menuOptionDesktop {
+      display: block;
+
+      .containerMenu {
+        &.expanded {
+          .buttonMenu {
+            background-color: rgb(244, 210, 36);
+          }
+        }
+
+        &.collapsed {
+          .buttonMenu {
+            background-color: white;
+          }
+        }
+
+        // Estilo para la opción seleccionada en escritorio
+        .selectedOption {
+          background-color: white;
+          color: black;
+        }
+      }
+    }
+  }
+}
