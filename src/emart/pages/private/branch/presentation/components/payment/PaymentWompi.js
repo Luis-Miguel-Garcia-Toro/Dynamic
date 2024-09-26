@@ -13,6 +13,7 @@ const PaymentWompi = () => {
         //   text: `En un momento serás redirigido a la pasarela de pagos `,
         //   icon: 'success'
         // })
+        if(value.valuePayment > 0 ){
           const documentList = value.invoices
           const fecha = new Date()
           const dias = 1
@@ -46,6 +47,7 @@ const PaymentWompi = () => {
           }else{
             alert('no es posible realizar el pago')
           }
+        }
       }
     return {
         payWompi

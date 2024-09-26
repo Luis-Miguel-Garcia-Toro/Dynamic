@@ -41,6 +41,8 @@ export const BranchItemFactura = ({ branch, orders }) => {
 
   useEffect(() => {
     getDataBill();
+    setValuePayment(0)
+    setInvoices([])
   }, [branch]);
 
   function getDataBill() {

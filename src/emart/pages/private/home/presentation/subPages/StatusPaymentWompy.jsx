@@ -3,8 +3,9 @@ import Styles from '../scss/statusPayment.module.scss';
 import { useEffect } from 'react';
 import { format } from "../../../../../../common/presentation/utils"
 import moment from "moment"
+import {useContextWallet} from '../../../../../context/ContextWallet'
 const StatusPaymentWompy = ({ dataPayment }) => {
-
+    const {idLastPayment} = useContextWallet()
 
 
     const variants = {
@@ -22,6 +23,7 @@ const StatusPaymentWompy = ({ dataPayment }) => {
             {dataPayment.status === 'OK' ? (
                 <>
                     <h1>Pago Exitoso</h1>
+                  
                     {/* <div className={Styles.containerIcon}>
                         <motion.div
                             className="success-animation"
@@ -94,6 +96,8 @@ const StatusPaymentWompy = ({ dataPayment }) => {
 
             <div className={Styles.resumePay}>
                 <h2>Resumen de transacción</h2>
+                {/* <p>Ref.{idLastPayment}</p> */}
+                <br></br>
                 <label>
                     <p className={Styles.title}>Fecha :</p>
                     <p className={Styles.value}>{moment(dataPayment.customer_transaction_transactionDate).format("DD-MM-YYYY HH:mm")}</p>
@@ -110,6 +114,7 @@ const StatusPaymentWompy = ({ dataPayment }) => {
                     <p className={Styles.title}>Metodo : </p>
                     <p className={Styles.value}>{dataPayment.payment_method}</p>
                 </label>
+             
             </div>
             <div className={Styles.containerButton}>
                 <button onClick={() => window.location.replace("/home")}>Continuar</button>
