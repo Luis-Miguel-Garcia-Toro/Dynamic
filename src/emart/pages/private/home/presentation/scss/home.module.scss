@@ -33,6 +33,14 @@
     position: relative;
     z-index: 2;
     margin-bottom: 2rem;
+   button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    label{
+      color:aliceblue
+    }
+   }
 
     .HomePageHeaderOptions {
       display: flex;
@@ -93,6 +101,7 @@
 
 @include media-up($breakpoint-md) {
   .HomePageContainer {
+    padding: 10px 2rem 4rem;
     .BusinessListContainer {
       display: grid;
       position: relative;
@@ -114,11 +123,15 @@
       padding: 2px;
       margin-bottom: 5px;
     }
+   
 
     .HomeBackground {
       border-radius: initial;
     }
    
+  }
+  .HomeWalletList{
+    margin: 10px;
   }
  
 }

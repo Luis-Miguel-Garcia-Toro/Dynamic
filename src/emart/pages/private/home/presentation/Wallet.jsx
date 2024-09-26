@@ -11,7 +11,7 @@ import { Divider } from "antd";
 import { MdSearchOff } from "react-icons/md";
 
 export const Wallet = () => {
-  const { businessSelected, updateDatabusiness, businessData } =
+  const { businessSelected, updateDatabusiness, businessData,updateOptionSeleted } =
     useContextWallet();
   const { businessList, nit, onNavigateToBranch } = useHomePage();
   const [orders, setOrders] = useState([]);
@@ -32,18 +32,21 @@ export const Wallet = () => {
   }, [businessSelected]);
 
   return (
+    <>
     <main className={Styles.HomePageContainer}>
       <div className={Styles.HomeBackground} />
 
       <div className={Styles.HomePageHeader}>
-        <ButtonNavigate
+        <button
           color="var(--color-label)"
-          navigateTo={() => window.history.back()}
-          text="Regresar"
-        />
+          onClick={() => updateOptionSeleted("home")}
+         
+        >
+          <label style={{ cursor: "pointer", color:"#fffffff" }}><p>◄- Regresar</p></label>
+          </button>
         <br />
         <div className={`${Styles.HomePageHeaderOptions} fadeIn`}>
-          <h1>Tu Wallet</h1>
+          <h1>Tu Cartera</h1>
         </div>
         <h2>Nit - {nit}</h2>
       </div>
@@ -52,36 +55,10 @@ export const Wallet = () => {
           <BusinessCardFactura business={business} key={business.business} />
         ))}
       </section>
-      <section className={Styles.BranchListContainer}>
-        <div className={`${Styles.BranchListTitle} fadeIn`}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "5px",
-              margin: "10px",
-            }}
-          >
-            {" "}
-            <BsBuildingCheck size={20} color="var(--color-label)" />
-            <h2>Sucursales</h2>
-          </div>
-        </div>
-      </section>
       <Divider style={{ borderColor: "whitesmoke" }} />
-      <div className={Styles.HomePagetitles}>
-        <h2>Tus Facturas</h2>
-      </div>
-
-      {/* <div>
-        <BranchItemFactura
-          orders={orders}
-          branch={"branch"}
-          // colorBusiness="gris"
-          // key="business_unit"
-        />
-      </div> */}
-      <div>
+     
+    </main>
+      <div className={Styles.HomeWalletList}>
         {businessData.length > 0 ? (
           <BranchItemFactura orders={businessData} branch={businessSelected} />
         ) : (
@@ -91,7 +68,8 @@ export const Wallet = () => {
           </div>
         )}
       </div>
-    </main>
+    
+    </>
   );
 };
 

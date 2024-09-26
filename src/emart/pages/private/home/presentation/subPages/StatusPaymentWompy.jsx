@@ -21,8 +21,8 @@ const StatusPaymentWompy = ({ dataPayment }) => {
         <div className={Styles.containerWompy}>
             {dataPayment.status === 'OK' ? (
                 <>
-                    <h1>¡ Pago Exitoso !</h1>
-                    <div className={Styles.containerIcon}>
+                    <h1>Pago Exitoso</h1>
+                    {/* <div className={Styles.containerIcon}>
                         <motion.div
                             className="success-animation"
                             initial="hidden"
@@ -52,12 +52,12 @@ const StatusPaymentWompy = ({ dataPayment }) => {
                                 </motion.div>
                             </div>
                         </motion.div>
-                    </div>
+                    </div> */}
                 </>
             ) : (
                 <>
-                    <h1>¡ Pago Rechazado !</h1>
-                    <div className={Styles.containerIconError}>
+                    <h1>Pago Rechazado</h1>
+                    {/* <div className={Styles.containerIconError}>
                         <motion.div
                             className="success-animation"
                             initial="hidden"
@@ -87,7 +87,7 @@ const StatusPaymentWompy = ({ dataPayment }) => {
                                 </motion.div>
                             </div>
                         </motion.div>
-                    </div>
+                    </div> */}
                 </>
             )}
 
@@ -101,6 +101,10 @@ const StatusPaymentWompy = ({ dataPayment }) => {
                 <label>
                     <p className={Styles.title}>Valor : </p>
                     <p className={Styles.value}>{format.formatPrice(dataPayment.customer_transaction_amount)}</p>
+                </label>
+                <label>
+                    <p className={Styles.title}>Medio de pago : </p>
+                    <p className={Styles.value}>{dataPayment.wallet}</p>
                 </label>
                 <label>
                     <p className={Styles.title}>Metodo : </p>

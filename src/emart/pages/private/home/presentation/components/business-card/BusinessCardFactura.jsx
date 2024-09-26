@@ -10,7 +10,7 @@ export const BusinessCardFactura = ({ business }) => {
   return (
     <div
       onClick={() =>updateBusinessSelected(business.business) }
-      className={`${Styles.BusinessCardContainer} fadeIn`}
+      className={`${Styles.BusinessCardContainerWallet} fadeIn`}
     >
       <figure>
         <ImageLazy imageUri={logo} />

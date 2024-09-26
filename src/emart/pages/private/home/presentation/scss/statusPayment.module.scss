@@ -1,71 +1,80 @@
 .containerWompy {
-    margin-top: 100px;
+    margin-top: 50px;
     margin-left: 20px;
     width: 100%;
- 
-    height: calc(100vh - 450px);
+
+    height: calc(100vh - 550px);
     display: grid;
     justify-content: space-around;
-    
-    .containerIcon{
-        width: 200px;
+
+    .containerIcon {
+        width: 130px;
+
         .success-animation {
             text-align: center;
             margin-top: 20px;
         }
+
         .checkmark {
             margin-top: 10px;
             display: inline-block;
         }
     }
 
-    .containerIconError{
+    .containerIconError {
         width: 220px;
-        margin-left: 30px;
+       
+
         .success-animation {
             text-align: center;
             margin-top: 20px;
             margin-bottom: 10px;
         }
+
         .checkmark {
             margin-top: 10px;
             display: inline-block;
         }
     }
 
-    .resumePay{
+    .resumePay {
         display: grid;
         margin-top: 50px;
         margin-left: -60px;
-        justify-items: center;
-        label{
+
+        label {
             display: flex;
             margin-top: 10px;
-            .title{
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #123C5C;
+
+            .title {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #123C5C;
             }
-            .value{
-                font-size: 1.0rem;
+
+            .value {
+                font-size: 0.9rem;
                 font-weight: 600;
                 color: #656568;
                 margin-left: 10px;
-                justify-content: last baseline;
+                position: absolute;
+                right: 0px;
+                padding-top: 5px;
             }
         }
-        h2{
+
+        h2 {
             margin-top: 10px;
             font-size: 1.2rem;
             font-weight: 700;
             color: #123C5C;
+          
         }
     }
 
-    .containerButton{
+    .containerButton {
         display: grid;
-        margin-left: 20px;
-        button{
+        button {
             border: 1px solid #123C5C;
             background-color: #123C5C;
             color: white;
@@ -73,7 +82,8 @@
             width: 200px;
             height: 40px;
             margin-top: 20px;
+            
         }
     }
-   
+
 }

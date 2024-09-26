@@ -58,6 +58,64 @@
     width: 100%;
   }
 }
+
+.BusinessCardContainerWallet {
+  width: 100%;
+  background-color: var(--color-white);
+  padding: 1rem;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--box-shadow-light);
+  transition: 0.3s;
+  cursor: pointer;
+  display: flex;
+  min-height: 150px;
+  min-width: 150px;
+  position: relative;
+  overflow: hidden;
+ 
+  &:hover {
+    box-shadow: var(--box-shadow-medium);
+  }
+ 
+  figure {
+    // width: 80%;
+    height: 100%;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    transition: 0.3s;
+ 
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+ 
+  h2 {
+    text-wrap: wrap;
+    font-size: 1rem;
+    display: none;
+    opacity: 0;
+    color: var(--color-cancel);
+    transition: 0.3s;
+    transform: translateY(-30px);
+  }
+ 
+  span {
+    font-size: 0.9rem;
+    color: var(--color-cancel);
+  }
+ 
+  .BusinessCardButtonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}
  
 @include media-up($breakpoint-md) {
   .BusinessCardContainer {
@@ -86,6 +144,40 @@
     figure {
       width: 50%;
       height: 100px;
+      transform: translateY(50%);
+    }
+  }
+
+
+  .BusinessCardContainerWallet {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px auto;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 170px;
+    min-width: 100px;
+    width: 170px;
+
+    &:hover {
+ 
+      figure{
+        transform: translateY(30%);
+      }
+ 
+      h2 {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        font-size:0.8rem;
+      }
+    }
+ 
+    figure {
+      width: 80%;
+      height: auto;
       transform: translateY(50%);
     }
   }
