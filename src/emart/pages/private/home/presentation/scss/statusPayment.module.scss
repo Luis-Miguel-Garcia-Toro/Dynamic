@@ -1,94 +1,114 @@
-.containerWompy {
-    margin-top: 50px;
-    margin-left: 20px;
+@import "@/common/presentation/scss/mixins/responsive.mixin";
+@import "@/common/presentation/scss/vars";
+@import "../../../../../common/presentation/scss/vars";
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+  padding: 0 20px; /* Espacio para evitar que el contenido toque los bordes en móviles */
+  width: 100%;
+
+  .containerWompy {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+    border: 2px solid white; /* Bordes blancos */
+    border-radius: 15px; /* Bordes redondeados */
+    padding: 20px; /* Espacio interno */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
     width: 100%;
+    max-width: 350px; /* Ancho máximo en móviles */
+    text-align: center;
 
-    height: calc(100vh - 550px);
-    display: grid;
-    justify-content: space-around;
-
-    .containerIcon {
-        width: 130px;
-
-        .success-animation {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .checkmark {
-            margin-top: 10px;
-            display: inline-block;
-        }
-    }
-
-    .containerIconError {
-        width: 220px;
-       
-
-        .success-animation {
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        .checkmark {
-            margin-top: 10px;
-            display: inline-block;
-        }
+    h1 {
+      color: #123C5C; /* Azul oscuro para los títulos */
+      font-size: 1.2rem; /* Tamaño de fuente reducido en móviles */
     }
 
     .resumePay {
-        display: grid;
-        margin-top: 50px;
-        margin-left: -60px;
-        p{
-            font-size: 1.0rem;
-            font-weight: 600;
-            color: #123C5C;
+      //display: grid;
+      margin-top: 20px;
+      justify-content: center;
+
+      h2 {
+        margin-bottom: 20px;
+        font-size: 1.2rem; /* Ajustar tamaño de fuente */
+        font-weight: 700;
+        color: #123C5C;
+      }
+
+      label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem; /* Tamaño de texto ajustado */
+        margin-bottom: 10px;
+
+        .title {
+          font-weight: 600;
+          color: #123C5C;
         }
 
-        label {
-            display: flex;
-            margin-top: 10px;
-
-            .title {
-                font-size: 1.2rem;
-                font-weight: 600;
-                color: #123C5C;
-            }
-
-            .value {
-                font-size: 0.9rem;
-                font-weight: 600;
-                color: #656568;
-                margin-left: 10px;
-                position: absolute;
-                right: 0px;
-                padding-top: 5px;
-            }
+        .value {
+          color: #656568;
+          font-weight: 600;
         }
-
-        h2 {
-            margin-top: 10px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #123C5C;
-          
-        }
+      }
     }
 
     .containerButton {
-        display: grid;
-        button {
-            border: 1px solid #123C5C;
-            background-color: #123C5C;
-            color: white;
-            border-radius: 5px;
-            width: 200px;
-            height: 40px;
-            margin-top: 20px;
-            
-        }
-    }
+      margin-top: 20px;
 
+      button {
+        border: 1px solid #123C5C;
+        background-color: #123C5C;
+        color: white;
+        border-radius: 5px;
+        width: 100%; /* Botón ocupará todo el ancho en móviles */
+        max-width: 250px; /* Ancho máximo del botón */
+        height: 45px; /* Mayor altura para facilitar clics en móviles */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #0d62b7; /* Cambio de color en hover */
+        }
+      }
+    }
+  }
+}
+
+/* Estilos para pantallas grandes (media-up) */
+@include media-up($breakpoint-md) {
+  .container {
+    margin-top: 80px;
+
+    .containerWompy {
+      padding: 30px; /* Aumentar padding en pantallas grandes */
+      max-width: 600px; /* Ancho máximo mayor para pantallas grandes */
+
+      h1 {
+        font-size: 1.5rem; /* Tamaño de fuente más grande */
+      }
+
+      .resumePay {
+        margin-top: 30px;
+        justify-content: center;
+
+        h2 {
+          font-size: 1.4rem; /* Ajustar tamaño de fuente para pantallas grandes */
+        }
+
+        label {
+          font-size: 1rem; /* Tamaño de texto más grande en pantallas grandes */
+        }
+      }
+
+      .containerButton {
+        button {
+          width: 200px; /* Ajustar ancho del botón en pantallas grandes */
+          height: 40px; /* Ajustar altura del botón */
+        }
+      }
+    }
+  }
 }

@@ -5,7 +5,8 @@ import React, { useState, useEffect } from "react";
 import PaymentWompi from "../payment/PaymentWompi";
 import { BsCreditCard } from "react-icons/bs";
 import { MdSearchOff } from "react-icons/md";
-import wompyLogo from '../../../../../../../assets/wompi-logo.png'
+import wompyLogo from "../../../../../../../assets/wompi-logo.png";
+//
 
 export const BranchItemFactura = ({ branch, orders }) => {
   const { code } = branch;
@@ -13,6 +14,7 @@ export const BranchItemFactura = ({ branch, orders }) => {
   const [invoices, setInvoices] = useState([]);
   const { payWompi } = PaymentWompi();
   const [dataBill, setdataBill] = useState([]);
+  // const [value, setValue] = React.useState<Dayjs | null>(dayjs('2022-04-17'));
 
   const seletedBillPayment = (e, data) => {
     setValuePayment(valuePayment + data.valor);
@@ -41,8 +43,8 @@ export const BranchItemFactura = ({ branch, orders }) => {
 
   useEffect(() => {
     getDataBill();
-    setValuePayment(0)
-    setInvoices([])
+    setValuePayment(0);
+    setInvoices([]);
   }, [branch]);
 
   function getDataBill() {

@@ -9,10 +9,19 @@ import { useEffect, useState } from "react";
 import { getWallet } from "../../../../authServices/authWallet/walletAuth";
 import { Divider } from "antd";
 import { MdSearchOff } from "react-icons/md";
+//
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 export const Wallet = () => {
-  const { businessSelected, updateDatabusiness, businessData,updateOptionSeleted } =
-    useContextWallet();
+  const {
+    businessSelected,
+    updateDatabusiness,
+    businessData,
+    updateOptionSeleted,
+  } = useContextWallet();
   const { businessList, nit, onNavigateToBranch } = useHomePage();
   const [orders, setOrders] = useState([]);
   // const [businessData, setbusinessData] = useState([]);
@@ -33,31 +42,49 @@ export const Wallet = () => {
 
   return (
     <>
-    <main className={Styles.HomePageContainer}>
-      <div className={Styles.HomeBackground} />
+      <main className={Styles.HomePageContainer}>
+        <div className={Styles.HomeBackground} />
 
-      <div className={Styles.HomePageHeader}>
-        <button
-          color="var(--color-label)"
-          onClick={() => updateOptionSeleted("home")}
-         
-        >
-          <label style={{ cursor: "pointer", color:"#fffffff" }}><p>◄- Regresar</p></label>
+        <div className={Styles.HomePageHeader}>
+          <button
+            color="var(--color-label)"
+            onClick={() => updateOptionSeleted("home")}
+          >
+            <label style={{ cursor: "pointer", color: "#fffffff" }}>
+              <p>◄- Regresar</p>
+            </label>
           </button>
-        <br />
-        <div className={`${Styles.HomePageHeaderOptions} fadeIn`}>
-          <h1>Tu Cartera</h1>
+          <br />
+          <div className={`${Styles.HomePageHeaderOptions} fadeIn`}>
+            <h1>Tu Cartera</h1>
+          </div>
+          <h2>Nit - {nit}</h2>
         </div>
-        <h2>Nit - {nit}</h2>
-      </div>
-      <section className={Styles.BusinessListContainer}>
-        {businessList.map((business) => (
-          <BusinessCardFactura business={business} key={business.business} />
-        ))}
-      </section>
-      <Divider style={{ borderColor: "whitesmoke" }} />
-     
-    </main>
+        <section className={Styles.BusinessListContainer}>
+          {businessList.map((business) => (
+            <BusinessCardFactura business={business} key={business.business} />
+          ))}
+        </section>
+        <Divider style={{ borderColor: "whitesmoke" }} />
+        <div>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker"]}>
+              <DatePicker label="Fecha Inicial" />
+            </DemoContainer>
+          </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker"]}>
+              <DatePicker label="Fecha Final" />
+            </DemoContainer>
+          </LocalizationProvider>
+          <div className={Styles.containerButton}>
+          <button>
+            Continuar
+          </button>
+        </div>
+        </div>
+      </main>
+
       <div className={Styles.HomeWalletList}>
         {businessData.length > 0 ? (
           <BranchItemFactura orders={businessData} branch={businessSelected} />
@@ -68,7 +95,6 @@ export const Wallet = () => {
           </div>
         )}
       </div>
-    
     </>
   );
 };
