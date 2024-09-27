@@ -13,3 +13,4 @@ export const GET_WALLET = `${URL_BASE_API}/business/get_wallet`
 export const SUBMITWOMPY = 'https://cwpay.celuwebcloud.com/api/payment_methods/execute_payment_intention'
 export const SUBMITWOMPYQA = 'https://cwpay.sandboxcw.net/api/payment_methods/execute_payment_intention'
 export const GET_RESULT_PAYMENT = `${URL_BASE_WOMPY}/history/get_transaction`
+export const GENERATE_INTENTION_PAY_CWPAY = `https://cwpay.celuwebdev.com/api/payment_methods/create_payment_intention`

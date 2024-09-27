@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import Styles from "./scss/branch-item.module.scss";
 import React, { useState, useEffect } from "react";
 import PaymentWompi from "../payment/PaymentWompi";
+import PaymentCwPay from "../payment/PaymentCwPay";
 import { BsCreditCard } from "react-icons/bs";
 import { MdSearchOff } from "react-icons/md";
 import wompyLogo from "../../../../../../../assets/wompi-logo.png";
+import cwpay from '../../../../../../../assets/cwpay.png';
 //
 
 export const BranchItemFactura = ({ branch, orders }) => {
@@ -13,6 +15,7 @@ export const BranchItemFactura = ({ branch, orders }) => {
   const [valuePayment, setValuePayment] = useState(0);
   const [invoices, setInvoices] = useState([]);
   const { payWompi } = PaymentWompi();
+  const {payCW} = PaymentCwPay()
   const [dataBill, setdataBill] = useState([]);
   // const [value, setValue] = React.useState<Dayjs | null>(dayjs('2022-04-17'));
 
@@ -131,7 +134,17 @@ export const BranchItemFactura = ({ branch, orders }) => {
                 }).format(Math.round(valuePayment))}
             </label>
           </div>
-          <div className={Styles.paymentButton}>
+          <div className={Styles.paymentButtonsContainer}>
+            <button
+              className={Styles.paymentButton}
+              onClick={() => payCW({ valuePayment, invoices })}
+            >
+              <img
+                src={cwpay}
+                alt="Pago con tarjeta"
+                style={{ width: 118, height: 45 }}
+              />
+            </button>
             <button
               className={Styles.paymentButton}
               onClick={() => payWompi({ valuePayment, invoices })}
