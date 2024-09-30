@@ -13,7 +13,7 @@
   cursor: pointer;
 }
 .HomePageContainer {
-  padding: $height-header 2rem 4rem;
+  padding: $height-header 2rem 1rem;
   position: relative;
   color: var(--color-secondary);
 
@@ -33,14 +33,14 @@
     position: relative;
     z-index: 2;
     margin-bottom: 2rem;
-   button{
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    label{
-      color:aliceblue
+    button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      label {
+        color: aliceblue;
+      }
     }
-   }
 
     .HomePageHeaderOptions {
       display: flex;
@@ -95,7 +95,21 @@
     justify-content: center;
     padding: 2px;
     margin-bottom: 5px;
+  }
 
+  .ContainerForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    gap: 20px;
+    padding-top: 45px;
+    
+  }
+
+  .ContainerButton {
+    display: flex;
+    justify-content: space-evenly;
+    // border-radius: 15px;  
   }
 }
 
@@ -114,7 +128,6 @@
       white-space: nowrap;
       padding: 10px;
       box-sizing: border-box;
-      
     }
     .HomePagetitles {
       width: 50%;
@@ -123,16 +136,34 @@
       padding: 2px;
       margin-bottom: 5px;
     }
-   
 
     .HomeBackground {
       border-radius: initial;
     }
-   
   }
-  .HomeWalletList{
+  .HomeWalletList {
     margin: 10px;
   }
- 
-}
 
+  .ContainerForm {
+    display: flex;
+    flex-direction: row !important;
+    width: 100%;
+    gap: 20px;
+    padding-top: 45px;
+  }
+  // .ContainerForm {
+  //   display: flex;
+  //   flex-direction: column;
+  //   max-width: 100%;
+  //   gap: 20px;
+  //   padding-top: 45px;
+    
+  // }
+
+  // .ContainerButton {
+  //   display: flex;
+  //   justify-content: space-evenly;
+  //   // border-radius: 15px;  
+  // }
+}

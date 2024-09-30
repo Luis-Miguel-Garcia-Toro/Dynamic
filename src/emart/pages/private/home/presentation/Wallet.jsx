@@ -1,7 +1,7 @@
 import Styles from "./scss/home.module.scss";
 import { useHomePage } from "./view-model";
-import { ButtonNavigate } from "@/common/presentation/components";
-import { BsBuildingCheck } from "react-icons/bs";
+// import { ButtonNavigate } from "@/common/presentation/components";
+// import { BsBuildingCheck } from "react-icons/bs";
 import { BusinessCardFactura } from "./components/business-card/BusinessCardFactura";
 import { BranchItemFactura } from "../../branch/presentation/components/branch-item/BranchItemFactura";
 import { useContextWallet } from "../../../../context/ContextWallet";
@@ -9,11 +9,15 @@ import { useEffect, useState } from "react";
 import { getWallet } from "../../../../authServices/authWallet/walletAuth";
 import { Divider } from "antd";
 import { MdSearchOff } from "react-icons/md";
+// import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
 //
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+// import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+// import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+// import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import TextField from "@mui/material/TextField";
+import { Button, Stack } from "@mui/material";
 
 export const Wallet = () => {
   const {
@@ -39,6 +43,23 @@ export const Wallet = () => {
   useEffect(() => {
     getWalletClient();
   }, [businessSelected]);
+  const StyledTextField = styled(TextField)(({ theme }) => ({
+    margin: "10px",
+    "> .MuiInputBase-root": {
+      backgroundColor: "#ffffff", // Fondo blanco
+      height: 42,
+      borderRadius: 30,
+      fontSize: "18px", // Aumenta el tamaño del texto
+      fontWeight: "bold", // Aplica negrita al texto dentro del campo
+    },
+    "> .MuiInputLabel-root": {
+      fontSize: "18px", // Aumenta el tamaño de la etiqueta
+      fontWeight: "bold", // Aplica negrita a la etiqueta
+    },
+    "> .MuiTouchRipple-root": {
+      backgroundColor: "#ffffff", // Fondo blanco para el efecto de toque
+    },
+  }));
 
   return (
     <>
@@ -66,23 +87,43 @@ export const Wallet = () => {
           ))}
         </section>
         <Divider style={{ borderColor: "whitesmoke" }} />
-        <div>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={["DatePicker"]}>
-              <DatePicker label="Fecha Inicial" />
-            </DemoContainer>
-          </LocalizationProvider>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={["DatePicker"]}>
-              <DatePicker label="Fecha Final" />
-            </DemoContainer>
-          </LocalizationProvider>
-          <div className={Styles.containerButton}>
-          <button>
-            Continuar
-          </button>
-        </div>
-        </div>
+
+        {/* <div className={Styles.ContainerForm}>
+          <Stack component="form" noValidate spacing={3}>
+            <StyledTextField
+              id="date"
+              label="Fecha Inicio"
+              type="date"
+              // defaultValue={startDate}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // onChange={(e) => {
+              //   changeDate(1, e.target.value);
+              // }}
+            />
+          </Stack>
+
+          <Stack component="form" noValidate spacing={3}>
+            <StyledTextField
+              id="date"
+              label="Fecha Fin"
+              type="date"
+              // defaultValue={startDate}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // onChange={(e) => {
+              //   changeDate(1, e.target.value);
+              // }}
+            />
+          </Stack>
+          <div className={Styles.ContainerButton}>
+            <Button variant="contained" color="primary">
+              Aceptar
+            </Button>
+          </div>
+        </div> */}
       </main>
 
       <div className={Styles.HomeWalletList}>
