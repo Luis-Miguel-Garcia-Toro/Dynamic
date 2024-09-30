@@ -46,7 +46,10 @@ export const BranchItemFactura = ({ branch, orders }) => {
   // const billData  = orders.map(bill=>
   //   bill.business_unit === branch
   // )
-
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
   useEffect(() => {
     getDataBill();
     setValuePayment(0);
@@ -111,34 +114,25 @@ export const BranchItemFactura = ({ branch, orders }) => {
             dataBill.map((fact) => (
               <div
                 className={`${Styles.BranchItemBillContainer} fadeIn`}
-                key={code}
+                key={fact.documento}
               >
                 <div className={Styles.BranchItemBill}>
                   <figure>
-                    <img
-                      src="https://usc1.contabostorage.com/d069ea98e2df4b0e9e99b1e7b2ca9a58:pruebasceluweb/%20company_logos/1000/logo.png"
-                      alt={branch.name}
-                    />
+                    <img src={fact.logo} alt={branch.name} />
                   </figure>
-                  <h3>
-                    Factura N°: <strong>{fact.documento}</strong>
-                  </h3>
-                  <h3>
-                    Valor:
-                    <label
-                      className={
-                        fact.state === 0
-                          ? Styles.valuePending
-                          : Styles.valueSold
-                      }
-                    >
-                      {" $" +
-                        new Intl.NumberFormat("en", {
-                          style: "decimal",
-                          currency: "COP",
-                        }).format(Math.round(fact.valor))}
-                    </label>
-                  </h3>
+                  <div className={Styles.billDetails}>
+                    <h3>
+                      Factura N°: <strong>{fact.documento.trim()}</strong>
+                    </h3>
+                    <p>Fecha de emisión: {formatDate(fact.fecha)}</p>
+                    <p>Fecha de vencimiento: {formatDate(fact.vencimiento)}</p>
+                    <h4 className={Styles.billValue}>
+                      Valor:{" "}
+                      <strong>
+                        ${new Intl.NumberFormat("es-CO").format(fact.valor)}
+                      </strong>
+                    </h4>
+                  </div>
                   <div className={Styles.BranchCheck}>
                     <input
                       type="checkbox"
@@ -157,42 +151,41 @@ export const BranchItemFactura = ({ branch, orders }) => {
         </div>
 
         {/* Botones de Pago */}
-        
       </div>
       <div className={Styles.paymentContainer}>
-          <div className={Styles.titleTotal}>
-            <h2>Total:</h2>
-            <label>
-              {" $" +
-                new Intl.NumberFormat("en", {
-                  style: "decimal",
-                  currency: "COP",
-                }).format(Math.round(valuePayment))}
-            </label>
-          </div>
-          <div className={Styles.paymentButtonsContainer}>
-            <button
-              className={Styles.paymentButton}
-              onClick={() => payCW({ valuePayment, invoices })}
-            >
-              <img
-                src={cwpay}
-                alt="Pago con tarjeta"
-                style={{ width: 118, height: 45 }}
-              />
-            </button>
-            <button
-              className={Styles.paymentButton}
-              onClick={() => payWompi({ valuePayment, invoices })}
-            >
-              <img
-                src={wompyLogo}
-                alt="Pago con tarjeta"
-                style={{ width: 118, height: 45 }}
-              />
-            </button>
-          </div>
+        <div className={Styles.titleTotal}>
+          <h2>Total:</h2>
+          <label>
+            {" $" +
+              new Intl.NumberFormat("en", {
+                style: "decimal",
+                currency: "COP",
+              }).format(Math.round(valuePayment))}
+          </label>
         </div>
+        <div className={Styles.paymentButtonsContainer}>
+          <button
+            className={Styles.paymentButton}
+            onClick={() => payCW({ valuePayment, invoices })}
+          >
+            <img
+              src={cwpay}
+              alt="Pago con tarjeta"
+              style={{ width: 118, height: 45 }}
+            />
+          </button>
+          <button
+            className={Styles.paymentButton}
+            onClick={() => payWompi({ valuePayment, invoices })}
+          >
+            <img
+              src={wompyLogo}
+              alt="Pago con tarjeta"
+              style={{ width: 118, height: 45 }}
+            />
+          </button>
+        </div>
+      </div>
     </>
   );
 };

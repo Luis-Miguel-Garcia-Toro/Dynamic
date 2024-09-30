@@ -214,6 +214,7 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      width: 20%;
     }
 
     // Contenedor de las facturas
@@ -224,6 +225,7 @@
       overflow-y: auto;
       max-height: 300px;
       padding: 0 3px 0 10px;
+      width: 100%;
 
       &::-webkit-scrollbar {
         width: 6px;
@@ -254,36 +256,39 @@
   
 }
 .paymentContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  border-radius: 1rem;
-  padding: 1rem;
-  box-shadow: var(--box-shadow-medium);
+  width: 20%; // Reducimos el tamaño si es necesario
+  margin: 0 auto; // Centramos horizontalmente
+  padding: 20px; // Añadimos algo de padding para mejorar la apariencia
+
 
   .titleTotal {
     display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem; // Tamaño del texto ajustado
+    margin-bottom: 20px;
+
   }
 
   .paymentButtonsContainer {
     display: flex;
-    justify-content: space-evenly;
-    margin-top: 1rem;
+    justify-content: center; // Centrar botones horizontalmente
+    gap: 20px; // Espacio entre botones
+
 
     .paymentButton {
+      border: none;
       background-color: transparent;
       cursor: pointer;
-      transition: all 0.5s;
-      padding: 0.75rem;
-      border-radius: 50%;
-      margin: 10px;
+      padding: 10px;
+      transition: transform 0.2s ease-in-out;
 
       &:hover {
-        background-color: #ededed;
-        box-shadow: var(--box-shadow-medium);
+        transform: scale(1.05);
+      }
+      img {
+        width: 118px;
+        height: 45px;
       }
     }
   }
